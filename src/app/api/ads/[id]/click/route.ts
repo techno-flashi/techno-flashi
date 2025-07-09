@@ -1,47 +1,31 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase } from "@/lib/supabase";
+import { NextResponse } from "next/server";
 
 export async function POST(
-  request: NextRequest,
+  req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { id } = await params;
-    console.log('Recording click for ad:', id);
+  const { id } = await params;
 
-    // تحديث عدد النقرات
-    const { data: ad, error } = await supabase
-      .from('ads')
-      .update({
-        click_count: supabase.sql`click_count + 1`,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', id)
-      .select('click_count, link_url, target_blank')
-      .single();
+  if (!id) {
+    return new NextResponse("Ad ID is required", { status: 400 });
+  }
+
+  try {
+    // هذا هو التصحيح: استدعاء الدالة 'increment_ad_click'
+    const { error } = await supabase.rpc('increment_ad_click', { ad_id: id });
 
     if (error) {
-      console.error('Database error:', error);
-      return NextResponse.json(
-        { error: 'Failed to record click', details: error.message },
-        { status: 500 }
-      );
+      console.error("Error incrementing click count:", error);
+      throw error;
     }
 
-    console.log('Click recorded successfully. New count:', ad.click_count);
+    console.log('Click recorded successfully for ad:', id);
 
-    return NextResponse.json({
-      message: 'Click recorded successfully',
-      click_count: ad.click_count,
-      link_url: ad.link_url,
-      target_blank: ad.target_blank
+    return NextResponse.json({ message: "Click tracked successfully" });
+  } catch (error: any) {
+    return new NextResponse(`Error tracking click: ${error.message}`, {
+      status: 500,
     });
-
-  } catch (error) {
-    console.error('API error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
   }
 }
