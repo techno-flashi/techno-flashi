@@ -6,10 +6,9 @@ import { Ad } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// 1. تحديث الخصائص لتشمل className
 interface AdBannerProps {
   placement: string;
-  className?: string; // إضافة className كخاصية اختيارية
+  className?: string;
 }
 
 export default function AdBanner({ placement, className }: AdBannerProps) {
@@ -28,8 +27,7 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
         .single();
 
       if (error) {
-        // لا تطبع الخطأ إذا كان السبب هو عدم العثور على إعلان، هذا طبيعي
-        if (error.code !== 'PGRST116') {
+        if (error.code !== 'PGRST116') { // لا تطبع الخطأ إذا كان السبب هو عدم العثور على إعلان
             console.error(`Error fetching ad for placement ${placement}:`, error.message);
         }
         setAd(null);
@@ -55,17 +53,17 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
     return <div className={`w-full h-24 bg-dark-card animate-pulse rounded-lg my-8 ${className || ''}`}></div>;
   }
 
-  if (!ad) {
-    return null; // لا تعرض شيئًا إذا لم يتم العثور على إعلان
+  // **الحل هنا:** نتأكد من وجود الإعلان ورابط الصورة قبل عرضها
+  if (!ad || !ad.image_url) {
+    return null;
   }
 
   return (
-    // 2. تطبيق الـ className على العنصر الرئيسي
     <div className={`my-8 ${className || ''}`}>
       <Link href={ad.link_url || '#'} target="_blank" rel="noopener noreferrer" onClick={handleAdClick}>
         <div className="relative w-full h-auto aspect-[8/1] bg-dark-card rounded-lg overflow-hidden">
           <Image
-            src={ad.image_url}
+            src={ad.image_url} // الآن هذه القيمة مضمونة ولن تكون فارغة
             alt={ad.title}
             fill
             style={{ objectFit: 'cover' }}
