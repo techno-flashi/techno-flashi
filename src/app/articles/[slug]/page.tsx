@@ -3,7 +3,7 @@
 import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { AdBanner } from "@/components/AdBanner";
+import AdBanner from "@/components/ads/AdBanner";
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
 

@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { FeaturedArticlesSection } from "@/components/FeaturedArticlesSection";
 import { FeaturedAIToolsSection } from "@/components/FeaturedAIToolsSection";
 import { ServicesSection } from "@/components/ServicesSection";
-import { AdBanner } from "@/components/AdBanner";
+import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import SponsorsSection from "@/components/SponsorsSection";
 import AdBannerTop from "@/components/AdBannerTop";

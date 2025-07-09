@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Service } from '@/types';
 import { ServicesSection } from '@/components/ServicesSection';
-import { AdBanner } from '@/components/AdBanner';
+import AdBanner from '@/components/ads/AdBanner';
 
 export const metadata: Metadata = {
   title: 'خدماتنا - تكنوفلاش',
@@ -64,7 +64,7 @@ export default async function ServicesPage() {
       </section>
 
       {/* إعلان */}
-      <AdBanner position="services-top" />
+      <AdBanner placement="services-top" />
 
       {/* قسم الخدمات */}
       <div id="services">
@@ -76,7 +76,7 @@ export default async function ServicesPage() {
       </div>
 
       {/* إعلان */}
-      <AdBanner position="services-bottom" />
+      <AdBanner placement="services-bottom" />
 
       {/* قسم الفئات */}
       {services.length > 0 && (

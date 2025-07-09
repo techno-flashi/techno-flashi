@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Service } from '@/types';
-import { AdBanner } from '@/components/AdBanner';
+import AdBanner from '@/components/ads/AdBanner';
 
 interface ServicePageProps {
   params: Promise<{ id: string }>;
@@ -249,7 +249,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       {/* إعلان */}
-      <AdBanner position="service-details" />
+      <AdBanner placement="service-details" />
 
       {/* خدمات ذات صلة */}
       {relatedServices.length > 0 && (
