@@ -6,7 +6,7 @@ import { Service } from '@/types';
 import { AdBanner } from '@/components/AdBanner';
 
 interface ServicePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 async function getService(id: string): Promise<Service | null> {
@@ -55,7 +55,8 @@ async function getRelatedServices(currentServiceId: string, category: string): P
 }
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const service = await getService(params.id);
+  const { id } = await params;
+  const service = await getService(id);
 
   if (!service) {
     return {
@@ -72,7 +73,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
-  const service = await getService(params.id);
+  const { id } = await params;
+  const service = await getService(id);
 
   if (!service) {
     notFound();

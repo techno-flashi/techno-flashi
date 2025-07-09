@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Ad } from '@/types';
 
 interface EditAdPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default function EditAdPage({ params }: EditAdPageProps) {
@@ -14,6 +14,7 @@ export default function EditAdPage({ params }: EditAdPageProps) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [ad, setAd] = useState<Ad | null>(null);
+  const [adId, setAdId] = useState<string>('');
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -35,12 +36,22 @@ export default function EditAdPage({ params }: EditAdPageProps) {
   });
 
   useEffect(() => {
-    fetchAd();
-  }, [params.id]);
+    const initializeParams = async () => {
+      const resolvedParams = await params;
+      setAdId(resolvedParams.id);
+    };
+    initializeParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (adId) {
+      fetchAd();
+    }
+  }, [adId]);
 
   const fetchAd = async () => {
     try {
-      const response = await fetch(`/api/ads/${params.id}`);
+      const response = await fetch(`/api/ads/${adId}`);
       if (response.ok) {
         const data = await response.json();
         setAd(data.ad);
@@ -88,7 +99,7 @@ export default function EditAdPage({ params }: EditAdPageProps) {
     setSaving(true);
 
     try {
-      const response = await fetch(`/api/ads/${params.id}`, {
+      const response = await fetch(`/api/ads/${adId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

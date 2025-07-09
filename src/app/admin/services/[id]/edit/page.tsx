@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Service, ServiceFormData } from '@/types';
 
 interface EditServicePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default function EditServicePage({ params }: EditServicePageProps) {
@@ -14,6 +14,7 @@ export default function EditServicePage({ params }: EditServicePageProps) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [service, setService] = useState<Service | null>(null);
+  const [serviceId, setServiceId] = useState<string>('');
   const [formData, setFormData] = useState<ServiceFormData>({
     name: '',
     description: '',
@@ -37,13 +38,23 @@ export default function EditServicePage({ params }: EditServicePageProps) {
   const [featuresInput, setFeaturesInput] = useState('');
 
   useEffect(() => {
-    fetchService();
-  }, [params.id]);
+    const initializeParams = async () => {
+      const resolvedParams = await params;
+      setServiceId(resolvedParams.id);
+    };
+    initializeParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (serviceId) {
+      fetchService();
+    }
+  }, [serviceId]);
 
   const fetchService = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/services/${params.id}`);
+      const response = await fetch(`/api/services/${serviceId}`);
       
       if (!response.ok) {
         if (response.status === 404) {
@@ -106,7 +117,7 @@ export default function EditServicePage({ params }: EditServicePageProps) {
         pricing_amount: formData.pricing_amount || null
       };
 
-      const response = await fetch(`/api/services/${params.id}`, {
+      const response = await fetch(`/api/services/${serviceId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
