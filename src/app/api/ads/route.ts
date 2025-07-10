@@ -73,9 +73,18 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('POST /api/ads - Creating new ad');
     const body = await request.json();
-    
+
     console.log('Creating new ad:', body);
+
+    // التحقق من البيانات المطلوبة
+    if (!body.title || !body.placement) {
+      return NextResponse.json(
+        { error: 'Title and placement are required' },
+        { status: 400 }
+      );
+    }
 
     const { data: ad, error } = await supabase
       .from('ads')
@@ -102,9 +111,24 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Database error:', error);
+      console.error('Database error creating ad:', error);
+
+      // تحديد نوع الخطأ لإعطاء رسالة أوضح
+      let errorMessage = 'Failed to create ad';
+      if (error.message.includes('permission')) {
+        errorMessage = 'Permission denied. Please check authentication.';
+      } else if (error.message.includes('duplicate')) {
+        errorMessage = 'Ad with this title already exists.';
+      } else if (error.message.includes('validation')) {
+        errorMessage = 'Invalid data provided.';
+      }
+
       return NextResponse.json(
-        { error: 'Failed to create ad', details: error.message },
+        {
+          error: errorMessage,
+          details: error.message,
+          code: error.code || 'UNKNOWN_ERROR'
+        },
         { status: 500 }
       );
     }

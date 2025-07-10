@@ -49,14 +49,33 @@ export function ImageUploader({
           continue;
         }
 
-        // رفع الصورة إلى Supabase Storage
-        const result = await uploadImage(file, folder, compress);
-        results.push(result);
+        // رفع الصورة عبر API
+        try {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('folder', folder);
 
-        if (result.success && result.url) {
-          imageUrls.push(result.url);
-        } else {
-          alert(`فشل في رفع الصورة ${file.name}: ${result.error}`);
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.json();
+          results.push(result);
+
+          if (result.success && result.url) {
+            imageUrls.push(result.url);
+          } else {
+            alert(`فشل في رفع الصورة ${file.name}: ${result.error}`);
+          }
+        } catch (error) {
+          console.error('Upload error:', error);
+          const errorResult = {
+            success: false,
+            error: `خطأ في رفع ${file.name}: ${error}`
+          };
+          results.push(errorResult);
+          alert(`فشل في رفع الصورة ${file.name}: ${error}`);
         }
 
         // تحديث شريط التقدم
