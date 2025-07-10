@@ -49,51 +49,87 @@ export function ImageUploader({
           continue;
         }
 
-        // رفع الصورة عبر API مع fallback
+        // رفع الصورة عبر API مع خطط احتياطية متعددة
         try {
           const formData = new FormData();
           formData.append('file', file);
           formData.append('folder', folder);
 
-          // محاولة الرفع الأولى
-          let response = await fetch('/api/upload', {
-            method: 'POST',
-            body: formData
-          });
+          let result: any = null;
+          let uploadSuccess = false;
 
-          let result = await response.json();
-
-          // إذا فشل الرفع الأول، جرب API البديل
-          if (!result.success && (result.error?.includes('mime type') || result.error?.includes('not supported'))) {
-            console.log('Primary upload failed, trying fallback API...');
-
-            response = await fetch('/api/upload-fallback', {
+          // المحاولة الأولى: API الرئيسي
+          try {
+            console.log(`🔄 Attempting primary upload for ${file.name}...`);
+            const response = await fetch('/api/upload', {
               method: 'POST',
               body: formData
             });
 
             result = await response.json();
 
-            if (result.converted) {
-              console.log(`Image ${file.name} was converted from ${result.originalType} to ${result.type}`);
+            if (result.success && result.url) {
+              uploadSuccess = true;
+              console.log(`✅ Primary upload successful for ${file.name}`);
+            }
+          } catch (primaryError) {
+            console.log(`❌ Primary upload failed for ${file.name}:`, primaryError);
+          }
+
+          // المحاولة الثانية: API البسيط
+          if (!uploadSuccess) {
+            try {
+              console.log(`🔄 Attempting simple upload for ${file.name}...`);
+              const response = await fetch('/api/simple-upload', {
+                method: 'POST',
+                body: formData
+              });
+
+              result = await response.json();
+
+              if (result.success && result.url) {
+                uploadSuccess = true;
+                console.log(`✅ Simple upload successful for ${file.name}`);
+              }
+            } catch (simpleError) {
+              console.log(`❌ Simple upload failed for ${file.name}:`, simpleError);
             }
           }
 
-          results.push(result);
+          // المحاولة الثالثة: API الاحتياطي
+          if (!uploadSuccess) {
+            try {
+              console.log(`🔄 Attempting fallback upload for ${file.name}...`);
+              const response = await fetch('/api/upload-fallback', {
+                method: 'POST',
+                body: formData
+              });
 
-          if (result.success && result.url) {
-            imageUrls.push(result.url);
-            if (result.converted) {
-              alert(`تم رفع الصورة ${file.name} بنجاح (تم تحويلها إلى ${result.type} للتوافق)`);
+              result = await response.json();
+
+              if (result.success && result.url) {
+                uploadSuccess = true;
+                console.log(`✅ Fallback upload successful for ${file.name}`);
+              }
+            } catch (fallbackError) {
+              console.log(`❌ Fallback upload failed for ${file.name}:`, fallbackError);
             }
+          }
+
+          results.push(result || { success: false, error: 'فشل في جميع محاولات الرفع' });
+
+          if (uploadSuccess && result.url) {
+            imageUrls.push(result.url);
+            console.log(`✅ Image ${file.name} uploaded successfully to: ${result.url}`);
           } else {
-            alert(`فشل في رفع الصورة ${file.name}: ${result.error}`);
+            const errorMsg = result?.error || 'فشل في رفع الصورة';
+            alert(`فشل في رفع الصورة ${file.name}: ${errorMsg}`);
           }
         } catch (error) {
-          console.error('Upload error:', error);
+          console.error('Critical upload error:', error);
           const errorResult = {
             success: false,
-            error: `خطأ في رفع ${file.name}: ${error}`
+            error: `خطأ حرج في رفع ${file.name}: ${error}`
           };
           results.push(errorResult);
           alert(`فشل في رفع الصورة ${file.name}: ${error}`);

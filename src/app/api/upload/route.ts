@@ -1,4 +1,4 @@
-// API لرفع الصور - محسن ومُصحح
+// API لرفع الصور - مبسط وموثوق
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
@@ -6,28 +6,28 @@ export async function POST(request: NextRequest) {
   try {
     console.log('🔄 Upload API called');
 
-    // التحقق من Content-Type
-    const contentType = request.headers.get('content-type');
-    console.log('📋 Request Content-Type:', contentType);
-
-    if (!contentType?.includes('multipart/form-data')) {
-      console.error('❌ Invalid Content-Type. Expected multipart/form-data, got:', contentType);
+    // محاولة قراءة FormData مباشرة بدون تحقق من Content-Type
+    let formData: FormData;
+    try {
+      formData = await request.formData();
+      console.log('✅ FormData parsed successfully');
+    } catch (formError) {
+      console.error('❌ Failed to parse FormData:', formError);
       return NextResponse.json(
-        { success: false, error: 'نوع المحتوى غير صحيح. يجب أن يكون multipart/form-data' },
+        { success: false, error: 'فشل في قراءة بيانات النموذج' },
         { status: 400 }
       );
     }
 
-    const formData = await request.formData();
     const file = formData.get('file') as File;
     const folder = formData.get('folder') as string || 'uploads';
 
     console.log('📁 Form data parsed. Folder:', folder);
     
-    if (!file) {
-      console.error('❌ No file found in form data');
+    if (!file || !(file instanceof File)) {
+      console.error('❌ No valid file found in form data');
       return NextResponse.json(
-        { success: false, error: 'لم يتم العثور على ملف في البيانات المرسلة' },
+        { success: false, error: 'لم يتم العثور على ملف صالح في البيانات المرسلة' },
         { status: 400 }
       );
     }
@@ -39,14 +39,11 @@ export async function POST(request: NextRequest) {
       lastModified: file.lastModified
     });
 
-    // التحقق من أن الملف هو صورة
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
-    const isValidImage = allowedTypes.includes(file.type) || file.type.startsWith('image/');
-
-    if (!isValidImage) {
+    // التحقق البسيط من نوع الملف
+    if (!file.type.startsWith('image/') && !file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
       console.error('❌ Invalid file type:', file.type);
       return NextResponse.json(
-        { success: false, error: `نوع الملف غير مدعوم: ${file.type}. الأنواع المدعومة: JPEG, PNG, WebP, GIF` },
+        { success: false, error: `نوع الملف غير مدعوم: ${file.type}. يرجى رفع صورة` },
         { status: 400 }
       );
     }
@@ -72,15 +69,18 @@ export async function POST(request: NextRequest) {
 
     console.log('📤 Uploading to path:', filePath);
 
+    // تحويل File إلى ArrayBuffer بطريقة آمنة
+    let fileBuffer: Uint8Array;
+    let contentType: string;
+
     try {
-      // تحويل File إلى ArrayBuffer
       console.log('🔄 Converting file to buffer...');
       const arrayBuffer = await file.arrayBuffer();
-      const fileBuffer = new Uint8Array(arrayBuffer);
+      fileBuffer = new Uint8Array(arrayBuffer);
       console.log('✅ File converted to buffer. Size:', fileBuffer.length, 'bytes');
 
-      // تحديد نوع المحتوى بناءً على امتداد الملف إذا لم يكن محدد
-      let contentType = file.type;
+      // تحديد نوع المحتوى
+      contentType = file.type;
       if (!contentType || contentType === 'application/octet-stream') {
         const ext = fileExt.toLowerCase();
         const typeMap: { [key: string]: string } = {
@@ -93,15 +93,25 @@ export async function POST(request: NextRequest) {
         contentType = typeMap[ext] || 'image/jpeg';
         console.log('🔧 Content type corrected to:', contentType);
       }
+    } catch (bufferError) {
+      console.error('❌ File processing error:', bufferError);
+      return NextResponse.json(
+        { success: false, error: 'فشل في معالجة الملف' },
+        { status: 500 }
+      );
+    }
 
-      // رفع الملف إلى Supabase Storage
+    // رفع الملف إلى Supabase Storage
+    try {
       console.log('📤 Uploading to Supabase Storage...');
+      console.log('📋 Upload details:', { filePath, contentType, size: fileBuffer.length });
+
       const uploadResult = await supabase.storage
         .from('article-images')
         .upload(filePath, fileBuffer, {
           contentType: contentType,
           cacheControl: '3600',
-          upsert: true // السماح بالكتابة فوق الملف إذا كان موجود
+          upsert: true
         });
 
       if (uploadResult.error) {
@@ -109,7 +119,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             success: false,
-            error: `فشل في رفع الصورة: ${uploadResult.error.message}`,
+            error: `فشل في رفع الصورة إلى التخزين: ${uploadResult.error.message}`,
             details: {
               errorCode: uploadResult.error.name,
               filePath: filePath,
@@ -140,20 +150,24 @@ export async function POST(request: NextRequest) {
         originalName: file.name
       });
 
-    } catch (bufferError) {
-      console.error('❌ File processing error:', bufferError);
+    } catch (uploadError) {
+      console.error('❌ Upload process error:', uploadError);
       return NextResponse.json(
-        { success: false, error: 'فشل في معالجة الملف: ' + bufferError },
+        {
+          success: false,
+          error: 'فشل في عملية الرفع',
+          details: uploadError instanceof Error ? uploadError.message : String(uploadError)
+        },
         { status: 500 }
       );
     }
 
   } catch (error) {
-    console.error('❌ Upload API error:', error);
+    console.error('❌ Upload API critical error:', error);
     return NextResponse.json(
       {
         success: false,
-        error: 'حدث خطأ غير متوقع أثناء رفع الصورة',
+        error: 'حدث خطأ حرج في API الرفع',
         details: error instanceof Error ? error.message : String(error)
       },
       { status: 500 }
