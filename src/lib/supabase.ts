@@ -36,11 +36,11 @@ export function fixArabicEncoding(text: string): string {
 export function fixObjectEncoding<T extends Record<string, any>>(obj: T): T {
   if (!obj) return obj;
 
-  const fixed = { ...obj };
+  const fixed = { ...obj } as any;
 
   for (const key in fixed) {
     if (typeof fixed[key] === 'string') {
-      fixed[key] = fixArabicEncoding(fixed[key]);
+      fixed[key] = fixArabicEncoding(fixed[key] as string);
     } else if (Array.isArray(fixed[key])) {
       fixed[key] = fixed[key].map((item: any) =>
         typeof item === 'string' ? fixArabicEncoding(item) : item
@@ -48,7 +48,7 @@ export function fixObjectEncoding<T extends Record<string, any>>(obj: T): T {
     }
   }
 
-  return fixed;
+  return fixed as T;
 }
 
 // إنشاء وتصدير العميل مع إعدادات إضافية لدعم النص العربي
