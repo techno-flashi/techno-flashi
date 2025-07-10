@@ -19,6 +19,7 @@ async function getLatestArticles() {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
+    .eq('status', 'published') // فقط المقالات المنشورة
     .order('published_at', { ascending: false })
     .limit(8); // جلب آخر 8 مقالات (1 رئيسي + 4 صغيرة + 3 إضافية)
 
@@ -26,7 +27,12 @@ async function getLatestArticles() {
     console.error('Error fetching articles:', error);
     return [];
   }
-  return data as Article[];
+
+  console.log('Articles fetched for homepage:', data?.length || 0);
+
+  // إصلاح encoding النص العربي
+  const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
+  return fixedData as Article[];
 }
 
 async function getLatestAITools() {
@@ -53,7 +59,7 @@ async function getLatestServices() {
       .from('services')
       .select('*')
       .eq('status', 'active')
-      .eq('featured', true)
+      // إزالة فلتر featured مؤقتاً لعرض جميع الخدمات النشطة
       .order('display_order', { ascending: true })
       .order('created_at', { ascending: false })
       .limit(3);

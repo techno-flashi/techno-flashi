@@ -1,5 +1,5 @@
 // صفحة جميع المقالات
-import { supabase } from "@/lib/supabase";
+import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { ArticleCard } from "@/components/ArticleCard";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import { Article } from "@/types";
@@ -10,13 +10,19 @@ async function getAllArticles() {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
+    .eq('status', 'published') // فقط المقالات المنشورة
     .order('published_at', { ascending: false });
 
   if (error) {
     console.error('Error fetching articles:', error);
     return [];
   }
-  return data as Article[];
+
+  console.log('Published articles fetched:', data?.length || 0);
+
+  // إصلاح encoding النص العربي
+  const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
+  return fixedData as Article[];
 }
 
 export const metadata = {

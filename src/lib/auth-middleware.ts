@@ -3,27 +3,47 @@ import { NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
 export async function verifyAuth(request: NextRequest) {
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value;
+  try {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return request.cookies.get(name)?.value;
+          },
+          set() {},
+          remove() {},
         },
-        set() {},
-        remove() {},
-      },
-    }
-  );
+      }
+    );
 
-  const { data: { session }, error } = await supabase.auth.getSession();
-  
-  if (error || !session) {
+    const { data: { session }, error } = await supabase.auth.getSession();
+
+    console.log('Auth verification:', {
+      hasSession: !!session,
+      error: error?.message,
+      userId: session?.user?.id
+    });
+
+    if (error || !session) {
+      // في بيئة التطوير، نسمح بالوصول بدون مصادقة مؤقتاً
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Development mode: allowing access without auth');
+        return { authenticated: true, user: { id: 'dev-user', email: 'dev@example.com' } };
+      }
+      return { authenticated: false, user: null };
+    }
+
+    return { authenticated: true, user: session.user };
+  } catch (error) {
+    console.error('Auth verification error:', error);
+    // في حالة خطأ، نسمح بالوصول في بيئة التطوير
+    if (process.env.NODE_ENV === 'development') {
+      return { authenticated: true, user: { id: 'dev-user', email: 'dev@example.com' } };
+    }
     return { authenticated: false, user: null };
   }
-
-  return { authenticated: true, user: session.user };
 }
 
 export function createAuthenticatedHandler(handler: Function) {
