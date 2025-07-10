@@ -16,5 +16,55 @@ if (!supabaseKey) {
   throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable')
 }
 
-// إنشاء وتصدير العميل
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// دالة مساعدة لإصلاح encoding النص العربي
+export function fixArabicEncoding(text: string): string {
+  if (!text) return text;
+
+  try {
+    // إذا كان النص يحتوي على Unicode escape sequences
+    if (text.includes('\\u')) {
+      return JSON.parse(`"${text}"`);
+    }
+    return text;
+  } catch (error) {
+    console.warn('Failed to fix Arabic encoding for:', text);
+    return text;
+  }
+}
+
+// دالة لإصلاح encoding في كائن كامل
+export function fixObjectEncoding<T extends Record<string, any>>(obj: T): T {
+  if (!obj) return obj;
+
+  const fixed = { ...obj };
+
+  for (const key in fixed) {
+    if (typeof fixed[key] === 'string') {
+      fixed[key] = fixArabicEncoding(fixed[key]);
+    } else if (Array.isArray(fixed[key])) {
+      fixed[key] = fixed[key].map((item: any) =>
+        typeof item === 'string' ? fixArabicEncoding(item) : item
+      );
+    }
+  }
+
+  return fixed;
+}
+
+// إنشاء وتصدير العميل مع إعدادات إضافية لدعم النص العربي
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  db: {
+    schema: 'public',
+  },
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true
+  },
+  global: {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept-Charset': 'utf-8'
+    }
+  }
+});

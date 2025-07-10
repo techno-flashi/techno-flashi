@@ -1,7 +1,7 @@
 // صفحة ديناميكية لعرض الصفحات الثابتة
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { Metadata } from 'next';
 
 interface PageData {
@@ -37,7 +37,8 @@ async function getPageData(slug: string): Promise<PageData | null> {
       return null;
     }
 
-    return data as PageData;
+    // إصلاح encoding النص العربي
+    return fixObjectEncoding(data) as PageData;
   } catch (error) {
     console.error('خطأ في جلب بيانات الصفحة:', error);
     return null;

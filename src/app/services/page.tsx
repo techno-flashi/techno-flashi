@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Service } from '@/types';
 import { ServicesSection } from '@/components/ServicesSection';
 import AdBanner from '@/components/ads/AdBanner';
+import { supabase, fixObjectEncoding } from '@/lib/supabase';
 
 export const metadata: Metadata = {
   title: 'خدماتنا - تكنوفلاش',
@@ -11,21 +12,24 @@ export const metadata: Metadata = {
 
 async function getServices(): Promise<Service[]> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'}/api/services?status=active`,
-      {
-        cache: 'no-store' // للحصول على أحدث البيانات
-      }
-    );
+    // جلب الخدمات مباشرة من Supabase لتجنب مشاكل URL في production
+    const { data, error } = await supabase
+      .from('services')
+      .select('*')
+      .eq('status', 'active')
+      .order('display_order', { ascending: true })
+      .order('created_at', { ascending: false });
 
-    if (!response.ok) {
-      console.error('Failed to fetch services:', response.status);
+    if (error) {
+      console.error('Error fetching services from database:', error);
       return [];
     }
 
-    const data = await response.json();
-    console.log('Services page - Services fetched:', data.services?.length || 0);
-    return data.services || [];
+    console.log('Services page - Services fetched from database:', data?.length || 0);
+
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(service => fixObjectEncoding(service)) || [];
+    return fixedData as Service[];
   } catch (error) {
     console.error('Error fetching services:', error);
     return [];

@@ -19,21 +19,22 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
   useEffect(() => {
     const fetchAd = async () => {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('ads')
-        .select('*')
-        .eq('placement', placement)
-        .eq('status', 'active')
-        .limit(1)
-        .single();
-
-      if (error) {
-        if (error.code !== 'PGRST116') { // لا تطبع الخطأ إذا كان السبب هو عدم العثور على إعلان
-            console.error(`Error fetching ad for placement ${placement}:`, error.message);
+      try {
+        const response = await fetch(`/api/ads?type=banner&placement=${placement}&status=active&is_active=true&limit=1`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.ads && data.ads.length > 0) {
+            setAd(data.ads[0]);
+          } else {
+            setAd(null);
+          }
+        } else {
+          console.error(`Failed to fetch ad for placement ${placement}:`, response.status);
+          setAd(null);
         }
+      } catch (error) {
+        console.error(`Error fetching ad for placement ${placement}:`, error);
         setAd(null);
-      } else {
-        setAd(data);
       }
       setLoading(false);
     };

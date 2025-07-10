@@ -35,8 +35,12 @@ git push -u origin main
 
 ```
 NEXT_PUBLIC_SUPABASE_URL = https://zgktrwpladrkhhemhnni.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpna3Ryd3BsYWRya2hoZW1obm5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYzNzI5NzQsImV4cCI6MjA1MTk0ODk3NH0.Ej7Ej7Ej7Ej7Ej7Ej7Ej7Ej7Ej7Ej7Ej7Ej7Ej7E
+NEXT_PUBLIC_SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpna3Ryd3BsYWRya2hoZW1obm5pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIwMjk0NTIsImV4cCI6MjA2NzYwNTQ1Mn0.uHKisokqk484Vq5QjCbVbcdcabxArrtKUMxjdCihe04
+NEXT_PUBLIC_SITE_URL = https://your-vercel-domain.vercel.app
+NEXT_PUBLIC_GA_ID = G-X8ZRRZX2EQ
 ```
+
+**مهم:** استبدل `your-vercel-domain.vercel.app` برابط موقعك الفعلي على Vercel.
 
 ### 5️⃣ **إعداد Supabase للدومين الجديد**
 
@@ -73,10 +77,25 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ
 
 ## 📞 **في حالة المشاكل**
 
-إذا واجهت أي مشاكل:
+### 🔧 **مشاكل شائعة وحلولها:**
+
+#### 1. **الخدمات لا تظهر:**
+- تأكد من أن `NEXT_PUBLIC_SITE_URL` مُعد بشكل صحيح
+- تحقق من أن الخدمات في قاعدة البيانات لها `status = 'active'`
+
+#### 2. **النص العربي لا يظهر بشكل صحيح:**
+- تم إصلاح هذه المشكلة في الكود الجديد
+- تأكد من أن الموقع يستخدم أحدث إصدار من الكود
+
+#### 3. **الصفحات الثابتة لا تعمل:**
+- تحقق من أن الصفحات في قاعدة البيانات لها `is_active = true`
+- تأكد من أن `page_key` يطابق الرابط المطلوب
+
+#### 4. **مشاكل عامة:**
 1. تأكد من متغيرات البيئة
 2. تحقق من إعدادات Supabase
 3. راجع logs في Vercel
+4. تأكد من أن Row Level Security مُعد بشكل صحيح
 
 ---
 

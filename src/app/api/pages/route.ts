@@ -1,6 +1,6 @@
 // API لإدارة الصفحات الثابتة
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { createAuthenticatedHandler } from '@/lib/auth-middleware';
 import { sanitizeHtml, sanitizeText, validateInput } from '@/lib/sanitize';
 import { rateLimit, getRateLimitHeaders } from '@/lib/rate-limit';
@@ -31,9 +31,12 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(page => fixObjectEncoding(page)) || [];
+
     return NextResponse.json({
       success: true,
-      data: data || []
+      data: fixedData
     });
 
   } catch (error) {

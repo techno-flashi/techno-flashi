@@ -1,6 +1,6 @@
 // هذه هي الصفحة الرئيسية للموقع
 
-import { supabase } from "@/lib/supabase";
+import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { FeaturedArticlesSection } from "@/components/FeaturedArticlesSection";
 import { FeaturedAIToolsSection } from "@/components/FeaturedAIToolsSection";
 import { ServicesSection } from "@/components/ServicesSection";
@@ -48,21 +48,28 @@ async function getLatestAITools() {
 
 async function getLatestServices() {
   try {
-    // جلب الخدمات من API مع تحديد عدد 3 خدمات للصفحة الرئيسية
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'}/api/services?limit=3&status=active&featured=true`, {
-      cache: 'no-store' // للحصول على أحدث البيانات
-    });
+    // جلب الخدمات مباشرة من Supabase بدلاً من API
+    const { data, error } = await supabase
+      .from('services')
+      .select('*')
+      .eq('status', 'active')
+      .eq('featured', true)
+      .order('display_order', { ascending: true })
+      .order('created_at', { ascending: false })
+      .limit(3);
 
-    if (!response.ok) {
-      console.error('Failed to fetch services from API:', response.status);
+    if (error) {
+      console.error('Error fetching services from database:', error);
       return [];
     }
 
-    const data = await response.json();
-    console.log('Services fetched from API:', data.services?.length || 0);
-    return data.services as Service[];
+    console.log('Services fetched from database:', data?.length || 0);
+
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(service => fixObjectEncoding(service)) || [];
+    return fixedData as Service[];
   } catch (error) {
-    console.error('Error fetching services from API:', error);
+    console.error('Error fetching services:', error);
     return [];
   }
 }

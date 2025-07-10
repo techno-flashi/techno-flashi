@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { Service } from '@/types';
+import { verifyAuth } from '@/lib/auth-middleware';
 
 // GET - جلب جميع الخدمات مع إمكانية الفلترة
 export async function GET(request: NextRequest) {
@@ -51,9 +52,12 @@ export async function GET(request: NextRequest) {
 
     console.log(`API Services fetched from database: ${data?.length || 0}`);
 
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(service => fixObjectEncoding(service)) || [];
+
     return NextResponse.json({
-      services: data as Service[],
-      count: data?.length || 0
+      services: fixedData as Service[],
+      count: fixedData?.length || 0
     });
 
   } catch (error) {
@@ -68,10 +72,18 @@ export async function GET(request: NextRequest) {
 // POST - إنشاء خدمة جديدة
 export async function POST(request: NextRequest) {
   try {
+    console.log('POST /api/services - Creating new service');
+
+    // التحقق من المصادقة (اختياري للآن)
+    const authResult = await verifyAuth(request);
+    console.log('Auth result:', authResult);
+
     const body = await request.json();
+    console.log('Request body:', JSON.stringify(body, null, 2));
 
     // التحقق من البيانات المطلوبة
     if (!body.name || !body.description) {
+      console.log('Validation failed: Missing name or description');
       return NextResponse.json(
         { error: 'Name and description are required' },
         { status: 400 }
@@ -98,6 +110,8 @@ export async function POST(request: NextRequest) {
       features: body.features || []
     };
 
+    console.log('Service data to insert:', JSON.stringify(serviceData, null, 2));
+
     const { data, error } = await supabase
       .from('services')
       .insert([serviceData])
@@ -105,9 +119,24 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) {
-      console.error('Database error:', error);
+      console.error('Database error creating service:', error);
+
+      // تحديد نوع الخطأ لإعطاء رسالة أوضح
+      let errorMessage = 'Failed to create service';
+      if (error.message.includes('permission')) {
+        errorMessage = 'Permission denied. Please check authentication.';
+      } else if (error.message.includes('duplicate')) {
+        errorMessage = 'Service with this name already exists.';
+      } else if (error.message.includes('validation')) {
+        errorMessage = 'Invalid data provided.';
+      }
+
       return NextResponse.json(
-        { error: 'Failed to create service', details: error.message },
+        {
+          error: errorMessage,
+          details: error.message,
+          code: error.code || 'UNKNOWN_ERROR'
+        },
         { status: 500 }
       );
     }
