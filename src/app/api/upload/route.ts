@@ -1,20 +1,29 @@
 // API لرفع الصور - مبسط وموثوق
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabase-server';
 
 export async function POST(request: NextRequest) {
   try {
     console.log('🔄 Upload API called');
+    console.log('📋 Request headers:', Object.fromEntries(request.headers.entries()));
+    console.log('📋 Request method:', request.method);
+    console.log('📋 Request URL:', request.url);
 
     // محاولة قراءة FormData مباشرة بدون تحقق من Content-Type
     let formData: FormData;
     try {
       formData = await request.formData();
       console.log('✅ FormData parsed successfully');
+      console.log('📋 FormData keys:', Array.from(formData.keys()));
     } catch (formError) {
       console.error('❌ Failed to parse FormData:', formError);
+      console.error('❌ FormData error details:', {
+        name: formError instanceof Error ? formError.name : 'Unknown',
+        message: formError instanceof Error ? formError.message : String(formError),
+        stack: formError instanceof Error ? formError.stack : undefined
+      });
       return NextResponse.json(
-        { success: false, error: 'فشل في قراءة بيانات النموذج' },
+        { success: false, error: 'فشل في قراءة بيانات النموذج', details: formError instanceof Error ? formError.message : String(formError) },
         { status: 400 }
       );
     }
@@ -106,7 +115,7 @@ export async function POST(request: NextRequest) {
       console.log('📤 Uploading to Supabase Storage...');
       console.log('📋 Upload details:', { filePath, contentType, size: fileBuffer.length });
 
-      const uploadResult = await supabase.storage
+      const uploadResult = await supabaseServer.storage
         .from('article-images')
         .upload(filePath, fileBuffer, {
           contentType: contentType,
@@ -134,7 +143,7 @@ export async function POST(request: NextRequest) {
       console.log('✅ Upload successful:', uploadResult.data);
 
       // الحصول على الرابط العام للصورة
-      const { data: urlData } = supabase.storage
+      const { data: urlData } = supabaseServer.storage
         .from('article-images')
         .getPublicUrl(filePath);
 

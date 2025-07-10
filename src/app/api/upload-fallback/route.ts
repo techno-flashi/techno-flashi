@@ -1,12 +1,30 @@
 // API بديل لرفع الصور مع تحويل تلقائي
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabaseServer } from '@/lib/supabase-server';
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('Fallback Upload API called');
-    
-    const formData = await request.formData();
+    console.log('🔄 Fallback Upload API called');
+    console.log('📋 Request headers:', Object.fromEntries(request.headers.entries()));
+
+    let formData: FormData;
+    try {
+      formData = await request.formData();
+      console.log('✅ FormData parsed successfully');
+      console.log('📋 FormData keys:', Array.from(formData.keys()));
+    } catch (formError) {
+      console.error('❌ Failed to parse FormData:', formError);
+      console.error('❌ FormData error details:', {
+        name: formError instanceof Error ? formError.name : 'Unknown',
+        message: formError instanceof Error ? formError.message : String(formError),
+        stack: formError instanceof Error ? formError.stack : undefined
+      });
+      return NextResponse.json(
+        { success: false, error: 'فشل في قراءة بيانات النموذج', details: formError instanceof Error ? formError.message : String(formError) },
+        { status: 400 }
+      );
+    }
+
     const file = formData.get('file') as File;
     const folder = formData.get('folder') as string || 'uploads';
     
@@ -79,7 +97,7 @@ export async function POST(request: NextRequest) {
     const fileBuffer = new Uint8Array(arrayBuffer);
 
     // محاولة رفع الملف
-    const { data, error } = await supabase.storage
+    const { data, error } = await supabaseServer.storage
       .from('article-images')
       .upload(filePath, fileBuffer, {
         contentType: finalContentType,
@@ -91,7 +109,7 @@ export async function POST(request: NextRequest) {
       console.error('Supabase storage error:', error);
       
       // محاولة أخيرة مع content type مختلف
-      const retryResult = await supabase.storage
+      const retryResult = await supabaseServer.storage
         .from('article-images')
         .upload(filePath, fileBuffer, {
           contentType: 'image/jpeg', // استخدام JPEG كـ fallback
@@ -110,7 +128,7 @@ export async function POST(request: NextRequest) {
     console.log('Upload successful:', data);
 
     // الحصول على الرابط العام للصورة
-    const { data: urlData } = supabase.storage
+    const { data: urlData } = supabaseServer.storage
       .from('article-images')
       .getPublicUrl(filePath);
 
