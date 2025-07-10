@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tflash.site/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /api/
+
+# Allow important pages
+Allow: /articles/
+Allow: /services/
+Allow: /ai-tools/
+Allow: /page/
+
+# Crawl delay
+Crawl-delay: 1

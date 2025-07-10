@@ -79,3 +79,44 @@ export const trackSearch = (searchTerm: string) => {
     label: searchTerm,
   });
 };
+
+export const trackContactForm = (formType: string) => {
+  event({
+    action: 'contact_form_submit',
+    category: 'engagement',
+    label: formType,
+  });
+};
+
+export const trackSocialShare = (platform: string, contentTitle: string) => {
+  event({
+    action: 'social_share',
+    category: 'engagement',
+    label: `${platform} - ${contentTitle}`,
+  });
+};
+
+export const trackVideoPlay = (videoTitle: string) => {
+  event({
+    action: 'video_play',
+    category: 'engagement',
+    label: videoTitle,
+  });
+};
+
+export const trackOutboundLink = (url: string, linkText: string) => {
+  event({
+    action: 'outbound_link',
+    category: 'engagement',
+    label: `${linkText} - ${url}`,
+  });
+};
+
+export const trackPageScroll = (percentage: number) => {
+  event({
+    action: 'page_scroll',
+    category: 'engagement',
+    label: `${percentage}%`,
+    value: percentage,
+  });
+};

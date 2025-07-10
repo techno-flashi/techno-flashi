@@ -9,6 +9,8 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ScrollTracker from "@/components/ScrollTracker";
+import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 
 // إعداد الخطوط
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -18,14 +20,60 @@ const tajawal = Tajawal({
   variable: "--font-tajawal",
 });
 
-// إعداد بيانات SEO الأساسية للموقع
+// إعداد بيانات SEO المحسنة للموقع
 export const metadata: Metadata = {
   title: {
-    default: "TechnoFlash | بوابتك للمستقبل التقني",
+    default: "TechnoFlash | بوابتك للمستقبل التقني - مقالات وأدوات ذكاء اصطناعي",
     template: "%s | TechnoFlash",
   },
-  description: "منصة ويب متكاملة تقدم مقالات تقنية، ودليل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.",
-  keywords: ["تقنية", "ذكاء اصطناعي", "برمجة", "Next.js", "Supabase"],
+  description: "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا. اكتشف أحدث التقنيات والأدوات المبتكرة.",
+  keywords: [
+    "تقنية", "ذكاء اصطناعي", "برمجة", "Next.js", "Supabase",
+    "أخبار تقنية", "أدوات AI", "تطوير ويب", "تكنولوجيا",
+    "مقالات تقنية", "خدمات برمجة", "حلول رقمية"
+  ],
+  authors: [{ name: 'TechnoFlash Team' }],
+  creator: 'TechnoFlash',
+  publisher: 'TechnoFlash',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ar_SA',
+    url: 'https://tflash.site',
+    siteName: 'TechnoFlash',
+    title: 'TechnoFlash | بوابتك للمستقبل التقني',
+    description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا.',
+    images: [
+      {
+        url: 'https://tflash.site/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'TechnoFlash - بوابتك للمستقبل التقني',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TechnoFlash | بوابتك للمستقبل التقني',
+    description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.',
+    images: ['https://tflash.site/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://tflash.site',
+  },
+  verification: {
+    google: 'G-X8ZRRZX2EQ',
+  },
 };
 
 export default function RootLayout({
@@ -39,6 +87,9 @@ export default function RootLayout({
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
       <body className="bg-dark-background text-dark-text font-sans">
         <GoogleAnalytics />
+        <ScrollTracker />
+        <JsonLd data={websiteJsonLd} />
+        <JsonLd data={organizationJsonLd} />
         {/* هنا الحل! نضع AuthProvider ليغلف كل شيء */}
         <AuthProvider>
           <Header />

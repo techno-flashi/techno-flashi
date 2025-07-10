@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { validateEmail } from '@/lib/newsletterService';
+import { trackNewsletterSubscribe } from '@/lib/gtag';
 
 interface NewsletterSubscriptionProps {
   variant?: 'default' | 'compact' | 'featured';
@@ -92,6 +93,9 @@ export function NewsletterSubscription({
         setIsSubscribed(true);
         setEmail('');
         setName('');
+
+        // تتبع الاشتراك في Google Analytics
+        trackNewsletterSubscribe(email.trim());
       }
 
     } catch (error) {
