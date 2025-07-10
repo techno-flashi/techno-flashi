@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 async function getServices(): Promise<Service[]> {
   try {
+    console.log('🔄 Services page: Fetching all active services...');
+
     // جلب الخدمات مباشرة من Supabase لتجنب مشاكل URL في production
     const { data, error } = await supabase
       .from('services')
@@ -21,23 +23,29 @@ async function getServices(): Promise<Service[]> {
       .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('Error fetching services from database:', error);
+      console.error('❌ Services page: Error fetching services from database:', error);
       return [];
     }
 
-    console.log('Services page - Services fetched from database:', data?.length || 0);
+    console.log('✅ Services page: Services fetched from database:', data?.length || 0);
+
+    if (data && data.length > 0) {
+      console.log('📄 Services page: Sample service names:', data.slice(0, 3).map(s => s.name));
+    }
 
     // إصلاح encoding النص العربي
     const fixedData = data?.map(service => fixObjectEncoding(service)) || [];
     return fixedData as Service[];
   } catch (error) {
-    console.error('Error fetching services:', error);
+    console.error('❌ Services page: Exception in getServices:', error);
     return [];
   }
 }
 
 export default async function ServicesPage() {
   const services = await getServices();
+
+  console.log('🎯 Services page rendering with', services.length, 'services');
 
   return (
     <div className="min-h-screen">

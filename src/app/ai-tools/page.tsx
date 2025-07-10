@@ -6,23 +6,34 @@ import { AITool } from "@/types";
 export const revalidate = 600;
 
 async function getAllAITools() {
-  const { data, error } = await supabase
-    .from('ai_tools')
-    .select('*')
-    .eq('status', 'active') // تغيير من published إلى active
-    .order('rating', { ascending: false })
-    .order('created_at', { ascending: false });
+  try {
+    console.log('🔄 Fetching AI tools from database...');
 
-  if (error) {
-    console.error('Error fetching AI tools:', error);
+    const { data, error } = await supabase
+      .from('ai_tools')
+      .select('*')
+      .in('status', ['published', 'active']) // قبول كلا من published و active
+      .order('rating', { ascending: false })
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('❌ Error fetching AI tools:', error);
+      return [];
+    }
+
+    console.log('✅ AI Tools fetched from database:', data?.length || 0);
+
+    if (data && data.length > 0) {
+      console.log('📄 Sample AI tool names:', data.slice(0, 3).map(t => t.name));
+    }
+
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(tool => fixObjectEncoding(tool)) || [];
+    return fixedData as AITool[];
+  } catch (error) {
+    console.error('❌ Exception in getAllAITools:', error);
     return [];
   }
-
-  console.log('AI Tools fetched from database:', data?.length || 0);
-
-  // إصلاح encoding النص العربي
-  const fixedData = data?.map(tool => fixObjectEncoding(tool)) || [];
-  return fixedData as AITool[];
 }
 
 export const metadata = {

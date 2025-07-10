@@ -8,15 +8,23 @@ export async function GET(request: NextRequest) {
     console.log('GET /api/ai-tools');
     
     const { searchParams } = new URL(request.url);
-    const status = searchParams.get('status') || 'active';
+    const statusParam = searchParams.get('status');
     const category = searchParams.get('category');
     const limit = searchParams.get('limit');
     const featured = searchParams.get('featured');
-    
+
     let query = supabase
       .from('ai_tools')
-      .select('*')
-      .eq('status', status)
+      .select('*');
+
+    // إذا لم يتم تحديد status، استخدم كلا من published و active
+    if (statusParam) {
+      query = query.eq('status', statusParam);
+    } else {
+      query = query.in('status', ['published', 'active']);
+    }
+
+    query = query
       .order('rating', { ascending: false })
       .order('created_at', { ascending: false });
 

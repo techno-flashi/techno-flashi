@@ -47,18 +47,33 @@ async function getLatestArticles() {
 }
 
 async function getLatestAITools() {
-  const { data, error } = await supabase
-    .from('ai_tools')
-    .select('*')
-    .eq('status', 'published')
-    .order('created_at', { ascending: false })
-    .limit(8); // جلب آخر 8 أدوات (1 رئيسية + 4 صغيرة + 3 إضافية)
+  try {
+    console.log('🏠 Homepage: Fetching latest AI tools...');
 
-  if (error) {
-    console.error('Error fetching AI tools:', error);
+    const { data, error } = await supabase
+      .from('ai_tools')
+      .select('*')
+      .in('status', ['published', 'active']) // قبول كلا من published و active
+      .order('rating', { ascending: false }) // ترتيب حسب التقييم أولاً
+      .order('created_at', { ascending: false })
+      .limit(8); // جلب آخر 8 أدوات (1 رئيسية + 4 صغيرة + 3 إضافية)
+
+    if (error) {
+      console.error('Error fetching AI tools:', error);
+      return [];
+    }
+
+    console.log('✅ Homepage: AI tools fetched:', data?.length || 0);
+
+    if (data && data.length > 0) {
+      console.log('📄 Homepage: Top AI tools:', data.slice(0, 3).map(t => t.name));
+    }
+
+    return data as AITool[];
+  } catch (error) {
+    console.error('❌ Homepage: Exception in getLatestAITools:', error);
     return [];
   }
-  return data as AITool[];
 }
 
 
