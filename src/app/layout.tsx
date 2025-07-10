@@ -9,6 +9,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker";
 import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
       <body className="bg-dark-background text-dark-text font-sans">
         <GoogleAnalytics />
+        <GoogleAnalyticsTracker />
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={organizationJsonLd} />

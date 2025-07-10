@@ -1,20 +1,18 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { GA_TRACKING_ID, pageview } from '@/lib/gtag';
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
-      pageview(url);
+      pageview(pathname);
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   if (process.env.NODE_ENV !== 'production') {
     return null;
