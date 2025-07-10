@@ -1,11 +1,11 @@
-// API لرفع الصور
+// API لرفع الصور - مبسط وفعال
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
     console.log('Upload API called');
-    
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const folder = formData.get('folder') as string || 'uploads';
@@ -23,17 +23,16 @@ export async function POST(request: NextRequest) {
       size: file.size
     });
 
-    // التحقق من نوع الملف
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
-    if (!allowedTypes.includes(file.type)) {
-      console.log('File type not allowed:', file.type);
+    // قبول جميع أنواع الصور
+    if (!file.type.startsWith('image/')) {
+      console.log('File is not an image:', file.type);
       return NextResponse.json(
-        { success: false, error: `نوع الملف غير مدعوم: ${file.type}. يرجى استخدام JPEG, PNG, WebP, أو GIF` },
+        { success: false, error: `الملف ليس صورة: ${file.type}` },
         { status: 400 }
       );
     }
 
-    console.log('File type accepted:', file.type);
+    console.log('Image file accepted:', file.type);
 
     // التحقق من حجم الملف (10MB max)
     const maxSize = 10 * 1024 * 1024; // 10MB

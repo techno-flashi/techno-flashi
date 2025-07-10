@@ -1,5 +1,5 @@
 // صفحة جميع أدوات الذكاء الاصطناعي
-import { supabase } from "@/lib/supabase";
+import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { AIToolCard } from "@/components/AIToolCard";
 import { AITool } from "@/types";
 
@@ -9,14 +9,20 @@ async function getAllAITools() {
   const { data, error } = await supabase
     .from('ai_tools')
     .select('*')
-    .eq('status', 'published')
+    .eq('status', 'active') // تغيير من published إلى active
+    .order('rating', { ascending: false })
     .order('created_at', { ascending: false });
 
   if (error) {
     console.error('Error fetching AI tools:', error);
     return [];
   }
-  return data as AITool[];
+
+  console.log('AI Tools fetched from database:', data?.length || 0);
+
+  // إصلاح encoding النص العربي
+  const fixedData = data?.map(tool => fixObjectEncoding(tool)) || [];
+  return fixedData as AITool[];
 }
 
 export const metadata = {

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { Service } from '@/types';
-import { verifyAuth } from '@/lib/auth-middleware';
 
 // GET - جلب جميع الخدمات مع إمكانية الفلترة
 export async function GET(request: NextRequest) {
@@ -73,10 +72,6 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     console.log('POST /api/services - Creating new service');
-
-    // التحقق من المصادقة (اختياري للآن)
-    const authResult = await verifyAuth(request);
-    console.log('Auth result:', authResult);
 
     const body = await request.json();
     console.log('Request body:', JSON.stringify(body, null, 2));
