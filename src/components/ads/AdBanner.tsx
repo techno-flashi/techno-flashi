@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import { Ad } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackAdClick } from '@/lib/gtag';
 
 interface AdBannerProps {
   placement: string;
@@ -43,7 +44,11 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
   const handleAdClick = async () => {
     if (!ad) return;
     try {
+      // تسجيل النقرة في قاعدة البيانات
       await fetch(`/api/ads/${ad.id}/click`, { method: 'POST' });
+
+      // تسجيل النقرة في Google Analytics
+      trackAdClick(ad.title, placement);
     } catch (error) {
       console.error('Failed to track ad click:', error);
     }

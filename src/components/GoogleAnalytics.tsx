@@ -36,6 +36,12 @@ export default function GoogleAnalytics() {
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}', {
               page_path: window.location.pathname,
+              stream_id: '11450036506',
+              site_name: 'TFlash',
+              site_url: 'https://tflash.site',
+              send_page_view: true,
+              cookie_domain: 'tflash.site',
+              cookie_flags: 'SameSite=None;Secure',
             });
           `,
         }}
