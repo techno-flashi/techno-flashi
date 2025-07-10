@@ -49,22 +49,43 @@ export function ImageUploader({
           continue;
         }
 
-        // رفع الصورة عبر API
+        // رفع الصورة عبر API مع fallback
         try {
           const formData = new FormData();
           formData.append('file', file);
           formData.append('folder', folder);
 
-          const response = await fetch('/api/upload', {
+          // محاولة الرفع الأولى
+          let response = await fetch('/api/upload', {
             method: 'POST',
             body: formData
           });
 
-          const result = await response.json();
+          let result = await response.json();
+
+          // إذا فشل الرفع الأول، جرب API البديل
+          if (!result.success && (result.error?.includes('mime type') || result.error?.includes('not supported'))) {
+            console.log('Primary upload failed, trying fallback API...');
+
+            response = await fetch('/api/upload-fallback', {
+              method: 'POST',
+              body: formData
+            });
+
+            result = await response.json();
+
+            if (result.converted) {
+              console.log(`Image ${file.name} was converted from ${result.originalType} to ${result.type}`);
+            }
+          }
+
           results.push(result);
 
           if (result.success && result.url) {
             imageUrls.push(result.url);
+            if (result.converted) {
+              alert(`تم رفع الصورة ${file.name} بنجاح (تم تحويلها إلى ${result.type} للتوافق)`);
+            }
           } else {
             alert(`فشل في رفع الصورة ${file.name}: ${result.error}`);
           }
