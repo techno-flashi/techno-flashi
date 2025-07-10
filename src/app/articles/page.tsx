@@ -1,28 +1,39 @@
-// صفحة جميع المقالات
+// صفحة جميع المقالات - محسنة مع debugging
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { ArticleCard } from "@/components/ArticleCard";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import { Article } from "@/types";
 
-export const revalidate = 600;
+export const revalidate = 60; // تقليل وقت التحديث للاختبار
 
 async function getAllArticles() {
-  const { data, error } = await supabase
-    .from('articles')
-    .select('*')
-    .eq('status', 'published') // فقط المقالات المنشورة
-    .order('published_at', { ascending: false });
+  try {
+    console.log('🔄 Fetching all published articles...');
 
-  if (error) {
-    console.error('Error fetching articles:', error);
+    const { data, error } = await supabase
+      .from('articles')
+      .select('*')
+      .eq('status', 'published') // فقط المقالات المنشورة
+      .order('published_at', { ascending: false });
+
+    if (error) {
+      console.error('❌ Error fetching articles:', error);
+      return [];
+    }
+
+    console.log('✅ Published articles fetched:', data?.length || 0);
+
+    if (data && data.length > 0) {
+      console.log('📄 Sample article titles:', data.slice(0, 3).map(a => a.title));
+    }
+
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
+    return fixedData as Article[];
+  } catch (error) {
+    console.error('❌ Exception in getAllArticles:', error);
     return [];
   }
-
-  console.log('Published articles fetched:', data?.length || 0);
-
-  // إصلاح encoding النص العربي
-  const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
-  return fixedData as Article[];
 }
 
 export const metadata = {
@@ -32,6 +43,8 @@ export const metadata = {
 
 export default async function ArticlesPage() {
   const articles = await getAllArticles();
+
+  console.log('🎯 Articles page rendering with', articles.length, 'articles');
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -44,6 +57,10 @@ export default async function ArticlesPage() {
           <p className="text-xl text-dark-text-secondary max-w-2xl mx-auto">
             اكتشف مجموعة شاملة من المقالات التقنية المتخصصة في الذكاء الاصطناعي والبرمجة
           </p>
+          {/* إضافة عداد للتشخيص */}
+          <div className="mt-4 text-sm text-gray-400">
+            عدد المقالات المتاحة: {articles.length}
+          </div>
         </div>
 
         {/* إحصائيات سريعة */}

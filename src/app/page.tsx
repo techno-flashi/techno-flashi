@@ -12,27 +12,38 @@ import AdBannerTop from "@/components/AdBannerTop";
 import { Article, AITool, Service } from "@/types";
 
 // إخبار Next.js بإعادة بناء هذه الصفحة كل 10 دقائق (600 ثانية)
-// هذا هو سر الأداء العالي (ISR)
-export const revalidate = 600;
+// هذا هو سر الأداء العالي (ISR) - مقلل للاختبار
+export const revalidate = 60;
 
 async function getLatestArticles() {
-  const { data, error } = await supabase
-    .from('articles')
-    .select('*')
-    .eq('status', 'published') // فقط المقالات المنشورة
-    .order('published_at', { ascending: false })
-    .limit(8); // جلب آخر 8 مقالات (1 رئيسي + 4 صغيرة + 3 إضافية)
+  try {
+    console.log('🏠 Homepage: Fetching latest articles...');
 
-  if (error) {
-    console.error('Error fetching articles:', error);
+    const { data, error } = await supabase
+      .from('articles')
+      .select('*')
+      .eq('status', 'published') // فقط المقالات المنشورة
+      .order('published_at', { ascending: false })
+      .limit(8); // جلب آخر 8 مقالات (1 رئيسي + 4 صغيرة + 3 إضافية)
+
+    if (error) {
+      console.error('❌ Homepage: Error fetching articles:', error);
+      return [];
+    }
+
+    console.log('✅ Homepage: Articles fetched:', data?.length || 0);
+
+    if (data && data.length > 0) {
+      console.log('📄 Homepage: Latest article titles:', data.slice(0, 3).map(a => a.title));
+    }
+
+    // إصلاح encoding النص العربي
+    const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
+    return fixedData as Article[];
+  } catch (error) {
+    console.error('❌ Homepage: Exception in getLatestArticles:', error);
     return [];
   }
-
-  console.log('Articles fetched for homepage:', data?.length || 0);
-
-  // إصلاح encoding النص العربي
-  const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
-  return fixedData as Article[];
 }
 
 async function getLatestAITools() {
