@@ -27,7 +27,7 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
   };
 
   return (
-    <Link href={tool.website_url} target="_blank" rel="noopener noreferrer" className="block group">
+    <Link href={`/ai-tools/${tool.slug}`} className="block group">
       <div className="bg-dark-card rounded-lg overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transform hover:-translate-y-1 h-full">
         <div className="flex">
           {/* الشعار */}

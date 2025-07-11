@@ -8,6 +8,9 @@ import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
 import JsonLd, { createArticleJsonLd } from "@/components/JsonLd";
 import { Breadcrumbs, createBreadcrumbJsonLd } from "@/components/Breadcrumbs";
+import { generateArticleSocialMeta, getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
+import SocialShare from "@/components/SocialShare";
+import SocialShareCompact from "@/components/SocialShareCompact";
 
 export const revalidate = 600; // إعادة بناء الصفحة كل 10 دقائق
 
@@ -63,52 +66,17 @@ export async function generateMetadata({ params }: Props) {
   const keywords = article.seo_keywords || article.tags || [];
   const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : '';
 
-  return {
+  return generateArticleSocialMeta({
     title: article.title,
-    description: article.meta_description || article.excerpt || article.title,
-    keywords: keywordsString,
-    authors: [{ name: article.author || 'TechnoFlash' }],
-    openGraph: {
-      title: article.title,
-      description: article.meta_description || article.excerpt || article.title,
-      type: 'article',
-      locale: 'ar_SA',
-      url: `https://tflash.site/articles/${slug}`,
-      siteName: 'TechnoFlash',
-      images: [
-        {
-          url: article.featured_image_url || 'https://tflash.site/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: article.title,
-        },
-      ],
-      publishedTime: article.published_at,
-      modifiedTime: article.updated_at,
-      authors: [article.author || 'TechnoFlash'],
-      tags: keywords,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: article.title,
-      description: article.meta_description || article.excerpt || article.title,
-      images: [article.featured_image_url || 'https://tflash.site/og-image.jpg'],
-    },
-    alternates: {
-      canonical: `https://tflash.site/articles/${slug}`,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-  };
+    excerpt: article.meta_description || article.excerpt || article.title,
+    slug: article.slug,
+    featured_image: article.featured_image_url,
+    category: article.category || 'تقنية',
+    author: article.author,
+    created_at: article.created_at,
+    updated_at: article.updated_at,
+    tags: keywords
+  });
 }
 
 export default async function ArticlePage({ params }: Props) {
@@ -199,6 +167,20 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* محتوى المقال */}
           <ArticleContent content={article.content} />
+
+          {/* مشاركة المقال */}
+          <div className="mt-12 pt-8 border-t border-gray-700">
+            <h3 className="text-xl font-bold text-white mb-6 text-center">شارك هذا المقال</h3>
+            <SocialShare
+              url={getSharingUrl(`/articles/${article.slug}`)}
+              title={article.title}
+              description={article.excerpt || article.title}
+              hashtags={getSharingHashtags(article.tags || [])}
+              showLabels={true}
+              size="lg"
+              className="justify-center"
+            />
+          </div>
         </article>
 
         {/* الشريط الجانبي */}
@@ -253,23 +235,14 @@ export default async function ArticlePage({ params }: Props) {
             {/* مشاركة المقال */}
             <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
               <h3 className="text-lg font-semibold text-white mb-4">شارك المقال</h3>
-              <div className="flex space-x-3 space-x-reverse">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                  </svg>
-                </button>
-                <button className="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded-lg transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </button>
-                <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg transition-colors duration-300">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-                  </svg>
-                </button>
-              </div>
+              <SocialShare
+                url={getSharingUrl(`/articles/${article.slug}`)}
+                title={article.title}
+                description={article.excerpt || article.title}
+                hashtags={getSharingHashtags(article.tags || [])}
+                size="sm"
+                className="justify-center"
+              />
             </div>
           </div>
         </aside>

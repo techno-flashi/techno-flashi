@@ -135,10 +135,14 @@ export default function SidebarAd({
 
             {/* كود HTML/JavaScript مخصص */}
             {ad.ad_code && (
-              <div 
-                className="p-4 border-t border-gray-100"
-                dangerouslySetInnerHTML={{ __html: ad.ad_code }}
-              />
+              <div className="p-4 border-t border-gray-100">
+                <div
+                  dangerouslySetInnerHTML={{ __html: ad.ad_code }}
+                  onError={(e) => {
+                    console.warn('Sidebar ad code execution error:', e);
+                  }}
+                />
+              </div>
             )}
           </div>
 

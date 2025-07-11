@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { AITool } from '@/types';
+import { AIToolLink } from './AIToolLink';
 
 interface RelatedAIToolsProps {
   tools: AITool[];
@@ -21,7 +21,7 @@ export function RelatedAITools({ tools, currentToolId, className = '' }: Related
       <h2 className="text-2xl font-bold text-white mb-6">أدوات مشابهة</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {relatedTools.map((tool) => (
-          <Link
+          <AIToolLink
             key={tool.id}
             href={`/ai-tools/${tool.slug}`}
             className="bg-dark-bg/50 border border-gray-700 rounded-lg p-4 hover:border-primary transition-all duration-300 group"
@@ -49,7 +49,7 @@ export function RelatedAITools({ tools, currentToolId, className = '' }: Related
             <p className="text-dark-text-secondary text-sm line-clamp-2">
               {tool.description}
             </p>
-          </Link>
+          </AIToolLink>
         ))}
       </div>
     </div>

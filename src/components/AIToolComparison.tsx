@@ -1,6 +1,7 @@
 import { AITool } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AIToolLink } from './AIToolLink';
 
 interface AIToolComparisonProps {
   tools: AITool[];
@@ -41,7 +42,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
               <th className="text-right py-4 px-2 text-white font-semibold">المعيار</th>
               {tools.slice(0, 3).map((tool) => (
                 <th key={tool.id} className="text-center py-4 px-2 min-w-[200px]">
-                  <Link href={`/ai-tools/${tool.slug}`} className="block group">
+                  <AIToolLink href={`/ai-tools/${tool.slug}`} className="block group">
                     <div className="flex flex-col items-center">
                       <div className="relative w-12 h-12 mb-2">
                         <Image
@@ -56,7 +57,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
                         {tool.name}
                       </span>
                     </div>
-                  </Link>
+                  </AIToolLink>
                 </th>
               ))}
             </tr>
@@ -140,12 +141,12 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {tools.slice(0, 3).map((tool) => (
             <div key={tool.id} className="text-center">
-              <Link
+              <AIToolLink
                 href={`/ai-tools/${tool.slug}`}
                 className="block bg-primary hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 mb-2"
               >
                 مراجعة مفصلة
-              </Link>
+              </AIToolLink>
               <Link
                 href={tool.website_url}
                 target="_blank"

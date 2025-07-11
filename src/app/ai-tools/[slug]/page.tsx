@@ -7,6 +7,12 @@ import { AITool } from '@/types';
 import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
 import AdBanner from '@/components/ads/AdBanner';
+import { AIToolPageClient } from '@/components/AIToolPageClient';
+import { AIToolLink } from '@/components/AIToolLink';
+import { generateAIToolSocialMeta, getSharingUrl, getSharingHashtags } from '@/lib/social-meta';
+import SocialShare from '@/components/SocialShare';
+import SocialShareCompact from '@/components/SocialShareCompact';
+import { AIToolComparisonContainer } from '@/components/AIToolComparisonContainer';
 
 export const revalidate = 60;
 
@@ -69,6 +75,30 @@ async function getRelatedAITools(currentSlug: string, category: string, limit: n
   }
 }
 
+// جلب جميع الأدوات المتاحة للمقارنة
+async function getAllAvailableTools(currentSlug: string): Promise<AITool[]> {
+  try {
+    const { data, error } = await supabase
+      .from('ai_tools')
+      .select('*')
+      .neq('slug', currentSlug)
+      .in('status', ['published', 'active'])
+      .order('rating', { ascending: false })
+      .order('click_count', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching available AI tools:', error);
+      return [];
+    }
+
+    const fixedData = data?.map(tool => fixObjectEncoding(tool)) || [];
+    return fixedData as AITool[];
+  } catch (error) {
+    console.error('Exception in getAllAvailableTools:', error);
+    return [];
+  }
+}
+
 // إنشاء metadata ديناميكي
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -81,52 +111,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = tool.meta_title || `${tool.name} - مراجعة شاملة وطريقة الاستخدام | TechnoFlash`;
-  const description = tool.meta_description || tool.description;
-  const keywords = tool.meta_keywords || tool.tags || [];
-
-  return {
-    title,
-    description,
-    keywords: keywords.join(', '),
-    authors: [{ name: 'TechnoFlash' }],
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      locale: 'ar_SA',
-      url: `https://tflash.site/ai-tools/${slug}`,
-      siteName: 'TechnoFlash',
-      images: [
-        {
-          url: tool.logo_url || 'https://tflash.site/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: tool.name,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [tool.logo_url || 'https://tflash.site/og-image.jpg'],
-    },
-    alternates: {
-      canonical: `https://tflash.site/ai-tools/${slug}`,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-  };
+  return generateAIToolSocialMeta(tool);
 }
 
 // إنشاء static paths للأدوات الموجودة
@@ -160,6 +145,7 @@ export default async function AIToolPage({ params }: Props) {
   }
 
   const relatedTools = await getRelatedAITools(slug, tool.category);
+  const availableTools = await getAllAvailableTools(slug);
 
   // إنشاء breadcrumbs
   const breadcrumbItems = [
@@ -218,10 +204,11 @@ export default async function AIToolPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      {/* Schema Markup */}
-      <JsonLd data={softwareApplicationJsonLd} />
-      <JsonLd data={breadcrumbJsonLd} />
+    <AIToolPageClient tool={tool}>
+      <div className="min-h-screen py-20 px-4">
+        {/* Schema Markup */}
+        <JsonLd data={softwareApplicationJsonLd} />
+        <JsonLd data={breadcrumbJsonLd} />
 
       {/* إعلان أعلى الصفحة */}
       <AdBanner placement="ai_tool_top" className="mb-8" />
@@ -298,9 +285,19 @@ export default async function AIToolPage({ params }: Props) {
                   >
                     زيارة الأداة
                   </Link>
-                  <button className="border border-gray-600 hover:border-primary text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300">
-                    مشاركة
-                  </button>
+
+                  {/* مشاركة على وسائل التواصل */}
+                  <div className="border border-gray-600 rounded-lg p-4">
+                    <h4 className="text-white font-semibold mb-3 text-center">مشاركة الأداة</h4>
+                    <SocialShare
+                      url={getSharingUrl(`/ai-tools/${tool.slug}`)}
+                      title={`${tool.name} - أداة ذكاء اصطناعي`}
+                      description={tool.description}
+                      hashtags={getSharingHashtags([tool.category, tool.pricing])}
+                      size="sm"
+                      className="justify-center"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -487,7 +484,7 @@ export default async function AIToolPage({ params }: Props) {
                 <h2 className="text-2xl font-bold text-white mb-6">أدوات مشابهة</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {relatedTools.map((relatedTool) => (
-                    <Link
+                    <AIToolLink
                       key={relatedTool.id}
                       href={`/ai-tools/${relatedTool.slug}`}
                       className="bg-dark-bg/50 border border-gray-700 rounded-lg p-4 hover:border-primary transition-all duration-300 group"
@@ -515,11 +512,18 @@ export default async function AIToolPage({ params }: Props) {
                       <p className="text-dark-text-secondary text-sm line-clamp-2">
                         {relatedTool.description}
                       </p>
-                    </Link>
+                    </AIToolLink>
                   ))}
                 </div>
               </div>
             )}
+
+            {/* قسم المقارنة */}
+            <AIToolComparisonContainer
+              currentTool={tool}
+              availableTools={availableTools}
+              className="mb-8"
+            />
           </article>
 
           {/* الشريط الجانبي */}
@@ -559,7 +563,7 @@ export default async function AIToolPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-700">
+              <div className="mt-6 pt-6 border-t border-gray-700 space-y-3">
                 <Link
                   href={tool.website_url}
                   target="_blank"
@@ -568,6 +572,14 @@ export default async function AIToolPage({ params }: Props) {
                 >
                   زيارة الأداة
                 </Link>
+
+                {/* مشاركة مدمجة */}
+                <SocialShareCompact
+                  url={getSharingUrl(`/ai-tools/${tool.slug}`)}
+                  title={`${tool.name} - أداة ذكاء اصطناعي`}
+                  description={tool.description}
+                  className="w-full"
+                />
               </div>
             </div>
 
@@ -580,5 +592,6 @@ export default async function AIToolPage({ params }: Props) {
       {/* إعلان أسفل الصفحة */}
       <AdBanner placement="ai_tool_bottom" className="mt-8" />
     </div>
+    </AIToolPageClient>
   );
 }

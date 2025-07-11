@@ -8,6 +8,8 @@ import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import SponsorsSection from "@/components/SponsorsSection";
 import AdBannerTop from "@/components/AdBannerTop";
+import SocialShare from "@/components/SocialShare";
+import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 
 import { Article, AITool, Service } from "@/types";
 
@@ -217,6 +219,30 @@ export default async function HomePage() {
 
       {/* قسم الرعاة */}
       <SponsorsSection />
+
+      {/* قسم مشاركة الموقع */}
+      <section className="py-20 px-4 bg-dark-card/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">شارك TechnoFlash</h2>
+            <p className="text-dark-text-secondary text-lg max-w-2xl mx-auto">
+              ساعد في نشر المعرفة التقنية وشارك موقعنا مع أصدقائك ومتابعيك
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <SocialShare
+              url={getSharingUrl('/')}
+              title="TechnoFlash - بوابتك للمستقبل التقني"
+              description="منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا"
+              hashtags={getSharingHashtags(['تقنية', 'برمجة', 'تطوير'])}
+              showLabels={true}
+              size="lg"
+              className="justify-center"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* قسم الاشتراك في النشرة البريدية */}
       <NewsletterSubscription

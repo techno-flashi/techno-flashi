@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { AITool } from '@/types';
 import { AIToolCard } from '@/components/AIToolCard';
 import { AIToolsFilter } from '@/components/AIToolsFilter';
@@ -27,9 +27,9 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
     return acc;
   }, {} as Record<string, AITool[]>);
 
-  const handleFilterChange = (tools: AITool[]) => {
+  const handleFilterChange = useCallback((tools: AITool[]) => {
     setFilteredTools(tools);
-  };
+  }, []);
 
   return (
     <>

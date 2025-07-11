@@ -5,6 +5,7 @@ import { Ad } from "@/types";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import SafeAdScript from "./SafeAdScript";
 
 interface AdBannerProps {
   placement: Ad['placement'];
@@ -112,9 +113,14 @@ export function AdBanner({ placement, className = "" }: AdBannerProps) {
   // إذا كان الإعلان يحتوي على كود HTML مخصص
   if (currentAd.ad_code) {
     return (
-      <div 
+      <SafeAdScript
+        adCode={currentAd.ad_code}
         className={`ad-banner ${className}`}
-        dangerouslySetInnerHTML={{ __html: currentAd.ad_code }}
+        fallback={
+          <div className="text-gray-500 text-sm text-center p-4">
+            إعلان غير متاح
+          </div>
+        }
       />
     );
   }

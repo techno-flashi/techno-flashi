@@ -8,10 +8,14 @@ export const GA_TRACKING_ID = 'G-X8ZRRZX2EQ';
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('config', GA_TRACKING_ID, {
-      page_path: url,
-    });
+  try {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('config', GA_TRACKING_ID, {
+        page_path: url,
+      });
+    }
+  } catch (error) {
+    console.warn('Google Analytics pageview error:', error);
   }
 };
 

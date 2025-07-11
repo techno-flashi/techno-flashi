@@ -27,7 +27,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
   };
 
   return (
-    <Link href={tool.website_url} target="_blank" rel="noopener noreferrer" className="block group">
+    <Link href={`/ai-tools/${tool.slug}`} className="block group">
       <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-1 h-full">
         <div className="relative w-full h-64 md:h-80 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-600/10">
           <div className="absolute inset-0 flex items-center justify-center">

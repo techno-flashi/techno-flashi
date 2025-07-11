@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Service } from '@/types';
 import AdBanner from '@/components/ads/AdBanner';
+import { generateServiceSocialMeta, getSharingUrl, getSharingHashtags } from '@/lib/social-meta';
+import SocialShare from '@/components/SocialShare';
+import SocialShareCompact from '@/components/SocialShareCompact';
 
 interface ServicePageProps {
   params: Promise<{ id: string }>;
@@ -65,11 +68,14 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     };
   }
 
-  return {
-    title: `${service.name} - تكنوفلاش`,
-    description: service.short_description || service.description.substring(0, 160),
-    keywords: `${service.name}, ${service.category}, خدمات تقنية, تكنوفلاش`,
-  };
+  return generateServiceSocialMeta({
+    title: service.name,
+    description: service.short_description || service.description,
+    slug: service.id,
+    image_url: service.image_url,
+    category: service.category,
+    price: service.pricing_amount?.toString()
+  });
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
@@ -189,6 +195,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     </div>
                   </div>
                 )}
+
+                {/* مشاركة الخدمة */}
+                <div className="mt-12 pt-8 border-t border-gray-200">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">شارك هذه الخدمة</h3>
+                  <SocialShare
+                    url={getSharingUrl(`/services/${service.id}`)}
+                    title={`${service.name} - خدمة تقنية`}
+                    description={service.short_description || service.description}
+                    hashtags={getSharingHashtags([service.category, 'خدمات'])}
+                    showLabels={true}
+                    size="lg"
+                    className="justify-center"
+                  />
+                </div>
               </div>
 
               {/* الشريط الجانبي */}
@@ -241,6 +261,19 @@ export default async function ServicePage({ params }: ServicePageProps) {
                       </Link>
                     </div>
                   )}
+
+                  {/* مشاركة مدمجة */}
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4">شارك الخدمة</h4>
+                    <SocialShare
+                      url={getSharingUrl(`/services/${service.id}`)}
+                      title={`${service.name} - خدمة تقنية`}
+                      description={service.short_description || service.description}
+                      hashtags={getSharingHashtags([service.category, 'خدمات'])}
+                      size="sm"
+                      className="justify-center"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

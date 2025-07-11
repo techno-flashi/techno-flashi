@@ -9,9 +9,10 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker";
+// import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker";
 import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
+import { Toaster } from 'react-hot-toast';
 
 // إعداد الخطوط
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -93,10 +94,37 @@ export default function RootLayout({
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
       <body className="bg-dark-background text-dark-text font-sans">
         <GoogleAnalytics />
-        <GoogleAnalyticsTracker />
+        {/* <GoogleAnalyticsTracker /> */}
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
         <JsonLd data={organizationJsonLd} />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: '#1F2937',
+              color: '#F9FAFB',
+              border: '1px solid #374151',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontFamily: 'var(--font-tajawal)',
+              direction: 'rtl'
+            },
+            success: {
+              iconTheme: {
+                primary: '#10B981',
+                secondary: '#F9FAFB',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#EF4444',
+                secondary: '#F9FAFB',
+              },
+            },
+          }}
+        />
         {/* هنا الحل! نضع AuthProvider ليغلف كل شيء */}
         <AuthProvider>
           <Header />

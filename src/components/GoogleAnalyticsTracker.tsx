@@ -11,8 +11,12 @@ function AnalyticsTracker() {
 
   useEffect(() => {
     if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
-      pageview(url);
+      try {
+        const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+        pageview(url);
+      } catch (error) {
+        console.warn('Google Analytics tracking error:', error);
+      }
     }
   }, [pathname, searchParams]);
 

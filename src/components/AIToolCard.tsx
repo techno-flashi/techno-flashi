@@ -1,7 +1,7 @@
 // مكون أداة الذكاء الاصطناعي العادي
 import { AITool } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
+import { AIToolLink } from "./AIToolLink";
 
 interface AIToolCardProps {
   tool: AITool;
@@ -28,7 +28,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
   };
 
   return (
-    <Link href={`/ai-tools/${tool.slug}`} className="block group">
+    <AIToolLink href={`/ai-tools/${tool.slug}`} className="block group">
       <div className={`bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 h-full ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
         {/* شارة المميز */}
         {featured && (
@@ -120,6 +120,6 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
           </div>
         </div>
       </div>
-    </Link>
+    </AIToolLink>
   );
 }

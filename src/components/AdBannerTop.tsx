@@ -123,10 +123,14 @@ export default function AdBannerTop({
 
           {/* كود HTML/JavaScript مخصص */}
           {bannerAd.ad_code && (
-            <div 
-              className="w-full"
-              dangerouslySetInnerHTML={{ __html: bannerAd.ad_code }}
-            />
+            <div className="w-full">
+              <div
+                dangerouslySetInnerHTML={{ __html: bannerAd.ad_code }}
+                onError={(e) => {
+                  console.warn('Banner ad code execution error:', e);
+                }}
+              />
+            </div>
           )}
 
           {/* معلومات الإعلان (مخفية) */}
