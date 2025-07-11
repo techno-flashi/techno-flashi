@@ -10,7 +10,7 @@ interface AIToolsClientProps {
   stats: {
     total: number;
     categories: number;
-    avgRating: string;
+    avgRating: string | number;
     freeTools: number;
   };
 }
