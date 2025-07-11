@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     canonical: 'https://tflash.site',
   },
   verification: {
-    google: 'G-X8ZRRZX2EQ',
+    google: '717743998652694e',
   },
   icons: {
     icon: '/favicon.svg',
