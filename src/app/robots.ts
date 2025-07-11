@@ -8,7 +8,20 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/admin/', '/api/'],
       },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/admin/', '/api/'],
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: ['/admin/', '/api/'],
+      },
     ],
-    sitemap: 'https://tflash.site/sitemap.xml',
+    sitemap: [
+      'https://tflash.site/sitemap.xml',
+      'https://tflash.site/rss.xml',
+    ],
   }
 }

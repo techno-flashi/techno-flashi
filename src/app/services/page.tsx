@@ -4,6 +4,9 @@ import { ServicesSection } from '@/components/ServicesSection';
 import AdBanner from '@/components/ads/AdBanner';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 
+// إعادة التحقق من البيانات كل 60 ثانية
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'خدماتنا - تكنوفلاش',
   description: 'اكتشف مجموعة متنوعة من الخدمات التقنية المتطورة التي نقدمها لمساعدتك في تحقيق أهدافك الرقمية',

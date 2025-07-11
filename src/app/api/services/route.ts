@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { Service } from '@/types';
 
@@ -134,6 +135,16 @@ export async function POST(request: NextRequest) {
         },
         { status: 500 }
       );
+    }
+
+    // إعادة التحقق من صفحات الخدمات لتحديث المحتوى فوراً
+    try {
+      revalidatePath('/services');
+      revalidatePath('/');
+      console.log('✅ Pages revalidated successfully');
+    } catch (revalidateError) {
+      console.error('⚠️ Revalidation error:', revalidateError);
+      // لا نوقف العملية، فقط نسجل الخطأ
     }
 
     return NextResponse.json({

@@ -1,5 +1,6 @@
 // API لإدارة المقالات
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { Article } from '@/types';
 
@@ -120,6 +121,16 @@ export async function POST(request: NextRequest) {
     }
 
     console.log('Article created successfully:', data.id);
+
+    // إعادة التحقق من صفحات المقالات لتحديث المحتوى فوراً
+    try {
+      revalidatePath('/articles');
+      revalidatePath('/');
+      console.log('✅ Pages revalidated successfully');
+    } catch (revalidateError) {
+      console.error('⚠️ Revalidation error:', revalidateError);
+      // لا نوقف العملية، فقط نسجل الخطأ
+    }
 
     // إصلاح encoding النص العربي
     const fixedData = fixObjectEncoding(data);

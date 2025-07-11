@@ -6,6 +6,8 @@ import Image from "next/image";
 import AdBanner from "@/components/ads/AdBanner";
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
+import JsonLd, { createArticleJsonLd } from "@/components/JsonLd";
+import { Breadcrumbs, createBreadcrumbJsonLd } from "@/components/Breadcrumbs";
 
 export const revalidate = 600; // إعادة بناء الصفحة كل 10 دقائق
 
@@ -52,11 +54,60 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const article = await getArticle(slug);
   if (!article) {
-    return { title: "المقال غير موجود" };
+    return {
+      title: "المقال غير موجود - TechnoFlash",
+      description: "المقال المطلوب غير موجود أو تم حذفه"
+    };
   }
+
+  const keywords = article.seo_keywords || article.tags || [];
+  const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : '';
+
   return {
     title: article.title,
-    description: article.excerpt,
+    description: article.meta_description || article.excerpt || article.title,
+    keywords: keywordsString,
+    authors: [{ name: article.author || 'TechnoFlash' }],
+    openGraph: {
+      title: article.title,
+      description: article.meta_description || article.excerpt || article.title,
+      type: 'article',
+      locale: 'ar_SA',
+      url: `https://tflash.site/articles/${slug}`,
+      siteName: 'TechnoFlash',
+      images: [
+        {
+          url: article.featured_image_url || 'https://tflash.site/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+      publishedTime: article.published_at,
+      modifiedTime: article.updated_at,
+      authors: [article.author || 'TechnoFlash'],
+      tags: keywords,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.meta_description || article.excerpt || article.title,
+      images: [article.featured_image_url || 'https://tflash.site/og-image.jpg'],
+    },
+    alternates: {
+      canonical: `https://tflash.site/articles/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 
@@ -72,14 +123,39 @@ export default async function ArticlePage({ params }: Props) {
   // جلب المقالات ذات الصلة
   const relatedArticles = await getRelatedArticles(slug, article.tags || []);
 
+  // إنشاء Schema Markup للمقال
+  const articleJsonLd = createArticleJsonLd({
+    title: article.title,
+    description: article.meta_description || article.excerpt,
+    featured_image: article.featured_image_url,
+    author: article.author,
+    created_at: article.published_at,
+    updated_at: article.updated_at,
+    slug: article.slug
+  });
+
+  // إنشاء breadcrumbs
+  const breadcrumbItems = [
+    { label: 'المقالات', href: '/articles' },
+    { label: article.title }
+  ];
+  const breadcrumbJsonLd = createBreadcrumbJsonLd(breadcrumbItems);
+
   return (
     <div className="max-w-7xl mx-auto">
+      {/* Schema Markup للمقال والـ breadcrumbs */}
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+
       {/* إعلان أعلى المقال */}
       <AdBanner placement="article_top" className="mb-8" />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* المحتوى الرئيسي */}
         <article className="lg:col-span-3">
+          {/* Breadcrumbs */}
+          <Breadcrumbs items={breadcrumbItems} />
+
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             {article.title}
           </h1>

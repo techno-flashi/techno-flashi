@@ -3,7 +3,7 @@ import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { AIToolCard } from "@/components/AIToolCard";
 import { AITool } from "@/types";
 
-export const revalidate = 600;
+export const revalidate = 60; // تحديث كل دقيقة للتزامن مع باقي الصفحات
 
 async function getAllAITools() {
   try {

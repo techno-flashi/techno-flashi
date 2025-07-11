@@ -1,5 +1,6 @@
 // API لإدارة أدوات الذكاء الاصطناعي
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 
 // GET - جلب جميع أدوات الذكاء الاصطناعي
@@ -136,6 +137,16 @@ export async function POST(request: NextRequest) {
 
     // إصلاح encoding النص العربي
     const fixedData = fixObjectEncoding(data);
+
+    // إعادة التحقق من صفحات أدوات الذكاء الاصطناعي لتحديث المحتوى فوراً
+    try {
+      revalidatePath('/ai-tools');
+      revalidatePath('/');
+      console.log('✅ Pages revalidated successfully');
+    } catch (revalidateError) {
+      console.error('⚠️ Revalidation error:', revalidateError);
+      // لا نوقف العملية، فقط نسجل الخطأ
+    }
 
     return NextResponse.json({
       message: 'AI tool created successfully',
