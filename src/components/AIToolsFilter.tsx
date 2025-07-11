@@ -73,8 +73,8 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
   };
 
   return (
-    <div className="bg-dark-card rounded-xl p-6 mb-12 border border-gray-800">
-      <div className="flex flex-col lg:flex-row gap-4">
+    <div className="bg-dark-card rounded-lg md:rounded-xl p-4 sm:p-5 md:p-6 mb-8 md:mb-12 border border-gray-800">
+      <div className="flex flex-col lg:flex-row gap-3 sm:gap-4">
         {/* شريط البحث */}
         <div className="flex-1">
           <div className="relative">
@@ -83,7 +83,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
               placeholder="ابحث عن أداة معينة..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-dark-background border border-gray-700 text-white px-4 py-3 pr-12 pl-10 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="w-full bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 pr-10 sm:pr-12 pl-8 sm:pl-10 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
               aria-label="البحث في أدوات الذكاء الاصطناعي"
             />
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -106,8 +106,8 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
           </div>
         </div>
 
-        {/* فلاتر */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        {/* فلاتر - محسنة للأجهزة المحمولة */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {/* فلتر الفئة */}
           <div className="flex flex-col">
             <label htmlFor="category-filter" className="text-sm text-gray-300 mb-2 sr-only">
@@ -117,7 +117,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
               id="category-filter"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[150px]"
+              className="bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="فلترة حسب الفئة"
             >
               <option value="all">جميع الفئات</option>
@@ -136,7 +136,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
               id="pricing-filter"
               value={selectedPricing}
               onChange={(e) => setSelectedPricing(e.target.value)}
-              className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[150px]"
+              className="bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="فلترة حسب التسعير"
             >
               <option value="all">جميع الأسعار</option>
@@ -155,7 +155,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
               id="sort-filter"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[150px]"
+              className="bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="ترتيب النتائج"
             >
               <option value="latest">الأحدث</option>
@@ -168,7 +168,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
           {/* زر إعادة التعيين */}
           <button
             onClick={handleReset}
-            className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-3 rounded-lg transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gray-500/20 transform hover:scale-105 active:scale-95 min-h-[44px]"
+            className="bg-gray-600 hover:bg-gray-500 text-white px-3 sm:px-4 py-3 rounded-lg transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gray-500/20 transform hover:scale-105 active:scale-95 min-h-[44px] text-sm sm:text-base"
             aria-label="إعادة تعيين جميع الفلاتر"
             type="button"
           >

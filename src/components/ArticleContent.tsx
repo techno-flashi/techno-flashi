@@ -95,7 +95,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
         };
 
         return (
-          <p key={index} className="text-dark-text leading-relaxed mb-6 text-lg">
+          <p key={index} className="text-dark-text leading-relaxed mb-4 sm:mb-6 text-base sm:text-lg">
             {formatText(block.data.text)}
           </p>
         );
@@ -103,12 +103,12 @@ export function ArticleContent({ content }: ArticleContentProps) {
       case 'header':
         const HeaderTag = `h${block.data.level || 2}` as keyof JSX.IntrinsicElements;
         const headerClasses = {
-          1: 'text-4xl font-bold text-white mb-8 mt-12',
-          2: 'text-3xl font-bold text-white mb-6 mt-10',
-          3: 'text-2xl font-semibold text-white mb-4 mt-8',
-          4: 'text-xl font-semibold text-white mb-4 mt-6',
-          5: 'text-lg font-semibold text-white mb-3 mt-4',
-          6: 'text-base font-semibold text-white mb-3 mt-4'
+          1: 'text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 md:mb-8 mt-6 sm:mt-8 md:mt-12',
+          2: 'text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 md:mb-6 mt-5 sm:mt-6 md:mt-10',
+          3: 'text-lg sm:text-xl md:text-2xl font-semibold text-white mb-3 sm:mb-4 mt-4 sm:mt-5 md:mt-8',
+          4: 'text-base sm:text-lg md:text-xl font-semibold text-white mb-2 sm:mb-3 md:mb-4 mt-3 sm:mt-4 md:mt-6',
+          5: 'text-sm sm:text-base md:text-lg font-semibold text-white mb-2 sm:mb-3 mt-3 sm:mt-4',
+          6: 'text-sm sm:text-base font-semibold text-white mb-2 sm:mb-3 mt-3 sm:mt-4'
         };
 
         // العثور على فهرس العنوان في قائمة العناوين
@@ -329,12 +329,12 @@ export function ArticleContent({ content }: ArticleContentProps) {
   };
 
   return (
-    <div className="prose prose-invert prose-lg max-w-none">
+    <div className="prose prose-invert prose-sm sm:prose-base lg:prose-lg max-w-none">
       {/* جدول المحتويات */}
       <TableOfContents />
 
-      {/* محتوى المقال */}
-      <div className="space-y-4">
+      {/* محتوى المقال - محسن للقراءة */}
+      <div className="space-y-3 sm:space-y-4 leading-relaxed">
         {content.blocks.map((block: EditorBlock, index: number) => renderBlock(block, index))}
       </div>
     </div>

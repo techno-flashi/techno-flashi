@@ -110,24 +110,24 @@ export default async function ArticlePage({ params }: Props) {
   const breadcrumbJsonLd = createBreadcrumbJsonLd(breadcrumbItems);
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Schema Markup للمقال والـ breadcrumbs */}
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
 
       {/* إعلان أعلى المقال */}
-      <AdBanner placement="article_top" className="mb-8" />
+      <AdBanner placement="article_top" className="mb-6 md:mb-8" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* المحتوى الرئيسي */}
-        <article className="lg:col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* المحتوى الرئيسي - محسن للقراءة */}
+        <article className="lg:col-span-3 max-w-none lg:max-w-[80%]">
           {/* Breadcrumbs */}
           <Breadcrumbs items={breadcrumbItems} />
 
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
             {article.title}
           </h1>
-          <div className="flex flex-wrap items-center gap-4 text-dark-text-secondary mb-8">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-dark-text-secondary mb-6 md:mb-8 text-sm sm:text-base">
             <span>
               نُشر في: {new Date(article.published_at).toLocaleDateString('ar-EG', {
                 year: 'numeric', month: 'long', day: 'numeric'
@@ -143,7 +143,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* الكلمات المفتاحية */}
           {article.tags && article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
               {article.tags.map((tag: string, index: number) => (
                 <span
                   key={index}
@@ -155,7 +155,7 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8">
+          <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden mb-6 md:mb-8">
             <Image
               src={article.featured_image_url || "https://placehold.co/1200x600/0D1117/38BDF8?text=TechnoFlash"}
               alt={article.title}
@@ -183,9 +183,52 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </article>
 
-        {/* الشريط الجانبي */}
-        <aside className="lg:col-span-1">
-          <div className="sticky top-8 space-y-6">
+        {/* الشريط الجانبي - محسن للأجهزة المحمولة */}
+        <aside className="lg:col-span-1 order-first lg:order-last">
+          <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
+            {/* عناصر التنقل السريع */}
+            <div className="bg-dark-card rounded-lg p-4 lg:p-6 border border-gray-700">
+              <h3 className="text-lg font-semibold text-white mb-4">التنقل السريع</h3>
+              <nav className="space-y-3">
+                <a
+                  href="/"
+                  className="flex items-center text-dark-text-secondary hover:text-primary transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  الصفحة الرئيسية
+                </a>
+                <a
+                  href="/ai-tools"
+                  className="flex items-center text-dark-text-secondary hover:text-primary transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  أدوات الذكاء الاصطناعي
+                </a>
+                <a
+                  href="/services"
+                  className="flex items-center text-dark-text-secondary hover:text-primary transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h8z" />
+                  </svg>
+                  الخدمات
+                </a>
+                <a
+                  href="/articles"
+                  className="flex items-center text-primary font-medium text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg bg-primary/10"
+                >
+                  <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                  </svg>
+                  جميع المقالات
+                </a>
+              </nav>
+            </div>
+
             {/* إعلان الشريط الجانبي */}
             <AdBanner placement="sidebar" />
 
@@ -330,8 +373,51 @@ export default async function ArticlePage({ params }: Props) {
         </section>
       )}
 
+      {/* قسم التنقل للأجهزة المحمولة */}
+      <section className="lg:hidden mt-12 bg-dark-card rounded-lg p-6 border border-gray-700">
+        <h3 className="text-xl font-semibold text-white mb-6 text-center">استكشف المزيد</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <a
+            href="/"
+            className="flex flex-col items-center text-center p-4 rounded-lg border border-gray-700 hover:border-primary/50 transition-colors duration-300 min-h-[80px] justify-center"
+          >
+            <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span className="text-white text-sm font-medium">الرئيسية</span>
+          </a>
+          <a
+            href="/ai-tools"
+            className="flex flex-col items-center text-center p-4 rounded-lg border border-gray-700 hover:border-primary/50 transition-colors duration-300 min-h-[80px] justify-center"
+          >
+            <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span className="text-white text-sm font-medium">أدوات الذكاء</span>
+          </a>
+          <a
+            href="/services"
+            className="flex flex-col items-center text-center p-4 rounded-lg border border-gray-700 hover:border-primary/50 transition-colors duration-300 min-h-[80px] justify-center"
+          >
+            <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h8z" />
+            </svg>
+            <span className="text-white text-sm font-medium">الخدمات</span>
+          </a>
+          <a
+            href="/articles"
+            className="flex flex-col items-center text-center p-4 rounded-lg border border-primary/50 bg-primary/10 transition-colors duration-300 min-h-[80px] justify-center"
+          >
+            <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+            <span className="text-primary text-sm font-medium">جميع المقالات</span>
+          </a>
+        </div>
+      </section>
+
       {/* إعلان أسفل المقال */}
-      <AdBanner placement="article_bottom" className="mt-12" />
+      <AdBanner placement="article_bottom" className="mt-8 lg:mt-12" />
     </div>
   );
 }

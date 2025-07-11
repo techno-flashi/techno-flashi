@@ -35,7 +35,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
       className="block group focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-xl"
       aria-label={`عرض تفاصيل أداة ${tool.name}`}
     >
-      <div className={`bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 active:scale-95 h-full ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
+      <div className={`bg-dark-card rounded-lg md:rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-1 md:hover:-translate-y-2 active:scale-95 h-full ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
         {/* شارة المميز */}
         {featured && (
           <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
@@ -43,9 +43,9 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
           </div>
         )}
 
-        {/* الشعار والتقييم */}
-        <div className="relative w-full h-32 bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
-          <div className="relative w-16 h-16">
+        {/* الشعار والتقييم - محسن للأجهزة المحمولة */}
+        <div className="relative w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16">
             <Image
               src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
               alt={`شعار ${tool.name}`}
@@ -78,12 +78,12 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
           </div>
         </div>
 
-        <div className="p-4">
-          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+        <div className="p-3 sm:p-4">
+          <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
             {tool.name}
           </h3>
 
-          <p className="text-dark-text-secondary text-sm mb-3 leading-relaxed line-clamp-2">
+          <p className="text-dark-text-secondary text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2">
             {tool.description}
           </p>
 

@@ -33,38 +33,38 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
 
   return (
     <>
-      {/* إحصائيات شاملة */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <div className="bg-dark-card rounded-xl p-6 border border-gray-800 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <span className="text-white text-xl font-bold">🤖</span>
+      {/* إحصائيات شاملة - محسنة للأجهزة المحمولة */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8 md:mb-12">
+        <div className="bg-dark-card rounded-lg md:rounded-xl p-3 sm:p-4 md:p-6 border border-gray-800 text-center">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4">
+            <span className="text-white text-sm sm:text-lg md:text-xl font-bold">🤖</span>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{stats.total}</h3>
-          <p className="text-dark-text-secondary">أداة متاحة</p>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 md:mb-2">{stats.total}</h3>
+          <p className="text-dark-text-secondary text-xs sm:text-sm">أداة متاحة</p>
         </div>
 
-        <div className="bg-dark-card rounded-xl p-6 border border-gray-800 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <span className="text-white text-xl font-bold">📂</span>
+        <div className="bg-dark-card rounded-lg md:rounded-xl p-3 sm:p-4 md:p-6 border border-gray-800 text-center">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4">
+            <span className="text-white text-sm sm:text-lg md:text-xl font-bold">📂</span>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{stats.categories}</h3>
-          <p className="text-dark-text-secondary">فئة مختلفة</p>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 md:mb-2">{stats.categories}</h3>
+          <p className="text-dark-text-secondary text-xs sm:text-sm">فئة مختلفة</p>
         </div>
 
-        <div className="bg-dark-card rounded-xl p-6 border border-gray-800 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <span className="text-white text-xl font-bold">⭐</span>
+        <div className="bg-dark-card rounded-lg md:rounded-xl p-3 sm:p-4 md:p-6 border border-gray-800 text-center">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4">
+            <span className="text-white text-sm sm:text-lg md:text-xl font-bold">⭐</span>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{stats.avgRating}</h3>
-          <p className="text-dark-text-secondary">متوسط التقييم</p>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 md:mb-2">{stats.avgRating}</h3>
+          <p className="text-dark-text-secondary text-xs sm:text-sm">متوسط التقييم</p>
         </div>
 
-        <div className="bg-dark-card rounded-xl p-6 border border-gray-800 text-center">
-          <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <span className="text-white text-xl font-bold">🆓</span>
+        <div className="bg-dark-card rounded-lg md:rounded-xl p-3 sm:p-4 md:p-6 border border-gray-800 text-center">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4">
+            <span className="text-white text-sm sm:text-lg md:text-xl font-bold">🆓</span>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{stats.freeTools}</h3>
-          <p className="text-dark-text-secondary">أداة مجانية</p>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 md:mb-2">{stats.freeTools}</h3>
+          <p className="text-dark-text-secondary text-xs sm:text-sm">أداة مجانية</p>
         </div>
       </div>
 
@@ -113,7 +113,7 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
                       {categoryTools.length} أداة
                     </span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
                     {categoryTools.map((tool) => (
                       <AIToolCard key={tool.id} tool={tool} />
                     ))}
@@ -121,8 +121,8 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
                 </div>
               ))
             ) : (
-              // عرض عادي للنتائج المفلترة
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              // عرض عادي للنتائج المفلترة - محسن للأجهزة المحمولة
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
                 {filteredTools.map((tool) => (
                   <AIToolCard key={tool.id} tool={tool} />
                 ))}

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* استيراد تحسينات التصميم المتجاوب */
+@import '../styles/responsive-enhancements.css';
+
 /* تحسينات إضافية للواجهة */
 @layer utilities {
   .line-clamp-2 {
