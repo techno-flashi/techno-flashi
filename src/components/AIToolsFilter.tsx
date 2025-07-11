@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { AITool } from '@/types';
 
 interface AIToolsFilterProps {
@@ -9,6 +10,10 @@ interface AIToolsFilterProps {
 }
 
 export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedPricing, setSelectedPricing] = useState('all');
@@ -16,6 +21,43 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
 
   // استخراج الفئات الفريدة
   const categories = Array.from(new Set(tools.map(tool => tool.category)));
+
+  // قراءة معاملات URL عند تحميل الصفحة
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    const pricingParam = searchParams.get('pricing');
+    const searchParam = searchParams.get('search');
+    const sortParam = searchParams.get('sort');
+
+    if (categoryParam && categories.includes(categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+    if (pricingParam && ['free', 'freemium', 'paid'].includes(pricingParam)) {
+      setSelectedPricing(pricingParam);
+    }
+    if (searchParam) {
+      setSearchTerm(searchParam);
+    }
+    if (sortParam && ['latest', 'rating', 'name', 'popular'].includes(sortParam)) {
+      setSortBy(sortParam);
+    }
+  }, [searchParams, categories]);
+
+  // تحديث URL عند تغيير الفلاتر
+  const updateURL = (newCategory: string, newPricing: string, newSearch: string, newSort: string) => {
+    const params = new URLSearchParams();
+
+    if (newCategory !== 'all') params.set('category', newCategory);
+    if (newPricing !== 'all') params.set('pricing', newPricing);
+    if (newSearch) params.set('search', newSearch);
+    if (newSort !== 'latest') params.set('sort', newSort);
+
+    const queryString = params.toString();
+    const newURL = queryString ? `${pathname}?${queryString}` : pathname;
+
+    // تحديث URL بدون إعادة تحميل الصفحة
+    router.replace(newURL, { scroll: false });
+  };
 
   // تطبيق الفلاتر
   useEffect(() => {
@@ -27,7 +69,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
         tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (tool.tags && tool.tags.some(tag => 
+        (tool.tags && tool.tags.some(tag =>
           tag.toLowerCase().includes(searchTerm.toLowerCase())
         ))
       );
@@ -56,20 +98,26 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
         break;
       case 'latest':
       default:
-        filteredTools.sort((a, b) => 
+        filteredTools.sort((a, b) =>
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         );
         break;
     }
 
     onFilterChange(filteredTools);
-  }, [searchTerm, selectedCategory, selectedPricing, sortBy, tools, onFilterChange]);
+
+    // تحديث URL عند تغيير الفلاتر
+    updateURL(selectedCategory, selectedPricing, searchTerm, sortBy);
+  }, [searchTerm, selectedCategory, selectedPricing, sortBy, tools, onFilterChange, updateURL]);
 
   const handleReset = () => {
     setSearchTerm('');
     setSelectedCategory('all');
     setSelectedPricing('all');
     setSortBy('latest');
+
+    // مسح معاملات URL
+    router.replace(pathname, { scroll: false });
   };
 
   return (

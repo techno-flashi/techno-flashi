@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Suspense } from 'react';
 import { AITool } from '@/types';
 import { AIToolCard } from '@/components/AIToolCard';
 import { AIToolsFilter } from '@/components/AIToolsFilter';
@@ -69,7 +69,21 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
       </div>
 
       {/* شريط البحث والفلاتر */}
-      <AIToolsFilter tools={initialTools} onFilterChange={handleFilterChange} />
+      <Suspense fallback={
+        <div className="bg-dark-card rounded-xl p-6 mb-12 border border-gray-800">
+          <div className="animate-pulse">
+            <div className="h-12 bg-gray-700 rounded-lg mb-4"></div>
+            <div className="flex gap-4">
+              <div className="h-12 bg-gray-700 rounded-lg flex-1"></div>
+              <div className="h-12 bg-gray-700 rounded-lg w-32"></div>
+              <div className="h-12 bg-gray-700 rounded-lg w-32"></div>
+              <div className="h-12 bg-gray-700 rounded-lg w-32"></div>
+            </div>
+          </div>
+        </div>
+      }>
+        <AIToolsFilter tools={initialTools} onFilterChange={handleFilterChange} />
+      </Suspense>
 
       {/* الأدوات المميزة */}
       {filteredTools.filter(tool => tool.featured).length > 0 && (
