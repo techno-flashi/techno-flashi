@@ -6,7 +6,6 @@ import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { AITool } from '@/types';
 import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
 import AdBanner from '@/components/ads/AdBanner';
 
 export const revalidate = 60;
