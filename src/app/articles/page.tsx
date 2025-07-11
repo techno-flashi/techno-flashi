@@ -46,6 +46,17 @@ export default async function ArticlesPage() {
 
   console.log('🎯 Articles page rendering with', articles.length, 'articles');
 
+  // طباعة معلومات الصور للتشخيص
+  articles.forEach((article, index) => {
+    if (index < 3) { // أول 3 مقالات فقط
+      console.log(`📷 Article ${index + 1} (${article.title}):`, {
+        id: article.id,
+        hasImage: !!article.featured_image_url,
+        imageUrl: article.featured_image_url
+      });
+    }
+  });
+
   return (
     <div className="min-h-screen py-20 px-4">
       <div className="container mx-auto">

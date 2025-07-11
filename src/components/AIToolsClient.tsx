@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, Suspense } from 'react';
+import { useState, useCallback } from 'react';
 import { AITool } from '@/types';
 import { AIToolCard } from '@/components/AIToolCard';
 import { AIToolsFilter } from '@/components/AIToolsFilter';
@@ -69,21 +69,7 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
       </div>
 
       {/* شريط البحث والفلاتر */}
-      <Suspense fallback={
-        <div className="bg-dark-card rounded-xl p-6 mb-12 border border-gray-800">
-          <div className="animate-pulse">
-            <div className="h-12 bg-gray-700 rounded-lg mb-4"></div>
-            <div className="flex gap-4">
-              <div className="h-12 bg-gray-700 rounded-lg flex-1"></div>
-              <div className="h-12 bg-gray-700 rounded-lg w-32"></div>
-              <div className="h-12 bg-gray-700 rounded-lg w-32"></div>
-              <div className="h-12 bg-gray-700 rounded-lg w-32"></div>
-            </div>
-          </div>
-        </div>
-      }>
-        <AIToolsFilter tools={initialTools} onFilterChange={handleFilterChange} />
-      </Suspense>
+      <AIToolsFilter tools={initialTools} onFilterChange={handleFilterChange} />
 
       {/* الأدوات المميزة */}
       {filteredTools.filter(tool => tool.featured).length > 0 && (
@@ -94,7 +80,7 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
               ⭐ مميز
             </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
             {filteredTools.filter(tool => tool.featured).map((tool) => (
               <AIToolCard key={tool.id} tool={tool} featured={true} />
             ))}
@@ -127,7 +113,7 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
                       {categoryTools.length} أداة
                     </span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {categoryTools.map((tool) => (
                       <AIToolCard key={tool.id} tool={tool} />
                     ))}
@@ -136,7 +122,7 @@ export function AIToolsClient({ initialTools, stats }: AIToolsClientProps) {
               ))
             ) : (
               // عرض عادي للنتائج المفلترة
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredTools.map((tool) => (
                   <AIToolCard key={tool.id} tool={tool} />
                 ))}

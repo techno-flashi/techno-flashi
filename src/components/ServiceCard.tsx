@@ -125,14 +125,16 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
           {service.cta_link ? (
             <Link
               href={service.cta_link}
-              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
+              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px] shadow-lg hover:shadow-primary/25"
+              aria-label={`${service.cta_text} - ${service.name}`}
             >
               {service.cta_text}
             </Link>
           ) : (
             <Link
               href={`/services/${service.id}`}
-              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
+              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px] shadow-lg hover:shadow-primary/25"
+              aria-label={`${service.cta_text} - ${service.name}`}
             >
               {service.cta_text}
             </Link>

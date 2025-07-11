@@ -47,7 +47,7 @@ function SocialShare({
 
   const handleShare = async (platform: string, shareUrl: string) => {
     setIsLoading(platform);
-    
+
     try {
       // For mobile devices, try native sharing first
       if (platform === 'native' && navigator.share) {
@@ -56,24 +56,43 @@ function SocialShare({
           text: description,
           url
         });
+        toast.success('تم مشاركة المحتوى بنجاح');
       } else {
-        // Open in new window for desktop
-        const width = 600;
-        const height = 400;
-        const left = (window.screen.width - width) / 2;
-        const top = (window.screen.height - height) / 2;
-        
-        window.open(
-          shareUrl,
-          `share-${platform}`,
-          `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`
-        );
+        // Check if it's a mobile device for better UX
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+          // For mobile, open in same tab to avoid popup blockers
+          window.location.href = shareUrl;
+        } else {
+          // Open in new window for desktop
+          const width = 600;
+          const height = 400;
+          const left = (window.screen.width - width) / 2;
+          const top = (window.screen.height - height) / 2;
+
+          const popup = window.open(
+            shareUrl,
+            `share-${platform}`,
+            `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`
+          );
+
+          if (!popup) {
+            // Fallback if popup is blocked
+            window.open(shareUrl, '_blank');
+          }
+        }
+
+        toast.success('تم فتح نافذة المشاركة');
       }
-      
-      toast.success('تم فتح نافذة المشاركة');
     } catch (error) {
       console.error('Error sharing:', error);
-      toast.error('حدث خطأ في المشاركة');
+      if (error instanceof Error && error.name === 'AbortError') {
+        // User cancelled the share
+        toast.info('تم إلغاء المشاركة');
+      } else {
+        toast.error('حدث خطأ في المشاركة. يرجى المحاولة مرة أخرى.');
+      }
     } finally {
       setIsLoading(null);
     }
@@ -81,25 +100,47 @@ function SocialShare({
 
   const copyToClipboard = async () => {
     setIsLoading('copy');
-    
+
     try {
-      await navigator.clipboard.writeText(url);
-      toast.success('تم نسخ الرابط بنجاح');
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        toast.success('تم نسخ الرابط بنجاح');
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          toast.success('تم نسخ الرابط بنجاح');
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+          toast.error('فشل في نسخ الرابط. يرجى نسخه يدوياً.');
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
     } catch (error) {
       console.error('Error copying to clipboard:', error);
-      toast.error('فشل في نسخ الرابط');
+      toast.error('فشل في نسخ الرابط. يرجى المحاولة مرة أخرى.');
     } finally {
       setIsLoading(null);
     }
   };
 
-  const SocialButton = ({ 
-    platform, 
-    icon, 
-    label, 
-    bgColor, 
-    hoverColor, 
-    onClick 
+  const SocialButton = ({
+    platform,
+    icon,
+    label,
+    bgColor,
+    hoverColor,
+    onClick
   }: {
     platform: string;
     icon: React.ReactNode;
@@ -114,14 +155,22 @@ function SocialShare({
       className={`
         ${buttonSize} ${bgColor} ${hoverColor}
         flex items-center justify-center rounded-lg
-        transition-all duration-300 transform hover:scale-105
-        disabled:opacity-50 disabled:cursor-not-allowed
+        transition-all duration-300 transform hover:scale-105 active:scale-95
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+        focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent
+        min-h-[44px] min-w-[44px]
         ${showLabels ? 'px-4 w-auto gap-2' : ''}
       `}
       title={`مشاركة على ${label}`}
+      aria-label={`مشاركة على ${label}`}
+      type="button"
     >
       {isLoading === platform ? (
-        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent" />
+        <div
+          className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"
+          role="status"
+          aria-label="جاري المشاركة"
+        />
       ) : (
         <>
           {icon}

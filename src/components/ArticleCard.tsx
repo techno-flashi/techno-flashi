@@ -1,8 +1,9 @@
 // هذا مكون واجهة مستخدم قابل لإعادة الاستخدام لعرض "بطاقة مقال"
+'use client';
 
 import { Article } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ArticleCardProps {
   article: Article;
@@ -10,15 +11,22 @@ interface ArticleCardProps {
 
 export function ArticleCard({ article }: ArticleCardProps) {
   return (
-    <Link href={`/articles/${article.slug}`} className="block group">
-      <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2">
-        <div className="relative w-full h-48 overflow-hidden">
+    <Link
+      href={`/articles/${article.slug}`}
+      className="block group focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-xl"
+      aria-label={`قراءة مقال: ${article.title}`}
+    >
+      <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 active:scale-95 h-full">
+        <div className="relative w-full h-48 overflow-hidden bg-gray-800">
           <Image
             src={article.featured_image_url || "https://placehold.co/600x400/0D1117/38BDF8?text=TechnoFlash"}
-            alt={article.title}
+            alt={`صورة مقال: ${article.title}`}
             fill
             style={{ objectFit: "cover" }}
             className="transition-transform duration-500 group-hover:scale-110"
+            priority={false}
+            quality={80}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
@@ -35,9 +43,9 @@ export function ArticleCard({ article }: ArticleCardProps) {
                 year: 'numeric', month: 'long', day: 'numeric'
               })}
             </div>
-            <div className="flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              اقرأ المزيد
-              <svg className="w-4 h-4 mr-1 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
+              <span>اقرأ المزيد</span>
+              <svg className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </div>

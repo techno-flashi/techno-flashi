@@ -1,7 +1,14 @@
-// صفحة إنشاء مقال جديد متكاملة
 'use client';
 
-import { ArticleEditor } from '@/components/ArticleEditor';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+import { ArticleMediaManager } from '@/components/ArticleMediaManager';
+import { ArticleContent } from '@/components/ArticleContent';
+import { ImageUploader } from '@/components/ImageUploader';
+import { ImageUploadResult, saveImageToDatabase } from '@/lib/imageService';
+import Link from 'next/link';
+import { Article } from '@/types';
 
 interface MediaItem {
   id: string;
@@ -9,9 +16,15 @@ interface MediaItem {
   data: any;
 }
 
-export default function NewArticlePage() {
+interface ArticleEditorProps {
+  articleId?: string;
+  isEdit?: boolean;
+}
+
+export function ArticleEditor({ articleId, isEdit = false }: ArticleEditorProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(isEdit);
   const [activeTab, setActiveTab] = useState<'edit' | 'images' | 'media' | 'preview'>('edit');
   
   // بيانات المقال الأساسية
@@ -32,7 +45,95 @@ export default function NewArticlePage() {
 
   // الصور المرفوعة
   const [uploadedImages, setUploadedImages] = useState<ImageUploadResult[]>([]);
-  const [featuredImageUploading, setFeaturedImageUploading] = useState(false);
+
+  // تحميل بيانات المقال للتعديل
+  useEffect(() => {
+    if (isEdit && articleId) {
+      loadArticle();
+    }
+  }, [isEdit, articleId]);
+
+  const loadArticle = async () => {
+    if (!articleId) return;
+    
+    setPageLoading(true);
+    try {
+      const { data: article, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('id', articleId)
+        .single();
+
+      if (error) {
+        console.error('Error loading article:', error);
+        alert('حدث خطأ في تحميل المقال');
+        return;
+      }
+
+      if (article) {
+        // تحويل المحتوى من Editor.js إلى نص عادي للتعديل
+        let contentText = '';
+        if (article.content && article.content.blocks) {
+          contentText = article.content.blocks
+            .filter((block: any) => block.type === 'paragraph')
+            .map((block: any) => block.data.text)
+            .join('\n\n');
+        }
+
+        setFormData({
+          title: article.title || '',
+          slug: article.slug || '',
+          excerpt: article.excerpt || '',
+          content: contentText,
+          featured_image_url: article.featured_image_url || '',
+          status: article.status || 'draft',
+          tags: article.tags || [],
+          author: article.author || 'TechnoFlash',
+          meta_description: article.meta_description || ''
+        });
+
+        // تحميل الوسائط المرتبطة
+        const { data: media } = await supabase
+          .from('article_media')
+          .select('*')
+          .eq('article_id', articleId)
+          .order('display_order');
+
+        if (media) {
+          const loadedMedia = media.map((item: any) => ({
+            id: item.id.toString(),
+            type: item.media_type,
+            data: item.media_data
+          }));
+          setMediaItems(loadedMedia);
+        }
+
+        // تحميل الصور المرتبطة
+        const { data: images } = await supabase
+          .from('article_images')
+          .select('*')
+          .eq('article_id', articleId)
+          .order('display_order');
+
+        if (images) {
+          const loadedImages = images.map((img: any) => ({
+            success: true,
+            url: img.url,
+            path: img.path,
+            width: img.width,
+            height: img.height,
+            size: img.size
+          }));
+          setUploadedImages(loadedImages);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading article:', error);
+      alert('حدث خطأ في تحميل المقال');
+    } finally {
+      setPageLoading(false);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -42,7 +143,7 @@ export default function NewArticlePage() {
     }));
 
     // إنشاء slug تلقائي من العنوان
-    if (name === 'title') {
+    if (name === 'title' && !isEdit) {
       const slug = value
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
@@ -171,7 +272,6 @@ export default function NewArticlePage() {
         featured_image_url: formData.featured_image_url,
         status,
         published_at: status === 'published' ? new Date().toISOString() : null,
-        created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
         tags: formData.tags,
         reading_time: readingTime,
@@ -179,30 +279,50 @@ export default function NewArticlePage() {
         meta_description: formData.meta_description || formData.excerpt
       };
 
-      const { data: insertedArticle, error } = await supabase
-        .from('articles')
-        .insert([articleData])
-        .select()
-        .single();
+      let result;
+      if (isEdit && articleId) {
+        // تحديث المقال
+        const { data: updatedArticle, error } = await supabase
+          .from('articles')
+          .update(articleData)
+          .eq('id', articleId)
+          .select()
+          .single();
 
-      if (error) {
-        console.error('Error creating article:', error);
-        alert('حدث خطأ أثناء حفظ المقال');
-        return;
+        if (error) throw error;
+        result = updatedArticle;
+      } else {
+        // إنشاء مقال جديد
+        const { data: insertedArticle, error } = await supabase
+          .from('articles')
+          .insert([{ ...articleData, created_at: new Date().toISOString() }])
+          .select()
+          .single();
+
+        if (error) throw error;
+        result = insertedArticle;
       }
 
       // حفظ الصور في جدول article_images
-      if (uploadedImages.length > 0 && insertedArticle) {
+      if (uploadedImages.length > 0 && result) {
+        // حذف الصور القديمة في حالة التعديل
+        if (isEdit) {
+          await supabase
+            .from('article_images')
+            .delete()
+            .eq('article_id', result.id);
+        }
+
         for (let i = 0; i < uploadedImages.length; i++) {
           const image = uploadedImages[i];
           if (image.success && image.url && image.path) {
-            await saveImageToDatabase(insertedArticle.id, {
+            await saveImageToDatabase(result.id, {
               url: image.url,
               path: image.path,
               width: image.width,
               height: image.height,
               size: image.size,
-              mimeType: 'image/jpeg', // يمكن تحسين هذا لاحقاً
+              mimeType: 'image/jpeg',
               isFeatured: image.url === formData.featured_image_url,
               displayOrder: i
             });
@@ -211,9 +331,17 @@ export default function NewArticlePage() {
       }
 
       // حفظ الوسائط في جدول منفصل
-      if (mediaItems.length > 0 && insertedArticle) {
+      if (mediaItems.length > 0 && result) {
+        // حذف الوسائط القديمة في حالة التعديل
+        if (isEdit) {
+          await supabase
+            .from('article_media')
+            .delete()
+            .eq('article_id', result.id);
+        }
+
         const mediaData = mediaItems.map((item, index) => ({
-          article_id: insertedArticle.id,
+          article_id: result.id,
           media_type: item.type,
           media_data: item.data,
           display_order: index
@@ -225,19 +353,33 @@ export default function NewArticlePage() {
 
         if (mediaError) {
           console.error('Error saving media:', mediaError);
-          // لا نوقف العملية، فقط نسجل الخطأ
         }
       }
 
-      alert(status === 'published' ? 'تم نشر المقال بنجاح!' : 'تم حفظ المقال كمسودة!');
+      const message = isEdit 
+        ? (status === 'published' ? 'تم تحديث ونشر المقال بنجاح!' : 'تم تحديث المقال بنجاح!')
+        : (status === 'published' ? 'تم نشر المقال بنجاح!' : 'تم حفظ المقال كمسودة!');
+      
+      alert(message);
       router.push('/admin/articles');
     } catch (error) {
-      console.error('Error creating article:', error);
+      console.error('Error saving article:', error);
       alert('حدث خطأ أثناء حفظ المقال');
     } finally {
       setLoading(false);
     }
   };
+
+  if (pageLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-white">جاري تحميل المقال...</p>
+        </div>
+      </div>
+    );
+  }
 
   const previewContent = generateArticleContent();
 
@@ -246,9 +388,11 @@ export default function NewArticlePage() {
       {/* رأس الصفحة */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">إنشاء مقال جديد</h1>
+          <h1 className="text-3xl font-bold text-white">
+            {isEdit ? 'تعديل المقال' : 'إنشاء مقال جديد'}
+          </h1>
           <p className="text-dark-text-secondary mt-1">
-            أنشئ مقال جديد مع الصور والفيديوهات والأكواد البرمجية
+            {isEdit ? 'قم بتعديل المقال وحفظ التغييرات' : 'أنشئ مقال جديد مع الصور والفيديوهات والأكواد البرمجية'}
           </p>
         </div>
         <Link
@@ -312,7 +456,7 @@ export default function NewArticlePage() {
               {/* معلومات المقال الأساسية */}
               <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
                 <h2 className="text-xl font-semibold text-white mb-6">معلومات المقال</h2>
-                
+
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-white mb-2">
@@ -341,7 +485,7 @@ export default function NewArticlePage() {
                       className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     <p className="text-xs text-dark-text-secondary mt-1">
-                      سيتم إنشاؤه تلقائياً من العنوان
+                      {isEdit ? 'يمكنك تعديل الرابط' : 'سيتم إنشاؤه تلقائياً من العنوان'}
                     </p>
                   </div>
 
@@ -468,7 +612,7 @@ export default function NewArticlePage() {
               {/* محتوى المقال */}
               <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
                 <h2 className="text-xl font-semibold text-white mb-6">محتوى المقال</h2>
-                
+
                 <textarea
                   name="content"
                   value={formData.content}
@@ -477,7 +621,7 @@ export default function NewArticlePage() {
                   placeholder="اكتب محتوى المقال هنا... يمكنك إضافة الصور والفيديوهات والأكواد من تبويب الوسائط"
                   className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary leading-relaxed"
                 />
-                
+
                 <div className="mt-4 p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg">
                   <p className="text-blue-400 text-sm">
                     💡 نصيحة: اكتب النص الأساسي هنا، ثم أضف الصور والفيديوهات والأكواد من تبويب "الوسائط"
@@ -558,15 +702,15 @@ export default function NewArticlePage() {
             <div className="space-y-6">
               <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
                 <h2 className="text-xl font-semibold text-white mb-6">معاينة المقال</h2>
-                
+
                 {formData.title && (
                   <h1 className="text-3xl font-bold text-white mb-4">{formData.title}</h1>
                 )}
-                
+
                 {formData.excerpt && (
                   <p className="text-dark-text-secondary mb-6 text-lg">{formData.excerpt}</p>
                 )}
-                
+
                 {formData.featured_image_url && (
                   <div className="relative w-full h-64 rounded-lg overflow-hidden mb-6">
                     <img
@@ -576,7 +720,7 @@ export default function NewArticlePage() {
                     />
                   </div>
                 )}
-                
+
                 <ArticleContent content={previewContent} />
               </div>
             </div>
@@ -620,7 +764,7 @@ export default function NewArticlePage() {
                     disabled={loading}
                     className="w-full bg-primary hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 disabled:opacity-50"
                   >
-                    {loading ? 'جاري النشر...' : 'نشر المقال'}
+                    {loading ? (isEdit ? 'جاري التحديث...' : 'جاري النشر...') : (isEdit ? 'تحديث ونشر' : 'نشر المقال')}
                   </button>
                 </div>
               </div>

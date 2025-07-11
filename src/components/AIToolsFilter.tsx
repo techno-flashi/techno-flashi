@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { AITool } from '@/types';
 
 interface AIToolsFilterProps {
@@ -10,10 +9,6 @@ interface AIToolsFilterProps {
 }
 
 export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedPricing, setSelectedPricing] = useState('all');
@@ -21,43 +16,6 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
 
   // استخراج الفئات الفريدة
   const categories = Array.from(new Set(tools.map(tool => tool.category)));
-
-  // قراءة معاملات URL عند تحميل الصفحة
-  useEffect(() => {
-    const categoryParam = searchParams.get('category');
-    const pricingParam = searchParams.get('pricing');
-    const searchParam = searchParams.get('search');
-    const sortParam = searchParams.get('sort');
-
-    if (categoryParam && categories.includes(categoryParam)) {
-      setSelectedCategory(categoryParam);
-    }
-    if (pricingParam && ['free', 'freemium', 'paid'].includes(pricingParam)) {
-      setSelectedPricing(pricingParam);
-    }
-    if (searchParam) {
-      setSearchTerm(searchParam);
-    }
-    if (sortParam && ['latest', 'rating', 'name', 'popular'].includes(sortParam)) {
-      setSortBy(sortParam);
-    }
-  }, [searchParams, categories]);
-
-  // تحديث URL عند تغيير الفلاتر
-  const updateURL = (newCategory: string, newPricing: string, newSearch: string, newSort: string) => {
-    const params = new URLSearchParams();
-
-    if (newCategory !== 'all') params.set('category', newCategory);
-    if (newPricing !== 'all') params.set('pricing', newPricing);
-    if (newSearch) params.set('search', newSearch);
-    if (newSort !== 'latest') params.set('sort', newSort);
-
-    const queryString = params.toString();
-    const newURL = queryString ? `${pathname}?${queryString}` : pathname;
-
-    // تحديث URL بدون إعادة تحميل الصفحة
-    router.replace(newURL, { scroll: false });
-  };
 
   // تطبيق الفلاتر
   useEffect(() => {
@@ -69,7 +27,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
         tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (tool.tags && tool.tags.some(tag =>
+        (tool.tags && tool.tags.some(tag => 
           tag.toLowerCase().includes(searchTerm.toLowerCase())
         ))
       );
@@ -98,26 +56,20 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
         break;
       case 'latest':
       default:
-        filteredTools.sort((a, b) =>
+        filteredTools.sort((a, b) => 
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         );
         break;
     }
 
     onFilterChange(filteredTools);
-
-    // تحديث URL عند تغيير الفلاتر
-    updateURL(selectedCategory, selectedPricing, searchTerm, sortBy);
-  }, [searchTerm, selectedCategory, selectedPricing, sortBy, tools, onFilterChange, updateURL]);
+  }, [searchTerm, selectedCategory, selectedPricing, sortBy, tools, onFilterChange]);
 
   const handleReset = () => {
     setSearchTerm('');
     setSelectedCategory('all');
     setSelectedPricing('all');
     setSortBy('latest');
-
-    // مسح معاملات URL
-    router.replace(pathname, { scroll: false });
   };
 
   return (
@@ -131,7 +83,8 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
               placeholder="ابحث عن أداة معينة..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-dark-background border border-gray-700 text-white px-4 py-3 pr-12 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300"
+              className="w-full bg-dark-background border border-gray-700 text-white px-4 py-3 pr-12 pl-10 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              aria-label="البحث في أدوات الذكاء الاصطناعي"
             />
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,9 +94,11 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-300 p-1 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                aria-label="مسح البحث"
+                type="button"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -154,45 +109,68 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
         {/* فلاتر */}
         <div className="flex flex-col sm:flex-row gap-4">
           {/* فلتر الفئة */}
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300 min-w-[150px]"
-          >
-            <option value="all">جميع الفئات</option>
-            {categories.map((category) => (
-              <option key={category} value={category}>{category}</option>
-            ))}
-          </select>
+          <div className="flex flex-col">
+            <label htmlFor="category-filter" className="text-sm text-gray-300 mb-2 sr-only">
+              فلترة حسب الفئة
+            </label>
+            <select
+              id="category-filter"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[150px]"
+              aria-label="فلترة حسب الفئة"
+            >
+              <option value="all">جميع الفئات</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
           
           {/* فلتر التسعير */}
-          <select
-            value={selectedPricing}
-            onChange={(e) => setSelectedPricing(e.target.value)}
-            className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300 min-w-[150px]"
-          >
-            <option value="all">جميع الأسعار</option>
-            <option value="free">مجاني</option>
-            <option value="freemium">مجاني جزئياً</option>
-            <option value="paid">مدفوع</option>
-          </select>
+          <div className="flex flex-col">
+            <label htmlFor="pricing-filter" className="text-sm text-gray-300 mb-2 sr-only">
+              فلترة حسب التسعير
+            </label>
+            <select
+              id="pricing-filter"
+              value={selectedPricing}
+              onChange={(e) => setSelectedPricing(e.target.value)}
+              className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[150px]"
+              aria-label="فلترة حسب التسعير"
+            >
+              <option value="all">جميع الأسعار</option>
+              <option value="free">مجاني</option>
+              <option value="freemium">مجاني جزئياً</option>
+              <option value="paid">مدفوع</option>
+            </select>
+          </div>
 
           {/* ترتيب */}
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300 min-w-[150px]"
-          >
-            <option value="latest">الأحدث</option>
-            <option value="rating">الأعلى تقييماً</option>
-            <option value="name">الاسم</option>
-            <option value="popular">الأكثر شعبية</option>
-          </select>
+          <div className="flex flex-col">
+            <label htmlFor="sort-filter" className="text-sm text-gray-300 mb-2 sr-only">
+              ترتيب النتائج
+            </label>
+            <select
+              id="sort-filter"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[150px]"
+              aria-label="ترتيب النتائج"
+            >
+              <option value="latest">الأحدث</option>
+              <option value="rating">الأعلى تقييماً</option>
+              <option value="name">الاسم</option>
+              <option value="popular">الأكثر شعبية</option>
+            </select>
+          </div>
 
           {/* زر إعادة التعيين */}
           <button
             onClick={handleReset}
-            className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-3 rounded-lg transition-colors duration-300 whitespace-nowrap"
+            className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-3 rounded-lg transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-gray-500/20 transform hover:scale-105 active:scale-95 min-h-[44px]"
+            aria-label="إعادة تعيين جميع الفلاتر"
+            type="button"
           >
             إعادة تعيين
           </button>

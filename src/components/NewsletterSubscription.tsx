@@ -132,12 +132,14 @@ export function NewsletterSubscription({
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="بريدك الإلكتروني"
                 disabled={isLoading}
-                className="flex-1 px-3 py-2 bg-dark-background border border-gray-700 rounded-md text-white text-sm placeholder-dark-text-secondary focus:outline-none focus:border-primary transition-colors duration-300 disabled:opacity-50"
+                className="flex-1 px-3 py-2 bg-dark-background border border-gray-700 rounded-md text-white text-sm placeholder-dark-text-secondary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 disabled:opacity-50 min-h-[44px]"
+                aria-label="عنوان البريد الإلكتروني للاشتراك"
               />
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 disabled:cursor-not-allowed whitespace-nowrap"
+                className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 disabled:cursor-not-allowed whitespace-nowrap transform hover:scale-105 active:scale-95 disabled:transform-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px]"
+                aria-label="اشترك في النشرة البريدية"
               >
                 {isLoading ? 'جاري...' : 'اشترك'}
               </button>
@@ -237,13 +239,15 @@ export function NewsletterSubscription({
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="بريدك الإلكتروني"
                       disabled={isLoading}
-                      className="flex-1 px-6 py-3 bg-dark-card border border-gray-700 rounded-lg text-white placeholder-dark-text-secondary focus:outline-none focus:border-primary transition-colors duration-300 disabled:opacity-50"
+                      className="flex-1 px-6 py-3 bg-dark-card border border-gray-700 rounded-lg text-white placeholder-dark-text-secondary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 disabled:opacity-50 min-h-[44px]"
                       required
+                      aria-label="عنوان البريد الإلكتروني للاشتراك"
                     />
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/25 disabled:cursor-not-allowed whitespace-nowrap"
+                      className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/25 disabled:cursor-not-allowed whitespace-nowrap transform hover:scale-105 active:scale-95 disabled:transform-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px]"
+                      aria-label="اشترك في النشرة البريدية"
                     >
                       {isLoading ? (
                         <div className="flex items-center space-x-2 space-x-reverse">
@@ -322,13 +326,15 @@ export function NewsletterSubscription({
               onChange={(e) => setEmail(e.target.value)}
               placeholder="بريدك الإلكتروني"
               disabled={isLoading}
-              className="flex-1 px-4 py-3 bg-dark-background border border-gray-700 rounded-lg text-white placeholder-dark-text-secondary focus:outline-none focus:border-primary transition-colors duration-300 disabled:opacity-50"
+              className="flex-1 px-4 py-3 bg-dark-background border border-gray-700 rounded-lg text-white placeholder-dark-text-secondary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 disabled:opacity-50 min-h-[44px]"
               required
+              aria-label="عنوان البريد الإلكتروني للاشتراك"
             />
             <button
               type="submit"
               disabled={isLoading}
-              className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 disabled:cursor-not-allowed whitespace-nowrap"
+              className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 disabled:cursor-not-allowed whitespace-nowrap transform hover:scale-105 active:scale-95 disabled:transform-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px]"
+              aria-label="اشترك في النشرة البريدية"
             >
               {isLoading ? 'جاري...' : 'اشترك'}
             </button>

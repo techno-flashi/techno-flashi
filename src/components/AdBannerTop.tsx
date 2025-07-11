@@ -126,9 +126,6 @@ export default function AdBannerTop({
             <div className="w-full">
               <div
                 dangerouslySetInnerHTML={{ __html: bannerAd.ad_code }}
-                onError={(e) => {
-                  console.warn('Banner ad code execution error:', e);
-                }}
               />
             </div>
           )}

@@ -69,6 +69,60 @@
   .swiper-button-prev-custom {
     display: none !important;
   }
+
+  /* تحسينات للنصوص على الموبايل */
+  h1 {
+    @apply text-2xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  h3 {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+
+  /* تحسينات للحاويات على الموبايل */
+  .container {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  /* تحسينات للأزرار على الموبايل */
+  .btn-mobile {
+    @apply min-h-[48px] px-4 py-3 text-base;
+  }
+
+  /* تحسينات للبطاقات على الموبايل */
+  .card-mobile {
+    @apply mx-2 mb-4;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة جداً */
+@media (max-width: 375px) {
+  .container {
+    @apply px-3;
+  }
+
+  .btn-mobile {
+    @apply min-h-[44px] px-3 py-2 text-sm;
+  }
+
+  h1 {
+    @apply text-xl;
+  }
+
+  h2 {
+    @apply text-lg;
+  }
+}
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1440px) {
+  .container {
+    @apply max-w-7xl;
+  }
 }
 
 /* تحسينات للحركات والانتقالات */
@@ -86,5 +140,34 @@
 @layer components {
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-background;
+  }
+
+  /* تحسينات للأزرار */
+  .btn-primary {
+    @apply bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px] shadow-lg hover:shadow-primary/25;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-500/20 min-h-[44px];
+  }
+
+  /* تحسينات للحقول */
+  .input-field {
+    @apply bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-h-[44px];
+  }
+
+  /* تحسينات للبطاقات */
+  .card-hover {
+    @apply transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 active:scale-95;
+  }
+
+  /* تحسينات للروابط */
+  .link-hover {
+    @apply transition-all duration-300 hover:text-primary relative group;
+  }
+
+  .link-hover::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full;
+    content: '';
   }
 }

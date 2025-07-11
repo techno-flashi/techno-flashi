@@ -13,6 +13,8 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { AccessibilityHelper } from "@/components/AccessibilityHelper";
 
 // إعداد الخطوط
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -183,6 +185,14 @@ export default function RootLayout({
           </div>
         </footer>
         </AuthProvider>
+
+        {/* مكونات تحسين الأداء وإمكانية الوصول */}
+        {process.env.NODE_ENV === 'development' && (
+          <>
+            <PerformanceMonitor showDebugInfo={true} />
+            <AccessibilityHelper enabled={true} />
+          </>
+        )}
       </body>
     </html>
   );

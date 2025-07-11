@@ -7,6 +7,8 @@ const nextConfig = {
   // دعم الأحرف الدولية والعربية
   experimental: {
     optimizeCss: true,
+    scrollRestoration: true,
+    optimizePackageImports: ['react-icons', 'lucide-react'],
   },
 
   // تحسين معالجة الـ URLs العربية
@@ -106,7 +108,32 @@ const nextConfig = {
         ]
       }
     ];
-  }
+  },
+
+  // تحسينات webpack
+  webpack: (config, { dev, isServer }) => {
+    // تحسينات الإنتاج
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      };
+    }
+
+    return config;
+  },
 }
 
 module.exports = nextConfig
