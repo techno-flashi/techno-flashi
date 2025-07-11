@@ -7,11 +7,12 @@ interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
+  className?: string;
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
   return (
-    <nav className="flex items-center space-x-2 text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
+    <nav className={`flex items-center space-x-2 text-sm text-gray-400 mb-6 ${className}`} aria-label="Breadcrumb">
       <ol className="flex items-center space-x-2">
         <li>
           <Link href="/" className="hover:text-primary transition-colors">
