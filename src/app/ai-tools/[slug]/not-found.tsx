@@ -1,14 +1,4 @@
 import Link from 'next/link';
-import { Metadata } from 'next/metadata';
-
-export const metadata: Metadata = {
-  title: 'أداة غير موجودة - TechnoFlash',
-  description: 'الأداة المطلوبة غير موجودة أو تم حذفها. تصفح مجموعتنا الكاملة من أدوات الذكاء الاصطناعي.',
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
 
 export default function AIToolNotFound() {
   return (
