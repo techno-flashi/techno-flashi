@@ -106,7 +106,7 @@ async function getAIToolsStats() {
     };
   } catch (error) {
     console.error('Error fetching AI tools stats:', error);
-    return { total: 0, categories: 0, avgRating: 0, freeTools: 0 };
+    return { total: 0, categories: 0, avgRating: '0', freeTools: 0 };
   }
 }
 
