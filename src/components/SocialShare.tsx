@@ -89,7 +89,7 @@ function SocialShare({
       console.error('Error sharing:', error);
       if (error instanceof Error && error.name === 'AbortError') {
         // User cancelled the share
-        toast.info('تم إلغاء المشاركة');
+        toast('تم إلغاء المشاركة');
       } else {
         toast.error('حدث خطأ في المشاركة. يرجى المحاولة مرة أخرى.');
       }

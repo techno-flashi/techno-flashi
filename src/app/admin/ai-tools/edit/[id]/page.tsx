@@ -108,14 +108,14 @@ function EditAIToolForm({ params }: EditAIToolFormProps) {
 
   // معالجة رفع الصور
   const handleImageUpload = async (results: ImageUploadResult[]) => {
-    const successfulUploads = results.filter(result => result.success);
+    const successfulUploads = results.filter(result => result.success && result.url);
     setUploadedImages(prev => [...prev, ...successfulUploads]);
-    
+
     // تحديث logo_url بأول صورة مرفوعة
     if (successfulUploads.length > 0 && successfulUploads[0].url) {
       setFormData(prev => ({
         ...prev,
-        logo_url: successfulUploads[0].url
+        logo_url: successfulUploads[0].url!
       }));
     }
   };

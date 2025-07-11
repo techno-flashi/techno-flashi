@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+// تعريف الأنواع المفقودة
+interface LayoutShift extends PerformanceEntry {
+  value: number;
+  hadRecentInput: boolean;
+}
+
 interface PerformanceMetrics {
   lcp: number | null; // Largest Contentful Paint
   fid: number | null; // First Input Delay

@@ -1,7 +1,13 @@
 // صفحة إنشاء مقال جديد متكاملة
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ArticleEditor } from '@/components/ArticleEditor';
+import { ImageUploader } from '@/components/ImageUploader';
+import { ImageUploadResult } from '@/lib/imageService';
+import { supabase } from '@/lib/supabase';
 
 interface MediaItem {
   id: string;
@@ -191,24 +197,8 @@ export default function NewArticlePage() {
         return;
       }
 
-      // حفظ الصور في جدول article_images
-      if (uploadedImages.length > 0 && insertedArticle) {
-        for (let i = 0; i < uploadedImages.length; i++) {
-          const image = uploadedImages[i];
-          if (image.success && image.url && image.path) {
-            await saveImageToDatabase(insertedArticle.id, {
-              url: image.url,
-              path: image.path,
-              width: image.width,
-              height: image.height,
-              size: image.size,
-              mimeType: 'image/jpeg', // يمكن تحسين هذا لاحقاً
-              isFeatured: image.url === formData.featured_image_url,
-              displayOrder: i
-            });
-          }
-        }
-      }
+      // الصور محفوظة بالفعل في Supabase Storage
+      // روابط الصور موجودة في محتوى المقال
 
       // حفظ الوسائط في جدول منفصل
       if (mediaItems.length > 0 && insertedArticle) {
@@ -548,10 +538,10 @@ export default function NewArticlePage() {
           )}
 
           {activeTab === 'media' && (
-            <ArticleMediaManager
-              onMediaChange={setMediaItems}
-              initialMedia={mediaItems}
-            />
+            <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
+              <h2 className="text-xl font-semibold text-white mb-6">إدارة الوسائط</h2>
+              <p className="text-gray-400">ميزة إدارة الوسائط ستكون متاحة قريباً</p>
+            </div>
           )}
 
           {activeTab === 'preview' && (
@@ -577,7 +567,9 @@ export default function NewArticlePage() {
                   </div>
                 )}
                 
-                <ArticleContent content={previewContent} />
+                <div className="prose prose-invert max-w-none">
+                  <div dangerouslySetInnerHTML={{ __html: previewContent }} />
+                </div>
               </div>
             </div>
           )}
