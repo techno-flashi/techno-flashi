@@ -20,7 +20,6 @@ export async function GET() {
     // إنشاء XML لخريطة الموقع
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
@@ -38,19 +37,12 @@ ${articles?.map(article => {
   const lastmod = article.updated_at || article.published_at || new Date().toISOString();
   const publishedDate = new Date(article.published_at || new Date());
   const isRecent = (Date.now() - publishedDate.getTime()) < (7 * 24 * 60 * 60 * 1000); // آخر 7 أيام
-  
+
   return `  <url>
-    <loc>${baseUrl}/articles/${article.slug}</loc>
+    <loc>${baseUrl}/articles/${encodeURIComponent(article.slug)}</loc>
     <lastmod>${new Date(lastmod).toISOString().split('T')[0]}</lastmod>
     <changefreq>${isRecent ? 'daily' : 'weekly'}</changefreq>
-    <priority>${isRecent ? '0.9' : '0.8'}</priority>${isRecent ? `
-    <news:news>
-      <news:publication>
-        <news:name>TechnoFlash</news:name>
-        <news:language>ar</news:language>
-      </news:publication>
-      <news:publication_date>${publishedDate.toISOString()}</news:publication_date>
-    </news:news>` : ''}
+    <priority>${isRecent ? '0.9' : '0.8'}</priority>
   </url>`;
 }).join('\n') || ''}
   
