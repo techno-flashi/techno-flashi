@@ -1,7 +1,12 @@
 // صفحة جميع أدوات الذكاء الاصطناعي
+import { Metadata } from 'next';
+import { Suspense } from 'react';
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { AIToolCard } from "@/components/AIToolCard";
 import { AITool } from "@/types";
+import AdBanner from '@/components/ads/AdBanner';
+import JsonLd from '@/components/JsonLd';
+import { AIToolsClient } from '@/components/AIToolsClient';
 
 export const revalidate = 60; // تحديث كل دقيقة للتزامن مع باقي الصفحات
 
@@ -36,170 +41,187 @@ async function getAllAITools() {
   }
 }
 
-export const metadata = {
-  title: "أدوات الذكاء الاصطناعي",
-  description: "اكتشف أفضل أدوات الذكاء الاصطناعي في TechnoFlash",
+export const metadata: Metadata = {
+  title: 'أدوات الذكاء الاصطناعي - دليل شامل ومراجعات متخصصة | TechnoFlash',
+  description: 'اكتشف أفضل أدوات الذكاء الاصطناعي المتاحة حالياً مع مراجعات شاملة ومقارنات تفصيلية. دليلك الموثوق لاختيار الأداة المناسبة لاحتياجاتك التقنية والإبداعية.',
+  keywords: 'أدوات ذكاء اصطناعي, AI tools, تقنيات ذكية, مراجعات أدوات, ChatGPT, Midjourney, تكنوفلاش, أدوات إبداعية, تقنيات متقدمة',
+  authors: [{ name: 'TechnoFlash' }],
+  openGraph: {
+    title: 'أدوات الذكاء الاصطناعي - دليل شامل ومراجعات متخصصة',
+    description: 'اكتشف أفضل أدوات الذكاء الاصطناعي مع مراجعات شاملة ومقارنات تفصيلية',
+    type: 'website',
+    locale: 'ar_SA',
+    url: 'https://tflash.site/ai-tools',
+    siteName: 'TechnoFlash',
+    images: [
+      {
+        url: 'https://tflash.site/og-ai-tools.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'أدوات الذكاء الاصطناعي - TechnoFlash',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'أدوات الذكاء الاصطناعي - دليل شامل ومراجعات متخصصة',
+    description: 'اكتشف أفضل أدوات الذكاء الاصطناعي مع مراجعات شاملة ومقارنات تفصيلية',
+    images: ['https://tflash.site/og-ai-tools.jpg'],
+  },
+  alternates: {
+    canonical: 'https://tflash.site/ai-tools',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
+
+// إحصائيات الأدوات
+async function getAIToolsStats() {
+  try {
+    const { data, error } = await supabase
+      .from('ai_tools')
+      .select('category, pricing, rating')
+      .in('status', ['published', 'active']);
+
+    if (error || !data) return { total: 0, categories: 0, avgRating: 0, freeTools: 0 };
+
+    const categories = new Set(data.map(tool => tool.category)).size;
+    const avgRating = data.reduce((sum, tool) => sum + parseFloat(tool.rating || '0'), 0) / data.length;
+    const freeTools = data.filter(tool => tool.pricing === 'free').length;
+
+    return {
+      total: data.length,
+      categories,
+      avgRating: avgRating.toFixed(1),
+      freeTools
+    };
+  } catch (error) {
+    console.error('Error fetching AI tools stats:', error);
+    return { total: 0, categories: 0, avgRating: 0, freeTools: 0 };
+  }
+}
 
 export default async function AIToolsPage() {
   const tools = await getAllAITools();
+  const stats = await getAIToolsStats();
 
-  // تجميع الأدوات حسب الفئة
-  const categories = tools.reduce((acc, tool) => {
-    if (!acc[tool.category]) {
-      acc[tool.category] = [];
+  // إنشاء Schema markup للصفحة
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "أدوات الذكاء الاصطناعي",
+    "description": "مجموعة شاملة من أفضل أدوات الذكاء الاصطناعي مع مراجعات ومقارنات تفصيلية",
+    "url": "https://tflash.site/ai-tools",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": tools.length,
+      "itemListElement": tools.slice(0, 10).map((tool, index) => ({
+        "@type": "SoftwareApplication",
+        "position": index + 1,
+        "name": tool.name,
+        "description": tool.description,
+        "url": `https://tflash.site/ai-tools/${tool.slug}`,
+        "applicationCategory": "AI Tool",
+        "operatingSystem": "Web"
+      }))
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://tflash.site"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "أدوات الذكاء الاصطناعي",
+          "item": "https://tflash.site/ai-tools"
+        }
+      ]
     }
-    acc[tool.category].push(tool);
-    return acc;
-  }, {} as Record<string, AITool[]>);
+  };
 
   return (
     <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto">
+      {/* Schema Markup */}
+      <JsonLd data={websiteJsonLd} />
+
+      {/* إعلان أعلى الصفحة */}
+      <AdBanner placement="ai_tools_top" className="mb-8" />
+
+      <div className="max-w-7xl mx-auto">
         {/* رأس الصفحة */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold text-white mb-6">
+          <div className="inline-flex items-center bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+            <span className="text-primary text-sm font-medium">🤖 دليل شامل</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
             أدوات الذكاء الاصطناعي
           </h1>
-          <p className="text-xl text-dark-text-secondary max-w-2xl mx-auto">
-            اكتشف مجموعة شاملة من أفضل أدوات الذكاء الاصطناعي لتطوير مشاريعك وتحسين إنتاجيتك
+          <p className="text-xl text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
+            اكتشف مجموعة شاملة من أفضل أدوات الذكاء الاصطناعي مع مراجعات متخصصة ومقارنات تفصيلية
+            لمساعدتك في اختيار الأداة المناسبة لاحتياجاتك التقنية والإبداعية
           </p>
         </div>
 
-        {/* إحصائيات سريعة */}
-        <div className="bg-dark-card rounded-xl p-6 mb-12 border border-gray-800">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-4 space-x-reverse mb-4 md:mb-0">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
+        {/* المحتوى التفاعلي */}
+        <AIToolsClient initialTools={tools} stats={stats} />
+
+        {/* إعلان وسط المحتوى */}
+        <AdBanner placement="ai_tools_middle" className="mb-12" />
+
+
+        {/* معلومات إضافية */}
+        <div className="mt-16 bg-dark-card rounded-xl p-8 border border-gray-800">
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">
+            لماذا تختار أدوات الذكاء الاصطناعي من TechnoFlash؟
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-primary text-2xl">🔍</span>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-white">
-                  {tools.length} أداة متاحة
-                </h3>
-                <p className="text-dark-text-secondary text-sm">
-                  في {Object.keys(categories).length} فئة مختلفة
-                </p>
-              </div>
+              <h4 className="text-lg font-semibold text-white mb-2">مراجعات شاملة</h4>
+              <p className="text-dark-text-secondary text-sm">
+                نقدم مراجعات مفصلة وتقييمات موضوعية لكل أداة
+              </p>
             </div>
-            
-            {/* فلاتر */}
-            <div className="flex items-center space-x-4 space-x-reverse">
-              <select className="bg-dark-background border border-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300">
-                <option value="all">جميع الفئات</option>
-                {Object.keys(categories).map((category) => (
-                  <option key={category} value={category}>{category}</option>
-                ))}
-              </select>
-              <select className="bg-dark-background border border-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300">
-                <option value="latest">الأحدث</option>
-                <option value="rating">الأعلى تقييماً</option>
-                <option value="name">الاسم</option>
-              </select>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-green-400 text-2xl">⚡</span>
+              </div>
+              <h4 className="text-lg font-semibold text-white mb-2">تحديث مستمر</h4>
+              <p className="text-dark-text-secondary text-sm">
+                نحدث قائمة الأدوات باستمرار لنضمن لك أحدث التقنيات
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-purple-400 text-2xl">🎯</span>
+              </div>
+              <h4 className="text-lg font-semibold text-white mb-2">اختيار مدروس</h4>
+              <p className="text-dark-text-secondary text-sm">
+                نختار الأدوات بعناية لضمان الجودة والفائدة العملية
+              </p>
             </div>
           </div>
         </div>
-
-        {/* عرض الأدوات */}
-        {tools.length > 0 ? (
-          <div>
-            {/* عرض حسب الفئات */}
-            {Object.keys(categories).length > 1 ? (
-              Object.entries(categories).map(([category, categoryTools]) => (
-                <div key={category} className="mb-16">
-                  <h2 className="text-3xl font-bold text-white mb-8 border-r-4 border-primary pr-4">
-                    {category}
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {categoryTools.map((tool) => (
-                      <AIToolCard key={tool.id} tool={tool} />
-                    ))}
-                  </div>
-                </div>
-              ))
-            ) : (
-              // عرض عادي إذا كانت فئة واحدة فقط
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {tools.map((tool) => (
-                  <AIToolCard key={tool.id} tool={tool} />
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="text-center py-20">
-            <div className="w-32 h-32 bg-dark-card rounded-full flex items-center justify-center mx-auto mb-8">
-              <svg className="w-16 h-16 text-dark-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-semibold text-white mb-4">لا توجد أدوات ذكاء اصطناعي بعد</h3>
-            <p className="text-dark-text-secondary text-lg mb-8">
-              سنقوم بإضافة أدوات الذكاء الاصطناعي قريباً!
-            </p>
-            <a
-              href="/"
-              className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center"
-            >
-              العودة للرئيسية
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </a>
-          </div>
-        )}
-
-        {/* روابط سريعة للصفحات */}
-        {tools.length > 0 && (
-          <div className="mt-16 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-white mb-4 text-center">
-              هل أعجبك المحتوى؟
-            </h3>
-            <p className="text-dark-text-secondary text-center mb-6">
-              تعرف على المزيد حول TechnoFlash أو تواصل معنا
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/page/about-us"
-                className="border border-gray-600 hover:border-primary text-white hover:text-primary px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-center"
-              >
-                من نحن
-              </a>
-
-              <a
-                href="/page/contact-us"
-                className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-center"
-              >
-                تواصل معنا
-              </a>
-            </div>
-          </div>
-        )}
-
-        {/* دعوة للعمل */}
-        {tools.length > 0 && (
-          <div className="mt-12 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              هل تعرف أداة ذكاء اصطناعي رائعة؟
-            </h3>
-            <p className="text-dark-text-secondary mb-6">
-              شاركنا اقتراحاتك لإضافة أدوات جديدة إلى مجموعتنا
-            </p>
-            <a
-              href="/page/contact-us"
-              className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center"
-            >
-              اقترح أداة
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-            </a>
-          </div>
-        )}
       </div>
+
+      {/* إعلان أسفل الصفحة */}
+      <AdBanner placement="ai_tools_bottom" className="mt-8" />
     </div>
   );
 }

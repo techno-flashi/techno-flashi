@@ -5,9 +5,10 @@ import Link from "next/link";
 
 interface AIToolCardProps {
   tool: AITool;
+  featured?: boolean;
 }
 
-export function AIToolCard({ tool }: AIToolCardProps) {
+export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
   const getPricingColor = (pricing: string) => {
     switch (pricing) {
       case 'free': return 'bg-green-500/20 text-green-400 border-green-500/30';
@@ -27,8 +28,15 @@ export function AIToolCard({ tool }: AIToolCardProps) {
   };
 
   return (
-    <Link href={tool.website_url} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 h-full">
+    <Link href={`/ai-tools/${tool.slug}`} className="block group">
+      <div className={`bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 h-full ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
+        {/* شارة المميز */}
+        {featured && (
+          <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold">
+            ⭐ مميز
+          </div>
+        )}
+
         {/* الشعار والتقييم */}
         <div className="relative w-full h-48 bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
           <div className="relative w-20 h-20">
@@ -40,15 +48,20 @@ export function AIToolCard({ tool }: AIToolCardProps) {
               className="transition-transform duration-500 group-hover:scale-110"
             />
           </div>
-          
+
           {/* التقييم */}
           <div className="absolute top-4 right-4">
             <div className="bg-dark-background/80 backdrop-blur-sm rounded-lg px-2 py-1 flex items-center">
               <span className="text-yellow-400 text-sm">⭐</span>
               <span className="text-white text-sm font-medium mr-1">{tool.rating}</span>
+              {tool.click_count && tool.click_count > 0 && (
+                <span className="text-dark-text-secondary text-xs mr-2">
+                  ({tool.click_count})
+                </span>
+              )}
             </div>
           </div>
-          
+
           {/* نوع التسعير */}
           <div className="absolute top-4 left-4">
             <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPricingColor(tool.pricing)}`}>

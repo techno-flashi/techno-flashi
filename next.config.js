@@ -4,6 +4,14 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
 
+  // دعم الأحرف الدولية والعربية
+  experimental: {
+    optimizeCss: true,
+  },
+
+  // تحسين معالجة الـ URLs العربية
+  trailingSlash: false,
+
   images: {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
@@ -81,6 +89,10 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
+          },
+          {
+            key: 'Content-Language',
+            value: 'ar'
           }
         ]
       },

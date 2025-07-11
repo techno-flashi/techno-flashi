@@ -29,12 +29,35 @@ export interface AITool {
   name: string;
   slug: string;
   description: string;
+  detailed_description?: string;
   category: string;
   website_url: string;
   logo_url: string;
   pricing: 'free' | 'freemium' | 'paid';
   rating: string;
   features: string[];
+  use_cases?: string[];
+  pros?: string[];
+  cons?: string[];
+  pricing_details?: {
+    free_plan?: string;
+    paid_plans?: Array<{
+      name: string;
+      price: string;
+      features: string[];
+    }>;
+  };
+  tutorial_steps?: string[];
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }>;
+  tags?: string[];
+  featured?: boolean;
+  click_count?: number;
+  meta_title?: string;
+  meta_description?: string;
+  meta_keywords?: string[];
   status: 'draft' | 'published';
   created_at: string;
   updated_at: string;
@@ -45,12 +68,34 @@ export interface AIToolFormData {
   name: string;
   slug: string;
   description: string;
+  detailed_description?: string;
   category: string;
   website_url: string;
   logo_url: string;
   pricing: 'free' | 'freemium' | 'paid';
   rating: string;
   features: string[];
+  use_cases?: string[];
+  pros?: string[];
+  cons?: string[];
+  pricing_details?: {
+    free_plan?: string;
+    paid_plans?: Array<{
+      name: string;
+      price: string;
+      features: string[];
+    }>;
+  };
+  tutorial_steps?: string[];
+  faq?: Array<{
+    question: string;
+    answer: string;
+  }>;
+  tags?: string[];
+  featured?: boolean;
+  meta_title?: string;
+  meta_description?: string;
+  meta_keywords?: string[];
   status: 'draft' | 'published';
 }
 
