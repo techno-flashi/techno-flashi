@@ -97,8 +97,8 @@ export default async function AIToolsCategoriesPage() {
   const categories = await getAIToolsCategories();
 
   const breadcrumbItems = [
-    { name: 'أدوات الذكاء الاصطناعي', href: '/ai-tools' },
-    { name: 'الفئات' }
+    { label: 'أدوات الذكاء الاصطناعي', href: '/ai-tools' },
+    { label: 'الفئات' }
   ];
 
   const categoriesJsonLd = {

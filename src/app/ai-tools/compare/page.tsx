@@ -53,8 +53,8 @@ export default async function AIToolsComparePage() {
   const tools = await getTopAITools();
 
   const breadcrumbItems = [
-    { name: 'أدوات الذكاء الاصطناعي', href: '/ai-tools' },
-    { name: 'مقارنة الأدوات' }
+    { label: 'أدوات الذكاء الاصطناعي', href: '/ai-tools' },
+    { label: 'مقارنة الأدوات' }
   ];
 
   const comparisonJsonLd = {
