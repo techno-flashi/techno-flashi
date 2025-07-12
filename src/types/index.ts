@@ -143,6 +143,7 @@ export interface ServiceFormData {
 }
 
 // أنواع الإعلانات والرعاة
+// أنواع الإعلانات المحسنة
 export interface Ad {
   id: string;
   title: string;
@@ -151,8 +152,8 @@ export interface Ad {
   link_url?: string;
   ad_code?: string;
   placement: string;
-  type: string;
-  status: string;
+  type: AdType;
+  status: AdStatus;
   priority: number;
   is_active: boolean;
   start_date?: string;
@@ -166,4 +167,130 @@ export interface Ad {
   sponsor_name?: string;
   created_at: string;
   updated_at: string;
+  // الحقول الجديدة المحسنة
+  placement_rules?: PlacementRules;
+  targeting_options?: TargetingOptions;
+  performance_metrics?: PerformanceMetrics;
+  content_type?: ContentType;
+  responsive_settings?: ResponsiveSettings;
 }
+
+// أنواع الإعلانات
+export type AdType = 'banner' | 'sidebar' | 'inline' | 'popup' | 'native' | 'video';
+
+// حالات الإعلان
+export type AdStatus = 'draft' | 'active' | 'paused' | 'expired' | 'rejected';
+
+// أنواع المحتوى
+export type ContentType = 'image' | 'html' | 'javascript' | 'video' | 'interactive';
+
+// قواعد الموضع
+export interface PlacementRules {
+  pages: string[]; // صفحات محددة
+  url_patterns: string[]; // أنماط URL
+  exclude_pages?: string[]; // صفحات مستبعدة
+  position: PlacementPosition;
+  auto_insert: boolean;
+}
+
+// مواضع الإعلانات
+export type PlacementPosition =
+  | 'header_top'
+  | 'header_bottom'
+  | 'content_top'
+  | 'content_middle'
+  | 'content_bottom'
+  | 'sidebar_top'
+  | 'sidebar_middle'
+  | 'sidebar_bottom'
+  | 'footer_top'
+  | 'footer_bottom'
+  | 'floating'
+  | 'custom';
+
+// خيارات الاستهداف
+export interface TargetingOptions {
+  devices: DeviceType[];
+  locations?: string[];
+  languages?: string[];
+  traffic_sources?: TrafficSource[];
+  user_agents?: string[];
+  time_schedule?: TimeSchedule;
+  frequency_cap?: FrequencyCap;
+}
+
+// أنواع الأجهزة
+export type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'all';
+
+// مصادر الزيارات
+export type TrafficSource = 'direct' | 'search' | 'social' | 'referral' | 'email' | 'ads';
+
+// جدولة زمنية
+export interface TimeSchedule {
+  days_of_week: number[]; // 0-6 (الأحد-السبت)
+  hours: { start: number; end: number }; // 0-23
+  timezone: string;
+}
+
+// حد التكرار
+export interface FrequencyCap {
+  impressions_per_user: number;
+  time_period: 'hour' | 'day' | 'week' | 'month';
+}
+
+// مقاييس الأداء
+export interface PerformanceMetrics {
+  impressions: number;
+  clicks: number;
+  ctr: number; // Click Through Rate
+  revenue?: number;
+  cost?: number;
+  conversions?: number;
+  last_updated: string;
+}
+
+// إعدادات متجاوبة
+export interface ResponsiveSettings {
+  mobile: AdDimensions;
+  tablet: AdDimensions;
+  desktop: AdDimensions;
+  auto_resize: boolean;
+}
+
+// أبعاد الإعلان
+export interface AdDimensions {
+  width: number;
+  height: number;
+  max_width?: number;
+  max_height?: number;
+}
+
+// أحجام الإعلانات القياسية
+export const STANDARD_AD_SIZES = {
+  'leaderboard': { width: 728, height: 90 },
+  'medium_rectangle': { width: 300, height: 250 },
+  'wide_skyscraper': { width: 160, height: 600 },
+  'mobile_banner': { width: 320, height: 50 },
+  'large_rectangle': { width: 336, height: 280 },
+  'square': { width: 250, height: 250 },
+  'small_square': { width: 200, height: 200 },
+  'banner': { width: 468, height: 60 },
+  'half_banner': { width: 234, height: 60 },
+  'micro_bar': { width: 88, height: 31 }
+} as const;
+
+// مواضع الإعلانات مع الأوصاف
+export const PLACEMENT_OPTIONS = [
+  { value: 'header_top', label: 'أعلى الهيدر', description: 'في أعلى الصفحة قبل القائمة' },
+  { value: 'header_bottom', label: 'أسفل الهيدر', description: 'تحت القائمة الرئيسية' },
+  { value: 'content_top', label: 'أعلى المحتوى', description: 'قبل بداية المحتوى الرئيسي' },
+  { value: 'content_middle', label: 'وسط المحتوى', description: 'في منتصف المحتوى' },
+  { value: 'content_bottom', label: 'أسفل المحتوى', description: 'بعد انتهاء المحتوى' },
+  { value: 'sidebar_top', label: 'أعلى الشريط الجانبي', description: 'في أعلى الشريط الجانبي' },
+  { value: 'sidebar_middle', label: 'وسط الشريط الجانبي', description: 'في منتصف الشريط الجانبي' },
+  { value: 'sidebar_bottom', label: 'أسفل الشريط الجانبي', description: 'في أسفل الشريط الجانبي' },
+  { value: 'footer_top', label: 'أعلى الفوتر', description: 'قبل بداية الفوتر' },
+  { value: 'footer_bottom', label: 'أسفل الفوتر', description: 'في نهاية الصفحة' },
+  { value: 'floating', label: 'عائم', description: 'إعلان عائم يتحرك مع التمرير' },
+  { value: 'custom', label: 'مخصص', description: 'موضع مخصص حسب الكود' }
+] as const;

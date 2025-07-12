@@ -568,7 +568,7 @@ export default function NewArticlePage() {
                 )}
                 
                 <div className="prose prose-invert max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: previewContent }} />
+                  <div dangerouslySetInnerHTML={{ __html: typeof previewContent === 'string' ? previewContent : JSON.stringify(previewContent) }} />
                 </div>
               </div>
             </div>
