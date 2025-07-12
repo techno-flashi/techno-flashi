@@ -4,6 +4,62 @@ import React, { useState, useEffect } from 'react';
 import { Ad, DeviceType } from '@/types';
 import DOMPurify from 'isomorphic-dompurify';
 
+// دالة للكشف عن النصوص العربية
+function containsArabic(text: string): boolean {
+  const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+  return arabicRegex.test(text);
+}
+
+// دالة لتحسين عرض النصوص العربية
+function enhanceArabicText(content: string): string {
+  if (!containsArabic(content)) return content;
+
+  return `
+    <style>
+      .arabic-enhanced {
+        direction: rtl !important;
+        text-align: right !important;
+        font-family: 'Cairo', 'Amiri', 'Noto Sans Arabic', 'Tajawal', 'Almarai', system-ui, sans-serif !important;
+        line-height: 1.6 !important;
+        word-spacing: 0.1em !important;
+        letter-spacing: 0.02em !important;
+      }
+      .arabic-enhanced * {
+        direction: rtl !important;
+        text-align: inherit !important;
+        font-family: inherit !important;
+      }
+      .arabic-enhanced h1, .arabic-enhanced h2, .arabic-enhanced h3 {
+        font-weight: 700 !important;
+        margin-bottom: 0.5em !important;
+      }
+      .arabic-enhanced p {
+        margin-bottom: 1em !important;
+        line-height: 1.8 !important;
+      }
+      /* دعم الرسوم المتحركة للنصوص العربية */
+      .arabic-animated {
+        animation: fadeInRight 1s ease-in-out;
+      }
+      @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .arabic-glow {
+        text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      @keyframes glow {
+        from { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        to { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 30px rgba(56, 189, 248, 0.6); }
+      }
+    </style>
+    <div class="arabic-enhanced">
+      ${content}
+    </div>
+  `;
+}
+
 interface AdPreviewProps {
   ad: Partial<Ad>;
   deviceType?: DeviceType;
@@ -67,12 +123,16 @@ export function AdPreview({ ad, deviceType = 'desktop', className = '' }: AdPrev
         case 'html':
         case 'javascript':
           if (ad.ad_code) {
-            // تنظيف الكود من المحتوى الضار
+            // تنظيف الكود من المحتوى الضار مع دعم العربية
             content = DOMPurify.sanitize(ad.ad_code, {
-              ALLOWED_TAGS: ['div', 'span', 'p', 'a', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'script'],
-              ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id', 'style', 'target', 'rel', 'data-*'],
-              ALLOW_DATA_ATTR: true
+              ALLOWED_TAGS: ['div', 'span', 'p', 'a', 'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'script', 'style', 'canvas', 'svg', 'video', 'audio'],
+              ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id', 'style', 'target', 'rel', 'data-*', 'dir', 'lang', 'autoplay', 'controls', 'loop', 'muted', 'width', 'height'],
+              ALLOW_DATA_ATTR: true,
+              ADD_ATTR: ['dir', 'lang']
             });
+
+            // تحسين عرض النصوص العربية والرسوم المتحركة
+            content = enhanceArabicText(content);
           }
           break;
 
