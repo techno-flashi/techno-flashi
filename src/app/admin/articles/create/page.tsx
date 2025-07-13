@@ -127,7 +127,7 @@ export default function CreateArticlePage() {
       const finalSlug = await generateUniqueSlug(formData.slug.trim());
       if (finalSlug !== formData.slug.trim()) {
         setFormData(prev => ({ ...prev, slug: finalSlug }));
-        toast.info('تم تعديل الـ slug لضمان الفرادة.');
+        toast('تم تعديل الـ slug لضمان الفرادة.', { icon: 'ℹ️' });
       }
 
       const readingTime = calculateReadingTime(formData.content);
