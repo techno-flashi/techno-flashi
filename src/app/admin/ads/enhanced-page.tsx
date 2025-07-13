@@ -66,7 +66,9 @@ export default function EnhancedAdsPage() {
         custom_css: ad.custom_css,
         custom_js: ad.custom_js,
         priority: ad.priority || 1,
-        is_active: ad.is_active
+        is_active: ad.is_active,
+        target_blank: ad.target_blank || false,
+        animation_delay: ad.animation_delay || 0
       })) || [];
 
       setAds(transformedData);

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner, TechnoFlashContentBanner, StaticTechnoFlashBanner } from '@/components/ads/TechnoFlashBanner';
+import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner, TechnoFlashContentBanner } from '@/components/ads/TechnoFlashBanner';
 import Link from 'next/link';
 
 export default function TestTechnoBannerPage() {
@@ -140,26 +140,23 @@ export default function TestTechnoBannerPage() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">إعلان هيدر ثابت</h3>
-                  <StaticTechnoFlashBanner 
-                    text="🎯 إعلان ثابت - تكنوفلاش يقدم أفضل المحتوى التقني! 💻"
-                    position="header"
-                  />
+                  <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-4 rounded-lg text-center">
+                    🎯 إعلان ثابت - تكنوفلاش يقدم أفضل المحتوى التقني! 💻
+                  </div>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">إعلان محتوى ثابت</h3>
-                  <StaticTechnoFlashBanner 
-                    text="✨ تعلم الذكاء الاصطناعي مع تكنوفلاش - دورات متقدمة وشهادات معتمدة! 🎓"
-                    position="content"
-                  />
+                  <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4 rounded-lg text-center">
+                    ✨ تعلم الذكاء الاصطناعي مع تكنوفلاش - دورات متقدمة وشهادات معتمدة! 🎓
+                  </div>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">إعلان فوتر ثابت</h3>
-                  <StaticTechnoFlashBanner 
-                    text="🔥 عروض حصرية من تكنوفلاش - لا تفوت الفرصة! انضم الآن واحصل على خصم 50% 💰"
-                    position="footer"
-                  />
+                  <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white p-4 rounded-lg text-center">
+                    🔥 عروض حصرية من تكنوفلاش - لا تفوت الفرصة! انضم الآن واحصل على خصم 50% 💰
+                  </div>
                 </div>
               </div>
             </section>
