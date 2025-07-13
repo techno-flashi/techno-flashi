@@ -126,7 +126,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
                 <td key={tool.id} className="py-4 px-2">
                   <div className="text-center">
                     <span className="text-dark-text-secondary text-sm">
-                      {tool.use_cases?.[0] || tool.description.slice(0, 50) + '...'}
+                      {tool.use_cases?.[0] || (tool.description || '').slice(0, 50) + '...'}
                     </span>
                   </div>
                 </td>

@@ -39,8 +39,8 @@ export function AIToolSelector({
   // تطبيق الفلاتر
   const filteredTools = useMemo(() => {
     return filteredAvailableTools.filter(tool => {
-      const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = (tool.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           (tool.description || '').toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });

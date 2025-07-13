@@ -1,22 +1,15 @@
-// صفحة تعديل المقال - نفس تصميم صفحة الإنشاء
+// صفحة تعديل المقال - نظام متقدم مع إدارة الصور
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { ArticleMediaManager } from '@/components/ArticleMediaManager';
-import { ArticleContent } from '@/components/ArticleContent';
-import { ImageUploader } from '@/components/ImageUploader';
-import { ImageGallery } from '@/components/ImageGallery';
-import { ImageUploadResult, saveImageToDatabase } from '@/lib/imageService';
+import toast from 'react-hot-toast';
+import MarkdownEditor from '@/components/MarkdownEditor';
+import MarkdownPreview from '@/components/MarkdownPreview';
+import ImageManager from '@/components/ImageManager';
+import { calculateReadingTime, getCurrentISOString } from '@/utils/dateUtils';
 import Link from 'next/link';
-import { ProtectedRoute } from '@/components/ProtectedRoute';
-
-interface MediaItem {
-  id: string;
-  type: 'image' | 'youtube' | 'code';
-  data: any;
-}
 
 interface EditArticlePageProps {
   params: Promise<{ id: string }>;
@@ -24,260 +17,241 @@ interface EditArticlePageProps {
 
 function EditArticlePage({ params }: EditArticlePageProps) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [pageLoading, setPageLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'edit' | 'images' | 'media' | 'preview'>('edit');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [previewMode, setPreviewMode] = useState(false);
   const [articleId, setArticleId] = useState<string>('');
   
-  // بيانات المقال الأساسية
+  // بيانات المقال
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
     excerpt: '',
     content: '',
-    featured_image_url: '',
+    featured_image: '',
+    category: '',
+    tags: '',
     status: 'draft' as 'draft' | 'published',
-    tags: [] as string[],
-    author: 'TechnoFlash',
-    meta_description: ''
+    seo_title: '',
+    seo_description: '',
+    seo_keywords: ''
   });
 
-  // الوسائط المضافة
-  const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
+  // صور المقال
+  const [articleImages, setArticleImages] = useState<Array<{
+    id: string;
+    image_url: string;
+    image_path: string;
+    alt_text?: string;
+    caption?: string;
+    file_size?: number;
+    mime_type?: string;
+    width?: number;
+    height?: number;
+    display_order: number;
+  }>>([]);
 
-  // الصور المرفوعة
-  const [uploadedImages, setUploadedImages] = useState<ImageUploadResult[]>([]);
-
-  // جلب معرف المقال
+  // تحميل بيانات المقال
   useEffect(() => {
-    const getParams = async () => {
-      const resolvedParams = await params;
-      setArticleId(resolvedParams.id);
-    };
-    getParams();
-  }, [params]);
+    const loadArticle = async () => {
+      try {
+        const resolvedParams = await params;
+        const id = resolvedParams.id;
+        setArticleId(id);
 
-  // تحميل بيانات المقال للتعديل
-  useEffect(() => {
-    if (articleId) {
-      loadArticle();
-    }
-  }, [articleId]);
+        console.log('Loading article with ID:', id);
 
-  const loadArticle = async () => {
-    if (!articleId) return;
-    
-    setPageLoading(true);
-    try {
-      const { data: article, error } = await supabase
-        .from('articles')
-        .select('*')
-        .eq('id', articleId)
-        .single();
-
-      if (error) {
-        console.error('Error loading article:', error);
-        alert('حدث خطأ في تحميل المقال');
-        return;
-      }
-
-      if (article) {
-        // تحويل المحتوى من Editor.js إلى نص عادي للتعديل
-        let contentText = '';
-        if (article.content && article.content.blocks) {
-          contentText = article.content.blocks
-            .filter((block: any) => block.type === 'paragraph')
-            .map((block: any) => block.data.text)
-            .join('\n\n');
-        }
-
-        setFormData({
-          title: article.title || '',
-          slug: article.slug || '',
-          excerpt: article.excerpt || '',
-          content: contentText,
-          featured_image_url: article.featured_image_url || '',
-          status: article.status || 'draft',
-          tags: article.tags || [],
-          author: article.author || 'TechnoFlash',
-          meta_description: article.meta_description || ''
-        });
-
-        // تحميل الوسائط المرتبطة
-        const { data: media } = await supabase
-          .from('article_media')
+        // تحميل بيانات المقال
+        const { data: article, error: articleError } = await supabase
+          .from('articles')
           .select('*')
-          .eq('article_id', articleId)
-          .order('display_order');
+          .eq('id', id)
+          .single();
 
-        if (media) {
-          const loadedMedia = media.map((item: any) => ({
-            id: item.id.toString(),
-            type: item.media_type,
-            data: item.media_data
-          }));
-          setMediaItems(loadedMedia);
+        if (articleError) {
+          console.error('Error loading article:', articleError);
+          toast.error('فشل في تحميل المقال');
+          router.push('/admin/articles');
+          return;
         }
 
-        // تحميل الصور المرتبطة
-        const { data: images } = await supabase
+        if (article) {
+          console.log('Article loaded:', article);
+          
+          // تحويل المحتوى إذا كان بصيغة Editor.js
+          let content = article.content || '';
+          if (typeof content === 'object' && content.blocks) {
+            // تحويل من Editor.js إلى Markdown
+            content = convertEditorJSToMarkdown(content);
+          }
+
+          setFormData({
+            title: article.title || '',
+            slug: article.slug || '',
+            excerpt: article.excerpt || '',
+            content: content,
+            featured_image: article.featured_image_url || '',
+            category: article.category || '',
+            tags: Array.isArray(article.tags) ? article.tags.join(', ') : (article.tags || ''),
+            status: article.status || 'draft',
+            seo_title: article.seo_title || '',
+            seo_description: article.seo_description || '',
+            seo_keywords: Array.isArray(article.seo_keywords) ? article.seo_keywords.join(', ') : (article.seo_keywords || '')
+          });
+        }
+
+        // تحميل صور المقال
+        const { data: images, error: imagesError } = await supabase
           .from('article_images')
           .select('*')
-          .eq('article_id', articleId)
-          .order('display_order');
+          .eq('article_id', id)
+          .order('display_order', { ascending: true });
 
-        if (images) {
-          const loadedImages = images.map((img: any) => ({
-            success: true,
-            url: img.url,
-            path: img.path,
-            width: img.width,
-            height: img.height,
-            size: img.size
-          }));
-          setUploadedImages(loadedImages);
+        if (imagesError) {
+          console.error('Error loading images:', imagesError);
+        } else {
+          console.log('Images loaded:', images);
+          setArticleImages(images || []);
         }
+
+      } catch (error) {
+        console.error('Error loading article:', error);
+        toast.error('حدث خطأ أثناء تحميل المقال');
+        router.push('/admin/articles');
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error('Error loading article:', error);
-      alert('حدث خطأ في تحميل المقال');
-    } finally {
-      setPageLoading(false);
+    };
+
+    loadArticle();
+  }, [params, router]);
+
+  // تحويل Editor.js إلى Markdown
+  const convertEditorJSToMarkdown = (editorData: any): string => {
+    if (!editorData.blocks || !Array.isArray(editorData.blocks)) {
+      return '';
     }
+
+    return editorData.blocks.map((block: any) => {
+      switch (block.type) {
+        case 'paragraph':
+          return block.data.text || '';
+        
+        case 'header':
+          const level = block.data.level || 1;
+          const hashes = '#'.repeat(level);
+          return `${hashes} ${block.data.text || ''}`;
+        
+        case 'list':
+          if (block.data.style === 'ordered') {
+            return block.data.items.map((item: string, index: number) => `${index + 1}. ${item}`).join('\n');
+          } else {
+            return block.data.items.map((item: string) => `- ${item}`).join('\n');
+          }
+        
+        case 'quote':
+          return `> ${block.data.text || ''}`;
+        
+        case 'code':
+          return `\`\`\`\n${block.data.code || ''}\n\`\`\``;
+        
+        case 'image':
+          const url = block.data.file?.url || block.data.url || '';
+          const caption = block.data.caption || '';
+          return caption ? `![${caption}](${url})` : `![صورة](${url})`;
+        
+        default:
+          return block.data.text || '';
+      }
+    }).join('\n\n');
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+  // دالة لإدراج صورة في المحرر
+  const handleImageInsert = (imageUrl: string, caption?: string) => {
+    const imageMarkdown = caption 
+      ? `![${caption}](${imageUrl})\n*${caption}*\n\n`
+      : `![صورة](${imageUrl})\n\n`;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      content: prev.content + imageMarkdown
     }));
   };
 
-  // معالجة رفع الصورة المميزة
-  const handleFeaturedImageUpload = async (results: ImageUploadResult[]) => {
-    if (results.length > 0 && results[0].success && results[0].url) {
-      setFormData(prev => ({
-        ...prev,
-        featured_image_url: results[0].url || ''
-      }));
-    }
-  };
-
-  // معالجة رفع الصور الإضافية
-  const handleAdditionalImagesUpload = async (results: ImageUploadResult[]) => {
-    const successfulUploads = results.filter(result => result.success);
-    setUploadedImages(prev => [...prev, ...successfulUploads]);
-
-    // إضافة الصور إلى قائمة الوسائط
-    successfulUploads.forEach(result => {
-      if (result.url) {
-        const mediaItem: MediaItem = {
-          id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
-          type: 'image',
-          data: {
-            url: result.url,
-            caption: '',
-            width: result.width,
-            height: result.height
-          }
-        };
-        setMediaItems(prev => [...prev, mediaItem]);
-      }
-    });
-  };
-
-  const generateArticleContent = () => {
-    const blocks: any[] = [];
-
-    // إضافة محتوى النص الأساسي
-    if (formData.content) {
-      const paragraphs = formData.content.split('\n\n');
-      paragraphs.forEach(paragraph => {
-        if (paragraph.trim()) {
-          blocks.push({
-            type: 'paragraph',
-            data: { text: paragraph.trim() }
-          });
-        }
-      });
-    }
-
-    // إضافة الوسائط
-    mediaItems.forEach(item => {
-      switch (item.type) {
-        case 'image':
-          blocks.push({
-            type: 'image',
-            data: {
-              url: item.data.url,
-              caption: item.data.caption || ''
-            }
-          });
-          break;
-        
-        case 'youtube':
-          blocks.push({
-            type: 'youtube',
-            data: {
-              url: item.data.url,
-              caption: item.data.title || 'فيديو يوتيوب'
-            }
-          });
-          break;
-        
-        case 'code':
-          blocks.push({
-            type: 'code',
-            data: {
-              code: item.data.code,
-              language: item.data.language,
-              title: item.data.title
-            }
-          });
-          break;
-      }
-    });
-
-    return {
-      blocks,
-      version: '2.28.0',
-      time: Date.now()
-    };
-  };
-
+  // دالة الحفظ
   const handleSubmit = async (status: 'draft' | 'published') => {
     if (!formData.title.trim()) {
-      alert('يرجى إدخال عنوان المقال');
+      toast.error('يرجى إدخال عنوان المقال');
       return;
     }
 
-    setLoading(true);
+    if (!formData.content.trim()) {
+      toast.error('يرجى إدخال محتوى المقال');
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
-      const articleContent = generateArticleContent();
-      
-      // حساب وقت القراءة التلقائي
-      const wordCount = formData.content.split(' ').filter(word => word.length > 0).length;
-      const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+      // التحقق من صحة البيانات
+      const trimmedSlug = formData.slug.trim();
+      if (!trimmedSlug) {
+        toast.error('يرجى إدخال رابط (slug) صحيح');
+        return;
+      }
+
+      // التحقق من صحة الـ slug (يجب أن يحتوي على أحرف وأرقام وشرطات فقط)
+      const slugRegex = /^[a-z0-9-]+$/;
+      if (!slugRegex.test(trimmedSlug)) {
+        toast.error('الرابط يجب أن يحتوي على أحرف إنجليزية صغيرة وأرقام وشرطات فقط');
+        return;
+      }
+
+      const readingTime = calculateReadingTime(formData.content);
+      const tagsArray = formData.tags ? formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0) : [];
+      const seoKeywordsArray = formData.seo_keywords ? formData.seo_keywords.split(',').map(keyword => keyword.trim()).filter(keyword => keyword.length > 0) : [];
 
       const articleData = {
-        title: formData.title,
-        slug: formData.slug || formData.title.toLowerCase().replace(/\s+/g, '-'),
-        excerpt: formData.excerpt,
-        content: articleContent,
-        featured_image_url: formData.featured_image_url,
+        title: formData.title.trim(),
+        slug: trimmedSlug,
+        excerpt: formData.excerpt.trim(),
+        content: formData.content,
+        featured_image_url: formData.featured_image || null,
+        category: formData.category || null,
+        tags: tagsArray.length > 0 ? tagsArray : null,
         status,
-        published_at: status === 'published' ? new Date().toISOString() : null,
-        updated_at: new Date().toISOString(),
-        tags: formData.tags,
         reading_time: readingTime,
-        author: formData.author,
-        meta_description: formData.meta_description || formData.excerpt
+        seo_title: formData.seo_title?.trim() || formData.title.trim(),
+        seo_description: formData.seo_description?.trim() || formData.excerpt.trim(),
+        seo_keywords: seoKeywordsArray.length > 0 ? seoKeywordsArray : null,
+        updated_at: getCurrentISOString()
       };
 
-      // تحديث المقال
-      const { data: updatedArticle, error } = await supabase
+      // التحقق من فرادة الـ slug (إذا تم تغييره)
+      const { data: existingArticle } = await supabase
+        .from('articles')
+        .select('slug')
+        .eq('id', articleId)
+        .single();
+
+      if (existingArticle && existingArticle.slug !== trimmedSlug) {
+        // تم تغيير الـ slug، نحتاج للتحقق من فرادته
+        const { data: duplicateCheck } = await supabase
+          .from('articles')
+          .select('id')
+          .eq('slug', trimmedSlug)
+          .neq('id', articleId)
+          .limit(1);
+
+        if (duplicateCheck && duplicateCheck.length > 0) {
+          toast.error('هذا الرابط مستخدم مسبقاً. يرجى اختيار رابط آخر');
+          return;
+        }
+      }
+
+      console.log('Updating article with data:', articleData);
+
+      const { data, error } = await supabase
         .from('articles')
         .update(articleData)
         .eq('id', articleId)
@@ -286,459 +260,224 @@ function EditArticlePage({ params }: EditArticlePageProps) {
 
       if (error) {
         console.error('Error updating article:', error);
-        alert('حدث خطأ أثناء تحديث المقال');
+        console.error('Error details:', JSON.stringify(error, null, 2));
+
+        // معالجة أخطاء محددة
+        if (error.code === '23505') {
+          toast.error('الـ slug مستخدم مسبقاً. يرجى تغيير الرابط');
+        } else if (error.message?.includes('duplicate')) {
+          toast.error('هناك مقال بنفس الرابط موجود مسبقاً');
+        } else if (error.message?.includes('invalid')) {
+          toast.error('البيانات المدخلة غير صحيحة');
+        } else {
+          toast.error(`حدث خطأ في تحديث المقال: ${error.message || 'خطأ غير معروف'}`);
+        }
         return;
       }
 
-      alert(status === 'published' ? 'تم تحديث ونشر المقال بنجاح!' : 'تم تحديث المقال بنجاح!');
+      console.log('Article updated successfully:', data);
+
+      // تحديث صور المقال
+      if (articleImages.length > 0) {
+        // حذف الصور القديمة
+        await supabase
+          .from('article_images')
+          .delete()
+          .eq('article_id', articleId);
+
+        // إضافة الصور الجديدة
+        const imageRecords = articleImages.map(img => ({
+          article_id: articleId,
+          image_url: img.image_url,
+          image_path: img.image_path,
+          alt_text: img.alt_text,
+          caption: img.caption,
+          file_size: img.file_size,
+          mime_type: img.mime_type,
+          width: img.width,
+          height: img.height,
+          display_order: img.display_order
+        }));
+
+        const { error: imageError } = await supabase
+          .from('article_images')
+          .insert(imageRecords);
+
+        if (imageError) {
+          console.error('Error updating article images:', imageError);
+          toast.error('تم تحديث المقال لكن حدث خطأ في حفظ الصور');
+        }
+      }
+
+      toast.success('تم تحديث المقال بنجاح');
       router.push('/admin/articles');
+
     } catch (error) {
       console.error('Error updating article:', error);
-      alert('حدث خطأ أثناء تحديث المقال');
+      toast.error('حدث خطأ أثناء تحديث المقال');
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
-  if (pageLoading) {
+  if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="min-h-screen bg-dark-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-white">جاري تحميل المقال...</p>
+          <div className="text-white text-xl">جاري تحميل المقال...</div>
         </div>
       </div>
     );
   }
 
-  const previewContent = generateArticleContent();
-
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      {/* رأس الصفحة */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-white">تعديل المقال</h1>
-          <p className="text-dark-text-secondary mt-1">
-            قم بتعديل المقال وحفظ التغييرات
-          </p>
-        </div>
-        <Link
-          href="/admin/articles"
-          className="text-dark-text-secondary hover:text-white transition-colors duration-300"
-        >
-          ← العودة للمقالات
-        </Link>
-      </div>
+    <div className="min-h-screen bg-dark-background">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-6xl mx-auto">
+          {/* رأس الصفحة */}
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-white">تعديل المقال</h1>
+              <p className="text-dark-text-secondary mt-2">قم بتعديل المقال وحفظ التغييرات</p>
+            </div>
+            <Link
+              href="/admin/articles"
+              className="text-dark-text-secondary hover:text-white transition-colors"
+            >
+              ← العودة للمقالات
+            </Link>
+          </div>
 
-      {/* التبويبات الرئيسية */}
-      <div className="flex space-x-4 space-x-reverse border-b border-gray-700">
-        <button
-          onClick={() => setActiveTab('edit')}
-          className={`px-6 py-3 font-medium transition-colors duration-300 border-b-2 ${
-            activeTab === 'edit'
-              ? 'text-primary border-primary'
-              : 'text-dark-text-secondary border-transparent hover:text-white'
-          }`}
-        >
-          تحرير المقال
-        </button>
-        <button
-          onClick={() => setActiveTab('images')}
-          className={`px-6 py-3 font-medium transition-colors duration-300 border-b-2 ${
-            activeTab === 'images'
-              ? 'text-primary border-primary'
-              : 'text-dark-text-secondary border-transparent hover:text-white'
-          }`}
-        >
-          الصور ({uploadedImages.length})
-        </button>
-        <button
-          onClick={() => setActiveTab('media')}
-          className={`px-6 py-3 font-medium transition-colors duration-300 border-b-2 ${
-            activeTab === 'media'
-              ? 'text-primary border-primary'
-              : 'text-dark-text-secondary border-transparent hover:text-white'
-          }`}
-        >
-          الوسائط ({mediaItems.length})
-        </button>
-        <button
-          onClick={() => setActiveTab('preview')}
-          className={`px-6 py-3 font-medium transition-colors duration-300 border-b-2 ${
-            activeTab === 'preview'
-              ? 'text-primary border-primary'
-              : 'text-dark-text-secondary border-transparent hover:text-white'
-          }`}
-        >
-          معاينة
-        </button>
-      </div>
+          <div className="space-y-8">
+            {/* معلومات أساسية */}
+            <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
+              <h2 className="text-xl font-semibold text-white mb-6">المعلومات الأساسية</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-dark-text mb-2">
+                    عنوان المقال *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                    className="w-full px-4 py-3 bg-dark-background border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="أدخل عنوان المقال"
+                  />
+                </div>
 
-      {/* محتوى التبويبات */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        {/* المحتوى الرئيسي */}
-        <div className="lg:col-span-3">
-          {activeTab === 'edit' && (
-            <div className="space-y-6">
-              {/* معلومات المقال الأساسية */}
-              <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold text-white mb-6">معلومات المقال</h2>
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">
-                      عنوان المقال *
-                    </label>
+                <div>
+                  <label className="block text-sm font-medium text-dark-text mb-2">
+                    الرابط (Slug)
+                  </label>
+                  <div className="flex space-x-2 space-x-reverse">
                     <input
                       type="text"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      placeholder="أدخل عنوان المقال"
-                      className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">
-                      الرابط (Slug)
-                    </label>
-                    <input
-                      type="text"
-                      name="slug"
                       value={formData.slug}
-                      onChange={handleInputChange}
+                      onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
+                      className="flex-1 px-4 py-3 bg-dark-background border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-transparent"
                       placeholder="article-slug"
-                      className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
                     />
-                    <p className="text-xs text-dark-text-secondary mt-1">
-                      يمكنك تعديل الرابط
-                    </p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">
-                      الملخص
-                    </label>
-                    <textarea
-                      name="excerpt"
-                      value={formData.excerpt}
-                      onChange={handleInputChange}
-                      rows={3}
-                      placeholder="ملخص مختصر عن المقال"
-                      className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">
-                      الصورة المميزة
-                    </label>
-                    {formData.featured_image_url ? (
-                      <div className="space-y-3">
-                        <div className="relative w-full h-48 rounded-lg overflow-hidden bg-dark-background">
-                          <img
-                            src={formData.featured_image_url}
-                            alt="الصورة المميزة"
-                            className="w-full h-full object-cover"
-                          />
-                          <button
-                            onClick={() => setFormData(prev => ({ ...prev, featured_image_url: '' }))}
-                            className="absolute top-2 right-2 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors duration-300"
-                          >
-                            ×
-                          </button>
-                        </div>
-                        <input
-                          type="url"
-                          name="featured_image_url"
-                          value={formData.featured_image_url}
-                          onChange={handleInputChange}
-                          placeholder="أو أدخل رابط الصورة يدوياً"
-                          className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-                        />
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        <ImageUploader
-                          onImagesUploaded={(urls) => {
-                            if (urls.length > 0) {
-                              setFormData(prev => ({ ...prev, featured_image_url: urls[0] }));
-                            }
-                          }}
-                          onUploadResults={handleFeaturedImageUpload}
-                          maxImages={1}
-                          folder="featured"
-                          className="border border-gray-600 rounded-lg"
-                        />
-                        <div className="text-center text-dark-text-secondary text-sm">أو</div>
-                        <input
-                          type="url"
-                          name="featured_image_url"
-                          value={formData.featured_image_url}
-                          onChange={handleInputChange}
-                          placeholder="أدخل رابط الصورة يدوياً"
-                          className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-                        />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-white mb-2">
-                        الكاتب
-                      </label>
-                      <input
-                        type="text"
-                        name="author"
-                        value={formData.author}
-                        onChange={handleInputChange}
-                        placeholder="اسم الكاتب"
-                        className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-white mb-2">
-                        الكلمات المفتاحية (مفصولة بفواصل)
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.tags.join(', ')}
-                        onChange={(e) => {
-                          const tags = e.target.value.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-                          setFormData(prev => ({ ...prev, tags }));
-                        }}
-                        placeholder="الذكاء الاصطناعي, برمجة, تقنية"
-                        className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">
-                      وصف SEO (اختياري)
-                    </label>
-                    <textarea
-                      name="meta_description"
-                      value={formData.meta_description}
-                      onChange={handleInputChange}
-                      rows={2}
-                      placeholder="وصف مختصر للمقال لمحركات البحث (160 حرف كحد أقصى)"
-                      maxLength={160}
-                      className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                    <p className="text-xs text-dark-text-secondary mt-1">
-                      {formData.meta_description.length}/160 حرف
-                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (formData.title) {
+                          const baseSlug = formData.title
+                            .toLowerCase()
+                            .replace(/[^\w\s-]/g, '')
+                            .replace(/\s+/g, '-')
+                            .trim();
+                          const timestamp = Date.now();
+                          const uniqueSlug = `${baseSlug}-${timestamp}`;
+                          setFormData(prev => ({ ...prev, slug: uniqueSlug }));
+                          toast.success('تم توليد slug جديد');
+                        } else {
+                          toast.error('يرجى إدخال العنوان أولاً');
+                        }
+                      }}
+                      className="px-4 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors whitespace-nowrap"
+                    >
+                      توليد جديد
+                    </button>
                   </div>
                 </div>
-              </div>
 
-              {/* محتوى المقال */}
-              <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold text-white mb-6">محتوى المقال</h2>
-
-                <textarea
-                  name="content"
-                  value={formData.content}
-                  onChange={handleInputChange}
-                  rows={15}
-                  placeholder="اكتب محتوى المقال هنا... يمكنك إضافة الصور والفيديوهات والأكواد من تبويب الوسائط"
-                  className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary leading-relaxed"
-                />
-
-                <div className="mt-4 p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg">
-                  <p className="text-blue-400 text-sm">
-                    💡 نصيحة: اكتب النص الأساسي هنا، ثم أضف الصور والفيديوهات والأكواد من تبويب "الوسائط"
-                  </p>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-dark-text mb-2">
+                    ملخص المقال
+                  </label>
+                  <textarea
+                    value={formData.excerpt}
+                    onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
+                    rows={3}
+                    className="w-full px-4 py-3 bg-dark-background border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="ملخص قصير عن المقال"
+                  />
                 </div>
               </div>
             </div>
-          )}
 
-          {activeTab === 'images' && (
-            <div className="space-y-6">
-              {/* رفع الصور */}
-              <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold text-white mb-6">رفع الصور</h2>
-                <ImageUploader
-                  onImagesUploaded={() => {}}
-                  onUploadResults={handleAdditionalImagesUpload}
-                  maxImages={10}
-                  folder="articles"
-                  className=""
-                />
+            {/* إدارة الصور */}
+            <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
+              <h2 className="text-xl font-semibold text-white mb-4">إدارة صور المقال</h2>
+              <ImageManager
+                articleId={articleId}
+                images={articleImages}
+                onImagesChange={setArticleImages}
+                onImageInsert={handleImageInsert}
+                maxImages={20}
+              />
+            </div>
+
+            {/* محرر المحتوى */}
+            <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-white">محتوى المقال</h2>
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode(!previewMode)}
+                  className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                >
+                  {previewMode ? 'تحرير' : 'معاينة'}
+                </button>
               </div>
 
-              {/* معرض الصور المرفوعة */}
-              {uploadedImages.length > 0 && (
-                <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-                  <h2 className="text-xl font-semibold text-white mb-6">الصور المرفوعة</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {uploadedImages.map((image, index) => (
-                      <div key={index} className="relative group">
-                        <div className="relative w-full h-32 rounded-lg overflow-hidden bg-dark-background">
-                          {image.url && (
-                            <img
-                              src={image.url}
-                              alt={`صورة ${index + 1}`}
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                          )}
-
-                          {/* معلومات الصورة */}
-                          <div className="absolute bottom-0 left-0 right-0 bg-black/75 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <p className="text-xs">
-                              {image.width && image.height ? `${image.width} × ${image.height}` : 'أبعاد غير معروفة'}
-                            </p>
-                            <p className="text-xs">
-                              {image.size ? `${Math.round(image.size / 1024)} كيلوبايت` : 'حجم غير معروف'}
-                            </p>
-                          </div>
-
-                          {/* زر تعيين كصورة مميزة */}
-                          <button
-                            onClick={() => {
-                              if (image.url) {
-                                setFormData(prev => ({ ...prev, featured_image_url: image.url! }));
-                              }
-                            }}
-                            className="absolute top-2 left-2 px-2 py-1 bg-primary hover:bg-blue-600 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          >
-                            صورة مميزة
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+              {previewMode ? (
+                <div className="min-h-[400px] p-4 bg-dark-background rounded-lg border border-gray-700">
+                  <MarkdownPreview 
+                    content={formData.content} 
+                    articleImages={articleImages}
+                  />
                 </div>
+              ) : (
+                <MarkdownEditor
+                  value={formData.content}
+                  onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
+                  placeholder="اكتب محتوى المقال هنا باستخدام Markdown..."
+                />
               )}
             </div>
-          )}
 
-          {activeTab === 'media' && (
-            <ArticleMediaManager
-              onMediaChange={setMediaItems}
-              initialMedia={mediaItems}
-            />
-          )}
-
-          {activeTab === 'preview' && (
-            <div className="space-y-6">
-              <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold text-white mb-6">معاينة المقال</h2>
-
-                {formData.title && (
-                  <h1 className="text-3xl font-bold text-white mb-4">{formData.title}</h1>
-                )}
-
-                {formData.excerpt && (
-                  <p className="text-dark-text-secondary mb-6 text-lg">{formData.excerpt}</p>
-                )}
-
-                {formData.featured_image_url && (
-                  <div className="relative w-full h-64 rounded-lg overflow-hidden mb-6">
-                    <img
-                      src={formData.featured_image_url}
-                      alt={formData.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-
-                <ArticleContent content={previewContent} />
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* الشريط الجانبي */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-8 space-y-6">
-            {/* إعدادات النشر */}
-            <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">إعدادات النشر</h3>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-white mb-2">
-                    حالة المقال
-                  </label>
-                  <select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary"
-                  >
-                    <option value="draft">مسودة</option>
-                    <option value="published">منشور</option>
-                  </select>
-                </div>
-
-                <div className="space-y-3">
-                  <button
-                    onClick={() => handleSubmit('draft')}
-                    disabled={loading}
-                    className="w-full bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 disabled:opacity-50"
-                  >
-                    {loading ? 'جاري الحفظ...' : 'حفظ كمسودة'}
-                  </button>
-
-                  <button
-                    onClick={() => handleSubmit('published')}
-                    disabled={loading}
-                    className="w-full bg-primary hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 disabled:opacity-50"
-                  >
-                    {loading ? 'جاري التحديث...' : 'تحديث ونشر'}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* إحصائيات سريعة */}
-            <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">إحصائيات</h3>
-
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-dark-text-secondary">عدد الكلمات:</span>
-                  <span className="text-white">{formData.content.split(' ').filter(word => word.length > 0).length}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-dark-text-secondary">عدد الأحرف:</span>
-                  <span className="text-white">{formData.content.length}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-dark-text-secondary">الوسائط:</span>
-                  <span className="text-white">{mediaItems.length}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-dark-text-secondary">وقت القراءة:</span>
-                  <span className="text-white">{Math.max(1, Math.ceil(formData.content.split(' ').length / 200))} دقيقة</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-dark-text-secondary">الكلمات المفتاحية:</span>
-                  <span className="text-white">{formData.tags.length}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-dark-text-secondary">الكاتب:</span>
-                  <span className="text-white">{formData.author}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* نصائح */}
-            <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
-              <h4 className="text-yellow-400 font-semibold mb-2">نصائح للتعديل:</h4>
-              <ul className="text-yellow-200 text-xs space-y-1">
-                <li>• راجع المحتوى قبل النشر</li>
-                <li>• تأكد من صحة الروابط والصور</li>
-                <li>• احفظ كمسودة أولاً للمراجعة</li>
-                <li>• تحقق من الكلمات المفتاحية</li>
-              </ul>
+            {/* أزرار الحفظ */}
+            <div className="flex justify-end space-x-4 space-x-reverse">
+              <button
+                type="button"
+                onClick={() => handleSubmit('draft')}
+                disabled={isSubmitting}
+                className="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {isSubmitting ? 'جاري الحفظ...' : 'حفظ كمسودة'}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSubmit('published')}
+                disabled={isSubmitting}
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {isSubmitting ? 'جاري النشر...' : 'نشر المقال'}
+              </button>
             </div>
           </div>
         </div>
@@ -747,10 +486,4 @@ function EditArticlePage({ params }: EditArticlePageProps) {
   );
 }
 
-export default function EditArticlePageWrapper(props: EditArticlePageProps) {
-  return (
-    <ProtectedRoute>
-      <EditArticlePage {...props} />
-    </ProtectedRoute>
-  );
-}
+export default EditArticlePage;

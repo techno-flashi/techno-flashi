@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
       .from('articles')
       .select('*')
       .eq('status', 'published')
-      .order('published_at', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (publishedError) {
       console.error('❌ Error fetching published articles:', publishedError);
@@ -48,8 +48,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
+      count: publishedArticles?.length || 0, // العدد الرئيسي للواجهة
       allArticles: allArticles?.length || 0,
       publishedArticles: publishedArticles?.length || 0,
+      message: `Found ${publishedArticles?.length || 0} published articles`,
       sampleArticles: fixedPublished.slice(0, 3).map(article => ({
         id: article.id,
         title: article.title,

@@ -45,10 +45,11 @@ export function ArabicAnimatedAdBuilder({ onAdGenerated }: ArabicAnimatedAdBuild
     const selectedColor = colorSchemes.find(c => c.value === adConfig.colorScheme);
     const selectedFont = fontSizes.find(f => f.value === adConfig.fontSize);
 
+    const uniqueId = crypto.randomUUID().substring(0, 8);
     const adCode = `
-<div class="arabic-animated-ad-${Date.now()}">
+<div class="arabic-animated-ad-${uniqueId}">
   <style>
-    .arabic-animated-ad-${Date.now()} {
+    .arabic-animated-ad-${uniqueId} {
       direction: rtl;
       text-align: right;
       font-family: 'Cairo', 'Amiri', 'Noto Sans Arabic', system-ui, sans-serif;
@@ -67,12 +68,12 @@ export function ArabicAnimatedAdBuilder({ onAdGenerated }: ArabicAnimatedAdBuild
       justify-content: center;
     }
     
-    .arabic-animated-ad-${Date.now()}:hover {
+    .arabic-animated-ad-${uniqueId}:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
     
-    .arabic-animated-ad-${Date.now()}::before {
+    .arabic-animated-ad-${uniqueId}::before {
       content: '';
       position: absolute;
       top: 0;
@@ -83,22 +84,22 @@ export function ArabicAnimatedAdBuilder({ onAdGenerated }: ArabicAnimatedAdBuild
       transform: translateX(-100%);
       animation: shine 3s infinite;
     }
-    
-    .arabic-animated-ad-${Date.now()} .title {
+
+    .arabic-animated-ad-${uniqueId} .title {
       font-size: ${selectedFont?.titleSize};
       font-weight: bold;
       margin-bottom: 8px;
       animation: ${selectedAnimation?.css} 1s ease-out;
     }
-    
-    .arabic-animated-ad-${Date.now()} .subtitle {
+
+    .arabic-animated-ad-${uniqueId} .subtitle {
       font-size: ${selectedFont?.subtitleSize};
       margin-bottom: 15px;
       opacity: 0.9;
       animation: ${selectedAnimation?.css} 1s ease-out 0.3s both;
     }
-    
-    .arabic-animated-ad-${Date.now()} .cta-button {
+
+    .arabic-animated-ad-${uniqueId} .cta-button {
       background: ${selectedColor?.secondary};
       color: white;
       border: none;
@@ -111,8 +112,8 @@ export function ArabicAnimatedAdBuilder({ onAdGenerated }: ArabicAnimatedAdBuild
       animation: ${selectedAnimation?.css} 1s ease-out 0.6s both;
       align-self: flex-start;
     }
-    
-    .arabic-animated-ad-${Date.now()} .cta-button:hover {
+
+    .arabic-animated-ad-${uniqueId} .cta-button:hover {
       background: ${selectedColor?.primary};
       transform: scale(1.05);
     }
@@ -163,16 +164,16 @@ export function ArabicAnimatedAdBuilder({ onAdGenerated }: ArabicAnimatedAdBuild
     
     /* تحسينات للأجهزة المحمولة */
     @media (max-width: 768px) {
-      .arabic-animated-ad-${Date.now()} {
+      .arabic-animated-ad-${uniqueId} {
         padding: 15px;
         min-height: 100px;
       }
-      
-      .arabic-animated-ad-${Date.now()} .title {
+
+      .arabic-animated-ad-${uniqueId} .title {
         font-size: calc(${selectedFont?.titleSize} * 0.8);
       }
-      
-      .arabic-animated-ad-${Date.now()} .subtitle {
+
+      .arabic-animated-ad-${uniqueId} .subtitle {
         font-size: calc(${selectedFont?.subtitleSize} * 0.9);
       }
     }

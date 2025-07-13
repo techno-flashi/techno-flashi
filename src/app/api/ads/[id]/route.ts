@@ -8,7 +8,7 @@ export async function GET(
   try {
     const { id } = await params;
     const { data: ad, error } = await supabase
-      .from('ads')
+      .from('advertisements')
       .select('*')
       .eq('id', id)
       .single();
@@ -50,25 +50,21 @@ export async function PATCH(
     console.log('Updating ad:', id, body);
 
     const { data: ad, error } = await supabase
-      .from('ads')
+      .from('advertisements')
       .update({
         title: body.title,
-        description: body.description,
+        content: body.description || body.content,
         image_url: body.image_url,
-        link_url: body.link_url,
-        ad_code: body.ad_code,
-        placement: body.placement,
+        target_url: body.link_url || body.target_url,
         type: body.type,
-        status: body.status,
+        position: body.placement || body.position,
         priority: body.priority,
         is_active: body.is_active,
         start_date: body.start_date || null,
         end_date: body.end_date || null,
-        target_blank: body.target_blank,
-        width: body.width,
-        height: body.height,
-        animation_delay: body.animation_delay,
-        sponsor_name: body.sponsor_name,
+        custom_css: body.custom_css,
+        custom_js: body.custom_js,
+        video_url: body.video_url,
         updated_at: new Date().toISOString()
       })
       .eq('id', id)
@@ -105,7 +101,7 @@ export async function DELETE(
     console.log('Deleting ad:', id);
 
     const { error } = await supabase
-      .from('ads')
+      .from('advertisements')
       .delete()
       .eq('id', id);
 

@@ -22,7 +22,7 @@ export default function SponsorsSection({
 
   const fetchSponsors = async () => {
     try {
-      const response = await fetch('/api/ads?type=sponsor&placement=sponsors-section&status=active&is_active=true');
+      const response = await fetch('/api/ads?type=sponsor&placement=sponsors-section&is_active=true');
       if (response.ok) {
         const data = await response.json();
         setSponsors(data.ads || []);

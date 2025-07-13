@@ -98,14 +98,8 @@ export function AdBanner({ placement, className = "" }: AdBannerProps) {
   }
 
   if (ads.length === 0) {
-    // عرض إعلان تجريبي إذا لم توجد إعلانات
-    return (
-      <div className={`bg-gradient-to-r from-primary/20 to-blue-600/20 border border-primary/30 rounded-lg p-4 text-center ${className}`}>
-        <p className="text-primary text-sm">
-          مساحة إعلانية متاحة - {placement}
-        </p>
-      </div>
-    );
+    // لا نعرض شيء إذا لم توجد إعلانات (لا إعلانات تجريبية)
+    return null;
   }
 
   const currentAd = ads[currentAdIndex];

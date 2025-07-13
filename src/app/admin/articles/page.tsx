@@ -82,7 +82,7 @@ function ArticlesManagement() {
             <p className="text-gray-400 mt-2">إدارة جميع مقالات الموقع</p>
           </div>
           <Link
-            href="/admin/articles/new"
+            href="/admin/articles/create"
             className="bg-[#38BDF8] hover:bg-[#0EA5E9] text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center"
           >
             <span className="ml-2">+</span>
@@ -105,7 +105,7 @@ function ArticlesManagement() {
               <h3 className="text-xl font-semibold text-white mb-2">لا توجد مقالات</h3>
               <p className="text-gray-400 mb-6">ابدأ بإنشاء أول مقال لك</p>
               <Link
-                href="/admin/articles/new"
+                href="/admin/articles/create"
                 className="bg-[#38BDF8] hover:bg-[#0EA5E9] text-white px-6 py-3 rounded-lg transition-colors duration-300"
               >
                 إنشاء مقال جديد

@@ -9,6 +9,25 @@ const nextConfig = {
     optimizeCss: true,
     scrollRestoration: true,
     optimizePackageImports: ['react-icons', 'lucide-react'],
+    // تحسينات SSG
+    optimizeServerReact: true,
+  },
+
+  // إعدادات SSG و ISR
+  output: 'standalone',
+  generateEtags: true,
+
+  // قمع تحذيرات hydration في development
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
+
+  // إعدادات compiler
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error']
+    } : false,
   },
 
   // تحسين معالجة الـ URLs العربية
@@ -104,6 +123,25 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'no-store, max-age=0'
+          }
+        ]
+      },
+      // إعدادات cache للصفحات الثابتة
+      {
+        source: '/articles/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400'
+          }
+        ]
+      },
+      {
+        source: '/ai-tools/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400'
           }
         ]
       }

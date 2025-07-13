@@ -8,6 +8,7 @@ import { Tajawal } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner } from "@/components/ads/TechnoFlashBanner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 // import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker";
 import ScrollTracker from "@/components/ScrollTracker";
@@ -15,6 +16,9 @@ import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { AccessibilityHelper } from "@/components/AccessibilityHelper";
+import HydrationFix, { SuppressHydrationWarning } from "@/components/HydrationFix";
+import { DevHydrationSuppressor } from "@/components/HydrationSafeWrapper";
+import AdSenseScript, { InitializeAdSense } from "@/components/AdSenseScript";
 
 // إعداد الخطوط
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -96,6 +100,8 @@ export default function RootLayout({
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
       <body className="bg-dark-background text-dark-text font-sans">
         <GoogleAnalytics />
+        <AdSenseScript publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
+        <InitializeAdSense publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
         {/* <GoogleAnalyticsTracker /> */}
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
@@ -128,12 +134,19 @@ export default function RootLayout({
           }}
         />
         {/* هنا الحل! نضع AuthProvider ليغلف كل شيء */}
+        <SuppressHydrationWarning>
         <AuthProvider>
+          {/* إعلان الهيدر المتحرك */}
+          <TechnoFlashHeaderBanner />
+
           <Header />
 
           <main className="min-h-screen">
             {children}
           </main>
+
+        {/* إعلان الفوتر المتحرك */}
+        <TechnoFlashFooterBanner />
 
         <footer className="bg-dark-card border-t border-gray-800">
           <div className="container mx-auto px-4 py-12">
@@ -179,12 +192,13 @@ export default function RootLayout({
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center">
               <p className="text-dark-text-secondary">
-                © {new Date().getFullYear()} TechnoFlash. جميع الحقوق محفوظة.
+                © 2025 TechnoFlash. جميع الحقوق محفوظة.
               </p>
             </div>
           </div>
         </footer>
         </AuthProvider>
+        </SuppressHydrationWarning>
 
         {/* مكونات تحسين الأداء وإمكانية الوصول */}
         {process.env.NODE_ENV === 'development' && (
@@ -193,6 +207,10 @@ export default function RootLayout({
             <AccessibilityHelper enabled={true} />
           </>
         )}
+
+        {/* إصلاح مشاكل الـ hydration */}
+        <HydrationFix />
+        <DevHydrationSuppressor />
       </body>
     </html>
   );

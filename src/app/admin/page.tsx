@@ -57,8 +57,17 @@ function AdminDashboard() {
           className="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300 text-center group"
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📢</div>
-          <h3 className="text-lg font-semibold text-white mb-2">الإعلانات</h3>
-          <p className="text-dark-text-secondary text-sm">إدارة الإعلانات والحملات</p>
+          <h3 className="text-lg font-semibold text-white mb-2">الإعلانات العامة</h3>
+          <p className="text-dark-text-secondary text-sm">إدارة الإعلانات والحملات العامة</p>
+        </Link>
+
+        <Link
+          href="/admin/ads/ai-tools"
+          className="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300 text-center group"
+        >
+          <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🤖</div>
+          <h3 className="text-lg font-semibold text-white mb-2">إعلانات الأدوات</h3>
+          <p className="text-dark-text-secondary text-sm">إعلانات مخصصة لأدوات الذكاء الاصطناعي</p>
         </Link>
 
         <Link
@@ -77,6 +86,24 @@ function AdminDashboard() {
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🖼️</div>
           <h3 className="text-lg font-semibold text-white mb-2">الوسائط</h3>
           <p className="text-dark-text-secondary text-sm">رفع الصور وإدارة الفيديوهات</p>
+        </Link>
+
+        <Link
+          href="/test-ads-comprehensive"
+          className="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300 text-center group"
+        >
+          <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🧪</div>
+          <h3 className="text-lg font-semibold text-white mb-2">اختبار الإعلانات</h3>
+          <p className="text-dark-text-secondary text-sm">اختبار شامل لجميع أنواع الإعلانات</p>
+        </Link>
+
+        <Link
+          href="/test-advertisement-fixes"
+          className="bg-dark-card p-6 rounded-lg border border-gray-700 hover:border-primary/50 transition-all duration-300 text-center group"
+        >
+          <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔧</div>
+          <h3 className="text-lg font-semibold text-white mb-2">اختبار الإصلاحات</h3>
+          <p className="text-dark-text-secondary text-sm">اختبار إصلاحات نظام الإعلانات</p>
         </Link>
       </div>
     </div>

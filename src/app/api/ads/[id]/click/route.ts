@@ -12,12 +12,30 @@ export async function POST(
   }
 
   try {
-    // هذا هو التصحيح: استدعاء الدالة 'increment_ad_click'
-    const { error } = await supabase.rpc('increment_ad_click', { ad_id: id });
+    // جلب الإعلان الحالي
+    const { data: currentAd, error: fetchError } = await supabase
+      .from('advertisements')
+      .select('click_count')
+      .eq('id', id)
+      .single();
 
-    if (error) {
-      console.error("Error incrementing click count:", error);
-      throw error;
+    if (fetchError) {
+      console.error("Error fetching ad:", fetchError);
+      throw fetchError;
+    }
+
+    // تحديث عدد النقرات
+    const { error: updateError } = await supabase
+      .from('advertisements')
+      .update({
+        click_count: (currentAd?.click_count || 0) + 1,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', id);
+
+    if (updateError) {
+      console.error("Error incrementing click count:", updateError);
+      throw updateError;
     }
 
     console.log('Click recorded successfully for ad:', id);

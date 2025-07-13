@@ -56,7 +56,7 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
             </div>
             
             <p className="text-dark-text-secondary text-xs mb-2 line-clamp-2 leading-relaxed">
-              {tool.description}
+              {tool.description || 'لا يوجد وصف متاح'}
             </p>
             
             <div className="flex items-center justify-between">

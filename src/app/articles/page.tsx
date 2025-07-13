@@ -1,27 +1,54 @@
 // صفحة جميع المقالات - محسنة مع debugging
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
+import { getAllArticlesForSSG, getStatsForSSG } from "@/lib/ssg";
 import { ArticleCard } from "@/components/ArticleCard";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
+import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
 import { Article } from "@/types";
 
-export const revalidate = 60; // تقليل وقت التحديث للاختبار
+// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
+export const revalidate = 86400; // 24 ساعة
+export const dynamic = 'force-static';
 
 async function getAllArticles() {
   try {
     console.log('🔄 Fetching all published articles...');
 
+    // محاولة استخدام SSG function أولاً
+    try {
+      console.log('🔄 Attempting SSG fetch...');
+      const articles = await getAllArticlesForSSG();
+
+      if (articles && articles.length > 0) {
+        console.log(`✅ Found ${articles.length} articles from SSG`);
+        console.log('📄 Sample SSG articles:', articles.slice(0, 3).map(a => ({ title: a.title, slug: a.slug })));
+        const fixedData = articles.map(article => fixObjectEncoding(article));
+        return fixedData as Article[];
+      } else {
+        console.log('⚠️ No articles found from SSG (returned empty array), trying runtime fetch...');
+      }
+    } catch (ssgError) {
+      console.error('❌ SSG fetch failed, falling back to runtime:', {
+        message: (ssgError as Error).message,
+        name: (ssgError as Error).name,
+        stack: (ssgError as Error).stack
+      });
+    }
+
+    // fallback للـ runtime إذا فشل SSG
+    console.log('🔄 Using runtime fetch...');
     const { data, error } = await supabase
       .from('articles')
       .select('*')
-      .eq('status', 'published') // فقط المقالات المنشورة
+      .eq('status', 'published')
       .order('published_at', { ascending: false });
 
     if (error) {
-      console.error('❌ Error fetching articles:', error);
+      console.error('❌ Error fetching articles from runtime:', error);
       return [];
     }
 
-    console.log('✅ Published articles fetched:', data?.length || 0);
+    console.log(`✅ Runtime articles fetched: ${data?.length || 0}`);
 
     if (data && data.length > 0) {
       console.log('📄 Sample article titles:', data.slice(0, 3).map(a => a.title));
@@ -30,8 +57,11 @@ async function getAllArticles() {
     // إصلاح encoding النص العربي
     const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
     return fixedData as Article[];
-  } catch (error) {
-    console.error('❌ Exception in getAllArticles:', error);
+  } catch (error: any) {
+    console.error('💥 Exception in getAllArticles:');
+    console.error('Error message:', error?.message || 'Unknown error');
+    console.error('Error stack:', error?.stack || 'No stack trace');
+    console.error('Full error object:', JSON.stringify(error, null, 2));
     return [];
   }
 }
@@ -109,13 +139,27 @@ export default async function ArticlesPage() {
           </div>
         </div>
 
+        {/* إعلان أعلى قائمة المقالات */}
+        <HeaderAd className="mb-8" />
+
         {/* قائمة المقالات */}
         {articles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {articles.map((article, index) => (
+                <div key={`article-${article.id}-${index}`} className="contents">
+                  <ArticleCard article={article} />
+                  {/* إعلان بين المقالات كل 6 مقالات */}
+                  {(index + 1) % 6 === 0 && (
+                    <div className="col-span-full">
+                      <InContentAd className="my-8" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
+
         ) : (
           <div className="text-center py-20">
             <div className="w-32 h-32 bg-dark-card rounded-full flex items-center justify-center mx-auto mb-8">
@@ -178,6 +222,9 @@ export default async function ArticlesPage() {
             />
           </div>
         )}
+
+        {/* إعلان الفوتر */}
+        <FooterAd className="mt-12" />
       </div>
     </div>
   );

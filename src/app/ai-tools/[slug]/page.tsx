@@ -3,10 +3,16 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
+import { getAllAIToolsForSSG } from '@/lib/ssg';
 import { AITool } from '@/types';
 import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
 import AdBanner from '@/components/ads/AdBanner';
+import { HeaderAd, FooterAd, InContentAd, SidebarAdManager } from '@/components/ads/AdManager';
+import { SmartAIToolAd, SmartContentAd, SmartSharedAd } from '@/components/ads/SmartAdManager';
+import { TechnoFlashContentBanner } from '@/components/ads/TechnoFlashBanner';
+import { AutoAIToolStartAd, AutoAIToolMidAd, AutoAIToolEndAd } from '@/components/ads/AutoAIToolAds';
+import { AIToolCanonicalUrl } from '@/components/seo/CanonicalUrl';
 import { AIToolPageClient } from '@/components/AIToolPageClient';
 import { AIToolLink } from '@/components/AIToolLink';
 import { generateAIToolSocialMeta, getSharingUrl, getSharingHashtags } from '@/lib/social-meta';
@@ -14,18 +20,35 @@ import SocialShare from '@/components/SocialShare';
 import SocialShareCompact from '@/components/SocialShareCompact';
 import { AIToolComparisonContainer } from '@/components/AIToolComparisonContainer';
 
-export const revalidate = 60;
+// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
+export const revalidate = 86400; // 24 ساعة
+export const dynamic = 'force-static';
+export const dynamicParams = true;
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-// جلب بيانات الأداة بناءً على الـ slug
+// توليد المعاملات الثابتة للـ SSG
+export async function generateStaticParams() {
+  try {
+    const aiTools = await getAllAIToolsForSSG();
+
+    return aiTools.map((tool) => ({
+      slug: tool.slug,
+    }));
+  } catch (error) {
+    console.error('Error generating static params for AI tools:', error);
+    return [];
+  }
+}
+
+// جلب بيانات الأداة بناءً على الـ slug للـ SSG
 async function getAITool(slug: string): Promise<AITool | null> {
   try {
     // فك تشفير الـ slug للتعامل مع الأحرف العربية
     const decodedSlug = decodeURIComponent(slug);
-    
+
     const { data, error } = await supabase
       .from('ai_tools')
       .select('*')
@@ -33,16 +56,25 @@ async function getAITool(slug: string): Promise<AITool | null> {
       .eq('status', 'published')
       .single();
 
-    if (error || !data) {
-      console.error('Error fetching AI tool:', error);
+    if (error) {
+      console.error('Supabase error:', error);
+      return null;
+    }
+
+    if (!data) {
+      console.error('No data returned for slug:', decodedSlug);
       return null;
     }
 
     // تحديث عداد النقرات
-    await supabase
-      .from('ai_tools')
-      .update({ click_count: (data.click_count || 0) + 1 })
-      .eq('id', data.id);
+    try {
+      await supabase
+        .from('ai_tools')
+        .update({ click_count: (data.click_count || 0) + 1 })
+        .eq('id', data.id);
+    } catch (updateError) {
+      console.error('Error updating click count:', updateError);
+    }
 
     return fixObjectEncoding(data) as AITool;
   } catch (error) {
@@ -114,27 +146,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return generateAIToolSocialMeta(tool);
 }
 
-// إنشاء static paths للأدوات الموجودة
-export async function generateStaticParams() {
-  try {
-    const { data, error } = await supabase
-      .from('ai_tools')
-      .select('slug')
-      .eq('status', 'published');
-
-    if (error || !data) {
-      console.error('Error generating static params for AI tools:', error);
-      return [];
-    }
-
-    return data.map((tool) => ({
-      slug: tool.slug,
-    }));
-  } catch (error) {
-    console.error('Exception in generateStaticParams:', error);
-    return [];
-  }
-}
+// تم حذف الدالة المكررة
 
 export default async function AIToolPage({ params }: Props) {
   const { slug } = await params;
@@ -205,20 +217,28 @@ export default async function AIToolPage({ params }: Props) {
 
   return (
     <AIToolPageClient tool={tool}>
-      <div className="min-h-screen py-20 px-4">
+      <div className="min-h-screen px-4">
         {/* Schema Markup */}
         <JsonLd data={softwareApplicationJsonLd} />
         <JsonLd data={breadcrumbJsonLd} />
 
-      {/* إعلان أعلى الصفحة */}
-      <AdBanner placement="ai_tool_top" className="mb-8" />
+        {/* Canonical URL لحل مشكلة النسخ المكررة */}
+        <AIToolCanonicalUrl slug={tool.slug} />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* المحتوى الرئيسي */}
           <article className="lg:col-span-3">
             {/* Breadcrumbs */}
             <Breadcrumbs items={breadcrumbItems} />
+
+            {/* إعلان تلقائي بداية الصفحة */}
+            <AutoAIToolStartAd
+              toolName={tool.name}
+              toolSlug={tool.slug}
+              toolCategory={tool.category}
+              className="mb-6"
+            />
 
             {/* رأس الأداة */}
             <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
@@ -302,6 +322,13 @@ export default async function AIToolPage({ params }: Props) {
               </div>
             </div>
 
+            {/* إعلان ذكي بعد معلومات الأداة - معطل */}
+            {/* <SmartAIToolAd
+              position="in-content"
+              className="my-8"
+              keywords={[tool.name, tool.category, 'أداة', 'AI']}
+            /> */}
+
             {/* الوصف التفصيلي */}
             {tool.detailed_description && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
@@ -347,6 +374,24 @@ export default async function AIToolPage({ params }: Props) {
                 </div>
               </div>
             )}
+
+            {/* إعلان ذكي وسط المحتوى - معطل */}
+            {/* <SmartContentAd
+              contentType="ai-tool"
+              className=""
+              keywords={[tool.name, tool.category, 'premium', 'متقدم']}
+            /> */}
+
+            {/* إعلان تكنوفلاش المتحرك - معطل */}
+            {/* <TechnoFlashContentBanner className="my-6" /> */}
+
+            {/* إعلان تلقائي وسط الصفحة */}
+            <AutoAIToolMidAd
+              toolName={tool.name}
+              toolSlug={tool.slug}
+              toolCategory={tool.category}
+              className="my-8"
+            />
 
             {/* دليل الاستخدام */}
             {tool.tutorial_steps && tool.tutorial_steps.length > 0 && (
@@ -524,6 +569,14 @@ export default async function AIToolPage({ params }: Props) {
               availableTools={availableTools}
               className="mb-8"
             />
+
+            {/* إعلان تلقائي نهاية الصفحة */}
+            <AutoAIToolEndAd
+              toolName={tool.name}
+              toolSlug={tool.slug}
+              toolCategory={tool.category}
+              className="mb-8"
+            />
           </article>
 
           {/* الشريط الجانبي */}
@@ -583,14 +636,18 @@ export default async function AIToolPage({ params }: Props) {
               </div>
             </div>
 
-            {/* إعلان جانبي */}
-            <AdBanner placement="ai_tool_sidebar" className="mb-6" />
+            {/* إعلانات الشريط الجانبي - معطل */}
+            {/* <SidebarAdManager /> */}
           </aside>
         </div>
       </div>
 
-      {/* إعلان أسفل الصفحة */}
-      <AdBanner placement="ai_tool_bottom" className="mt-8" />
+      {/* إعلان ذكي أسفل الصفحة - معطل */}
+      {/* <SmartSharedAd
+        position="footer"
+        className="mt-8"
+        keywords={['مجتمع', 'انضم', 'تواصل']}
+      /> */}
     </div>
     </AIToolPageClient>
   );

@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
 
     // بناء الاستعلام
     let query = supabase
-      .from('ads')
+      .from('advertisements')
       .select('*');
 
     // تطبيق الفلاتر
@@ -25,12 +25,13 @@ export async function GET(request: NextRequest) {
     }
 
     if (placement) {
-      query = query.eq('placement', placement);
+      query = query.eq('position', placement);
     }
 
-    if (status) {
-      query = query.eq('status', status);
-    }
+    // حقل status لا يوجد في الجدول الجديد - تم استبداله بـ is_active
+    // if (status) {
+    //   query = query.eq('status', status);
+    // }
 
     if (isActive !== null) {
       query = query.eq('is_active', isActive === 'true');
@@ -79,33 +80,31 @@ export async function POST(request: NextRequest) {
     console.log('Creating new ad:', body);
 
     // التحقق من البيانات المطلوبة
-    if (!body.title || !body.placement) {
+    if (!body.title || !body.position) {
       return NextResponse.json(
-        { error: 'Title and placement are required' },
+        { error: 'Title and position are required' },
         { status: 400 }
       );
     }
 
     const { data: ad, error } = await supabase
-      .from('ads')
+      .from('advertisements')
       .insert([{
         title: body.title,
-        description: body.description,
+        content: body.content || body.description,
         image_url: body.image_url,
-        link_url: body.link_url,
-        ad_code: body.ad_code,
-        placement: body.placement,
-        type: body.type || 'banner',
-        status: body.status || 'active',
-        priority: body.priority || 0,
+        target_url: body.target_url || body.link_url,
+        video_url: body.video_url,
+        custom_css: body.custom_css,
+        custom_js: body.custom_js,
+        position: body.position || body.placement,
+        type: body.type || 'text',
+        priority: body.priority || 1,
         is_active: body.is_active !== false,
         start_date: body.start_date || null,
         end_date: body.end_date || null,
-        target_blank: body.target_blank !== false,
-        width: body.width,
-        height: body.height,
-        animation_delay: body.animation_delay || 0,
-        sponsor_name: body.sponsor_name
+        max_views: body.max_views || null,
+        max_clicks: body.max_clicks || null
       }])
       .select()
       .single();

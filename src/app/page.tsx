@@ -8,6 +8,8 @@ import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import SponsorsSection from "@/components/SponsorsSection";
 import AdBannerTop from "@/components/AdBannerTop";
+import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
+import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 
@@ -198,14 +200,17 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* إعلان تكنوفلاش المتحرك */}
+      <TechnoFlashContentBanner className="my-8" />
+
       {/* إعلان الهيدر */}
-      <AdBanner placement="header" className="mb-8" />
+      <HeaderAd className="mb-8" />
 
       {/* قسم أحدث المقالات مع التصميم الجديد */}
       <FeaturedArticlesSection articles={latestArticles} />
 
       {/* إعلان بين الأقسام */}
-      <AdBanner placement="between_articles" className="my-12" />
+      <InContentAd className="my-12" />
 
       {/* قسم أدوات الذكاء الاصطناعي المميزة */}
       <FeaturedAIToolsSection tools={latestAITools} />
@@ -250,6 +255,9 @@ export default async function HomePage() {
         source="homepage"
         showName={false}
       />
+
+      {/* إعلان الفوتر */}
+      <FooterAd className="mt-12" />
     </div>
   );
 }

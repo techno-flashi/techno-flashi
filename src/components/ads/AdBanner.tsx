@@ -20,7 +20,7 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
     const fetchAd = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`/api/ads?type=banner&placement=${placement}&status=active&is_active=true&limit=1`);
+        const response = await fetch(`/api/ads?type=banner&placement=${placement}&is_active=true&limit=1`);
         if (response.ok) {
           const data = await response.json();
           if (data.ads && data.ads.length > 0) {
@@ -29,11 +29,11 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
             setAd(null);
           }
         } else {
-          console.error(`Failed to fetch ad for placement ${placement}:`, response.status);
+          console.warn(`Failed to fetch ad for placement ${placement}:`, response.status);
           setAd(null);
         }
       } catch (error) {
-        console.error(`Error fetching ad for placement ${placement}:`, error);
+        console.warn(`Error fetching ad for placement ${placement}:`, error);
         setAd(null);
       }
       setLoading(false);

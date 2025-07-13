@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* استيراد CSS الإعلانات */
+@import '../styles/ads.css';
+
 /* استيراد تحسينات التصميم المتجاوب */
 @import '../styles/responsive-enhancements.css';
 

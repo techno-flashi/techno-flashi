@@ -182,9 +182,9 @@ export function IndividualToolComparison({
               {allTools.map((tool) => (
                 <td key={`description-${tool.id}`} className="p-4 text-center">
                   <p className="text-dark-text-secondary text-sm leading-relaxed max-w-xs mx-auto">
-                    {tool.description.length > 100 
-                      ? `${tool.description.substring(0, 100)}...` 
-                      : tool.description
+                    {(tool.description || '').length > 100
+                      ? `${(tool.description || '').substring(0, 100)}...`
+                      : (tool.description || 'لا يوجد وصف متاح')
                     }
                   </p>
                 </td>

@@ -1,18 +1,53 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://tflash.site/sitemap.xml
+# السماح بفهرسة الصفحات الرئيسية
+Allow: /articles/
+Allow: /ai-tools/
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
 
-# Disallow admin pages
+# منع فهرسة الصفحات الإدارية
 Disallow: /admin/
 Disallow: /api/
+Disallow: /_next/
+Disallow: /test-*/
+Disallow: /debug-*/
 
-# Allow important pages
-Allow: /articles/
-Allow: /services/
-Allow: /ai-tools/
-Allow: /page/
+# منع فهرسة feeds والتعليقات (حل مشكلة Google Search Console)
+Disallow: /feeds/
+Disallow: /comments/
+Disallow: /*comments*
+Disallow: /*feed*
 
-# Crawl delay
+# منع فهرسة المعاملات الخاصة (حل مشكلة ?m=1)
+Disallow: /*?m=1
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+Disallow: /*?source=*
+
+# منع فهرسة الصفحات المؤقتة والاختبار
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /cache/
+Disallow: /backup/
+
+# السماح بفهرسة الصور والأصول
+Allow: /images/
+Allow: /assets/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+
+# خرائط الموقع
+Sitemap: https://www.tflash.site/sitemap.xml
+Sitemap: https://www.tflash.site/sitemap-articles.xml
+Sitemap: https://www.tflash.site/sitemap-ai-tools.xml
+
+# تأخير الزحف
 Crawl-delay: 1

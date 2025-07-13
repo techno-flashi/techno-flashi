@@ -60,11 +60,6 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: true
-  },
-  global: {
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Accept-Charset': 'utf-8'
-    }
   }
+  // إزالة global headers لتجنب التداخل مع رفع الملفات
 });

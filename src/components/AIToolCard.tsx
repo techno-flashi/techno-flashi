@@ -84,19 +84,19 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
           </h3>
 
           <p className="text-dark-text-secondary text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2">
-            {tool.description}
+            {tool.description || 'لا يوجد وصف متاح'}
           </p>
 
           <div className="mb-3">
             <span className="inline-block bg-primary/20 text-primary px-2 py-1 rounded-full text-xs font-medium">
-              {tool.category}
+              {tool.category || 'غير مصنف'}
             </span>
           </div>
 
           {/* المميزات */}
           <div className="mb-3">
             <div className="flex flex-wrap gap-1">
-              {tool.features.slice(0, 2).map((feature, index) => (
+              {(tool.features || []).slice(0, 2).map((feature, index) => (
                 <span
                   key={index}
                   className="bg-dark-background text-dark-text-secondary px-2 py-1 rounded text-xs"
@@ -104,9 +104,9 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
                   {feature}
                 </span>
               ))}
-              {tool.features.length > 2 && (
+              {(tool.features || []).length > 2 && (
                 <span className="text-primary text-xs font-medium">
-                  +{tool.features.length - 2} المزيد
+                  +{(tool.features || []).length - 2} المزيد
                 </span>
               )}
             </div>

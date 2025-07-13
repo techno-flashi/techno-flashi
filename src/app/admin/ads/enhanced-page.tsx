@@ -37,12 +37,39 @@ export default function EnhancedAdsPage() {
   const fetchAds = async () => {
     try {
       const { data, error } = await supabase
-        .from('ads')
+        .from('advertisements')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setAds(data || []);
+
+      // تحويل البيانات لتتوافق مع النوع المتوقع
+      const transformedData = data?.map(ad => ({
+        id: ad.id,
+        title: ad.title,
+        description: ad.content,
+        type: ad.type as AdType,
+        placement: ad.position as PlacementPosition,
+        status: ad.is_active ? 'active' as AdStatus : 'paused' as AdStatus,
+        sponsor_name: 'TechnoFlash',
+        start_date: ad.start_date,
+        end_date: ad.end_date,
+        click_count: ad.click_count || 0,
+        impression_count: ad.view_count || 0,
+        created_at: ad.created_at,
+        updated_at: ad.updated_at,
+        // حقول إضافية
+        content: ad.content,
+        target_url: ad.target_url,
+        image_url: ad.image_url,
+        video_url: ad.video_url,
+        custom_css: ad.custom_css,
+        custom_js: ad.custom_js,
+        priority: ad.priority || 1,
+        is_active: ad.is_active
+      })) || [];
+
+      setAds(transformedData);
     } catch (error) {
       console.error('Error fetching ads:', error);
     } finally {
@@ -82,7 +109,7 @@ export default function EnhancedAdsPage() {
 
     try {
       const { error } = await supabase
-        .from('ads')
+        .from('advertisements')
         .delete()
         .eq('id', id);
 
@@ -95,9 +122,29 @@ export default function EnhancedAdsPage() {
 
   const toggleAdStatus = async (id: string, currentStatus: AdStatus) => {
     const newStatus: AdStatus = currentStatus === 'active' ? 'paused' : 'active';
+    const isActive = newStatus === 'active';
 
     try {
       const { error } = await supabase
+        .from('advertisements')
+        .update({
+          is_active: isActive,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      // تحديث الحالة المحلية
+      setAds(ads.map(ad =>
+        ad.id === id
+          ? { ...ad, status: newStatus, is_active: isActive }
+          : ad
+      ));
+    } catch (error) {
+      console.error('Error updating ad status:', error);
+    }
+  };
         .from('ads')
         .update({ status: newStatus })
         .eq('id', id);

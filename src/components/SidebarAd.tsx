@@ -24,7 +24,7 @@ export default function SidebarAd({
 
   const fetchSidebarAds = async () => {
     try {
-      const response = await fetch(`/api/ads?type=sidebar&placement=${placement}&status=active&is_active=true&limit=${maxAds}`);
+      const response = await fetch(`/api/ads?type=sidebar&placement=${placement}&is_active=true&limit=${maxAds}`);
       if (response.ok) {
         const data = await response.json();
         setSidebarAds(data.ads || []);
@@ -152,23 +152,7 @@ export default function SidebarAd({
         </div>
       ))}
 
-      {/* إعلان نصي إضافي */}
-      <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-4 border border-primary/20">
-        <div className="text-center">
-          <div className="text-primary text-sm font-semibold mb-2">
-            📢 هل تريد الإعلان هنا؟
-          </div>
-          <p className="text-gray-600 text-xs mb-3">
-            احصل على مساحة إعلانية مميزة لعرض منتجاتك وخدماتك
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-primary text-white text-xs px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            تواصل معنا
-          </a>
-        </div>
-      </div>
+      {/* تم حذف الإعلان الثابت */}
     </div>
   );
 }

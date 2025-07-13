@@ -114,7 +114,7 @@ export function AIToolRating({ toolId, currentRating, totalReviews, className = 
         <h4 className="text-lg font-semibold text-white mb-3">توزيع التقييمات</h4>
         {[5, 4, 3, 2, 1].map((rating) => {
           // هذه البيانات يجب أن تأتي من قاعدة البيانات
-          const percentage = Math.random() * 100; // مؤقت للعرض
+          const percentage = rating === 5 ? 65 : rating === 4 ? 25 : rating === 3 ? 8 : rating === 2 ? 2 : 0; // بيانات ثابتة للعرض
           return (
             <div key={rating} className="flex items-center mb-2">
               <span className="text-sm text-dark-text-secondary w-8">

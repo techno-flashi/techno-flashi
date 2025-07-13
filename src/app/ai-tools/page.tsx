@@ -3,41 +3,83 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
+import { getAllAIToolsForSSG, getCategoriesForSSG } from "@/lib/ssg";
 import { AIToolCard } from "@/components/AIToolCard";
 import { AITool } from "@/types";
 import AdBanner from '@/components/ads/AdBanner';
+import { HeaderAd, FooterAd, InContentAd } from '@/components/ads/AdManager';
 import JsonLd from '@/components/JsonLd';
 import { AIToolsClient } from '@/components/AIToolsClient';
+import LazyAIToolsGrid from '@/components/ai-tools/LazyAIToolsGrid';
 
-export const revalidate = 60; // تحديث كل دقيقة للتزامن مع باقي الصفحات
+// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
+export const revalidate = 86400; // 24 ساعة
+export const dynamic = 'force-static';
 
-async function getAllAITools() {
+// تحميل عدد محدود من الأدوات للصفحة الأولى للـ SSG
+async function getInitialAITools(limit = 12) {
   try {
-    console.log('🔄 Fetching AI tools from database...');
+    console.log('🔄 Fetching initial AI tools...');
 
+    // محاولة استخدام SSG function أولاً
+    try {
+      const allTools = await getAllAIToolsForSSG();
+
+      if (allTools && allTools.length > 0) {
+        console.log(`✅ Found ${allTools.length} AI tools from SSG`);
+        const limitedTools = allTools.slice(0, limit);
+        return limitedTools.map(tool => fixObjectEncoding(tool)) as AITool[];
+      } else {
+        console.log('⚠️ No AI tools found from SSG, trying runtime fetch...');
+      }
+    } catch (ssgError) {
+      console.error('❌ SSG fetch failed, falling back to runtime:', ssgError);
+    }
+
+    // fallback للـ runtime إذا فشل SSG
+    console.log('🔄 Using runtime fetch...');
     const { data, error } = await supabase
       .from('ai_tools')
       .select('*')
-      .in('status', ['published', 'active']) // قبول كلا من published و active
+      .in('status', ['published', 'active'])
       .order('rating', { ascending: false })
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
+      .limit(limit);
 
     if (error) {
-      console.error('❌ Error fetching AI tools:', error);
+      console.error('❌ Error fetching AI tools from runtime:', error);
       return [];
     }
 
-    console.log('✅ AI Tools fetched from database:', data?.length || 0);
-
-    if (data && data.length > 0) {
-      console.log('📄 Sample AI tool names:', data.slice(0, 3).map(t => t.name));
-    }
+    console.log(`✅ Runtime AI Tools fetched: ${data?.length || 0}`);
 
     // إصلاح encoding النص العربي
     const fixedData = data?.map(tool => fixObjectEncoding(tool)) || [];
     return fixedData as AITool[];
   } catch (error) {
-    console.error('❌ Exception in getAllAITools:', error);
+    console.error('💥 Exception in getInitialAITools:', error);
+    return [];
+  }
+}
+
+// الحصول على الفئات المتاحة
+async function getCategories() {
+  try {
+    const { data, error } = await supabase
+      .from('ai_tools')
+      .select('category')
+      .in('status', ['published', 'active']);
+
+    if (error) {
+      console.error('❌ Error fetching categories:', error);
+      return [];
+    }
+
+    // استخراج الفئات الفريدة
+    const uniqueCategories = [...new Set(data?.map(tool => tool.category).filter(Boolean))];
+    return uniqueCategories;
+  } catch (error) {
+    console.error('❌ Exception in getCategories:', error);
     return [];
   }
 }
@@ -112,7 +154,8 @@ async function getAIToolsStats() {
 }
 
 export default async function AIToolsPage() {
-  const tools = await getAllAITools();
+  const initialTools = await getInitialAITools(12);
+  const categories = await getCategories();
   const stats = await getAIToolsStats();
 
   // إنشاء Schema markup للصفحة
@@ -124,8 +167,8 @@ export default async function AIToolsPage() {
     "url": "https://tflash.site/ai-tools",
     "mainEntity": {
       "@type": "ItemList",
-      "numberOfItems": tools.length,
-      "itemListElement": tools.slice(0, 10).map((tool, index) => ({
+      "numberOfItems": stats.total,
+      "itemListElement": initialTools.slice(0, 10).map((tool, index) => ({
         "@type": "SoftwareApplication",
         "position": index + 1,
         "name": tool.name,
@@ -160,7 +203,7 @@ export default async function AIToolsPage() {
       <JsonLd data={websiteJsonLd} />
 
       {/* إعلان أعلى الصفحة */}
-      <AdBanner placement="ai_tools_top" className="mb-8" />
+      <HeaderAd className="mb-8" />
 
       <div className="max-w-7xl mx-auto">
         {/* رأس الصفحة */}
@@ -195,11 +238,33 @@ export default async function AIToolsPage() {
           </div>
         </div>
 
-        {/* المحتوى التفاعلي */}
-        <AIToolsClient initialTools={tools} stats={stats} />
+        {/* إعلان وسط الصفحة - معطل */}
+        {/* <InContentAd className="my-12" /> */}
 
-        {/* إعلان وسط المحتوى */}
-        <AdBanner placement="ai_tools_middle" className="mb-12" />
+        {/* المحتوى التفاعلي مع التحميل التدريجي */}
+        <div className="mb-12">
+          <div className="flex flex-wrap gap-4 mb-8">
+            <select className="bg-dark-card border border-gray-700 text-white px-4 py-2 rounded-lg">
+              <option value="all">جميع الفئات</option>
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="البحث في الأدوات..."
+              className="bg-dark-card border border-gray-700 text-white px-4 py-2 rounded-lg flex-1 min-w-[200px]"
+            />
+          </div>
+
+          <LazyAIToolsGrid
+            initialTools={initialTools}
+            pageSize={12}
+          />
+        </div>
+
+        {/* إعلان وسط المحتوى - معطل */}
+        {/* <AdBanner placement="ai_tools_middle" className="mb-12" /> */}
 
 
         {/* معلومات إضافية */}
@@ -240,7 +305,7 @@ export default async function AIToolsPage() {
       </div>
 
       {/* إعلان أسفل الصفحة */}
-      <AdBanner placement="ai_tools_bottom" className="mt-8" />
+      <FooterAd className="mt-8" />
     </div>
   );
 }

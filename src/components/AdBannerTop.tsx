@@ -22,7 +22,7 @@ export default function AdBannerTop({
 
   const fetchBannerAd = async () => {
     try {
-      const response = await fetch(`/api/ads?type=banner&placement=${placement}&status=active&is_active=true&limit=1`);
+      const response = await fetch(`/api/ads?type=banner&placement=${placement}&is_active=true&limit=1`);
       if (response.ok) {
         const data = await response.json();
         if (data.ads && data.ads.length > 0) {
