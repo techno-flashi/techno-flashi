@@ -149,10 +149,10 @@ export default function SmartAdManager({
   const filterSmartAds = (allAds: Advertisement[]): Advertisement[] => {
     // تصفية ذكية للإعلانات حسب نوع المحتوى
     return allAds.filter(ad => {
-      // فحص التواريخ
+      // فحص التواريخ (إذا كانت متوفرة)
       const now = new Date();
-      if (ad.start_date && new Date(ad.start_date) > now) return false;
-      if (ad.end_date && new Date(ad.end_date) < now) return false;
+      if ((ad as any).start_date && new Date((ad as any).start_date) > now) return false;
+      if ((ad as any).end_date && new Date((ad as any).end_date) < now) return false;
 
       // فحص الكلمات المفتاحية
       if (keywords.length > 0) {
