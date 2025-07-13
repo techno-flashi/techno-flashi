@@ -79,9 +79,8 @@ export function createCanonicalMetadata(
       ...alternates,
     },
     other: {
-      ...(baseMetadata.other || {}),
       'og:url': canonicalUrl,
-    }
+    } as any
   };
 }
 
