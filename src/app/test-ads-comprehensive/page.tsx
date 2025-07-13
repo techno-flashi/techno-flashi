@@ -16,7 +16,7 @@ interface Advertisement {
   id: string;
   title: string;
   content: string;
-  type: string;
+  type: 'text' | 'image' | 'video' | 'html' | 'banner' | 'adsense';
   position: string;
   is_active: boolean;
   view_count: number;
