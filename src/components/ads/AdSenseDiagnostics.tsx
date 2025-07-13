@@ -39,7 +39,7 @@ export default function AdSenseDiagnostics({ className = '' }: AdSenseDiagnostic
           pageLevelAdsInitialized: !!(window as any).pageLevelAdsInitialized,
           autoAdsInitialized: !!(window as any).autoAdsInitialized
         },
-        errors: []
+        errors: [] as string[]
       };
 
       // فحص الأخطاء الشائعة
