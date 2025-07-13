@@ -176,8 +176,8 @@ export default function SimpleAdsAdminPage() {
     return positions[position] || position;
   };
 
-  const uniqueTypes = [...new Set(ads.map(ad => ad.type))];
-  const uniquePositions = [...new Set(ads.map(ad => ad.position))];
+  const uniqueTypes = Array.from(new Set(ads.map(ad => ad.type)));
+  const uniquePositions = Array.from(new Set(ads.map(ad => ad.position)));
 
   if (loading) {
     return (

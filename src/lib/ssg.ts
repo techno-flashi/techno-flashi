@@ -337,7 +337,7 @@ export async function getCategoriesForSSG() {
     }
 
     // استخراج الفئات الفريدة
-    const uniqueCategories = [...new Set(data?.map(tool => tool.category).filter(Boolean))];
+    const uniqueCategories = Array.from(new Set(data?.map(tool => tool.category).filter(Boolean)));
     return uniqueCategories;
   } catch (error) {
     console.error('Exception in getCategoriesForSSG:', error);
