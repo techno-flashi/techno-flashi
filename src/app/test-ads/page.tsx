@@ -6,7 +6,7 @@ import SafeAdSense, { SafeBannerAd, SafeSidebarAd, SafeInArticleAd, SafeMobileAd
 import SimpleAdSense, { SimpleBanner, SimpleSidebar, SimpleRectangle, SimpleMobile, SimpleDesktop } from '@/components/ads/SimpleAdSense';
 import AdSenseDiagnostics from '@/components/ads/AdSenseDiagnostics';
 import CustomAd from '@/components/ads/CustomAd';
-import AdManager, { HeaderAd, FooterAd, SidebarAdManager, InArticleAdManager } from '@/components/ads/AdManager';
+import AdManager, { HeaderAd, FooterAd, SidebarAdManager, ArticleStartAd, ArticleMiddleAd, ArticleEndAd, InContentAd } from '@/components/ads/AdManager';
 
 export default function TestAdsPage() {
   const [selectedDemo, setSelectedDemo] = useState<string>('all');
