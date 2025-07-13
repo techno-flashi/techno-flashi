@@ -147,19 +147,6 @@ export default function EnhancedAdsPage() {
       console.error('Error updating ad status:', error);
     }
   };
-        .from('ads')
-        .update({ status: newStatus })
-        .eq('id', id);
-
-      if (error) throw error;
-
-      setAds(ads.map(ad =>
-        ad.id === id ? { ...ad, status: newStatus } : ad
-      ));
-    } catch (error) {
-      console.error('Error updating ad status:', error);
-    }
-  };
 
   const handleBulkAction = async (action: 'delete' | 'activate' | 'pause') => {
     if (selectedAds.length === 0) return;
