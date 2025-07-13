@@ -124,11 +124,11 @@ export default function DebugSSGPage() {
                     <div className="flex justify-between items-center">
                       <span className="text-gray-400 text-sm">{key}</span>
                       <span className={`font-semibold ${
-                        value === 'غير محدد' || value === 'غير متاح في العميل' 
-                          ? 'text-red-400' 
+                        value === 'غير محدد' || value === 'غير متاح في العميل'
+                          ? 'text-red-400'
                           : 'text-green-400'
                       }`}>
-                        {value}
+                        {String(value)}
                       </span>
                     </div>
                   </div>
