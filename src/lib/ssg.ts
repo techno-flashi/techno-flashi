@@ -250,6 +250,11 @@ export async function getAIToolBySlugForSSG(slug: string) {
  */
 export async function getAdvertisementsForSSG(position?: string) {
   try {
+    if (!supabaseSSG) {
+      console.error('❌ Supabase SSG client is not initialized');
+      return [];
+    }
+
     let query = supabaseSSG
       .from('advertisements')
       .select(`
@@ -295,6 +300,11 @@ export async function getAdvertisementsForSSG(position?: string) {
  */
 export async function getStatsForSSG() {
   try {
+    if (!supabaseSSG) {
+      console.error('❌ Supabase SSG client is not initialized');
+      return { articles: 0, aiTools: 0 };
+    }
+
     const [articlesResult, aiToolsResult] = await Promise.all([
       supabaseSSG
         .from('articles')
@@ -326,6 +336,11 @@ export async function getStatsForSSG() {
  */
 export async function getCategoriesForSSG() {
   try {
+    if (!supabaseSSG) {
+      console.error('❌ Supabase SSG client is not initialized');
+      return [];
+    }
+
     const { data, error } = await supabaseSSG
       .from('ai_tools')
       .select('category')
