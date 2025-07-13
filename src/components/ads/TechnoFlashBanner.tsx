@@ -279,7 +279,7 @@ export function TechnoFlashFooterBanner({ className = '' }: { className?: string
 export function TechnoFlashContentBanner({ className = '' }: { className?: string }) {
   return (
     <TechnoFlashBanner
-      position="in-content"
+      position="content"
       className={`content-banner ${className}`}
     />
   );
