@@ -23,7 +23,7 @@ async function getAllArticles() {
         console.log(`✅ Found ${articles.length} articles from SSG`);
         console.log('📄 Sample SSG articles:', articles.slice(0, 3).map(a => ({ title: a.title, slug: a.slug })));
         const fixedData = articles.map(article => {
-          const fixed = fixObjectEncoding(article);
+          const fixed = fixObjectEncoding(article) as any;
           return {
             ...fixed,
             featured_image_url: fixed.featured_image || fixed.featured_image_url || '',
@@ -63,7 +63,7 @@ async function getAllArticles() {
 
     // إصلاح encoding النص العربي وتحويل البيانات
     const fixedData = data?.map(article => {
-      const fixed = fixObjectEncoding(article);
+      const fixed = fixObjectEncoding(article) as any;
       return {
         ...fixed,
         featured_image_url: fixed.featured_image || fixed.featured_image_url || '',
