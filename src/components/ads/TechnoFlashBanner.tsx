@@ -269,7 +269,7 @@ export function TechnoFlashHeaderBanner({ className = '' }: { className?: string
 export function TechnoFlashFooterBanner({ className = '' }: { className?: string }) {
   return (
     <TechnoFlashBanner
-      position="article-body-end"
+      position="footer"
       className={`footer-banner ${className}`}
     />
   );
