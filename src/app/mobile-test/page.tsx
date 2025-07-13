@@ -46,7 +46,7 @@ export default function MobileTestPage() {
 
     // تحديث معلومات الجهاز عند تغيير الاتجاه
     const handleResize = () => {
-      setDeviceInfo(prev => ({
+      setDeviceInfo((prev: any) => ({
         ...prev,
         windowWidth: window.innerWidth,
         windowHeight: window.innerHeight,
