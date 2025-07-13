@@ -205,8 +205,9 @@ export default function MobileTestPage() {
             {/* إعلان بداية المحتوى */}
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">🚀 إعلان بداية المحتوى</h2>
-              <AutoAIToolStartAd 
+              <AutoAIToolStartAd
                 toolName="ChatGPT"
+                toolSlug="chatgpt"
                 toolCategory="معالجة النصوص"
                 className="mb-4"
               />
@@ -221,8 +222,9 @@ export default function MobileTestPage() {
             {/* إعلان وسط المحتوى */}
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">💡 إعلان وسط المحتوى</h2>
-              <AutoAIToolMidAd 
+              <AutoAIToolMidAd
                 toolName="ChatGPT"
+                toolSlug="chatgpt"
                 toolCategory="معالجة النصوص"
                 className="mb-4"
               />
@@ -256,8 +258,9 @@ export default function MobileTestPage() {
             {/* إعلان نهاية المحتوى */}
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">🎯 إعلان نهاية المحتوى</h2>
-              <AutoAIToolEndAd 
+              <AutoAIToolEndAd
                 toolName="ChatGPT"
+                toolSlug="chatgpt"
                 toolCategory="معالجة النصوص"
                 className="mb-4"
               />
