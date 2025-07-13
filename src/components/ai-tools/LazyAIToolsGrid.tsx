@@ -14,7 +14,7 @@ interface AITool {
   logo_url?: string;
   website_url?: string;
   slug: string;
-  rating?: number;
+  rating?: string;
   features?: string[];
   created_at: string;
 }
