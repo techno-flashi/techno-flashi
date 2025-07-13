@@ -22,7 +22,14 @@ async function getAllArticles() {
       if (articles && articles.length > 0) {
         console.log(`✅ Found ${articles.length} articles from SSG`);
         console.log('📄 Sample SSG articles:', articles.slice(0, 3).map(a => ({ title: a.title, slug: a.slug })));
-        const fixedData = articles.map(article => fixObjectEncoding(article));
+        const fixedData = articles.map(article => {
+          const fixed = fixObjectEncoding(article);
+          return {
+            ...fixed,
+            featured_image_url: fixed.featured_image || fixed.featured_image_url || '',
+            published_at: fixed.published_at || fixed.created_at
+          };
+        });
         return fixedData as Article[];
       } else {
         console.log('⚠️ No articles found from SSG (returned empty array), trying runtime fetch...');
@@ -54,8 +61,15 @@ async function getAllArticles() {
       console.log('📄 Sample article titles:', data.slice(0, 3).map(a => a.title));
     }
 
-    // إصلاح encoding النص العربي
-    const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
+    // إصلاح encoding النص العربي وتحويل البيانات
+    const fixedData = data?.map(article => {
+      const fixed = fixObjectEncoding(article);
+      return {
+        ...fixed,
+        featured_image_url: fixed.featured_image || fixed.featured_image_url || '',
+        published_at: fixed.published_at || fixed.created_at
+      };
+    }) || [];
     return fixedData as Article[];
   } catch (error: any) {
     console.error('💥 Exception in getAllArticles:');
