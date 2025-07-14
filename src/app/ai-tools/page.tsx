@@ -11,6 +11,7 @@ import { HeaderAd, FooterAd, InContentAd } from '@/components/ads/AdManager';
 import JsonLd from '@/components/JsonLd';
 import { AIToolsClient } from '@/components/AIToolsClient';
 import LazyAIToolsGrid from '@/components/ai-tools/LazyAIToolsGrid';
+import AIToolsSearch from '@/components/ai-tools/AIToolsSearch';
 
 // إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
 export const revalidate = 86400; // 24 ساعة
@@ -241,25 +242,11 @@ export default async function AIToolsPage() {
         {/* إعلان وسط الصفحة - معطل */}
         {/* <InContentAd className="my-12" /> */}
 
-        {/* المحتوى التفاعلي مع التحميل التدريجي */}
+        {/* المحتوى التفاعلي مع البحث والفلترة */}
         <div className="mb-12">
-          <div className="flex flex-wrap gap-4 mb-8">
-            <select className="bg-dark-card border border-gray-700 text-white px-4 py-2 rounded-lg">
-              <option value="all">جميع الفئات</option>
-              {categories.map(category => (
-                <option key={category} value={category}>{category}</option>
-              ))}
-            </select>
-            <input
-              type="text"
-              placeholder="البحث في الأدوات..."
-              className="bg-dark-card border border-gray-700 text-white px-4 py-2 rounded-lg flex-1 min-w-[200px]"
-            />
-          </div>
-
-          <LazyAIToolsGrid
+          <AIToolsSearch
             initialTools={initialTools}
-            pageSize={12}
+            categories={categories}
           />
         </div>
 
