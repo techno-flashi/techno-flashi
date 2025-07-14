@@ -45,16 +45,16 @@ export async function getAllArticlesForSSG() {
         slug,
         excerpt,
         content,
-        featured_image,
+        featured_image_url,
         author,
         status,
         tags,
-        meta_title,
         meta_description,
+        seo_keywords,
         reading_time,
-        views,
         created_at,
-        updated_at
+        updated_at,
+        published_at
       `)
       .eq('status', 'published')
       .order('created_at', { ascending: false });
@@ -93,16 +93,16 @@ export async function getArticleBySlugForSSG(slug: string) {
         slug,
         excerpt,
         content,
-        featured_image,
+        featured_image_url,
         author,
         status,
         tags,
-        meta_title,
         meta_description,
+        seo_keywords,
         reading_time,
-        views,
         created_at,
-        updated_at
+        updated_at,
+        published_at
       `)
       .eq('slug', slug)
       .eq('status', 'published')

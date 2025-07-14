@@ -1,3 +1,5 @@
+'use client';
+
 // مكون المقال الرئيسي الكبير
 import { Article } from "@/types";
 import Image from "next/image";

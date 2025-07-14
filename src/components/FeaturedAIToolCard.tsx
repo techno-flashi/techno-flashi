@@ -1,3 +1,5 @@
+'use client';
+
 // مكون أداة الذكاء الاصطناعي الرئيسية الكبيرة
 import { AITool } from "@/types";
 import Image from "next/image";

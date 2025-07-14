@@ -251,10 +251,6 @@ export default async function AIToolPage({ params }: Props) {
                     fill
                     style={{ objectFit: "contain" }}
                     className="rounded-lg"
-                    onError={(e) => {
-                      console.log('Image failed to load:', tool.logo_url);
-                      e.currentTarget.src = "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI";
-                    }}
                     unoptimized
                   />
                 </div>
@@ -547,10 +543,6 @@ export default async function AIToolPage({ params }: Props) {
                             fill
                             style={{ objectFit: "contain" }}
                             className="rounded"
-                            onError={(e) => {
-                              console.log('Image failed to load:', relatedTool.logo_url);
-                              e.currentTarget.src = "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI";
-                            }}
                             unoptimized
                           />
                         </div>
