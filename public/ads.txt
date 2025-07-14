@@ -10,7 +10,7 @@ ezoic.com, 19390, DIRECT
 # For the most up-to-date ads.txt content, visit:
 # https://srv.adstxtmanager.com/19390/tflash.site
 
-# Last updated: 2025-01-14
+# Last updated: 2025-01-14 - Verified all required entries
 # Contact: i2s2mail22@gmail.com
 ezoic.ai, 8e3f3c15bfd1eeaae0ca786aad2b7565, DIRECT
 ezoic.co.uk, 8e3f3c15bfd1eeaae0ca786aad2b7565, DIRECT
