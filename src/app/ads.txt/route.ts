@@ -6,16 +6,16 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest) {
   try {
     // الحصول على domain من الطلب
-    const host = request.headers.get('host') || 'technoflash.com';
+    const host = request.headers.get('host') || 'tflash.site';
     const domain = host.replace('www.', ''); // إزالة www إذا وجدت
-    
+
     // رابط خدمة Ezoic لإدارة ads.txt
     const ezoicAdsUrl = `https://srv.adstxtmanager.com/19390/${domain}`;
     
     // جلب محتوى ads.txt من Ezoic
     const response = await fetch(ezoicAdsUrl, {
       headers: {
-        'User-Agent': 'TechnoFlash-Bot/1.0',
+        'User-Agent': 'TFlash-Bot/1.0',
       },
       // تخزين مؤقت لمدة ساعة
       next: { revalidate: 3600 }
@@ -58,7 +58,7 @@ google.com, ${publisherId}, DIRECT, f08c47fec0942fa0
 
     // محتوى احتياطي في حالة الخطأ
     const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || 'ca-pub-1234567890123456';
-    const fallbackContent = `# ads.txt for technoflash.com
+    const fallbackContent = `# ads.txt for tflash.site
 # Emergency fallback content
 ezoic.com, 19390, DIRECT
 google.com, ${publisherId}, RESELLER, f08c47fec0942fa0
