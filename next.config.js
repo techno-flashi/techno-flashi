@@ -90,6 +90,11 @@ const nextConfig = {
         source: '/sitemap.xml',
         destination: '/api/sitemap',
       },
+      // إعادة توجيه ads.txt إلى API route للإدارة التلقائية
+      {
+        source: '/ads.txt',
+        destination: '/ads.txt',
+      },
     ];
   },
 

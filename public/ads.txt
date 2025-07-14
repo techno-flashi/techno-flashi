@@ -1,0 +1,17 @@
+# ads.txt file for TechnoFlash
+# This file authorizes companies to sell ads on this website
+# Managed by Ezoic for optimal ad revenue
+
+# Ezoic - Primary Ad Partner
+ezoic.com, 19390, DIRECT
+google.com, pub-1234567890123456, RESELLER, f08c47fec0942fa0
+
+# Google AdSense - Direct
+google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
+
+# Additional authorized sellers will be managed automatically by Ezoic
+# For the most up-to-date ads.txt content, visit:
+# https://srv.adstxtmanager.com/19390/technoflash.com
+
+# Last updated: 2025-01-14
+# Contact: i2s2mail22@gmail.com
