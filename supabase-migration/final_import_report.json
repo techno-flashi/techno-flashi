@@ -1,0 +1,27 @@
+{
+  "import_date": "2025-07-14T21:30:42.923Z",
+  "target_url": "https://biikzzcbrzxzfeaavmlc.supabase.co",
+  "duration_seconds": 79.129,
+  "results": {
+    "ai_tools": {
+      "success": false,
+      "count": 0,
+      "errors": 231
+    },
+    "articles": {
+      "success": false,
+      "count": 0,
+      "errors": 26
+    },
+    "site_pages": {
+      "success": false,
+      "count": 0,
+      "errors": 7
+    }
+  },
+  "summary": {
+    "total_imported": 0,
+    "total_errors": 264,
+    "success_rate": 0
+  }
+}

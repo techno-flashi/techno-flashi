@@ -77,6 +77,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.jsdelivr.net',
+        pathname: '/npm/simple-icons@v10/icons/**',
       },
     ],
     dangerouslyAllowSVG: true,
@@ -89,6 +90,11 @@ const nextConfig = {
       {
         source: '/sitemap.xml',
         destination: '/api/sitemap',
+      },
+      // إعادة توجيه ads.txt إلى API route للإدارة التلقائية
+      {
+        source: '/ads.txt',
+        destination: '/ads.txt',
       },
     ];
   },
@@ -150,20 +156,6 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400'
-          }
-        ]
-      },
-      // إعدادات ads.txt
-      {
-        source: '/ads.txt',
-        headers: [
-          {
-            key: 'Content-Type',
-            value: 'text/plain; charset=utf-8'
-          },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600'
           }
         ]
       }

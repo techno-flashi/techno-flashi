@@ -2,7 +2,7 @@
 
 // مكون أداة الذكاء الاصطناعي الرئيسية الكبيرة
 import { AITool } from "@/types";
-import Image from "next/image";
+import SVGIcon from "./SVGIcon";
 import Link from "next/link";
 
 interface FeaturedAIToolCardProps {
@@ -34,17 +34,13 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
         <div className="relative w-full h-64 md:h-80 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-600/10">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
-              <Image
+              <SVGIcon
                 src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
                 alt={tool.name}
                 fill
                 style={{ objectFit: "contain" }}
                 className="transition-transform duration-500 group-hover:scale-110"
-                onError={(e) => {
-                  console.log('Image failed to load:', tool.logo_url);
-                  e.currentTarget.src = "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI";
-                }}
-                unoptimized
+                fallbackIcon="🤖"
               />
             </div>
           </div>

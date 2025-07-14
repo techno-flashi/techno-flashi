@@ -44,8 +44,10 @@ Allow: /*.gif
 Allow: /*.webp
 Allow: /*.svg
 
-# خرائط الموقع - محدثة تلقائياً
+# خرائط الموقع
 Sitemap: https://www.tflash.site/sitemap.xml
+Sitemap: https://www.tflash.site/sitemap-articles.xml
+Sitemap: https://www.tflash.site/sitemap-ai-tools.xml
 
 # تأخير الزحف
 Crawl-delay: 1

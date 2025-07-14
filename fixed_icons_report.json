@@ -1,0 +1,2556 @@
+{
+  "fix_date": "2025-07-14T22:55:00.665Z",
+  "project_url": "https://zgktrwpladrkhhemhnni.supabase.co",
+  "total_tools": 231,
+  "fixed_count": 231,
+  "error_count": 0,
+  "success_rate": 100,
+  "source_stats": {
+    "category_svgrepo": 183,
+    "working_match": 40,
+    "default_safe": 8
+  },
+  "results": [
+    {
+      "tool": "Abridge",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Ada Health",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Adalo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Adobe Firefly",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "working_match",
+        "matchedKey": "adobe"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Ahrefs",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/ahrefs.svg",
+        "source": "working_match",
+        "matchedKey": "ahrefs"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/ahrefs.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/ahrefs.svg"
+    },
+    {
+      "tool": "Airtable",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Airtable AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Alteryx",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Amazon CodeWhisperer",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Anki",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Apify",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Apollo.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Appsmith",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Artbreeder",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Article Forge",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Artlist",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "AskYourPDF",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530436/chatbot.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "chatbot"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/530436/chatbot.svg"
+    },
+    {
+      "tool": "Audacity",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "AudioPen",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Autodraw",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Avoma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Axiom.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Babylon Health",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Backendless",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Bardeen",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Beautiful.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Blockade Labs (Skybox AI)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Booth.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Botpress",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "chatgpt"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Browse AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Bubble",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/bubble.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Canva AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg",
+        "source": "working_match",
+        "matchedKey": "canva"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg"
+    },
+    {
+      "tool": "Canva Magic Media",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg",
+        "source": "working_match",
+        "matchedKey": "canva"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg"
+    },
+    {
+      "tool": "CapCut",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Casetext",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Character.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/character.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "Chatbase",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "chatgpt"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Chatfuel",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "ChatGPT",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "chatgpt"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "ChatGPT-4o",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "chatgpt"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Circle.so",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Civitai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Claude",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/anthropic.svg",
+        "source": "working_match",
+        "matchedKey": "claude"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/anthropic.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/anthropic.svg"
+    },
+    {
+      "tool": "Claude 3.5 Sonnet",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/anthropic.svg",
+        "source": "working_match",
+        "matchedKey": "claude"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/anthropic.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/anthropic.svg"
+    },
+    {
+      "tool": "Clipdrop",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Clockwise",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Code-Interpreter by PhotoRoom",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "chatgpt"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Codeium",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/codeium.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Colossyan",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Consensus",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "ContentBot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Copy.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/copyai.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Coursebox",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Cursor",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/cursor.svg",
+        "source": "working_match",
+        "matchedKey": "cursor"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/cursor.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/cursor.svg"
+    },
+    {
+      "tool": "D-ID",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "DALL-E 3",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "dall-e"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Dante AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "DaVinci Resolve",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Decktopus",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Deepdub",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "DeepL Translator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg",
+        "source": "working_match",
+        "matchedKey": "deepl"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg"
+    },
+    {
+      "tool": "DeepL Write",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg",
+        "source": "working_match",
+        "matchedKey": "deepl"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg"
+    },
+    {
+      "tool": "DeepSource",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Descript",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/descript.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "DreamStudio",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Drift",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Dubber",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Dubverse.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Durable",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Dynamic Yield",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "ElevenLabs",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/elevenlabs.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Elicit",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Feathery",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Fig",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "FigJam AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "working_match",
+        "matchedKey": "figma"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Figma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "working_match",
+        "matchedKey": "figma"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Fillout",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "working_match",
+        "matchedKey": "notion"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Fireflies.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Fitbod",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Fivetran",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Fliki",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Folk.app",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Fotor AI Image Generator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Frase.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Gamma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Genmo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530436/chatbot.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "chatbot"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/530436/chatbot.svg"
+    },
+    {
+      "tool": "GitHub Copilot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "working_match",
+        "matchedKey": "github"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Glean",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/slack.svg",
+        "source": "working_match",
+        "matchedKey": "slack"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/slack.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/slack.svg"
+    },
+    {
+      "tool": "Glide",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Gong.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Google Colab",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/googleanalytics.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Gorgias",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "Gradescope",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Grammarly",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/grammarly.svg",
+        "source": "working_match",
+        "matchedKey": "grammarly"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/grammarly.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/grammarly.svg"
+    },
+    {
+      "tool": "Happy Scribe",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Harvey AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Heptabase",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "HeyGen",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/heygen.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "HireVue",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Hocoos",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Hotjar",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Ideogram AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Imgflip AI Meme Generator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Interior AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "InVideo AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "InvokeAI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Inworld AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "iZotope Ozone",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Jasper AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/jasper.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Kaiber",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Kandinsky",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Khroma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Klaviyo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Knewton",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Krisp.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Krita",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "LALAL.AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Lavender",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Lensa AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Leonardo Ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/leonardo.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "LibreTranslate",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "LimeWire AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "LiveChat",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "Looka",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Loom",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/loom.svg",
+        "source": "working_match",
+        "matchedKey": "loom"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/loom.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/loom.svg"
+    },
+    {
+      "tool": "Luma AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Luminar Neo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Make (Integromat)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "ManyChat",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Mem",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Microsoft Designer",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "dall-e"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Midjourney",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/midjourney.svg",
+        "source": "working_match",
+        "matchedKey": "midjourney"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/midjourney.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/midjourney.svg"
+    },
+    {
+      "tool": "Mintlify",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Moises.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Monarch Money",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Motion",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Murf AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/murf.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "NeuronWriter",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "NightCafe Creator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "working_match",
+        "matchedKey": "dall-e"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Notion AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "working_match",
+        "matchedKey": "notion"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Observe.AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452201/microphone.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "audio"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452201/microphone.svg"
+    },
+    {
+      "tool": "Opus Clip",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Originality.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Otter.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/otter.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Outreach.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Paperpal",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Paraphraser.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Perplexity AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/perplexity.svg",
+        "source": "working_match",
+        "matchedKey": "perplexity"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/perplexity.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/perplexity.svg"
+    },
+    {
+      "tool": "Phind",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Photomath",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "PhotoRoom",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Photoshop (Generative Fill)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "working_match",
+        "matchedKey": "adobe"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Pictory",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Pika",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/pika.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Pitch",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Play.ht",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Playground AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Podcastle",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Potion",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "working_match",
+        "matchedKey": "notion"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Power BI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/powerbi.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Prequel",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "QuantConnect",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "QuillBot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/quillbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Readwise",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Recraft",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "REimagineHome",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Replit (Ghostwriter)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/replit.svg",
+        "source": "working_match",
+        "matchedKey": "replit"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/replit.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/replit.svg"
+    },
+    {
+      "tool": "Reply.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Retool",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Rows",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Runway",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/runway.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Runway ML",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/runway.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Rytr",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "SaneBox",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Scenario.gg",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "ScrapingBee",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Scribble Diffusion",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "SeaArt.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Semrush",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/semrush.svg",
+        "source": "working_match",
+        "matchedKey": "semrush"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/semrush.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/semrush.svg"
+    },
+    {
+      "tool": "Sentry",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Shortwave",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "SlidesAI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Snyk",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Softr",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "SonarCloud",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Sourcegraph Cody",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Spline",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Stable Diffusion (Automatic1111)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/stablediffusion.svg",
+        "source": "working_match",
+        "matchedKey": "stable-diffusion"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/stablediffusion.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/stablediffusion.svg"
+    },
+    {
+      "tool": "Stacker",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Stitch Fix",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Sudowrite",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Suno AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Super.so",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "working_match",
+        "matchedKey": "notion"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Surfer SEO",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Synthesia",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/synthesia.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Tableau AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "working_match",
+        "matchedKey": "tableau"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Tabnine",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tabnine.svg",
+        "source": "working_match",
+        "matchedKey": "tabnine"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tabnine.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tabnine.svg"
+    },
+    {
+      "tool": "Tars",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "Testim",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Tidio",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "Tome",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Topaz Photo AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Tutor AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Twelve Labs",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Typeform",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Udio",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "UiPath",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Uizard",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Unicorn Platform",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Upscale.media",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "v0.dev by Vercel",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/code.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "code"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/code.svg"
+    },
+    {
+      "tool": "Vectorizer.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Veed.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Vidyo.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Visily",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "Voiceflow",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530436/chatbot.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "chatbot"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/530436/chatbot.svg"
+    },
+    {
+      "tool": "Voicemod",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Webflow",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/webflow.svg",
+        "source": "working_match",
+        "matchedKey": "webflow"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/webflow.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/webflow.svg"
+    },
+    {
+      "tool": "Wistia",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452228/video.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "video"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452228/video.svg"
+    },
+    {
+      "tool": "Wix ADI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452110/design.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "design"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452110/design.svg"
+    },
+    {
+      "tool": "WolframAlpha",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "Wordtune",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/wordtune.svg",
+        "source": "working_match",
+        "matchedKey": "wordtune"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/wordtune.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/wordtune.svg"
+    },
+    {
+      "tool": "Wordtune Read",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/wordtune.svg",
+        "source": "working_match",
+        "matchedKey": "wordtune"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/wordtune.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/wordtune.svg"
+    },
+    {
+      "tool": "Writesonic",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/writesonic.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Wysa",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/chatbot.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    },
+    {
+      "tool": "XMind",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452091/text.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "text"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452091/text.svg"
+    },
+    {
+      "tool": "Yandex Translate",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/yandex.svg",
+        "source": "working_match",
+        "matchedKey": "yandex"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/yandex.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/yandex.svg"
+    },
+    {
+      "tool": "Yepic AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452107/image.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "image"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452107/image.svg"
+    },
+    {
+      "tool": "Zapier",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "working_match",
+        "matchedKey": "zapier"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Zendesk Answer Bot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg",
+        "source": "default_safe",
+        "matchedKey": "ai-brain"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/530438/artificial-intelligence.svg"
+    },
+    {
+      "tool": "Zillow AI Features",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://www.svgrepo.com/show/452055/analytics.svg",
+        "source": "category_svgrepo",
+        "matchedKey": "analytics"
+      },
+      "oldUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/brain.svg",
+      "newUrl": "https://www.svgrepo.com/show/452055/analytics.svg"
+    }
+  ]
+}

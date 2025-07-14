@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "update-icons": "npx ts-node src/scripts/update-ai-tool-icons.ts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@supabase/ssr": "^0.1.0",

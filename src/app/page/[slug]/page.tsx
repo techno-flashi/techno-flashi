@@ -149,17 +149,6 @@ export default async function DynamicPage({ params }: PageProps) {
             }}
             dangerouslySetInnerHTML={{ __html: pageData.content_ar.replace(/\n/g, '<br>') }}
           />
-
-          {/* إضافة محتوى Ezoic لصفحة سياسة الخصوصية */}
-          {slug === 'privacy-policy' && (
-            <div className="mt-8 pt-8 border-t border-gray-700">
-              <h3 className="text-xl font-bold text-white mb-4">إفصاحات الخصوصية الإضافية</h3>
-              <div className="text-dark-text-secondary mb-4">
-                <p>يستخدم موقعنا خدمات Ezoic لتحسين تجربة المستخدم وعرض الإعلانات. للمزيد من المعلومات حول كيفية استخدام Ezoic وشركائها للبيانات، يرجى مراجعة سياسة الخصوصية الخاصة بهم أدناه:</p>
-              </div>
-              <span id="ezoic-privacy-policy-embed"></span>
-            </div>
-          )}
         </main>
 
         {/* معلومات إضافية */}

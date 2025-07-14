@@ -112,20 +112,6 @@ export default function RootLayout({
             `,
           }}
         />
-
-        {/* Ezoic Privacy Policy Script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var script = document.createElement('script');
-                script.src = 'http://g.ezoic.net/privacy/tflash.site';
-                script.async = true;
-                document.head.appendChild(script);
-              })();
-            `,
-          }}
-        />
       </head>
 
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import SVGIcon from '@/components/SVGIcon';
 import Link from 'next/link';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { getAllAIToolsForSSG } from '@/lib/ssg';
@@ -245,13 +245,13 @@ export default async function AIToolPage({ params }: Props) {
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                 {/* الشعار */}
                 <div className="relative w-24 h-24 flex-shrink-0">
-                  <Image
+                  <SVGIcon
                     src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
                     alt={tool.name}
                     fill
                     style={{ objectFit: "contain" }}
                     className="rounded-lg"
-                    unoptimized
+                    fallbackIcon="🤖"
                   />
                 </div>
 
@@ -537,13 +537,13 @@ export default async function AIToolPage({ params }: Props) {
                     >
                       <div className="flex items-center mb-3">
                         <div className="relative w-12 h-12 ml-3">
-                          <Image
+                          <SVGIcon
                             src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"}
                             alt={relatedTool.name}
                             fill
                             style={{ objectFit: "contain" }}
                             className="rounded"
-                            unoptimized
+                            fallbackIcon="🤖"
                           />
                         </div>
                         <div>

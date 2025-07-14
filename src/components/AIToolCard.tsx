@@ -3,7 +3,7 @@
 
 import { AITool } from "@/types";
 import { AIToolLink } from "./AIToolLink";
-import Image from "next/image";
+import SVGIcon from "./SVGIcon";
 
 interface AIToolCardProps {
   tool: AITool;
@@ -46,14 +46,14 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
         {/* الشعار والتقييم - محسن للأجهزة المحمولة */}
         <div className="relative w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
           <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16">
-            <Image
+            <SVGIcon
               src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
               alt={`شعار ${tool.name}`}
               width={64}
               height={64}
               className="transition-transform duration-500 group-hover:scale-110 object-contain"
               priority={featured}
-              quality={90}
+              fallbackIcon="🤖"
             />
           </div>
 
