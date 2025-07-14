@@ -97,6 +97,23 @@ export default function RootLayout({
   return (
     // إضافة dir="rtl" لدعم اللغة العربية بشكل كامل
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
+      <head>
+        {/* Ezoic Privacy Scripts - يجب أن تكون أول شيء */}
+        <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
+        <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
+
+        {/* Ezoic Header Script - السكريبت الرئيسي */}
+        <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.ezstandalone = window.ezstandalone || {};
+              ezstandalone.cmd = ezstandalone.cmd || [];
+            `,
+          }}
+        />
+      </head>
+
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
       <body className="bg-dark-background text-dark-text font-sans">
         <GoogleAnalytics />
