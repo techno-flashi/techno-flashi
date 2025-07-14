@@ -137,8 +137,6 @@ export async function getAITools() {
 
     return data as AITool[];
   }, 1800); // 30 دقيقة
-
-  return data as AITool[];
 }
 
 // جلب أداة ذكاء اصطناعي واحدة بالـ ID
