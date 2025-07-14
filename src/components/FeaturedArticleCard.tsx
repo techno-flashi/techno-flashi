@@ -18,6 +18,11 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
             fill
             style={{ objectFit: "cover" }}
             className="transition-transform duration-500 group-hover:scale-105"
+            onError={(e) => {
+              console.log('Image failed to load:', article.featured_image_url);
+              e.currentTarget.src = "https://placehold.co/800x600/0D1117/38BDF8?text=TechnoFlash";
+            }}
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-background/80 via-dark-background/20 to-transparent"></div>
           

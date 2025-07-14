@@ -38,6 +38,11 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
                 fill
                 style={{ objectFit: "contain" }}
                 className="transition-transform duration-500 group-hover:scale-110"
+                onError={(e) => {
+                  console.log('Image failed to load:', tool.logo_url);
+                  e.currentTarget.src = "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI";
+                }}
+                unoptimized
               />
             </div>
           </div>

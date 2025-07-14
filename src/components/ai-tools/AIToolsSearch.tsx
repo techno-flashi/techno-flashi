@@ -191,6 +191,11 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
                   fill
                   style={{ objectFit: "contain" }}
                   className="p-4 group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    console.log('Image failed to load:', tool.logo_url);
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  unoptimized
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">

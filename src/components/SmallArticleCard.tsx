@@ -20,6 +20,11 @@ export function SmallArticleCard({ article }: SmallArticleCardProps) {
               fill
               style={{ objectFit: "cover" }}
               className="transition-transform duration-300 group-hover:scale-110"
+              onError={(e) => {
+                console.log('Image failed to load:', article.featured_image_url);
+                e.currentTarget.src = "https://placehold.co/200x150/0D1117/38BDF8?text=T";
+              }}
+              unoptimized
             />
           </div>
           
