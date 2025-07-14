@@ -14,6 +14,10 @@ interface PageData {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+  title_en?: string;
+  content_en?: string;
+  meta_description_en?: string;
+  meta_keywords_en?: string;
 }
 
 interface PageProps {
@@ -57,21 +61,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://techno-flashi.vercel.app';
+  const canonicalUrl = `${baseUrl}/page/${slug}`;
+
   return {
     title: `${pageData.title_ar} - TechnoFlash`,
     description: pageData.meta_description || pageData.title_ar,
     keywords: pageData.meta_keywords || '',
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: `${pageData.title_ar} - TechnoFlash`,
       description: pageData.meta_description || pageData.title_ar,
       type: 'website',
+      url: canonicalUrl,
+      siteName: 'TechnoFlash',
       locale: 'ar_SA',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${pageData.title_ar} - TechnoFlash`,
       description: pageData.meta_description || pageData.title_ar,
-    }
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
@@ -106,6 +122,8 @@ export default async function DynamicPage({ params }: PageProps) {
     notFound();
   }
 
+
+
   return (
     <div className="min-h-screen py-20 px-4 bg-dark-background">
       <div className="container mx-auto max-w-4xl">
@@ -123,13 +141,13 @@ export default async function DynamicPage({ params }: PageProps) {
 
         {/* محتوى الصفحة */}
         <main className="bg-dark-card rounded-xl p-8 border border-gray-800">
-          <div 
-            className="prose prose-lg prose-invert max-w-none"
+          <div
+            className="prose prose-lg prose-invert max-w-none text-right"
             style={{
               color: '#e5e7eb',
               lineHeight: '1.8'
             }}
-            dangerouslySetInnerHTML={{ __html: pageData.content_ar }}
+            dangerouslySetInnerHTML={{ __html: pageData.content_ar.replace(/\n/g, '<br>') }}
           />
         </main>
 
@@ -143,7 +161,7 @@ export default async function DynamicPage({ params }: PageProps) {
                 day: 'numeric'
               })}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/"
@@ -151,9 +169,9 @@ export default async function DynamicPage({ params }: PageProps) {
               >
                 العودة للرئيسية
               </Link>
-              
+
               <Link
-                href="/page/contact-us"
+                href="/page/contact"
                 className="border border-gray-600 hover:border-gray-500 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300"
               >
                 تواصل معنا
@@ -166,5 +184,7 @@ export default async function DynamicPage({ params }: PageProps) {
   );
 }
 
-// تحسين الأداء - ISR
-export const revalidate = 3600; // إعادة التحقق كل ساعة
+// إعدادات ISR محسنة لتوفير الاستهلاك
+export const revalidate = 86400; // 24 ساعة
+export const dynamic = 'force-static';
+export const dynamicParams = false;

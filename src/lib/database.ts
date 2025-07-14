@@ -6,12 +6,22 @@ import { cachedQuery } from './cache';
 
 // ===== مساعدات المقالات =====
 
-// جلب جميع المقالات مع التخزين المؤقت
+// جلب جميع المقالات مع التخزين المؤقت - محسن لتوفير Egress
 export async function getArticles() {
   return cachedQuery('articles-all', async () => {
     const { data, error } = await supabase
       .from('articles')
-      .select('*')
+      .select(`
+        id,
+        title,
+        slug,
+        excerpt,
+        featured_image_url,
+        published_at,
+        created_at,
+        status
+      `)
+      .eq('status', 'published')
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -19,7 +29,7 @@ export async function getArticles() {
     }
 
     return data as Article[];
-  }, 300); // 5 دقائق
+  }, 1800); // 30 دقيقة بدلاً من 5 دقائق
 }
 
 // جلب مقال واحد بالـ ID
@@ -97,16 +107,36 @@ export async function deleteArticle(id: string) {
 
 // ===== مساعدات أدوات الذكاء الاصطناعي =====
 
-// جلب جميع أدوات الذكاء الاصطناعي
+// جلب جميع أدوات الذكاء الاصطناعي - محسن لتوفير Egress
 export async function getAITools() {
-  const { data, error } = await supabase
-    .from('ai_tools')
-    .select('*')
-    .order('created_at', { ascending: false });
+  return cachedQuery('ai-tools-all', async () => {
+    const { data, error } = await supabase
+      .from('ai_tools')
+      .select(`
+        id,
+        name,
+        slug,
+        description,
+        category,
+        website_url,
+        logo_url,
+        pricing,
+        rating,
+        features,
+        status,
+        featured,
+        created_at
+      `)
+      .in('status', ['published', 'active'])
+      .order('rating', { ascending: false })
+      .order('created_at', { ascending: false });
 
-  if (error) {
-    throw new Error(`خطأ في جلب أدوات الذكاء الاصطناعي: ${error.message}`);
-  }
+    if (error) {
+      throw new Error(`خطأ في جلب أدوات الذكاء الاصطناعي: ${error.message}`);
+    }
+
+    return data as AITool[];
+  }, 1800); // 30 دقيقة
 
   return data as AITool[];
 }

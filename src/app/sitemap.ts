@@ -84,5 +84,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error fetching AI tools for sitemap:', error)
   }
 
-  return [...staticPages, ...articlePages, ...servicePages, ...aiToolPages]
+  // جلب الصفحات الأساسية مع معالجة الأخطاء
+  let sitePages: any[] = []
+  try {
+    const { data: pages } = await supabase
+      .from('site_pages')
+      .select('page_key, updated_at')
+      .eq('is_active', true)
+
+    sitePages = pages?.map((page) => ({
+      url: `${baseUrl}/page/${page.page_key}`,
+      lastModified: new Date(page.updated_at),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })) || []
+  } catch (error) {
+    console.error('Error fetching site pages for sitemap:', error)
+  }
+
+  return [...staticPages, ...articlePages, ...servicePages, ...aiToolPages, ...sitePages]
 }

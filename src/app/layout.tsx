@@ -183,14 +183,30 @@ export default function RootLayout({
                 <h4 className="text-white font-semibold mb-4">تواصل معنا</h4>
                 <ul className="space-y-2">
                   <li><a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a></li>
-                  <li><a href="/page/contact-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a></li>
+                  <li><a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a></li>
                   <li><a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a></li>
                   <li><a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a></li>
+                  <li><a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
                 </ul>
               </div>
             </div>
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+              {/* روابط الصفحات الأساسية */}
+              <div className="mb-6">
+                <div className="flex flex-wrap justify-center gap-4 text-sm">
+                  <a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a>
+                  <span className="text-gray-600">|</span>
+                  <a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a>
+                  <span className="text-gray-600">|</span>
+                  <a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
+                  <span className="text-gray-600">|</span>
+                  <a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
+                  <span className="text-gray-600">|</span>
+                  <a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a>
+                </div>
+              </div>
+
               <p className="text-dark-text-secondary">
                 © 2025 TechnoFlash. جميع الحقوق محفوظة.
               </p>

@@ -28,13 +28,14 @@ export function ServicesSection({
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-            <p className="text-gray-600 mb-8">لا توجد خدمات متاحة حالياً</p>
-            <Link
-              href="/admin/services/new"
-              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
-            >
-              إضافة خدمة جديدة
-            </Link>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-gray-600 mb-4">
+                حاليًا، لا نقدم أي خدمات مدفوعة أو منتجات للبيع.
+              </p>
+              <p className="text-gray-600">
+                الموقع مخصص لتقديم محتوى تثقيفي وتعليمي مجاني عن تقنيات وأدوات الذكاء الاصطناعي.
+              </p>
+            </div>
           </div>
         </div>
       </section>

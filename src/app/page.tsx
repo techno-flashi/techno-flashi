@@ -15,9 +15,10 @@ import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 
 import { Article, AITool, Service } from "@/types";
 
-// إخبار Next.js بإعادة بناء هذه الصفحة كل 10 دقائق (600 ثانية)
-// هذا هو سر الأداء العالي (ISR) - مقلل للاختبار
-export const revalidate = 60;
+// تحسين استهلاك الموارد - ISR محسن لتوفير Vercel ISR writes
+export const revalidate = 86400; // 24 ساعة بدلاً من دقيقة واحدة
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 async function getLatestArticles() {
   try {

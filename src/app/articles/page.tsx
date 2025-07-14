@@ -6,9 +6,7 @@ import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
 import { Article } from "@/types";
 
-// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
-export const revalidate = 86400; // 24 ساعة
-export const dynamic = 'force-static';
+
 
 async function getAllArticles() {
   try {
@@ -79,6 +77,11 @@ async function getAllArticles() {
     return [];
   }
 }
+
+// تحسين استهلاك الموارد - ISR محسن
+export const revalidate = 86400; // 24 ساعة لتوفير ISR writes
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 export const metadata = {
   title: "جميع المقالات",
