@@ -12,6 +12,7 @@ import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
+import YouTubeSection from "@/components/YouTubeSection";
 
 import { Article, AITool, Service } from "@/types";
 
@@ -225,6 +226,9 @@ export default async function HomePage() {
 
       {/* قسم الرعاة */}
       <SponsorsSection />
+
+      {/* قسم اليوتيوب */}
+      <YouTubeSection />
 
       {/* قسم مشاركة الموقع */}
       <section className="py-20 px-4 bg-dark-card/30">

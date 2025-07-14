@@ -189,6 +189,42 @@ export default function RootLayout({
                   <li><a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
                 </ul>
               </div>
+
+              {/* وسائل التواصل الاجتماعي */}
+              <div>
+                <h4 className="text-white font-semibold mb-4">تابعنا</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="https://www.youtube.com/@Techno_flash"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300 flex items-center gap-2"
+                    >
+                      <span className="text-red-500">▶️</span>
+                      قناة اليوتيوب (19K+)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/youtube"
+                      className="text-dark-text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                    >
+                      <span className="text-blue-500">📺</span>
+                      صفحة القناة
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:i2s2mail22@gmail.com"
+                      className="text-dark-text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                    >
+                      <span className="text-green-500">📧</span>
+                      البريد الإلكتروني
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center">
@@ -204,6 +240,8 @@ export default function RootLayout({
                   <a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
                   <span className="text-gray-600">|</span>
                   <a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a>
+                  <span className="text-gray-600">|</span>
+                  <a href="/youtube" className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
                 </div>
               </div>
 
