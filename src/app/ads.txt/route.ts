@@ -23,11 +23,12 @@ export async function GET(request: NextRequest) {
 
     if (!response.ok) {
       // في حالة فشل الاتصال مع Ezoic، استخدم المحتوى الاحتياطي
+      const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || 'ca-pub-1234567890123456';
       const fallbackContent = `# ads.txt for ${domain}
 # Managed by Ezoic
 ezoic.com, 19390, DIRECT
-google.com, pub-1234567890123456, RESELLER, f08c47fec0942fa0
-google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
+google.com, ${publisherId}, RESELLER, f08c47fec0942fa0
+google.com, ${publisherId}, DIRECT, f08c47fec0942fa0
 
 # Contact: i2s2mail22@gmail.com
 # Last updated: ${new Date().toISOString().split('T')[0]}`;
@@ -54,12 +55,13 @@ google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
 
   } catch (error) {
     console.error('Error fetching ads.txt:', error);
-    
+
     // محتوى احتياطي في حالة الخطأ
+    const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || 'ca-pub-1234567890123456';
     const fallbackContent = `# ads.txt for technoflash.com
 # Emergency fallback content
 ezoic.com, 19390, DIRECT
-google.com, pub-1234567890123456, RESELLER, f08c47fec0942fa0
+google.com, ${publisherId}, RESELLER, f08c47fec0942fa0
 
 # Contact: i2s2mail22@gmail.com`;
 
