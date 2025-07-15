@@ -81,6 +81,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: '717743998652694e',
+    other: {
+      'msvalidate.01': '9095C91643DF2A9AE8095A2816651511',
+    },
   },
   icons: {
     icon: '/favicon.svg',
