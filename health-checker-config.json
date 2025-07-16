@@ -1,0 +1,130 @@
+{
+  "site": {
+    "baseUrl": "https://tflash.site",
+    "name": "TechnoFlash",
+    "language": "ar",
+    "timezone": "Asia/Riyadh"
+  },
+  "checks": {
+    "seo": {
+      "enabled": true,
+      "titleMinLength": 10,
+      "titleMaxLength": 60,
+      "descriptionMinLength": 50,
+      "descriptionMaxLength": 160,
+      "checkH1": true,
+      "checkImages": true,
+      "checkInternalLinks": true
+    },
+    "performance": {
+      "enabled": true,
+      "maxLoadTime": 3000,
+      "warningLoadTime": 1500,
+      "maxHtmlSize": 100000,
+      "maxCssFiles": 10,
+      "maxJsFiles": 15,
+      "checkGzip": true,
+      "checkCaching": true
+    },
+    "security": {
+      "enabled": true,
+      "requiredHeaders": [
+        "x-frame-options",
+        "x-content-type-options",
+        "x-xss-protection",
+        "strict-transport-security"
+      ],
+      "checkHsts": true,
+      "checkHttps": true
+    },
+    "accessibility": {
+      "enabled": true,
+      "checkLang": true,
+      "checkSkipLinks": true,
+      "checkFormLabels": true,
+      "checkContrast": true,
+      "checkAltText": true
+    },
+    "content": {
+      "enabled": true,
+      "checkDuplicates": true,
+      "checkMissingImages": true,
+      "checkMissingExcerpts": true,
+      "minExcerptLength": 50
+    },
+    "externalLinks": {
+      "enabled": true,
+      "maxChecks": 20,
+      "timeout": 5000,
+      "checkAiTools": true
+    }
+  },
+  "pages": {
+    "required": [
+      { "path": "/", "name": "Homepage" },
+      { "path": "/articles", "name": "Articles" },
+      { "path": "/ai-tools", "name": "AI Tools" },
+      { "path": "/services", "name": "Services" },
+      { "path": "/page/about-us", "name": "About" },
+      { "path": "/page/contact", "name": "Contact" },
+      { "path": "/page/privacy-policy", "name": "Privacy Policy" },
+      { "path": "/sitemap.xml", "name": "Sitemap" },
+      { "path": "/robots.txt", "name": "Robots" }
+    ],
+    "optional": [
+      { "path": "/page/terms-of-use", "name": "Terms" },
+      { "path": "/ads.txt", "name": "Ads.txt" },
+      { "path": "/page/contact-us", "name": "Contact Us" }
+    ]
+  },
+  "database": {
+    "tables": {
+      "articles": {
+        "requiredFields": ["title", "slug", "featured_image_url", "excerpt"],
+        "checks": ["duplicateTitle", "missingImage", "shortExcerpt"]
+      },
+      "ai_tools": {
+        "requiredFields": ["name", "slug", "website_url"],
+        "checks": ["missingUrl", "brokenUrl"]
+      },
+      "site_pages": {
+        "requiredFields": ["page_key", "title_ar", "content_ar"],
+        "checks": ["missingContent", "inactivePages"]
+      }
+    }
+  },
+  "reporting": {
+    "formats": ["console", "json", "html"],
+    "saveReports": true,
+    "reportDirectory": "./health-reports",
+    "includeDetails": true,
+    "groupByCategory": true
+  },
+  "scoring": {
+    "weights": {
+      "critical": 20,
+      "high": 10,
+      "medium": 5,
+      "low": 1,
+      "info": 0
+    },
+    "maxScore": 100,
+    "passThreshold": 80,
+    "warningThreshold": 60
+  },
+  "notifications": {
+    "enabled": false,
+    "webhook": "",
+    "email": "",
+    "onCritical": true,
+    "onScoreBelow": 70
+  },
+  "advanced": {
+    "userAgent": "TechnoFlash-HealthChecker/1.0",
+    "timeout": 10000,
+    "maxConcurrent": 5,
+    "retryAttempts": 2,
+    "followRedirects": true,
+    "validateSSL": true
+  }
+}

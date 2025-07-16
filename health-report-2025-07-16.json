@@ -1,0 +1,202 @@
+{
+  "summary": {
+    "totalIssues": 10,
+    "critical": 0,
+    "high": 0,
+    "medium": 7,
+    "low": 0,
+    "info": 3,
+    "healthScore": 65,
+    "timestamp": "2025-07-16T13:10:35.899Z",
+    "duration": 7916
+  },
+  "issues": {
+    "critical": [],
+    "high": [],
+    "medium": [
+      {
+        "severity": "medium",
+        "category": "SEO",
+        "message": "Title too long (> 60 characters)",
+        "details": {
+          "url": "https://www.tflash.site",
+          "title": "TechnoFlash | بوابتك للمستقبل التقني - مقالات وأدوات ذكاء اصطناعي"
+        },
+        "timestamp": "2025-07-16T13:10:28.725Z"
+      },
+      {
+        "severity": "medium",
+        "category": "Performance",
+        "message": "GZIP compression not enabled",
+        "details": {
+          "headers": {
+            "age": "1944",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-language": "ar",
+            "content-length": "182330",
+            "content-type": "text/html; charset=utf-8",
+            "date": "Wed, 16 Jul 2025 12:38:03 GMT",
+            "etag": "\"15qd4ls8h903bap\"",
+            "permissions-policy": "camera=(), microphone=(), geolocation=()",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+            "x-content-type-options": "nosniff",
+            "x-dns-prefetch-control": "on",
+            "x-frame-options": "DENY",
+            "x-matched-path": "/",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300",
+            "x-vercel-cache": "HIT",
+            "x-vercel-id": "fra1::iad1::8px4k-1752671427986-c56e33026eac",
+            "x-xss-protection": "1; mode=block"
+          }
+        },
+        "timestamp": "2025-07-16T13:10:28.729Z"
+      },
+      {
+        "severity": "medium",
+        "category": "Performance",
+        "message": "Large HTML size: 178KB",
+        "details": {
+          "size": 182342
+        },
+        "timestamp": "2025-07-16T13:10:28.729Z"
+      },
+      {
+        "severity": "medium",
+        "category": "Redirect",
+        "message": "https://www.tflash.site/ads.txt redirects to https://srv.adstxtmanager.com/19390/tflash.site",
+        "details": {
+          "context": "System file: ads.txt",
+          "statusCode": 308,
+          "location": "https://srv.adstxtmanager.com/19390/tflash.site",
+          "url": "https://www.tflash.site/ads.txt"
+        },
+        "timestamp": "2025-07-16T13:10:35.175Z"
+      },
+      {
+        "severity": "medium",
+        "category": "Performance",
+        "message": "GZIP compression not enabled",
+        "details": {
+          "headers": {
+            "age": "1952",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-language": "ar",
+            "content-length": "49239",
+            "content-type": "text/html; charset=utf-8",
+            "date": "Wed, 16 Jul 2025 12:38:02 GMT",
+            "etag": "\"9v8lejdh7tw2b\"",
+            "permissions-policy": "camera=(), microphone=(), geolocation=()",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+            "x-content-type-options": "nosniff",
+            "x-dns-prefetch-control": "on",
+            "x-frame-options": "DENY",
+            "x-matched-path": "/page/about-us",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300",
+            "x-vercel-cache": "HIT",
+            "x-vercel-id": "fra1::iad1::5dfbx-1752671434863-105ff9b9b947",
+            "x-xss-protection": "1; mode=block"
+          }
+        },
+        "timestamp": "2025-07-16T13:10:35.361Z"
+      },
+      {
+        "severity": "medium",
+        "category": "Performance",
+        "message": "GZIP compression not enabled",
+        "details": {
+          "headers": {
+            "age": "1951",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-language": "ar",
+            "content-length": "35887",
+            "content-type": "text/html; charset=utf-8",
+            "date": "Wed, 16 Jul 2025 12:38:03 GMT",
+            "etag": "\"5n6t9wnysspkp\"",
+            "permissions-policy": "camera=(), microphone=(), geolocation=()",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+            "x-content-type-options": "nosniff",
+            "x-dns-prefetch-control": "on",
+            "x-frame-options": "DENY",
+            "x-matched-path": "/page/contact",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300",
+            "x-vercel-cache": "HIT",
+            "x-vercel-id": "fra1::iad1::5dfbx-1752671435057-34acc1654a0a",
+            "x-xss-protection": "1; mode=block"
+          }
+        },
+        "timestamp": "2025-07-16T13:10:35.709Z"
+      },
+      {
+        "severity": "medium",
+        "category": "Performance",
+        "message": "GZIP compression not enabled",
+        "details": {
+          "headers": {
+            "age": "1904",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-language": "ar",
+            "content-length": "51966",
+            "content-type": "text/html; charset=utf-8",
+            "date": "Wed, 16 Jul 2025 12:38:50 GMT",
+            "etag": "\"r2n8tuj7t4xh4\"",
+            "permissions-policy": "camera=(), microphone=(), geolocation=()",
+            "referrer-policy": "strict-origin-when-cross-origin",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+            "x-content-type-options": "nosniff",
+            "x-dns-prefetch-control": "on",
+            "x-frame-options": "DENY",
+            "x-matched-path": "/page/privacy-policy",
+            "x-nextjs-prerender": "1",
+            "x-nextjs-stale-time": "300",
+            "x-vercel-cache": "HIT",
+            "x-vercel-id": "fra1::iad1::5dfbx-1752671435404-9847eb9e0b0c",
+            "x-xss-protection": "1; mode=block"
+          }
+        },
+        "timestamp": "2025-07-16T13:10:35.898Z"
+      }
+    ],
+    "low": [],
+    "info": [
+      {
+        "severity": "info",
+        "category": "System",
+        "message": "robots.txt is accessible",
+        "details": {
+          "url": "https://www.tflash.site/robots.txt"
+        },
+        "timestamp": "2025-07-16T13:10:34.585Z"
+      },
+      {
+        "severity": "info",
+        "category": "System",
+        "message": "sitemap.xml is accessible",
+        "details": {
+          "url": "https://www.tflash.site/sitemap.xml"
+        },
+        "timestamp": "2025-07-16T13:10:35.103Z"
+      },
+      {
+        "severity": "info",
+        "category": "System",
+        "message": "Health check completed in 8s",
+        "details": {},
+        "timestamp": "2025-07-16T13:10:35.899Z"
+      }
+    ]
+  }
+}
