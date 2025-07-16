@@ -69,7 +69,7 @@ export default async function ServicesPage() {
               استكشف خدماتنا
             </a>
             <a
-              href="/page/contact-us"
+              href="/page/contact"
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition-colors duration-200"
             >
               تواصل معنا
@@ -142,7 +142,7 @@ export default async function ServicesPage() {
             نحن نقدم حلولاً مخصصة تماماً لاحتياجاتك. تواصل معنا لمناقشة مشروعك
           </p>
           <a
-            href="/page/contact-us"
+            href="/page/contact"
             className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
           >
             تواصل معنا الآن

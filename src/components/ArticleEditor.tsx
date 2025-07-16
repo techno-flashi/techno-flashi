@@ -704,7 +704,7 @@ export function ArticleEditor({ articleId, isEdit = false }: ArticleEditorProps)
                 <h2 className="text-xl font-semibold text-white mb-6">معاينة المقال</h2>
 
                 {formData.title && (
-                  <h1 className="text-3xl font-bold text-white mb-4">{formData.title}</h1>
+                  <h2 className="text-3xl font-bold text-white mb-4">{formData.title}</h2>
                 )}
 
                 {formData.excerpt && (

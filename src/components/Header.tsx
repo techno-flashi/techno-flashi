@@ -12,7 +12,7 @@ export function Header() {
 
   // الحصول على الصفحات المطلوبة
   const aboutPage = getPageByKey('about-us');
-  const contactPage = getPageByKey('contact-us');
+  const contactPage = getPageByKey('contact');
 
   // إغلاق القائمة عند تغيير حجم الشاشة
   useEffect(() => {
@@ -62,7 +62,7 @@ export function Header() {
               <span className="text-white font-bold text-lg sm:text-xl">T</span>
             </div>
             <div className="hidden xs:block">
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">TechnoFlash</h1>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white">TechnoFlash</div>
               <p className="text-xs text-dark-text-secondary hidden sm:block">بوابتك للمستقبل التقني</p>
             </div>
           </Link>
@@ -112,7 +112,7 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-2 lg:space-x-4 space-x-reverse">
             {contactPage && (
               <Link
-                href={getPageUrl('contact-us')}
+                href={getPageUrl('contact')}
                 className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 lg:px-3 py-2 relative group text-sm lg:text-base"
               >
                 {contactPage.title_ar}
@@ -205,7 +205,7 @@ export function Header() {
               )}
               {contactPage && (
                 <Link
-                  href={getPageUrl('contact-us')}
+                  href={getPageUrl('contact')}
                   className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
                   onClick={() => setIsMenuOpen(false)}
                 >
