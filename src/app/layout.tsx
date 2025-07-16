@@ -211,11 +211,11 @@ export default function RootLayout({
               <div>
                 <h4 className="text-white font-semibold mb-4">تواصل معنا</h4>
                 <ul className="space-y-2">
-                  <li><a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a></li>
-                  <li><a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a></li>
-                  <li><a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a></li>
-                  <li><a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a></li>
-                  <li><a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
+                  <li><a href="/about" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a></li>
+                  <li><a href="/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a></li>
+                  <li><a href="/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a></li>
+                  <li><a href="/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a></li>
+                  <li><a href="/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
                 </ul>
               </div>
 
@@ -260,15 +260,15 @@ export default function RootLayout({
               {/* روابط الصفحات الأساسية */}
               <div className="mb-6">
                 <div className="flex flex-wrap justify-center gap-4 text-sm">
-                  <a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a>
+                  <a href="/about" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a>
                   <span className="text-gray-600">|</span>
-                  <a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a>
+                  <a href="/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a>
                   <span className="text-gray-600">|</span>
-                  <a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
+                  <a href="/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
                   <span className="text-gray-600">|</span>
-                  <a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
+                  <a href="/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
                   <span className="text-gray-600">|</span>
-                  <a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a>
+                  <a href="/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a>
                   <span className="text-gray-600">|</span>
                   <a href="/youtube" className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
                 </div>
