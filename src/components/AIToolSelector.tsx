@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { AITool } from '@/types';
-import Image from 'next/image';
+import SVGIcon from './SVGIcon';
 
 interface AIToolSelectorProps {
   availableTools: AITool[];
@@ -165,17 +165,18 @@ export function AIToolSelector({
                     {/* صورة الأداة */}
                     <div className="w-12 h-12 rounded-lg overflow-hidden mr-4 flex-shrink-0">
                       {tool.logo_url ? (
-                        <Image
+                        <SVGIcon
                           src={tool.logo_url}
                           alt={tool.name}
                           width={48}
                           height={48}
                           className="w-full h-full object-cover"
+                          fallbackIcon="🤖"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
                           <span className="text-white font-bold text-lg">
-                            {tool.name.charAt(0)}
+                            🤖
                           </span>
                         </div>
                       )}

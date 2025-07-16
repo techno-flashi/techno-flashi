@@ -81,6 +81,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: '717743998652694e',
+    other: {
+      'msvalidate.01': '9095C91643DF2A9AE8095A2816651511',
+    },
   },
   icons: {
     icon: '/favicon.svg',
@@ -98,31 +101,16 @@ export default function RootLayout({
     // إضافة dir="rtl" لدعم اللغة العربية بشكل كامل
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
       <head>
-        {/* Ezoic Privacy Scripts - يجب أن تكون أول شيء */}
-        <script src="https://cmp.gatekeeperconsent.com/min.js" data-cfasync="false"></script>
-        <script src="https://the.gatekeeperconsent.com/cmp.min.js" data-cfasync="false"></script>
-
-        {/* Ezoic Header Script - السكريبت الرئيسي */}
-        <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+        {/* Ezoic Scripts - Fixed for SSR */}
+        <script
+          src="https://the.gatekeeperconsent.com/cmp.min.js"
+          data-cfasync="false"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.ezstandalone = window.ezstandalone || {};
               ezstandalone.cmd = ezstandalone.cmd || [];
-            `,
-          }}
-        />
-
-        {/* Ezoic Privacy Policy Script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var script = document.createElement('script');
-                script.src = 'http://g.ezoic.net/privacy/tflash.site';
-                script.async = true;
-                document.head.appendChild(script);
-              })();
             `,
           }}
         />

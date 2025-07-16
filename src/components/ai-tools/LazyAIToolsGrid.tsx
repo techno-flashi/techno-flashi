@@ -202,7 +202,7 @@ export default function LazyAIToolsGrid({
               </div>
 
               {/* المميزات */}
-              {tool.features && tool.features.length > 0 && (
+              {Array.isArray(tool.features) && tool.features.length > 0 && (
                 <div className="mb-4">
                   <div className="flex flex-wrap gap-1">
                     {tool.features.slice(0, 3).map((feature, index) => (

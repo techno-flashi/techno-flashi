@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
-import Image from 'next/image';
+import SVGIcon from '../SVGIcon';
 import Link from 'next/link';
 
 interface AITool {
@@ -185,23 +185,19 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
             {/* شعار الأداة */}
             <div className="relative h-48 bg-gradient-to-br from-primary/10 to-blue-600/10">
               {tool.logo_url ? (
-                <Image
+                <SVGIcon
                   src={tool.logo_url}
                   alt={tool.name}
                   fill
                   style={{ objectFit: "contain" }}
                   className="p-4 group-hover:scale-105 transition-transform duration-300"
-                  onError={(e) => {
-                    console.log('Image failed to load:', tool.logo_url);
-                    e.currentTarget.style.display = 'none';
-                  }}
-                  unoptimized
+                  fallbackIcon="🤖"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center">
                     <span className="text-2xl font-bold text-primary">
-                      {tool.name.charAt(0)}
+                      🤖
                     </span>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import SVGIcon from './SVGIcon';
 import { AITool } from '@/types';
 import { AIToolLink } from './AIToolLink';
 
@@ -28,12 +28,13 @@ export function RelatedAITools({ tools, currentToolId, className = '' }: Related
           >
             <div className="flex items-center mb-3">
               <div className="relative w-12 h-12 ml-3">
-                <Image
+                <SVGIcon
                   src={tool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"}
                   alt={tool.name}
                   fill
                   style={{ objectFit: "contain" }}
                   className="rounded"
+                  fallbackIcon="🤖"
                 />
               </div>
               <div>

@@ -2,7 +2,7 @@
 
 // مكون أداة الذكاء الاصطناعي الصغيرة
 import { AITool } from "@/types";
-import Image from "next/image";
+import SVGIcon from "./SVGIcon";
 import Link from "next/link";
 
 interface SmallAIToolCardProps {
@@ -35,17 +35,13 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
           {/* الشعار */}
           <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
             <div className="relative w-12 h-12">
-              <Image
+              <SVGIcon
                 src={tool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"}
                 alt={tool.name}
                 fill
                 style={{ objectFit: "contain" }}
                 className="transition-transform duration-300 group-hover:scale-110"
-                onError={(e) => {
-                  console.log('Image failed to load:', tool.logo_url);
-                  e.currentTarget.src = "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI";
-                }}
-                unoptimized
+                fallbackIcon="🤖"
               />
             </div>
           </div>

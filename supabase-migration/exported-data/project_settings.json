@@ -1,0 +1,19 @@
+{
+  "source_url": "https://zgktrwpladrkhhemhnni.supabase.co",
+  "export_date": "2025-07-14T20:59:28.195Z",
+  "tables_exported": [
+    "articles",
+    "ai_tools",
+    "services",
+    "site_pages",
+    "categories",
+    "tags",
+    "users",
+    "user_profiles"
+  ],
+  "project_info": {
+    "name": "TechnoFlash",
+    "description": "موقع أدوات الذكاء الاصطناعي",
+    "version": "1.0.0"
+  }
+}

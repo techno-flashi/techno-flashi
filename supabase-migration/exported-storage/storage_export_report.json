@@ -1,0 +1,67 @@
+{
+  "export_date": "2025-07-14T20:59:54.580Z",
+  "source_url": "https://zgktrwpladrkhhemhnni.supabase.co",
+  "total_buckets": 5,
+  "successful_buckets": 5,
+  "total_files_downloaded": 0,
+  "buckets_info": [
+    {
+      "name": "images",
+      "exists": true,
+      "error": null,
+      "accessible": true
+    },
+    {
+      "name": "documents",
+      "exists": true,
+      "error": null,
+      "accessible": true
+    },
+    {
+      "name": "uploads",
+      "exists": true,
+      "error": null,
+      "accessible": true
+    },
+    {
+      "name": "avatars",
+      "exists": true,
+      "error": null,
+      "accessible": true
+    },
+    {
+      "name": "assets",
+      "exists": true,
+      "error": null,
+      "accessible": true
+    }
+  ],
+  "export_results": [
+    {
+      "bucket": "images",
+      "success": true,
+      "files_count": 0
+    },
+    {
+      "bucket": "documents",
+      "success": true,
+      "files_count": 0
+    },
+    {
+      "bucket": "uploads",
+      "success": true,
+      "files_count": 0
+    },
+    {
+      "bucket": "avatars",
+      "success": true,
+      "files_count": 0
+    },
+    {
+      "bucket": "assets",
+      "success": true,
+      "files_count": 0
+    }
+  ],
+  "export_directory": "C:\\Users\\ismail\\4\\supabase-migration\\exported-storage"
+}

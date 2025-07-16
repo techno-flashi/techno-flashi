@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import SVGIcon from '@/components/SVGIcon';
 import Link from 'next/link';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { getAllAIToolsForSSG } from '@/lib/ssg';
@@ -245,13 +245,13 @@ export default async function AIToolPage({ params }: Props) {
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                 {/* الشعار */}
                 <div className="relative w-24 h-24 flex-shrink-0">
-                  <Image
+                  <SVGIcon
                     src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
                     alt={tool.name}
                     fill
                     style={{ objectFit: "contain" }}
                     className="rounded-lg"
-                    unoptimized
+                    fallbackIcon="🤖"
                   />
                 </div>
 
@@ -343,7 +343,7 @@ export default async function AIToolPage({ params }: Props) {
             )}
 
             {/* المميزات الرئيسية */}
-            {tool.features && tool.features.length > 0 && (
+            {Array.isArray(tool.features) && tool.features.length > 0 && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">المميزات الرئيسية</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -358,7 +358,7 @@ export default async function AIToolPage({ params }: Props) {
             )}
 
             {/* حالات الاستخدام */}
-            {tool.use_cases && tool.use_cases.length > 0 && (
+            {Array.isArray(tool.use_cases) && tool.use_cases.length > 0 && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">حالات الاستخدام العملية</h2>
                 <div className="space-y-4">
@@ -395,7 +395,7 @@ export default async function AIToolPage({ params }: Props) {
             />
 
             {/* دليل الاستخدام */}
-            {tool.tutorial_steps && tool.tutorial_steps.length > 0 && (
+            {Array.isArray(tool.tutorial_steps) && tool.tutorial_steps.length > 0 && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">دليل الاستخدام خطوة بخطوة</h2>
                 <div className="space-y-6">
@@ -414,12 +414,12 @@ export default async function AIToolPage({ params }: Props) {
             )}
 
             {/* المزايا والعيوب */}
-            {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
+            {((Array.isArray(tool.pros) && tool.pros.length > 0) || (Array.isArray(tool.cons) && tool.cons.length > 0)) && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">تقييم شامل</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* المزايا */}
-                  {tool.pros && tool.pros.length > 0 && (
+                  {Array.isArray(tool.pros) && tool.pros.length > 0 && (
                     <div>
                       <h3 className="text-xl font-semibold text-green-400 mb-4 flex items-center">
                         <span className="ml-2">👍</span>
@@ -437,7 +437,7 @@ export default async function AIToolPage({ params }: Props) {
                   )}
 
                   {/* العيوب */}
-                  {tool.cons && tool.cons.length > 0 && (
+                  {Array.isArray(tool.cons) && tool.cons.length > 0 && (
                     <div>
                       <h3 className="text-xl font-semibold text-red-400 mb-4 flex items-center">
                         <span className="ml-2">👎</span>
@@ -471,14 +471,14 @@ export default async function AIToolPage({ params }: Props) {
                 )}
 
                 {/* الخطط المدفوعة */}
-                {tool.pricing_details.paid_plans && tool.pricing_details.paid_plans.length > 0 && (
+                {Array.isArray(tool.pricing_details?.paid_plans) && tool.pricing_details.paid_plans.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {tool.pricing_details.paid_plans.map((plan, index) => (
                       <div key={index} className="bg-dark-bg/50 border border-gray-700 rounded-lg p-6">
                         <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>
                         <div className="text-2xl font-bold text-primary mb-4">{plan.price}</div>
                         <ul className="space-y-2">
-                          {plan.features.map((feature, featureIndex) => (
+                          {Array.isArray(plan.features) && plan.features.map((feature, featureIndex) => (
                             <li key={featureIndex} className="flex items-start">
                               <span className="text-primary text-sm ml-2 mt-1">✓</span>
                               <span className="text-dark-text-secondary text-sm">{feature}</span>
@@ -493,7 +493,7 @@ export default async function AIToolPage({ params }: Props) {
             )}
 
             {/* الأسئلة الشائعة */}
-            {tool.faq && tool.faq.length > 0 && (
+            {Array.isArray(tool.faq) && tool.faq.length > 0 && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">الأسئلة الشائعة</h2>
                 <div className="space-y-6">
@@ -508,7 +508,7 @@ export default async function AIToolPage({ params }: Props) {
             )}
 
             {/* الكلمات المفتاحية */}
-            {tool.tags && tool.tags.length > 0 && (
+            {Array.isArray(tool.tags) && tool.tags.length > 0 && (
               <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-6">الكلمات المفتاحية</h2>
                 <div className="flex flex-wrap gap-3">
@@ -537,13 +537,13 @@ export default async function AIToolPage({ params }: Props) {
                     >
                       <div className="flex items-center mb-3">
                         <div className="relative w-12 h-12 ml-3">
-                          <Image
+                          <SVGIcon
                             src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"}
                             alt={relatedTool.name}
                             fill
                             style={{ objectFit: "contain" }}
                             className="rounded"
-                            unoptimized
+                            fallbackIcon="🤖"
                           />
                         </div>
                         <div>
