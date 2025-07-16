@@ -17,6 +17,7 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
           <Image
             src={article.featured_image_url || "https://placehold.co/800x600/0D1117/38BDF8?text=TechnoFlash"}
             alt={article.title}
+            title={article.title}
             fill
             style={{ objectFit: "cover" }}
             className="transition-transform duration-500 group-hover:scale-105"

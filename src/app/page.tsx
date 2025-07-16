@@ -127,8 +127,8 @@ export default async function HomePage() {
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-              مستقبلك التقني يبدأ من هنا مع
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+              مستقبلك التقني يبدأ من هنا مع{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
                 TechnoFlash
               </span>
             </h1>

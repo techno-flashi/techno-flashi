@@ -19,6 +19,7 @@ export function SmallArticleCard({ article }: SmallArticleCardProps) {
             <Image
               src={article.featured_image_url || "https://placehold.co/200x150/0D1117/38BDF8?text=T"}
               alt={article.title}
+              title={article.title}
               fill
               style={{ objectFit: "cover" }}
               className="transition-transform duration-300 group-hover:scale-110"

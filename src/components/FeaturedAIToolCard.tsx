@@ -37,6 +37,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
               <SVGIcon
                 src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
                 alt={tool.name}
+                title={tool.name}
                 fill
                 style={{ objectFit: "contain" }}
                 className="transition-transform duration-500 group-hover:scale-110"

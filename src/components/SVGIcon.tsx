@@ -6,6 +6,7 @@ import Image from 'next/image';
 interface SVGIconProps {
   src: string;
   alt: string;
+  title?: string;
   className?: string;
   style?: React.CSSProperties;
   fill?: boolean;
@@ -19,6 +20,7 @@ interface SVGIconProps {
 export default function SVGIcon({
   src,
   alt,
+  title,
   className = '',
   style,
   fill = false,
@@ -57,6 +59,7 @@ export default function SVGIcon({
   const imageProps = {
     src: imageSrc,
     alt,
+    title: title || alt,
     className,
     style,
     onError: handleError,
