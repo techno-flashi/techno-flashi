@@ -217,6 +217,72 @@ export default async function HomePage() {
       {/* قسم أدوات الذكاء الاصطناعي المميزة */}
       <FeaturedAIToolsSection tools={latestAITools} />
 
+      {/* قسم روابط سريعة للصفحات المهمة */}
+      <section className="py-16 px-4 bg-dark-card/20">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">استكشف المزيد</h2>
+            <p className="text-dark-text-secondary text-lg max-w-2xl mx-auto">
+              اكتشف جميع الأدوات والمقالات المتخصصة في مجال التكنولوجيا والذكاء الاصطناعي
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a
+              href="/ai-tools/compare"
+              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">مقارنة الأدوات</h3>
+              <p className="text-gray-300 text-sm">قارن بين أدوات الذكاء الاصطناعي المختلفة</p>
+            </a>
+
+            <a
+              href="/ai-tools/categories"
+              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">فئات الأدوات</h3>
+              <p className="text-gray-300 text-sm">تصفح الأدوات حسب التخصص والفئة</p>
+            </a>
+
+            <a
+              href="/articles"
+              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">جميع المقالات</h3>
+              <p className="text-gray-300 text-sm">اقرأ جميع المقالات التقنية المتخصصة</p>
+            </a>
+
+            <a
+              href="/ai-tools"
+              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">دليل الأدوات</h3>
+              <p className="text-gray-300 text-sm">استكشف دليل شامل لأدوات الذكاء الاصطناعي</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* قسم الخدمات المميزة */}
       <ServicesSection
         services={latestServices}

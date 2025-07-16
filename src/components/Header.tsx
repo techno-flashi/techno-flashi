@@ -83,13 +83,31 @@ export function Header() {
               المقالات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link
-              href="/ai-tools"
-              className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
-            >
-              أدوات الذكاء الاصطناعي
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            <div className="relative group">
+              <Link
+                href="/ai-tools"
+                className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              >
+                أدوات الذكاء الاصطناعي
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+
+              {/* قائمة فرعية للأدوات */}
+              <div className="absolute top-full left-0 mt-2 w-48 bg-dark-card border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <Link
+                  href="/ai-tools/compare"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded-t-lg transition-colors"
+                >
+                  مقارنة الأدوات
+                </Link>
+                <Link
+                  href="/ai-tools/categories"
+                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded-b-lg transition-colors"
+                >
+                  فئات الأدوات
+                </Link>
+              </div>
+            </div>
             <Link
               href="/services"
               className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
