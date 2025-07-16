@@ -85,7 +85,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
           <div className="mb-4">
             <h4 className="text-white font-semibold mb-2 text-sm">المميزات الرئيسية:</h4>
             <div className="flex flex-wrap gap-2">
-              {(tool.features || []).slice(0, 3).map((feature, index) => (
+              {(Array.isArray(tool.features) ? tool.features : []).slice(0, 3).map((feature, index) => (
                 <span
                   key={index}
                   className="bg-dark-background text-dark-text-secondary px-2 py-1 rounded text-xs"
@@ -93,9 +93,9 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
                   {feature}
                 </span>
               ))}
-              {(tool.features || []).length > 3 && (
+              {Array.isArray(tool.features) && tool.features.length > 3 && (
                 <span className="text-primary text-xs font-medium">
-                  +{(tool.features || []).length - 3} المزيد
+                  +{tool.features.length - 3} المزيد
                 </span>
               )}
             </div>

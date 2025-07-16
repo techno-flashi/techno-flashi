@@ -96,7 +96,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
           {/* المميزات */}
           <div className="mb-3">
             <div className="flex flex-wrap gap-1">
-              {(tool.features || []).slice(0, 2).map((feature, index) => (
+              {(Array.isArray(tool.features) ? tool.features : []).slice(0, 2).map((feature, index) => (
                 <span
                   key={index}
                   className="bg-dark-background text-dark-text-secondary px-2 py-1 rounded text-xs"

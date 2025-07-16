@@ -291,7 +291,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* الكلمات المفتاحية */}
-          {article.tags && article.tags.length > 0 && (
+          {Array.isArray(article.tags) && article.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
               {article.tags.map((tag: string, index: number) => (
                 <span
@@ -411,7 +411,7 @@ export default async function ArticlePage({ params }: Props) {
                     <span className="text-white">{article.author}</span>
                   </div>
                 )}
-                {article.tags && article.tags.length > 0 && (
+                {Array.isArray(article.tags) && article.tags.length > 0 && (
                   <div>
                     <span className="text-dark-text-secondary block mb-2">الكلمات المفتاحية:</span>
                     <div className="flex flex-wrap gap-1">
@@ -503,7 +503,7 @@ export default async function ArticlePage({ params }: Props) {
                         {new Date(relatedArticle.created_at).toLocaleDateString('ar-SA')}
                       </span>
 
-                      {relatedArticle.tags && relatedArticle.tags.length > 0 && (
+                      {Array.isArray(relatedArticle.tags) && relatedArticle.tags.length > 0 && (
                         <div className="flex gap-2">
                           {relatedArticle.tags.slice(0, 2).map((tag: string, index: number) => (
                             <span
