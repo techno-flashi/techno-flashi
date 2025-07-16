@@ -171,7 +171,7 @@ export default async function AIToolsComparePage() {
             تواصل معنا للحصول على استشارة مجانية لاختيار الأداة المناسبة لاحتياجاتك
           </p>
           <a
-            href="/page/contact"
+            href="/page/contact-us"
             className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center"
           >
             احصل على استشارة

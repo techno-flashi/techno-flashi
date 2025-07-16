@@ -90,7 +90,7 @@ export function ArticleFooterLinks({ className = '' }: { className?: string }) {
   const { getPageByKey } = usePages();
   
   const aboutPage = getPageByKey('about-us');
-  const contactPage = getPageByKey('contact');
+  const contactPage = getPageByKey('contact-us');
 
   return (
     <div className={`bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-lg p-6 ${className}`}>

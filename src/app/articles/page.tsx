@@ -219,7 +219,7 @@ export default async function ArticlesPage() {
               </a>
 
               <a
-                href="/page/contact"
+                href="/page/contact-us"
                 className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-center"
               >
                 تواصل معنا

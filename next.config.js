@@ -36,13 +36,10 @@ const nextConfig = {
   images: {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
-    unoptimized: false,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'xfxpwbqgtuhbkeksdbqn.supabase.co',
+        hostname: 'zgktrwpladrkhhemhnni.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
       {
@@ -63,10 +60,6 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'unsplash.com',
-      },
-      {
-        protocol: 'https',
         hostname: 'i.pinimg.com',
       },
       {
@@ -84,11 +77,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.jsdelivr.net',
-        pathname: '/npm/simple-icons@v10/icons/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'source.unsplash.com',
       },
     ],
     dangerouslyAllowSVG: true,
@@ -101,11 +89,6 @@ const nextConfig = {
       {
         source: '/sitemap.xml',
         destination: '/api/sitemap',
-      },
-      // إعادة توجيه ads.txt إلى API route للإدارة التلقائية
-      {
-        source: '/ads.txt',
-        destination: '/ads.txt',
       },
     ];
   },
@@ -167,6 +150,20 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400'
+          }
+        ]
+      },
+      // إعدادات ads.txt
+      {
+        source: '/ads.txt',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'text/plain; charset=utf-8'
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600'
           }
         ]
       }

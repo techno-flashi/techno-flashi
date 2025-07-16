@@ -6,16 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "health-check": "node simple-health-checker.js",
-    "health-check:quick": "node simple-health-checker.js",
-    "health-check:advanced": "node run-health-check.js",
-    "health-check:json": "node run-health-check.js --format json",
-    "health-check:html": "node run-health-check.js --format html",
-    "health-check:seo": "node run-health-check.js --check seo",
-    "health-check:performance": "node run-health-check.js --check performance",
-    "health-check:security": "node run-health-check.js --check security",
-    "health-check:verbose": "node run-health-check.js --verbose"
+    "lint": "next lint"
   },
   "dependencies": {
     "@supabase/ssr": "^0.1.0",

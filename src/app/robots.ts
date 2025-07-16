@@ -6,17 +6,17 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/', '/cdn-cgi/'],
+        disallow: ['/admin/', '/api/'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/admin/', '/api/', '/cdn-cgi/'],
+        disallow: ['/admin/', '/api/'],
       },
       {
         userAgent: 'Bingbot',
         allow: '/',
-        disallow: ['/admin/', '/api/', '/cdn-cgi/'],
+        disallow: ['/admin/', '/api/'],
       },
     ],
     sitemap: [

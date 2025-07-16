@@ -5,17 +5,6 @@
       "source": "/ads.txt",
       "destination": "https://srv.adstxtmanager.com/19390/tflash.site",
       "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "techno-flashi.vercel.app"
-        }
-      ],
-      "destination": "https://tflash.site/$1",
-      "permanent": true
     }
   ]
 }

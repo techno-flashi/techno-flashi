@@ -31,7 +31,7 @@ const tajawal = Tajawal({
 // إعداد بيانات SEO المحسنة للموقع
 export const metadata: Metadata = {
   title: {
-    default: "TechnoFlash | بوابتك للمستقبل التقني - مقالات وأدوات ذكاء اصطناعي",
+    default: "TechnoFlash | أدوات ذكاء اصطناعي وتقنية حديثة",
     template: "%s | TechnoFlash",
   },
   description: "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا. اكتشف أحدث التقنيات والأدوات المبتكرة.",
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://tflash.site',
+    url: 'https://www.tflash.site',
     siteName: 'TechnoFlash',
     title: 'TechnoFlash | بوابتك للمستقبل التقني',
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا.',
     images: [
       {
-        url: 'https://tflash.site/og-image.jpg',
+        url: 'https://www.tflash.site/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'TechnoFlash - بوابتك للمستقبل التقني',
@@ -74,10 +74,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'TechnoFlash | بوابتك للمستقبل التقني',
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.',
-    images: ['https://tflash.site/og-image.jpg'],
+    images: ['https://www.tflash.site/og-image.jpg'],
   },
   alternates: {
-    canonical: 'https://tflash.site',
+    canonical: 'https://www.tflash.site',
   },
   verification: {
     google: '717743998652694e',

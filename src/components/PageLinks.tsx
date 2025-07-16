@@ -110,7 +110,7 @@ export function HeaderPageLinks({ className = '' }: { className?: string }) {
     <PageLinks
       variant="horizontal"
       className={className}
-      includeKeys={['about-us', 'contact']} // عرض صفحتين فقط في الهيدر
+      includeKeys={['about-us', 'contact-us']} // عرض صفحتين فقط في الهيدر
     />
   );
 }

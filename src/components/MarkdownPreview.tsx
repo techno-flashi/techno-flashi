@@ -167,9 +167,9 @@ export default function MarkdownPreview({ content, className = '', articleImages
       if (line.startsWith('# ')) {
         flushParagraph();
         elements.push(
-          <h2 key={key++} className="text-2xl font-bold text-white mb-6 mt-10">
+          <h1 key={key++} className="text-2xl font-bold text-white mb-6 mt-10">
             {line.substring(2)}
-          </h2>
+          </h1>
         );
         continue;
       }
