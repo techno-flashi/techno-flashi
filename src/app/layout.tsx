@@ -101,10 +101,20 @@ export default function RootLayout({
     // إضافة dir="rtl" لدعم اللغة العربية بشكل كامل
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
       <head>
-        {/* Ezoic Scripts - Fixed for SSR */}
+        {/* Ezoic Privacy Scripts - Must be loaded first for compliance */}
+        <script
+          src="https://cmp.gatekeeperconsent.com/min.js"
+          data-cfasync="false"
+        />
         <script
           src="https://the.gatekeeperconsent.com/cmp.min.js"
           data-cfasync="false"
+        />
+
+        {/* Ezoic Header Script - Main ad system initialization */}
+        <script
+          async
+          src="//www.ezojs.com/ezoic/sa.min.js"
         />
         <script
           dangerouslySetInnerHTML={{
