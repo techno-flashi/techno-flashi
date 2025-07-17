@@ -1,6 +1,19 @@
 // Performance optimization utilities
 import React from 'react';
 
+// Type declarations
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+interface MemoryInfo {
+  usedJSHeapSize: number;
+  totalJSHeapSize: number;
+  jsHeapSizeLimit: number;
+}
+
 // Debounce function for performance optimization
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
@@ -41,7 +54,7 @@ export function throttle<T extends (...args: any[]) => any>(
 }
 
 // Lazy loading utility for components
-export function createLazyComponent<T = any>(
+export function createLazyComponent<T extends Record<string, any> = any>(
   importFunc: () => Promise<{ default: React.ComponentType<T> }>,
   fallback?: React.ComponentType
 ) {
@@ -55,7 +68,7 @@ export function createLazyComponent<T = any>(
           ? React.createElement(fallback)
           : React.createElement('div', null, 'Loading...')
       },
-      React.createElement(LazyComponent, props)
+      React.createElement(LazyComponent as any, props)
     );
   };
 }
