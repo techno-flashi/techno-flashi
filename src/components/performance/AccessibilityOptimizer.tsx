@@ -57,26 +57,28 @@ export function AccessibilityOptimizer() {
     const fixJavaScriptVoidLinks = () => {
       const voidLinks = document.querySelectorAll('a[href="javascript:void(0)"], a[href="javascript:void(0);"]');
       voidLinks.forEach(link => {
+        const htmlLink = link as HTMLAnchorElement;
+
         // Replace with proper button or add proper href
-        if (link.onclick || link.addEventListener) {
+        if (htmlLink.onclick || htmlLink.hasAttribute('onclick')) {
           // Convert to button if it has click handlers
           const button = document.createElement('button');
-          button.innerHTML = link.innerHTML;
-          button.className = link.className;
+          button.innerHTML = htmlLink.innerHTML;
+          button.className = htmlLink.className;
           button.setAttribute('type', 'button');
-          
+
           // Copy event listeners (basic approach)
-          if (link.onclick) {
-            button.onclick = link.onclick;
+          if (htmlLink.onclick) {
+            button.onclick = htmlLink.onclick;
           }
-          
+
           // Replace the link with button
-          link.parentNode?.replaceChild(button, link);
+          htmlLink.parentNode?.replaceChild(button, htmlLink);
           console.log('Converted javascript:void(0) link to button');
         } else {
           // Add proper href or remove
-          link.setAttribute('href', '#');
-          link.setAttribute('role', 'button');
+          htmlLink.setAttribute('href', '#');
+          htmlLink.setAttribute('role', 'button');
           console.log('Fixed javascript:void(0) link');
         }
       });
