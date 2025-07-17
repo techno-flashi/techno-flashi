@@ -1,4 +1,5 @@
 // Performance optimization utilities
+import React from 'react';
 
 // Debounce function for performance optimization
 export function debounce<T extends (...args: any[]) => any>(
@@ -29,10 +30,10 @@ export function throttle<T extends (...args: any[]) => any>(
   limit: number
 ): (...args: Parameters<T>) => void {
   let inThrottle: boolean;
-  
+
   return function executedFunction(...args: Parameters<T>) {
     if (!inThrottle) {
-      func.apply(this, args);
+      func(...args);
       inThrottle = true;
       setTimeout(() => inThrottle = false, limit);
     }
@@ -235,8 +236,7 @@ export function shouldUseLowQuality(): boolean {
   return false;
 }
 
-// React import for lazy component creation
-import React from 'react';
+
 
 export default {
   debounce,
