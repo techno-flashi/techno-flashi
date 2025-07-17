@@ -273,13 +273,12 @@
   .animate-shimmer {
     animation: shimmer 2s infinite;
   }
-}
 
 /* Modern tech website components */
 @layer components {
   /* Tech-style buttons */
   .btn-primary {
-    @apply bg-tech-primary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-primary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md;
   }
 
   .btn-secondary {
@@ -287,12 +286,12 @@
   }
 
   .btn-outline {
-    @apply border-2 border-tech-primary text-tech-primary hover:bg-tech-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200;
   }
 
   /* Modern cards */
   .tech-card {
-    @apply bg-white border border-tech-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-tech-primary/20;
+    @apply bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/20;
   }
 
   .tech-card-hover {
@@ -310,19 +309,19 @@
 
   /* Typography utilities */
   .tech-heading {
-    @apply text-tech-text font-bold mb-4;
+    @apply text-gray-900 font-bold mb-4;
   }
 
   .tech-subheading {
-    @apply text-tech-text-secondary font-semibold mb-3;
+    @apply text-gray-700 font-semibold mb-3;
   }
 
   .tech-body {
-    @apply text-tech-text-secondary leading-relaxed;
+    @apply text-gray-600 leading-relaxed;
   }
 
   .tech-caption {
-    @apply text-tech-text-light text-sm;
+    @apply text-gray-500 text-sm;
   }
 
   /* Modern spacing */
@@ -347,40 +346,9 @@
   .tech-hover-scale {
     @apply transition-transform duration-200 hover:scale-105;
   }
-}
 
-/* تحسينات للتركيز */
-@layer components {
-  .focus-ring {
+  /* Focus states for accessibility */
+  .tech-focus {
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white;
-  }
-
-  /* تحسينات للأزرار */
-  .btn-primary {
-    @apply bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px] shadow-lg hover:shadow-primary/25;
-  }
-
-  .btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-500/20 min-h-[44px];
-  }
-
-  /* تحسينات للحقول */
-  .input-field {
-    @apply bg-white border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-h-[44px];
-  }
-
-  /* تحسينات للبطاقات */
-  .card-hover {
-    @apply transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 active:scale-95;
-  }
-
-  /* تحسينات للروابط */
-  .link-hover {
-    @apply transition-all duration-300 hover:text-primary relative group;
-  }
-
-  .link-hover::after {
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full;
-    content: '';
   }
 }
