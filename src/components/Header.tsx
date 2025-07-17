@@ -10,21 +10,36 @@ export function Header() {
   const { user, signOut, loading } = useAuth();
   const { getPageByKey, getPageUrl } = usePages();
 
-  // الحصول على الصفحات المطلوبة
-  const aboutPage = getPageByKey('about-us');
-  const contactPage = getPageByKey('contact-us');
+  // الكلاس الافتراضي الذي يعرضه الخادم (ثابت)
+  const initialClass = "bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50";
+  // الكلاس الذي يطبق بعد السكرول في المتصفح (نفس الأساس مع إضافات)
+  const scrolledClass = "bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 shadow-lg";
 
-  // إغلاق القائمة عند تغيير حجم الشاشة
+  const [headerClass, setHeaderClass] = useState(initialClass);
+
   useEffect(() => {
+    const handleScroll = () => {
+      setHeaderClass(window.scrollY > 10 ? scrolledClass : initialClass);
+    };
+
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsMenuOpen(false);
       }
     };
 
+    window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // المصفوفة الفارغة [] تضمن أن هذا الكود يعمل مرة واحدة فقط بعد العرض الأولي
+
+  // الحصول على الصفحات المطلوبة
+  const aboutPage = getPageByKey('about-us');
+  const contactPage = getPageByKey('contact-us');
 
   // إغلاق القائمة عند الضغط على Escape
   useEffect(() => {
@@ -49,84 +64,81 @@ export function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+    <header className={headerClass} suppressHydrationWarning>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 sm:py-4">
-          {/* الشعار */}
+          {/* الشعار المحدث */}
           <Link
             href="/"
-            className="flex items-center space-x-2 sm:space-x-3 space-x-reverse hover:opacity-80 transition-opacity duration-300 focus-ring rounded-lg p-1"
+            className="flex items-center space-x-2 sm:space-x-3 space-x-reverse hover:opacity-80 transition-opacity duration-300 rounded-lg p-1"
             onClick={() => setIsMenuOpen(false)}
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-black font-bold text-lg sm:text-xl">T</span>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center">
+              <span className="text-white font-bold text-lg sm:text-xl">T</span>
             </div>
             <div className="hidden xs:block">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-black">TechnoFlash</div>
-              <p className="text-xs text-dark-text-secondary hidden sm:block">بوابتك للمستقبل التقني</p>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">TechnoFlash</div>
+              <p className="text-xs text-gray-600 hidden sm:block">بوابتك للمستقبل التقني</p>
             </div>
           </Link>
 
-          {/* التنقل الرئيسي - سطح المكتب */}
-          <nav className="hidden md:flex items-center space-x-8 space-x-reverse">
+          {/* التنقل الرئيسي المحدث - سطح المكتب */}
+          <nav className="hidden md:flex items-center space-x-8 space-x-reverse" suppressHydrationWarning>
             <Link
               href="/"
-              className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
             >
-              الرئيسية
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              الرئيسية
             </Link>
             <Link
               href="/articles"
-              className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
             >
-              المقالات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              المقالات
             </Link>
 
             <Link
               href="/services"
-              className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
             >
-              الخدمات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              الخدمات
             </Link>
             {aboutPage && (
               <Link
                 href={getPageUrl('about-us')}
-                className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+                className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
               >
-                {aboutPage.title_ar}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                {aboutPage.title_ar}
               </Link>
             )}
           </nav>
 
           {/* أزرار الإجراءات */}
           <div className="hidden md:flex items-center space-x-2 lg:space-x-4 space-x-reverse">
-            {contactPage && (
-              <Link
-                href={getPageUrl('contact-us')}
-                className="text-dark-text-secondary hover:text-black transition-colors duration-300 font-medium focus-ring rounded px-2 lg:px-3 py-2 relative group text-sm lg:text-base"
-              >
-                {contactPage.title_ar}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            )}
+            <Link
+              href="/contact"
+              className="text-gray-600 hover:text-black transition-colors duration-300 font-medium rounded px-2 lg:px-3 py-2 relative group text-sm lg:text-base"
+            >
+              تواصل معنا
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            </Link>
 
-            {loading ? (
-              <div className="w-6 h-6 lg:w-8 lg:h-8 animate-spin rounded-full border-b-2 border-primary" role="status" aria-label="جاري التحميل"></div>
-            ) : user ? (
-              <div className="flex items-center space-x-2 lg:space-x-4 space-x-reverse">
+            {/* عرض معلومات المستخدم فقط بعد التحميل الكامل */}
+            {!loading && user ? (
+              <div className="flex items-center space-x-2 lg:space-x-4 space-x-reverse" suppressHydrationWarning>
                 <Link
                   href="/admin"
-                  className="bg-primary hover:bg-blue-600 text-black px-3 lg:px-6 py-2 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-primary/25 focus-ring transform hover:scale-105 text-sm lg:text-base"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 lg:px-6 py-2 text-sm lg:text-base rounded-lg transition-colors duration-300 font-medium"
                 >
                   لوحة التحكم
                 </Link>
                 <button
                   onClick={signOut}
-                  className="bg-red-600 hover:bg-red-700 text-black px-3 lg:px-6 py-2 rounded-lg transition-all duration-300 font-medium focus-ring transform hover:scale-105 text-sm lg:text-base"
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 lg:px-6 py-2 rounded-lg transition-colors duration-300 font-medium text-sm lg:text-base"
                   aria-label="تسجيل الخروج من الحساب"
                 >
                   تسجيل الخروج
@@ -135,10 +147,10 @@ export function Header() {
             ) : null}
           </div>
 
-          {/* زر القائمة للهواتف */}
+          {/* زر القائمة المحدث للهواتف */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-black p-2 rounded-lg hover:bg-text-secondary/20 transition-colors duration-300 focus-ring min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="md:hidden bg-gray-100 hover:bg-gray-200 p-2 rounded-xl transition-colors duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -158,18 +170,19 @@ export function Header() {
           <div
             id="mobile-menu"
             className="md:hidden py-3 sm:py-4 border-t border-light-border bg-white/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300"
+            suppressHydrationWarning
           >
             <nav className="flex flex-col space-y-1 sm:space-y-2">
               <Link
                 href="/"
-                className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 الرئيسية
               </Link>
               <Link
                 href="/articles"
-                className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 المقالات
@@ -177,7 +190,7 @@ export function Header() {
 
               <Link
                 href="/services"
-                className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 الخدمات
@@ -185,28 +198,26 @@ export function Header() {
               {aboutPage && (
                 <Link
                   href={getPageUrl('about-us')}
-                  className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
+                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-4 py-3 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {aboutPage.title_ar}
                 </Link>
               )}
-              {contactPage && (
-                <Link
-                  href={getPageUrl('contact-us')}
-                  className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {contactPage.title_ar}
-                </Link>
-              )}
+              <Link
+                href="/contact"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-4 py-3 rounded-lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                تواصل معنا
+              </Link>
 
               {/* أزرار الإجراءات للموبايل */}
-              {user && (
+              {!loading && user && (
                 <div className="pt-4 mt-4 border-t border-gray-700 space-y-2">
                   <Link
                     href="/admin"
-                    className="bg-primary hover:bg-blue-600 text-black px-4 py-3 rounded-lg transition-all duration-300 font-medium block text-center focus-ring"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors duration-300 font-medium block text-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     لوحة التحكم
@@ -216,7 +227,7 @@ export function Header() {
                       signOut();
                       setIsMenuOpen(false);
                     }}
-                    className="bg-red-600 hover:bg-red-700 text-black px-4 py-3 rounded-lg transition-all duration-300 font-medium w-full focus-ring"
+                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors duration-300 font-medium w-full"
                   >
                     تسجيل الخروج
                   </button>

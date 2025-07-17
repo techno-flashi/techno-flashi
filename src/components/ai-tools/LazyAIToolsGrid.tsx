@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
-import Image from 'next/image';
+import SVGIcon from '@/components/SVGIcon';
 import Link from 'next/link';
 
 interface AITool {
@@ -108,28 +108,12 @@ export default function LazyAIToolsGrid({
     }
   }, [tools.length, hasMore, loadMoreTools]);
 
-  const getPricingColor = (pricing: string) => {
-    switch (pricing) {
-      case 'free': return 'border-green-500 text-green-400 bg-green-500/10';
-      case 'freemium': return 'border-yellow-500 text-yellow-400 bg-yellow-500/10';
-      case 'paid': return 'border-red-500 text-red-400 bg-red-500/10';
-      default: return 'border-text-description text-text-description bg-text-description/10';
-    }
-  };
 
-  const getPricingText = (pricing: string) => {
-    switch (pricing) {
-      case 'free': return 'مجاني';
-      case 'freemium': return 'مجاني جزئياً';
-      case 'paid': return 'مدفوع';
-      default: return 'غير محدد';
-    }
-  };
 
   if (error) {
     return (
       <div className="text-center py-12">
-        <div className="text-red-400 mb-4">❌ {error}</div>
+        <div className="text-orange-400 mb-4">❌ {error}</div>
         <button
           onClick={() => {
             setError(null);
@@ -148,87 +132,45 @@ export default function LazyAIToolsGrid({
       {/* شبكة الأدوات */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {tools.map((tool) => (
-          <Link
+          <div
             key={tool.id}
-            href={`/ai-tools/${tool.slug}`}
-            className="block bg-dark-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 group cursor-pointer"
+            className="bg-white rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all duration-300 group"
           >
             {/* شعار الأداة */}
-            <div className="relative h-48 bg-gradient-to-br from-primary/10 to-blue-600/10">
-              {tool.logo_url ? (
-                <Image
-                  src={tool.logo_url}
-                  alt={tool.name}
-                  fill
-                  style={{ objectFit: "contain" }}
-                  className="p-4 group-hover:scale-105 transition-transform duration-300"
+            <div className="relative h-48 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+              <div className="relative w-20 h-20">
+                <SVGIcon
+                  src={tool.logo_url || "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg"}
+                  alt={`شعار ${tool.name}`}
+                  width={80}
+                  height={80}
+                  className="transition-transform duration-300 group-hover:scale-110 object-contain"
+                  fallbackIcon="🤖"
                 />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">
-                      {tool.name.charAt(0)}
-                    </span>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
 
             {/* محتوى البطاقة */}
             <div className="p-6">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl font-bold text-black group-hover:text-primary transition-colors duration-300 line-clamp-1">
-                  {tool.name}
-                </h3>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPricingColor(tool.pricing)}`}>
-                  {getPricingText(tool.pricing)}
-                </span>
-              </div>
+              {/* اسم الأداة */}
+              <h3 className="text-xl font-bold text-black mb-3 line-clamp-1 group-hover:text-blue-600 transition-colors duration-300">
+                {tool.name}
+              </h3>
 
-              <p className="text-dark-text-secondary mb-4 line-clamp-2">
+              {/* وصف الأداة */}
+              <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
                 {tool.description}
               </p>
 
-              {/* الفئة والتقييم */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="bg-primary/20 text-primary px-2 py-1 rounded text-sm">
-                  {tool.category}
-                </span>
-                {tool.rating && (
-                  <div className="flex items-center">
-                    <span className="text-yellow-400 mr-1">⭐</span>
-                    <span className="text-sm text-gray-300">{tool.rating}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* المميزات */}
-              {Array.isArray(tool.features) && tool.features.length > 0 && (
-                <div className="mb-4">
-                  <div className="flex flex-wrap gap-1">
-                    {tool.features.slice(0, 3).map((feature, index) => (
-                      <span
-                        key={index}
-                        className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                    {tool.features.length > 3 && (
-                      <span className="text-gray-500 text-xs">
-                        +{tool.features.length - 3} المزيد
-                      </span>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* مؤشر للنقر */}
-              <div className="text-center text-primary text-sm font-medium mt-2">
-                انقر لعرض التفاصيل ←
-              </div>
+              {/* زر عرض التفاصيل */}
+              <Link
+                href={`/ai-tools/${tool.slug}`}
+                className="w-full bg-blue-600 text-white text-center py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium block"
+              >
+                عرض التفاصيل
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
 

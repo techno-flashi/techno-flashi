@@ -44,9 +44,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // وظيفة تسجيل الدخول - معرفة مرة واحدة هنا فقط
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-    router.push('/admin');
+    console.log('🔐 AuthContext: محاولة تسجيل الدخول...', { email });
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      console.error('❌ AuthContext: خطأ في تسجيل الدخول:', error);
+      throw error;
+    }
+
+    console.log('✅ AuthContext: تم تسجيل الدخول بنجاح', { user: data.user?.email });
+
+    // انتظار قليل للتأكد من تحديث الحالة
+    setTimeout(() => {
+      router.push('/admin');
+    }, 100);
   };
 
   // وظيفة تسجيل الخروج

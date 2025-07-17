@@ -165,17 +165,17 @@ export function CodeEditor({ onCodeAdded, className = "" }: CodeEditorProps) {
               onChange={(e) => setCode(e.target.value)}
               placeholder="اكتب الكود هنا..."
               rows={12}
-              className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary font-mono text-sm leading-relaxed"
+              className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm leading-relaxed"
               style={{ tabSize: 2 }}
             />
           ) : (
-            <div className="bg-dark-background rounded-md border border-gray-600 overflow-hidden">
-              <div className="bg-gray-800 px-4 py-2 flex justify-between items-center">
+            <div className="bg-gray-50 rounded-md border border-gray-300 overflow-hidden">
+              <div className="bg-gray-100 px-4 py-2 flex justify-between items-center">
                 <span className={`text-sm font-medium ${getLanguageColor(language)}`}>
                   {PROGRAMMING_LANGUAGES.find(l => l.value === language)?.label || language}
                 </span>
                 {title && (
-                  <span className="text-sm text-dark-text-secondary">{title}</span>
+                  <span className="text-sm text-gray-600">{title}</span>
                 )}
               </div>
               <pre className="p-4 overflow-x-auto max-h-64">

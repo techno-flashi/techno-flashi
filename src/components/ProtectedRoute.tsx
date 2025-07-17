@@ -16,10 +16,10 @@ export function ProtectedRoute({ children }: { children: ReactNode }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" suppressHydrationWarning>
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-          <p className="text-dark-text-secondary">جاري التحقق من صلاحيات الوصول...</p>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mb-4"></div>
+          <p style={{ color: '#000000' }}>جاري التحقق من صلاحيات الوصول...</p>
         </div>
       </div>
     );

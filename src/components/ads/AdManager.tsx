@@ -79,7 +79,11 @@ export default function AdManager({
           .limit(maxAds);
 
         if (error) {
-          console.error('Error fetching ads:', error);
+          // تجاهل الأخطاء في بيئة التطوير
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Ads fetch failed (development mode)');
+          }
+          setAds([]);
           return;
         }
 
@@ -104,7 +108,11 @@ export default function AdManager({
 
         setAds(filteredAds);
       } catch (error) {
-        console.error('Error in fetchAds:', error);
+        // تجاهل الأخطاء في بيئة التطوير
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('AdManager error (development mode)');
+        }
+        setAds([]);
       } finally {
         setLoading(false);
       }

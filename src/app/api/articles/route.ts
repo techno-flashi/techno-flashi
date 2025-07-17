@@ -16,7 +16,19 @@ export async function GET(request: NextRequest) {
     
     let query = supabase
       .from('articles')
-      .select('*')
+      .select(`
+        id,
+        title,
+        slug,
+        excerpt,
+        featured_image_url,
+        published_at,
+        created_at,
+        reading_time,
+        author,
+        tags,
+        featured
+      `)
       .eq('status', status)
       .order('published_at', { ascending: false });
 
@@ -26,6 +38,9 @@ export async function GET(request: NextRequest) {
 
     if (limit) {
       query = query.limit(parseInt(limit));
+    } else {
+      // تحديد حد افتراضي لتحسين الأداء
+      query = query.limit(20);
     }
 
     const { data, error } = await query;
@@ -44,7 +59,7 @@ export async function GET(request: NextRequest) {
     const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
 
     return NextResponse.json({
-      articles: fixedData as Article[],
+      articles: fixedData as any[],
       count: fixedData?.length || 0
     });
 

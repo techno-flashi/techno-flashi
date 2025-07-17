@@ -22,7 +22,7 @@ export default function TTFBOptimizer() {
       externalDomains.forEach(domain => {
         const link = document.createElement('link');
         link.rel = 'dns-prefetch';
-        link.href = `//${domain}`;
+        link.href = `https://${domain}`;
         document.head.appendChild(link);
       });
 
@@ -48,9 +48,9 @@ export default function TTFBOptimizer() {
       // قائمة بالموارد الحرجة للتحميل المسبق
       const criticalResources = [
         {
-          href: '/favicon.ico',
+          href: '/favicon.svg',
           as: 'image',
-          type: 'image/x-icon'
+          type: 'image/svg+xml'
         },
         {
           href: 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap',
@@ -125,13 +125,16 @@ export default function TTFBOptimizer() {
     const optimizeServerPush = () => {
       // إضافة hints للخادم حول الموارد المطلوبة
       const criticalPaths = [
-        '/_next/static/css/',
-        '/_next/static/js/',
         '/api/articles',
         '/api/ai-tools'
       ];
 
       criticalPaths.forEach(path => {
+        // تجنب prefetch للملفات الثابتة في development
+        if (process.env.NODE_ENV === 'development' && path.includes('_next')) {
+          return;
+        }
+
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = path;

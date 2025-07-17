@@ -7,8 +7,8 @@ import { cachedQuery } from './cache';
 // ===== مساعدات المقالات =====
 
 // جلب جميع المقالات مع التخزين المؤقت - محسن لتوفير Egress
-export async function getArticles() {
-  return cachedQuery('articles-all', async () => {
+export async function getArticles(limit: number = 20) {
+  return cachedQuery(`articles-all-${limit}`, async () => {
     const { data, error } = await supabase
       .from('articles')
       .select(`
@@ -19,17 +19,46 @@ export async function getArticles() {
         featured_image_url,
         published_at,
         created_at,
-        status
+        reading_time,
+        author
       `)
       .eq('status', 'published')
-      .order('created_at', { ascending: false });
+      .order('published_at', { ascending: false })
+      .limit(limit);
 
     if (error) {
       throw new Error(`خطأ في جلب المقالات: ${error.message}`);
     }
 
     return data as Article[];
-  }, 1800); // 30 دقيقة بدلاً من 5 دقائق
+  }, 3600); // ساعة واحدة للتخزين المؤقت
+}
+
+// جلب المقالات الأحدث للصفحة الرئيسية - محسن للأداء
+export async function getLatestArticlesOptimized(limit: number = 8) {
+  return cachedQuery(`latest-articles-${limit}`, async () => {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        id,
+        title,
+        slug,
+        excerpt,
+        featured_image_url,
+        published_at,
+        reading_time,
+        author
+      `)
+      .eq('status', 'published')
+      .order('published_at', { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      throw new Error(`خطأ في جلب المقالات الأحدث: ${error.message}`);
+    }
+
+    return data as Article[];
+  }, 1800); // 30 دقيقة للصفحة الرئيسية
 }
 
 // جلب مقال واحد بالـ ID

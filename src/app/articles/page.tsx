@@ -12,48 +12,31 @@ async function getAllArticles() {
   try {
     console.log('🔄 Fetching all published articles...');
 
-    // محاولة استخدام SSG function أولاً
-    try {
-      console.log('🔄 Attempting SSG fetch...');
-      const articles = await getAllArticlesForSSG();
-
-      if (articles && articles.length > 0) {
-        console.log(`✅ Found ${articles.length} articles from SSG`);
-        console.log('📄 Sample SSG articles:', articles.slice(0, 3).map(a => ({ title: a.title, slug: a.slug })));
-        const fixedData = articles.map(article => {
-          const fixed = fixObjectEncoding(article) as any;
-          return {
-            ...fixed,
-            featured_image_url: fixed.featured_image || fixed.featured_image_url || '',
-            published_at: fixed.published_at || fixed.created_at
-          };
-        });
-        return fixedData as Article[];
-      } else {
-        console.log('⚠️ No articles found from SSG (returned empty array), trying runtime fetch...');
-      }
-    } catch (ssgError) {
-      console.error('❌ SSG fetch failed, falling back to runtime:', {
-        message: (ssgError as Error).message,
-        name: (ssgError as Error).name,
-        stack: (ssgError as Error).stack
-      });
-    }
-
-    // fallback للـ runtime إذا فشل SSG
-    console.log('🔄 Using runtime fetch...');
+    // استخدام استعلام محسن مباشرة بدلاً من الجلب المزدوج
     const { data, error } = await supabase
       .from('articles')
-      .select('*')
+      .select(`
+        id,
+        title,
+        slug,
+        excerpt,
+        featured_image_url,
+        published_at,
+        created_at,
+        reading_time,
+        author,
+        tags
+      `)
       .eq('status', 'published')
-      .order('published_at', { ascending: false });
+      .order('published_at', { ascending: false })
+      .limit(50); // تحديد عدد المقالات لتحسين الأداء
 
     if (error) {
-      console.error('❌ Error fetching articles from runtime:', error);
+      console.error('❌ Error fetching articles:', error);
       return [];
     }
 
-    console.log(`✅ Runtime articles fetched: ${data?.length || 0}`);
+    console.log(`✅ Articles fetched: ${data?.length || 0}`);
 
     if (data && data.length > 0) {
       console.log('📄 Sample article titles:', data.slice(0, 3).map(a => a.title));
@@ -105,53 +88,84 @@ export default async function ArticlesPage() {
   });
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto">
-        {/* رأس الصفحة */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold text-white mb-6">
-            جميع المقالات
-          </h1>
-          <p className="text-xl text-dark-text-secondary max-w-2xl mx-auto">
-            اكتشف مجموعة شاملة من المقالات التقنية المتخصصة في الذكاء الاصطناعي والبرمجة
-          </p>
-          {/* إضافة عداد للتشخيص */}
-          <div className="mt-4 text-sm text-text-description">
-            عدد المقالات المتاحة: {articles.length}
-          </div>
+    <div className="min-h-screen">
+      {/* Hero Section للمقالات */}
+      <section className="relative py-24 px-4 overflow-hidden">
+        {/* خلفية متدرجة */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-purple-600/5 to-pink-600/5"></div>
         </div>
 
-        {/* إحصائيات سريعة */}
-        <div className="bg-dark-card rounded-xl p-6 mb-12 border border-gray-800">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-4 space-x-reverse mb-4 md:mb-0">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-white">
-                  {articles.length} مقال متاح
-                </h3>
-                <p className="text-dark-text-secondary text-sm">
-                  محتوى تقني عالي الجودة
-                </p>
-              </div>
+        {/* عناصر هندسية */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="container mx-auto relative z-10">
+          <div className="text-center mb-16">
+            {/* شارة */}
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+              📚 مكتبة المقالات
             </div>
-            
-            {/* فلاتر (يمكن تطويرها لاحقاً) */}
-            <div className="flex items-center space-x-4 space-x-reverse">
-              <select className="bg-dark-background border border-gray-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:border-primary transition-colors duration-300">
-                <option value="latest">الأحدث</option>
-                <option value="oldest">الأقدم</option>
-                <option value="popular">الأكثر شعبية</option>
-              </select>
-              <button className="bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
-                </svg>
-              </button>
+
+            {/* العنوان الرئيسي */}
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              جميع
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> المقالات</span>
+            </h1>
+
+            {/* الوصف */}
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+              اكتشف مجموعة شاملة من المقالات التقنية المتخصصة في الذكاء الاصطناعي، البرمجة، والتقنيات الحديثة
+            </p>
+
+            {/* إحصائيات */}
+            <div className="inline-flex items-center px-6 py-3 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg">
+              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mr-2">
+                {articles.length}
+              </span>
+              <span className="text-gray-700 font-medium">مقال متاح</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4">
+        {/* شريط الفلاتر والبحث */}
+        <div className="mb-12">
+          <div className="modern-card p-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              {/* معلومات المجموعة */}
+              <div className="flex items-center space-x-4 space-x-reverse">
+                <div className="w-12 h-12 modern-gradient-blue rounded-xl flex items-center justify-center shadow-colored">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {articles.length} مقال متاح
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    محتوى تقني عالي الجودة ومحدث
+                  </p>
+                </div>
+              </div>
+
+              {/* أدوات الفلترة */}
+              <div className="flex items-center space-x-4 space-x-reverse">
+                <select className="glass-effect border border-gray-200 text-gray-700 px-4 py-2 rounded-xl focus-modern smooth-transition">
+                  <option value="latest">الأحدث</option>
+                  <option value="oldest">الأقدم</option>
+                  <option value="popular">الأكثر شعبية</option>
+                </select>
+                <button className="modern-button text-white px-4 py-2 hover-lift focus-modern">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -179,18 +193,18 @@ export default async function ArticlesPage() {
 
         ) : (
           <div className="text-center py-20">
-            <div className="w-32 h-32 bg-dark-card rounded-full flex items-center justify-center mx-auto mb-8">
-              <svg className="w-16 h-16 text-dark-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-32 h-32 glass-effect rounded-full flex items-center justify-center mx-auto mb-8 shadow-modern">
+              <svg className="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-semibold text-white mb-4">لا توجد مقالات بعد</h3>
-            <p className="text-dark-text-secondary text-lg mb-8">
-              سنقوم بنشر المقالات قريباً، ترقبوا المحتوى الجديد!
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">لا توجد مقالات بعد</h3>
+            <p className="text-gray-600 text-lg mb-8 max-w-md mx-auto">
+              سنقوم بنشر المقالات قريباً، ترقبوا المحتوى الجديد والمفيد!
             </p>
             <a
               href="/"
-              className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center"
+              className="modern-button text-white px-8 py-3 hover-lift focus-modern inline-flex items-center"
             >
               العودة للرئيسية
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,30 +214,34 @@ export default async function ArticlesPage() {
           </div>
         )}
 
-        {/* روابط سريعة للصفحات */}
+        {/* قسم الدعوة للعمل */}
         {articles.length > 0 && (
-          <div className="mt-16 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-white mb-4 text-center">
-              هل أعجبك المحتوى؟
-            </h3>
-            <p className="text-dark-text-secondary text-center mb-6">
-              تعرف على المزيد حول TechnoFlash أو تواصل معنا
-            </p>
+          <div className="mt-16">
+            <div className="modern-card p-8 text-center">
+              <div className="max-w-2xl mx-auto">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  هل أعجبك المحتوى؟
+                </h3>
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                  تعرف على المزيد حول TechnoFlash، مهمتنا، وكيف يمكننا مساعدتك في رحلتك التقنية
+                </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/page/about-us"
-                className="border border-gray-600 hover:border-primary text-white hover:text-primary px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-center"
-              >
-                من نحن
-              </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a
+                    href="/page/about-us"
+                    className="glass-effect border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 px-6 py-3 rounded-xl font-medium smooth-transition text-center hover-lift"
+                  >
+                    من نحن
+                  </a>
 
-              <a
-                href="/page/contact-us"
-                className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 text-center"
-              >
-                تواصل معنا
-              </a>
+                  <a
+                    href="/page/contact-us"
+                    className="modern-button text-white px-6 py-3 hover-lift focus-modern text-center"
+                  >
+                    تواصل معنا
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         )}

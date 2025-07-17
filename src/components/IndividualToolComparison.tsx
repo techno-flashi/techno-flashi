@@ -82,11 +82,11 @@ export function IndividualToolComparison({
   }
 
   return (
-    <div className={`bg-dark-card rounded-xl border border-gray-800 overflow-hidden ${className}`}>
+    <div className={`bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden ${className}`}>
         {/* رأس المقارنة */}
-        <div className="p-6 border-b border-gray-800">
-          <h3 className="text-2xl font-bold text-white mb-2">مقارنة الأدوات</h3>
-          <p className="text-dark-text-secondary">
+        <div className="p-6 border-b border-gray-200">
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">مقارنة الأدوات</h3>
+          <p className="text-gray-600">
             مقارنة تفصيلية بين {currentTool.name} والأدوات المحددة
           </p>
         </div>
@@ -114,22 +114,22 @@ export function IndividualToolComparison({
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                           <span className="text-white font-bold text-xl">
                             {tool.name.charAt(0)}
                           </span>
                         </div>
                       )}
                     </div>
-                    
+
                     {/* اسم الأداة */}
                     <h4 className={`font-bold text-center ${
-                      index === 0 ? 'text-primary' : 'text-white'
+                      index === 0 ? 'text-blue-600' : 'text-gray-900'
                     }`}>
                       {tool.name}
                     </h4>
                     {index === 0 && (
-                      <span className="text-xs text-primary bg-primary/20 px-2 py-1 rounded-full mt-1">
+                      <span className="text-xs text-blue-700 bg-blue-100 px-2 py-1 rounded-full mt-1">
                         الأداة الحالية
                       </span>
                     )}
@@ -142,21 +142,21 @@ export function IndividualToolComparison({
           {/* محتوى الجدول */}
           <tbody>
             {/* التقييم */}
-            <tr className="border-b border-gray-800">
-              <td className="p-4 text-dark-text-secondary font-medium">التقييم</td>
+            <tr className="border-b border-gray-200">
+              <td className="p-4 text-gray-600 font-medium">التقييم</td>
               {allTools.map((tool) => (
                 <td key={`rating-${tool.id}`} className="p-4 text-center">
                   <div className="flex items-center justify-center">
-                    <span className="text-yellow-400 mr-1">★</span>
-                    <span className="text-white font-semibold">{tool.rating}</span>
+                    <span className="text-yellow-500 mr-1">★</span>
+                    <span className="text-gray-900 font-semibold">{tool.rating}</span>
                   </div>
                 </td>
               ))}
             </tr>
 
             {/* التسعير */}
-            <tr className="border-b border-gray-800">
-              <td className="p-4 text-dark-text-secondary font-medium">التسعير</td>
+            <tr className="border-b border-gray-200">
+              <td className="p-4 text-gray-600 font-medium">التسعير</td>
               {allTools.map((tool) => (
                 <td key={`pricing-${tool.id}`} className="p-4 text-center">
                   <span className={`font-semibold ${getPricingColor(tool.pricing)}`}>
@@ -167,11 +167,11 @@ export function IndividualToolComparison({
             </tr>
 
             {/* الفئة */}
-            <tr className="border-b border-gray-800">
-              <td className="p-4 text-dark-text-secondary font-medium">الفئة</td>
+            <tr className="border-b border-gray-200">
+              <td className="p-4 text-gray-600 font-medium">الفئة</td>
               {allTools.map((tool) => (
                 <td key={`category-${tool.id}`} className="p-4 text-center">
-                  <span className="text-white">{tool.category}</span>
+                  <span className="text-gray-900">{tool.category}</span>
                 </td>
               ))}
             </tr>
@@ -199,12 +199,12 @@ export function IndividualToolComparison({
                   <div className="space-y-1">
                     {tool.features && tool.features.length > 0 ? (
                       tool.features.slice(0, 3).map((feature, index) => (
-                        <div key={index} className="text-sm text-white bg-gray-700 rounded px-2 py-1">
+                        <div key={index} className="text-sm text-gray-900 bg-gray-100 rounded px-2 py-1">
                           {feature}
                         </div>
                       ))
                     ) : (
-                      <span className="text-dark-text-secondary text-sm">غير محدد</span>
+                      <span className="text-gray-600 text-sm">غير محدد</span>
                     )}
                   </div>
                 </td>
@@ -224,7 +224,7 @@ export function IndividualToolComparison({
                     ) : (
                       <AIToolLink
                         href={`/ai-tools/${tool.slug}`}
-                        className="block bg-primary hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 text-sm"
+                        className="block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 text-sm"
                       >
                         عرض التفاصيل
                       </AIToolLink>
@@ -246,12 +246,12 @@ export function IndividualToolComparison({
       </div>
 
       {/* ملاحظات المقارنة */}
-      <div className="p-6 border-t border-gray-800 bg-dark-background/50">
+      <div className="p-6 border-t border-gray-200 bg-gray-50">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* نصائح الاختيار */}
           <div>
-            <h4 className="font-semibold text-white mb-3">💡 نصائح للاختيار</h4>
-            <ul className="space-y-2 text-sm text-dark-text-secondary">
+            <h4 className="font-semibold text-gray-900 mb-3">💡 نصائح للاختيار</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
               <li>• قارن التسعير مع ميزانيتك المتاحة</li>
               <li>• تحقق من التقييمات وآراء المستخدمين</li>
               <li>• اختبر النسخة المجانية إن وجدت</li>
@@ -261,23 +261,23 @@ export function IndividualToolComparison({
 
           {/* روابط مفيدة */}
           <div>
-            <h4 className="font-semibold text-white mb-3">🔗 روابط مفيدة</h4>
+            <h4 className="font-semibold text-gray-900 mb-3">🔗 روابط مفيدة</h4>
             <div className="space-y-2">
               <Link
                 href="/ai-tools/compare"
-                className="block text-primary hover:text-blue-400 transition-colors text-sm"
+                className="block text-blue-600 hover:text-blue-700 transition-colors text-sm"
               >
                 → مقارنة شاملة لجميع الأدوات
               </Link>
               <Link
                 href="/ai-tools/categories"
-                className="block text-primary hover:text-blue-400 transition-colors text-sm"
+                className="block text-blue-600 hover:text-blue-700 transition-colors text-sm"
               >
                 → تصفح الأدوات حسب الفئة
               </Link>
               <Link
                 href="/ai-tools"
-                className="block text-primary hover:text-blue-400 transition-colors text-sm"
+                className="block text-blue-600 hover:text-blue-700 transition-colors text-sm"
               >
                 → عرض جميع الأدوات
               </Link>

@@ -73,7 +73,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
   };
 
   return (
-    <div className="bg-dark-card rounded-lg md:rounded-xl p-4 sm:p-5 md:p-6 mb-8 md:mb-12 border border-gray-800">
+    <div className="bg-white rounded-lg md:rounded-xl p-4 sm:p-5 md:p-6 mb-8 md:mb-12 border border-gray-200 shadow-sm">
       <div className="flex flex-col lg:flex-row gap-3 sm:gap-4">
         {/* شريط البحث */}
         <div className="flex-1">
@@ -83,7 +83,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
               placeholder="ابحث عن أداة معينة..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 pr-10 sm:pr-12 pl-8 sm:pl-10 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
+              className="w-full bg-white border border-gray-300 text-gray-900 placeholder-gray-500 px-3 sm:px-4 py-3 pr-10 sm:pr-12 pl-8 sm:pl-10 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 text-sm sm:text-base min-h-[44px]"
               aria-label="البحث في أدوات الذكاء الاصطناعي"
             />
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -94,7 +94,7 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-300 p-1 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors duration-300 p-1 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                 aria-label="مسح البحث"
                 type="button"
               >
@@ -110,14 +110,14 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           {/* فلتر الفئة */}
           <div className="flex flex-col">
-            <label htmlFor="category-filter" className="text-sm text-gray-300 mb-2 sr-only">
+            <label htmlFor="category-filter" className="text-sm text-gray-600 mb-2 sr-only">
               فلترة حسب الفئة
             </label>
             <select
               id="category-filter"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
+              className="bg-white border border-gray-300 text-gray-900 px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="فلترة حسب الفئة"
             >
               <option value="all">جميع الفئات</option>
@@ -129,14 +129,14 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
           
           {/* فلتر التسعير */}
           <div className="flex flex-col">
-            <label htmlFor="pricing-filter" className="text-sm text-text-secondary mb-2 sr-only">
+            <label htmlFor="pricing-filter" className="text-sm text-gray-600 mb-2 sr-only">
               فلترة حسب التسعير
             </label>
             <select
               id="pricing-filter"
               value={selectedPricing}
               onChange={(e) => setSelectedPricing(e.target.value)}
-              className="bg-dark-background border border-light-border text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
+              className="bg-white border border-gray-300 text-gray-900 px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="فلترة حسب التسعير"
             >
               <option value="all">جميع الأسعار</option>
@@ -148,14 +148,14 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
 
           {/* ترتيب */}
           <div className="flex flex-col">
-            <label htmlFor="sort-filter" className="text-sm text-gray-300 mb-2 sr-only">
+            <label htmlFor="sort-filter" className="text-sm text-gray-600 mb-2 sr-only">
               ترتيب النتائج
             </label>
             <select
               id="sort-filter"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
+              className="bg-white border border-gray-300 text-gray-900 px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="ترتيب النتائج"
             >
               <option value="latest">الأحدث</option>
@@ -179,17 +179,17 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
 
       {/* عرض النتائج */}
       {(searchTerm || selectedCategory !== 'all' || selectedPricing !== 'all') && (
-        <div className="mt-4 pt-4 border-t border-gray-700">
+        <div className="mt-4 pt-4 border-t border-gray-200">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-dark-text-secondary">
+            <span className="text-gray-600">
               {searchTerm && (
-                <span>البحث عن: <span className="text-primary">"{searchTerm}"</span></span>
+                <span>البحث عن: <span className="text-blue-600">"{searchTerm}"</span></span>
               )}
               {selectedCategory !== 'all' && (
-                <span className="mr-4">الفئة: <span className="text-primary">{selectedCategory}</span></span>
+                <span className="mr-4">الفئة: <span className="text-blue-600">{selectedCategory}</span></span>
               )}
               {selectedPricing !== 'all' && (
-                <span className="mr-4">التسعير: <span className="text-primary">{selectedPricing}</span></span>
+                <span className="mr-4">التسعير: <span className="text-blue-600">{selectedPricing}</span></span>
               )}
             </span>
           </div>

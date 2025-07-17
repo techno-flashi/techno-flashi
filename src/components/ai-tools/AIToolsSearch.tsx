@@ -91,23 +91,7 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
     setPage(0); // إعادة تعيين الصفحة
   }, [searchQuery, selectedCategory, tools]);
 
-  const getPricingColor = (pricing: string) => {
-    switch (pricing) {
-      case 'free': return 'border-green-500 text-green-400 bg-green-500/10';
-      case 'freemium': return 'border-yellow-500 text-yellow-400 bg-yellow-500/10';
-      case 'paid': return 'border-red-500 text-red-400 bg-red-500/10';
-      default: return 'border-text-description text-text-description bg-text-description/10';
-    }
-  };
 
-  const getPricingText = (pricing: string) => {
-    switch (pricing) {
-      case 'free': return 'مجاني';
-      case 'freemium': return 'مجاني جزئياً';
-      case 'paid': return 'مدفوع';
-      default: return 'غير محدد';
-    }
-  };
 
   // الأدوات المعروضة حالياً (مع التصفح)
   const displayedTools = filteredTools.slice(0, (page + 1) * pageSize);
@@ -123,10 +107,10 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
       <div className="mb-8">
         <div className="flex flex-col md:flex-row gap-4">
           {/* فلترة الفئات */}
-          <select 
+          <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="bg-dark-card border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            className="bg-white border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="all">جميع الفئات ({tools.length})</option>
             {categories.map(category => {
@@ -146,16 +130,16 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="البحث في الأدوات... (اسم الأداة، الوصف، الفئة)"
-              className="w-full bg-dark-card border border-gray-700 text-white px-4 py-3 pl-12 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full bg-white border border-gray-300 text-gray-900 placeholder-gray-500 px-4 py-3 pl-12 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
               🔍
             </div>
           </div>
         </div>
 
         {/* نتائج البحث */}
-        <div className="mt-4 flex items-center justify-between text-sm text-gray-400">
+        <div className="mt-4 flex items-center justify-between text-sm text-gray-600">
           <span>
             عرض {displayedTools.length} من {filteredTools.length} أداة
             {searchQuery && ` • البحث عن: "${searchQuery}"`}
@@ -167,7 +151,7 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
                 setSearchQuery('');
                 setSelectedCategory('all');
               }}
-              className="text-primary hover:text-blue-400 transition-colors"
+              className="text-blue-600 hover:text-blue-700 transition-colors"
             >
               مسح الفلاتر ✕
             </button>
@@ -180,77 +164,41 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
         {displayedTools.map((tool) => (
           <div
             key={tool.id}
-            className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 group"
+            className="bg-white rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all duration-300 group"
           >
             {/* شعار الأداة */}
-            <div className="relative h-48 bg-gradient-to-br from-primary/10 to-blue-600/10">
-              {tool.logo_url ? (
+            <div className="relative h-48 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+              <div className="relative w-20 h-20">
                 <SVGIcon
-                  src={tool.logo_url}
-                  alt={tool.name}
-                  fill
-                  style={{ objectFit: "contain" }}
-                  className="p-4 group-hover:scale-105 transition-transform duration-300"
+                  src={tool.logo_url || "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/robot.svg"}
+                  alt={`شعار ${tool.name}`}
+                  width={80}
+                  height={80}
+                  className="transition-transform duration-300 group-hover:scale-110 object-contain"
                   fallbackIcon="🤖"
                 />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">
-                      🤖
-                    </span>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
 
             {/* محتوى البطاقة */}
             <div className="p-6">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors duration-300 line-clamp-1">
-                  {tool.name}
-                </h3>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPricingColor(tool.pricing)}`}>
-                  {getPricingText(tool.pricing)}
-                </span>
-              </div>
+              {/* اسم الأداة */}
+              <h3 className="text-xl font-bold text-black mb-3 line-clamp-1 group-hover:text-blue-600 transition-colors duration-300">
+                {tool.name}
+              </h3>
 
-              <p className="text-dark-text-secondary mb-4 line-clamp-2">
+              {/* وصف الأداة */}
+              <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
                 {tool.description}
               </p>
 
-              {/* الفئة والتقييم */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="bg-primary/20 text-primary px-2 py-1 rounded text-sm">
-                  {tool.category}
-                </span>
-                {tool.rating && (
-                  <div className="flex items-center">
-                    <span className="text-yellow-400 mr-1">⭐</span>
-                    <span className="text-sm text-gray-300">{tool.rating}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* أزرار الإجراءات */}
-              <div className="flex space-x-2 space-x-reverse">
-                <Link
-                  href={`/ai-tools/${tool.slug}`}
-                  className="flex-1 bg-primary text-white text-center py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors duration-300 text-sm font-medium"
-                >
-                  عرض التفاصيل
-                </Link>
-                {tool.website_url && (
-                  <a
-                    href={tool.website_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-700 text-white py-2 px-3 rounded-lg hover:bg-gray-600 transition-colors duration-300 text-sm"
-                  >
-                    🔗
-                  </a>
-                )}
-              </div>
+              {/* زر عرض التفاصيل */}
+              <Link
+                href={`/ai-tools/${tool.slug}`}
+                className="w-full bg-blue-600 text-white text-center py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium block"
+              >
+                عرض التفاصيل
+              </Link>
             </div>
           </div>
         ))}
@@ -271,8 +219,8 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
       {/* رسالة عدم وجود نتائج */}
       {!loading && filteredTools.length === 0 && (
         <div className="text-center py-12">
-          <div className="text-text-description mb-4">🔍 لا توجد أدوات تطابق معايير البحث</div>
-          <p className="text-text-description mb-4">
+          <div className="text-gray-600 mb-4">🔍 لا توجد أدوات تطابق معايير البحث</div>
+          <p className="text-gray-600 mb-4">
             {searchQuery ? `لم نجد أدوات تحتوي على "${searchQuery}"` : 'لا توجد أدوات في هذه الفئة'}
           </p>
           <button
@@ -280,7 +228,7 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
               setSearchQuery('');
               setSelectedCategory('all');
             }}
-            className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
             عرض جميع الأدوات
           </button>

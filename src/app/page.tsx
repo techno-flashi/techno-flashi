@@ -1,6 +1,7 @@
 // هذه هي الصفحة الرئيسية للموقع
 
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
+import { getLatestArticlesOptimized } from "@/lib/database";
 import { FeaturedArticlesSection } from "@/components/FeaturedArticlesSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import AdBanner from "@/components/ads/AdBanner";
@@ -25,17 +26,8 @@ async function getLatestArticles() {
   try {
     console.log('🏠 Homepage: Fetching latest articles...');
 
-    const { data, error } = await supabase
-      .from('articles')
-      .select('*')
-      .eq('status', 'published') // فقط المقالات المنشورة
-      .order('published_at', { ascending: false })
-      .limit(8); // جلب آخر 8 مقالات (1 رئيسي + 4 صغيرة + 3 إضافية)
-
-    if (error) {
-      console.error('❌ Homepage: Error fetching articles:', error);
-      return [];
-    }
+    // استخدام الدالة المحسنة مع التخزين المؤقت
+    const data = await getLatestArticlesOptimized(8);
 
     console.log('✅ Homepage: Articles fetched:', data?.length || 0);
 
@@ -88,82 +80,191 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* القسم الرئيسي بالنظام الموحد */}
-      <section className="hero-section relative py-20 px-4 min-h-[60vh] flex items-center" style={{backgroundColor: '#FFFFFF'}}>
-        <div className="tech-container text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
+      {/* Hero Section المحدث بتصميم 2025 */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* خلفية متدرجة ديناميكية */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        </div>
+
+        {/* عناصر هندسية متحركة */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-indigo-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        {/* المحتوى الرئيسي */}
+        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+          <div className="space-y-8 animate-fade-in-up">
+            {/* شارة "جديد" */}
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-sm font-medium shadow-lg animate-bounce">
+              <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+              جديد: أدوات الذكاء الاصطناعي 2025
+            </div>
+
             {/* العنوان الرئيسي */}
-            <div className="min-h-[200px] md:min-h-[280px] flex flex-col justify-center">
-              <h1 className="heading-1 mb-6">
-                مستقبلك التقني يبدأ من هنا مع{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                  TechnoFlash
-                </span>
-              </h1>
-            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
+              <span className="block text-gray-900 mb-4">مستقبلك التقني</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-pulse">
+                يبدأ من هنا
+              </span>
+            </h1>
+
             {/* الوصف */}
-            <div className="min-h-[80px] flex items-center justify-center mb-8">
-              <p className="body-text max-w-2xl mx-auto">
-                اكتشف أحدث المقالات والتقنيات في عالم الذكاء الاصطناعي والبرمجة، واحصل على خدمات تقنية متخصصة لتطوير مشاريعك.
-              </p>
-            </div>
-            {/* زر الدعوة للعمل */}
-            <div className="min-h-[60px] flex justify-center items-center">
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              اكتشف أحدث التقنيات، أدوات الذكاء الاصطناعي المتطورة، ومقالات تقنية متخصصة
+              <br className="hidden md:block" />
+              لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
+            </p>
+
+            {/* الأزرار */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
               <a
                 href="/articles"
-                className="btn-primary tech-hover-lift tech-focus"
+                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
               >
-                استكشف المقالات
+                <span className="relative z-10">استكشف المقالات</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
+              <a
+                href="/services"
+                className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-900 rounded-2xl font-semibold text-lg border-2 border-gray-200 hover:border-blue-300 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
+              >
+                تصفح الخدمات
+                <span className="inline-block mr-2 transition-transform group-hover:translate-x-1">←</span>
+              </a>
+            </div>
+
+            {/* إحصائيات سريعة */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 max-w-4xl mx-auto">
+              <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">500+</div>
+                <div className="text-gray-600 font-medium">مقال تقني</div>
+              </div>
+              <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-2">50+</div>
+                <div className="text-gray-600 font-medium">أداة ذكية</div>
+              </div>
+              <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-600 mb-2">10K+</div>
+                <div className="text-gray-600 font-medium">قارئ نشط</div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* عناصر تزيينية */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-blue-500/5 rounded-full blur-3xl -z-10"></div>
+        {/* مؤشر التمرير */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
       </section>
 
-      {/* قسم المميزات بالنظام الموحد */}
-      <section className="py-16 px-4" style={{backgroundColor: '#FAFAFA'}}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="heading-2 mb-4">لماذا TechnoFlash؟</h2>
-            <p className="body-text max-w-2xl mx-auto text-secondary">
-              نقدم لك كل ما تحتاجه لتطوير مهاراتك التقنية ومشاريعك بأحدث المعايير العالمية
+      {/* قسم المميزات المحدث بتصميم 2025 */}
+      <section className="py-24 px-4 bg-white relative overflow-hidden">
+        {/* خلفية هندسية */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600 to-purple-600"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+              ✨ مميزات استثنائية
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              لماذا تختار
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> TechnoFlash</span>؟
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              نقدم لك تجربة تقنية متكاملة تجمع بين المحتوى عالي الجودة والأدوات المتطورة والخدمات المتخصصة
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="tech-card-hover text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {/* المحتوى التقني */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">محتوى تقني متميز</h3>
+                <p className="text-gray-600 text-center leading-relaxed mb-6">
+                  مقالات وأدلة شاملة تغطي أحدث التطورات في عالم التكنولوجيا والبرمجة والذكاء الاصطناعي
+                </p>
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                    500+ مقال
+                  </span>
+                </div>
               </div>
-              <h3 className="heading-3 mb-3">المحتوى التقني</h3>
-              <p className="text-description">محتوى تقني عالي الجودة يغطي أحدث التطورات في عالم التكنولوجيا والذكاء الاصطناعي</p>
             </div>
 
-            <div className="tech-card-hover text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
+            {/* الذكاء الاصطناعي */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">أدوات ذكية متطورة</h3>
+                <p className="text-gray-600 text-center leading-relaxed mb-6">
+                  مجموعة شاملة من أدوات الذكاء الاصطناعي المتقدمة لتسهيل عملك وزيادة إنتاجيتك
+                </p>
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">
+                    50+ أداة
+                  </span>
+                </div>
               </div>
-              <h3 className="heading-3 mb-3">الذكاء الاصطناعي</h3>
-              <p className="text-description">دليل شامل لأحدث تقنيات الذكاء الاصطناعي والأدوات المتطورة في السوق</p>
             </div>
 
-            <div className="tech-card-hover text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
+            {/* الحلول التقنية */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-orange-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                <div className="w-20 h-20 bg-gradient-to-r from-pink-600 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">خدمات متخصصة</h3>
+                <p className="text-gray-600 text-center leading-relaxed mb-6">
+                  حلول تقنية مخصصة وخدمات تطوير واستشارات متخصصة لتحقيق أهدافك التقنية
+                </p>
+                <div className="flex justify-center">
+                  <span className="inline-flex items-center px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
+                    خدمات شاملة
+                  </span>
+                </div>
               </div>
-              <h3 className="heading-3 mb-3">الحلول التقنية</h3>
-              <p className="text-description">خدمات تطوير وتصميم واستشارات تقنية متخصصة لمساعدتك في تحقيق أهدافك</p>
+            </div>
+          </div>
+
+          {/* إحصائيات إضافية */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">10K+</div>
+              <div className="text-gray-600">قارئ نشط</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-2">95%</div>
+              <div className="text-gray-600">رضا العملاء</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-orange-600 mb-2">24/7</div>
+              <div className="text-gray-600">دعم فني</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-blue-600 mb-2">100+</div>
+              <div className="text-gray-600">مشروع مكتمل</div>
             </div>
           </div>
         </div>

@@ -113,11 +113,11 @@ export default async function AIToolsComparePage() {
           <AIToolComparison tools={tools} className="mb-12" />
         ) : (
           <div className="text-center py-20">
-            <div className="w-32 h-32 bg-dark-card rounded-full flex items-center justify-center mx-auto mb-8">
+            <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8">
               <span className="text-6xl">⚖️</span>
             </div>
-            <h3 className="text-2xl font-semibold text-white mb-4">لا توجد أدوات كافية للمقارنة</h3>
-            <p className="text-dark-text-secondary text-lg mb-8">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">لا توجد أدوات كافية للمقارنة</h3>
+            <p className="text-gray-600 text-lg mb-8">
               نحتاج إلى أداتين على الأقل لإجراء المقارنة. سنقوم بإضافة المزيد من الأدوات قريباً!
             </p>
           </div>

@@ -37,26 +37,20 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
     }
   };
 
-  const cardClasses = {
-    default: "bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-light-border",
-    featured: "bg-gradient-to-br from-primary/5 to-blue-50 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-primary/20",
-    compact: "bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100"
-  };
-
   return (
-    <div className={cardClasses[variant]}>
+    <div className="modern-card overflow-hidden hover-lift">
       {/* صورة الخدمة */}
       {service.image_url && (
-        <div className="relative h-48 w-full">
+        <div className="relative h-48 w-full rounded-t-2xl overflow-hidden">
           <Image
             src={service.image_url}
             alt={service.name}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
           {service.featured && (
-            <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-              مميز
+            <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+              ⭐ مميز
             </div>
           )}
         </div>
@@ -125,7 +119,7 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
           {service.cta_link ? (
             <Link
               href={service.cta_link}
-              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px] shadow-lg hover:shadow-primary/25"
+              className="modern-button text-white px-6 py-3 hover-lift focus-modern min-h-[44px] inline-block"
               aria-label={`${service.cta_text} - ${service.name}`}
             >
               {service.cta_text}
@@ -133,7 +127,7 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
           ) : (
             <Link
               href={`/services/${service.id}`}
-              className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px] shadow-lg hover:shadow-primary/25"
+              className="modern-button text-white px-6 py-3 hover-lift focus-modern min-h-[44px] inline-block"
               aria-label={`${service.cta_text} - ${service.name}`}
             >
               {service.cta_text}

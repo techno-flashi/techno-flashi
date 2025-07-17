@@ -160,12 +160,12 @@ export default function MarkdownEditor({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full min-h-[400px] p-4 bg-transparent text-white resize-none focus:outline-none font-mono"
+        className="w-full min-h-[400px] p-4 bg-white text-gray-900 resize-none focus:outline-none font-mono border-0 focus:ring-2 focus:ring-blue-500"
         style={{ minHeight: '400px' }}
       />
 
       {/* Footer */}
-      <div className="flex justify-between items-center p-3 border-t border-gray-700 bg-gray-800/50 text-sm text-gray-400">
+      <div className="flex justify-between items-center p-3 border-t border-gray-200 bg-gray-50 text-sm text-gray-600">
         <span>عدد الكلمات: {value.trim().split(/\s+/).filter(word => word.length > 0).length}</span>
         <span>عدد الأحرف: {value.length}</span>
       </div>

@@ -7,6 +7,8 @@ import { Inter } from "next/font/google";
 import { Tajawal } from "next/font/google";
 import { Cairo } from "next/font/google";
 import "./globals.css";
+import "../styles/article-content.css";
+import "../styles/admin-override.css";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner } from "@/components/ads/TechnoFlashBanner";
@@ -19,9 +21,9 @@ import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { AccessibilityHelper } from "@/components/AccessibilityHelper";
 import HydrationFix, { SuppressHydrationWarning } from "@/components/HydrationFix";
 import { DevHydrationSuppressor } from "@/components/HydrationSafeWrapper";
-import AdSenseScript, { InitializeAdSense } from "@/components/AdSenseScript";
+
 import { PerformanceOptimizer } from "@/components/performance/CriticalCSS";
-import { SecuritySuite } from "@/components/security/CSPHeaders";
+
 import { ResourceOptimizationSuite } from "@/components/performance/ResourceOptimizer";
 import { UnusedCodeOptimizer } from "@/components/performance/UnusedCodeRemover";
 import { TTFBOptimizationSuite } from "@/components/performance/TTFBOptimizer";
@@ -110,7 +112,10 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/x-icon' }
+    ],
     shortcut: '/favicon.svg',
     apple: '/icon-192x192.svg',
   },
@@ -136,6 +141,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://zgktrwpladrkhhemhnni.supabase.co" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
+        {/* Favicon links */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.svg" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.svg" />
 
         {/* Critical CSS for above-the-fold content and CLS prevention */}
         <style dangerouslySetInnerHTML={{
@@ -281,8 +291,7 @@ export default function RootLayout({
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
       <body className="bg-white text-text-primary font-sans">
         <GoogleAnalytics />
-        <AdSenseScript publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
-        <InitializeAdSense publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
+
         {/* <GoogleAnalyticsTracker /> */}
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
@@ -449,7 +458,7 @@ export default function RootLayout({
 
         {/* مكونات تحسين الأداء والأمان */}
         <PerformanceOptimizer />
-        <SecuritySuite />
+
         <ResourceOptimizationSuite />
         <UnusedCodeOptimizer />
         <TTFBOptimizationSuite />

@@ -303,7 +303,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
   }
 
   return (
-    <div className={`prose prose-invert max-w-none ${className}`}>
+    <div className={`prose max-w-none ${className}`}>
       {elements}
     </div>
   );

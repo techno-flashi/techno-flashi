@@ -212,10 +212,10 @@ export default async function AIToolsPage() {
           <div className="inline-flex items-center bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
             <span className="text-primary text-sm font-medium">🤖 دليل شامل</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
             أدوات الذكاء الاصطناعي
           </h1>
-          <p className="text-xl text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             اكتشف مجموعة شاملة من أفضل أدوات الذكاء الاصطناعي مع مراجعات متخصصة ومقارنات تفصيلية
             لمساعدتك في اختيار الأداة المناسبة لاحتياجاتك التقنية والإبداعية
           </p>
@@ -239,35 +239,35 @@ export default async function AIToolsPage() {
 
 
         {/* معلومات إضافية */}
-        <div className="mt-16 bg-dark-card rounded-xl p-8 border border-gray-800">
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">
+        <div className="mt-16 bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             لماذا تختار أدوات الذكاء الاصطناعي من TechnoFlash؟
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-primary text-2xl">🔍</span>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-blue-600 text-2xl">🔍</span>
               </div>
-              <h4 className="text-lg font-semibold text-white mb-2">مراجعات شاملة</h4>
-              <p className="text-dark-text-secondary text-sm">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">مراجعات شاملة</h4>
+              <p className="text-gray-600 text-sm">
                 نقدم مراجعات مفصلة وتقييمات موضوعية لكل أداة
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-green-400 text-2xl">⚡</span>
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-green-600 text-2xl">⚡</span>
               </div>
-              <h4 className="text-lg font-semibold text-white mb-2">تحديث مستمر</h4>
-              <p className="text-dark-text-secondary text-sm">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">تحديث مستمر</h4>
+              <p className="text-gray-600 text-sm">
                 نحدث قائمة الأدوات باستمرار لنضمن لك أحدث التقنيات
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-purple-400 text-2xl">🎯</span>
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-purple-600 text-2xl">🎯</span>
               </div>
-              <h4 className="text-lg font-semibold text-white mb-2">اختيار مدروس</h4>
-              <p className="text-dark-text-secondary text-sm">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">اختيار مدروس</h4>
+              <p className="text-gray-600 text-sm">
                 نختار الأدوات بعناية لضمان الجودة والفائدة العملية
               </p>
             </div>

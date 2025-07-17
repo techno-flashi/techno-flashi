@@ -223,25 +223,25 @@ export function AdPreview({ ad, deviceType = 'desktop', className = '' }: AdPrev
       </div>
 
       {/* منطقة المعاينة */}
-      <div 
-        className="relative border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm"
-        style={{ 
-          width: `${dimensions.width}px`, 
+      <div
+        className="relative border border-gray-700 rounded-lg overflow-hidden bg-dark-card shadow-sm"
+        style={{
+          width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
           maxWidth: '100%'
         }}
       >
         {isLoading && (
-          <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+          <div className="absolute inset-0 bg-dark-background flex items-center justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
           </div>
         )}
 
         {error && (
-          <div className="absolute inset-0 bg-red-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-red-900/20 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-red-500 text-2xl mb-2">⚠️</div>
-              <p className="text-red-600 text-sm">{error}</p>
+              <div className="text-red-400 text-2xl mb-2">⚠️</div>
+              <p className="text-red-400 text-sm">{error}</p>
             </div>
           </div>
         )}

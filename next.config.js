@@ -126,7 +126,40 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://ezojs.com https://www.ezojs.com https://go.ezojs.com https://gatekeeperconsent.com https://cmp.gatekeeperconsent.com https://the.gatekeeperconsent.com https://cdn.id5-sync.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://images.unsplash.com https://i.imgur.com https://placehold.co https://via.placeholder.com https://upload.wikimedia.org https://i.pinimg.com https://zgktrwpladrkhhemhnni.supabase.co https://ugrfqcfhoxgpxcwnnbxu.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com; connect-src 'self' https://zgktrwpladrkhhemhnni.supabase.co https://ugrfqcfhoxgpxcwnnbxu.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://ezojs.com https://www.ezojs.com https://go.ezojs.com https://g.ezoic.net https://ep1.adtrafficquality.google; frame-src 'self' https://www.youtube.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-inline' 'unsafe-eval'
+                https://www.googletagmanager.com
+                https://www.google-analytics.com
+                https://cdn.jsdelivr.net
+                https://unpkg.com;
+              style-src 'self' 'unsafe-inline'
+                https://fonts.googleapis.com
+                https://cdn.jsdelivr.net;
+              font-src 'self'
+                https://fonts.gstatic.com
+                https://cdn.jsdelivr.net;
+              img-src 'self' data: blob:
+                https://images.unsplash.com
+                https://i.imgur.com
+                https://placehold.co
+                https://via.placeholder.com
+                https://upload.wikimedia.org
+                https://i.pinimg.com
+                https://zgktrwpladrkhhemhnni.supabase.co
+                https://ugrfqcfhoxgpxcwnnbxu.supabase.co
+                https://www.google-analytics.com
+                https://www.googletagmanager.com
+                https://cdn.jsdelivr.net;
+              connect-src 'self' https:;
+              frame-src 'self'
+                https://www.youtube.com
+                https://www.google.com;
+              object-src 'none';
+              base-uri 'self';
+              form-action 'self';
+              upgrade-insecure-requests;
+            `.replace(/\s{2,}/g, ' ').trim()
           }
         ]
       },

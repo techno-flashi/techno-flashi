@@ -51,7 +51,11 @@ export default function TechnoFlashBanner({ position, className = '' }: TechnoFl
         .limit(1);
 
       if (error) {
-        console.error('Error fetching TechnoFlash banner:', error);
+        // تجاهل الأخطاء في بيئة التطوير لتجنب console spam
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('TechnoFlash banner fetch failed (development mode)');
+        }
+        setBannerData(null);
         return;
       }
 
@@ -82,7 +86,10 @@ export default function TechnoFlashBanner({ position, className = '' }: TechnoFl
       }
 
     } catch (error) {
-      console.error('Error in fetchBanner:', error);
+      // تجاهل الأخطاء في بيئة التطوير
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('TechnoFlash banner error (development mode)');
+      }
       setBannerData(null);
     } finally {
       setLoading(false);

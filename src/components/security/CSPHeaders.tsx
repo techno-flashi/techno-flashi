@@ -27,9 +27,12 @@ export default function CSPHeaders() {
             https://go.ezojs.com
             https://gatekeeperconsent.com
             https://privacy.gatekeeperconsent.com
+            https://cmp.gatekeeperconsent.com
+            https://the.gatekeeperconsent.com
             https://cdn.id5-sync.com
             https://cdn.jsdelivr.net
-            https://unpkg.com;
+            https://unpkg.com
+            https://ep2.adtrafficquality.google;
           style-src 'self' 'unsafe-inline' 
             https://fonts.googleapis.com
             https://cdn.jsdelivr.net;
@@ -59,7 +62,12 @@ export default function CSPHeaders() {
             https://go.ezojs.com
             https://g.ezoic.net
             https://privacy.gatekeeperconsent.com
-            https://ep1.adtrafficquality.google;
+            https://cmp.gatekeeperconsent.com
+            https://the.gatekeeperconsent.com
+            https://ep1.adtrafficquality.google
+            https://ep2.adtrafficquality.google
+            https://id5-sync.com
+            https://cdn.id5-sync.com;
           frame-src 'self'
             https://www.youtube.com
             https://www.google.com

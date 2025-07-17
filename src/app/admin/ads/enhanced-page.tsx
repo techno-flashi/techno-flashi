@@ -314,7 +314,7 @@ export default function EnhancedAdsPage() {
         </div>
 
         {/* فلاتر متقدمة */}
-        <div className="bg-dark-card rounded-xl p-6 border border-gray-700 mb-8">
+        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-8">
           <div className="flex flex-col lg:flex-row gap-6">
             {/* شريط البحث */}
             <div className="flex-1">
@@ -324,7 +324,7 @@ export default function EnhancedAdsPage() {
                   placeholder="البحث في الإعلانات..."
                   value={filters.search}
                   onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-                  className="w-full bg-dark-background border border-gray-600 text-white px-4 py-3 pr-12 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+                  className="w-full bg-white border border-gray-300 text-gray-900 placeholder-gray-500 px-4 py-3 pr-12 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
                 />
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                   <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

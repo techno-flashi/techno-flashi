@@ -32,14 +32,14 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
   };
 
   return (
-    <div className={`bg-dark-card rounded-xl p-8 border border-gray-800 ${className}`}>
-      <h2 className="text-2xl font-bold text-white mb-6">مقارنة الأدوات</h2>
+    <div className={`bg-white rounded-xl p-8 border border-gray-200 shadow-sm ${className}`}>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">مقارنة الأدوات</h2>
       
       <div className="overflow-x-auto">
         <table className="w-full min-w-[600px]">
           <thead>
-            <tr className="border-b border-gray-700">
-              <th className="text-right py-4 px-2 text-white font-semibold">المعيار</th>
+            <tr className="border-b border-gray-200">
+              <th className="text-right py-4 px-2 text-gray-900 font-semibold">المعيار</th>
               {tools.slice(0, 3).map((tool) => (
                 <th key={tool.id} className="text-center py-4 px-2 min-w-[200px]">
                   <AIToolLink href={`/ai-tools/${tool.slug}`} className="block group">
@@ -53,7 +53,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
                           className="rounded"
                         />
                       </div>
-                      <span className="text-white font-semibold group-hover:text-primary transition-colors">
+                      <span className="text-gray-900 font-semibold group-hover:text-blue-600 transition-colors">
                         {tool.name}
                       </span>
                     </div>
@@ -64,21 +64,21 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
           </thead>
           <tbody>
             {/* التقييم */}
-            <tr className="border-b border-gray-700/50">
-              <td className="py-4 px-2 text-dark-text-secondary font-medium">التقييم</td>
+            <tr className="border-b border-gray-200">
+              <td className="py-4 px-2 text-gray-600 font-medium">التقييم</td>
               {tools.slice(0, 3).map((tool) => (
                 <td key={tool.id} className="py-4 px-2 text-center">
                   <div className="flex items-center justify-center">
-                    <span className="text-yellow-400 ml-1">⭐</span>
-                    <span className="text-white font-semibold">{tool.rating}</span>
+                    <span className="text-yellow-500 ml-1">⭐</span>
+                    <span className="text-gray-900 font-semibold">{tool.rating}</span>
                   </div>
                 </td>
               ))}
             </tr>
 
             {/* التسعير */}
-            <tr className="border-b border-gray-700/50">
-              <td className="py-4 px-2 text-dark-text-secondary font-medium">التسعير</td>
+            <tr className="border-b border-gray-200">
+              <td className="py-4 px-2 text-gray-600 font-medium">التسعير</td>
               {tools.slice(0, 3).map((tool) => (
                 <td key={tool.id} className="py-4 px-2 text-center">
                   <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPricingColor(tool.pricing)}`}>
@@ -89,11 +89,11 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
             </tr>
 
             {/* الفئة */}
-            <tr className="border-b border-gray-700/50">
-              <td className="py-4 px-2 text-dark-text-secondary font-medium">الفئة</td>
+            <tr className="border-b border-gray-200">
+              <td className="py-4 px-2 text-gray-600 font-medium">الفئة</td>
               {tools.slice(0, 3).map((tool) => (
                 <td key={tool.id} className="py-4 px-2 text-center">
-                  <span className="text-primary bg-primary/20 px-2 py-1 rounded text-sm">
+                  <span className="text-blue-700 bg-blue-100 px-2 py-1 rounded text-sm">
                     {tool.category}
                   </span>
                 </td>
@@ -101,15 +101,15 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
             </tr>
 
             {/* المميزات الرئيسية */}
-            <tr className="border-b border-gray-700/50">
-              <td className="py-4 px-2 text-dark-text-secondary font-medium">المميزات الرئيسية</td>
+            <tr className="border-b border-gray-200">
+              <td className="py-4 px-2 text-gray-600 font-medium">المميزات الرئيسية</td>
               {tools.slice(0, 3).map((tool) => (
                 <td key={tool.id} className="py-4 px-2">
                   <div className="space-y-1">
                     {tool.features?.slice(0, 3).map((feature, index) => (
                       <div key={index} className="flex items-center justify-center">
-                        <span className="text-green-400 text-xs ml-1">✓</span>
-                        <span className="text-dark-text-secondary text-xs text-center">
+                        <span className="text-green-600 text-xs ml-1">✓</span>
+                        <span className="text-gray-700 text-xs text-center">
                           {feature}
                         </span>
                       </div>
@@ -137,13 +137,13 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
       </div>
 
       {/* أزرار العمل */}
-      <div className="mt-6 pt-6 border-t border-gray-700">
+      <div className="mt-6 pt-6 border-t border-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {tools.slice(0, 3).map((tool) => (
             <div key={tool.id} className="text-center">
               <AIToolLink
                 href={`/ai-tools/${tool.slug}`}
-                className="block bg-primary hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 mb-2"
+                className="block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300 mb-2"
               >
                 مراجعة مفصلة
               </AIToolLink>
@@ -151,7 +151,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
                 href={tool.website_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block border border-gray-600 hover:border-primary text-white hover:text-primary py-2 px-4 rounded-lg font-medium transition-colors duration-300"
+                className="block border border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 py-2 px-4 rounded-lg font-medium transition-colors duration-300"
               >
                 زيارة الموقع
               </Link>

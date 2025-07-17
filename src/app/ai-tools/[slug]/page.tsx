@@ -199,10 +199,10 @@ export default async function AIToolPage({ params }: Props) {
 
   const getPricingColor = (pricing: string) => {
     switch (pricing) {
-      case 'free': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'freemium': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'paid': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
-      default: return 'bg-text-description/20 text-text-description border-text-description/30';
+      case 'free': return 'bg-green-100 text-green-700 border-green-300';
+      case 'freemium': return 'bg-blue-100 text-blue-700 border-blue-300';
+      case 'paid': return 'bg-orange-100 text-orange-700 border-orange-300';
+      default: return 'bg-gray-100 text-gray-700 border-gray-300';
     }
   };
 
@@ -241,7 +241,7 @@ export default async function AIToolPage({ params }: Props) {
             />
 
             {/* رأس الأداة */}
-            <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
+            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                 {/* الشعار */}
                 <div className="relative w-24 h-24 flex-shrink-0">
@@ -258,7 +258,7 @@ export default async function AIToolPage({ params }: Props) {
                 {/* معلومات الأداة */}
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <h1 className="text-3xl md:text-4xl font-bold text-white">
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
                       {tool.name}
                     </h1>
                     <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getPricingColor(tool.pricing)}`}>
@@ -266,27 +266,27 @@ export default async function AIToolPage({ params }: Props) {
                     </span>
                   </div>
 
-                  <p className="text-dark-text-secondary text-lg mb-4 leading-relaxed">
+                  <p className="text-gray-700 text-lg mb-4 leading-relaxed">
                     {tool.description}
                   </p>
 
                   <div className="flex flex-wrap items-center gap-4">
                     {/* التقييم */}
                     <div className="flex items-center">
-                      <span className="text-yellow-400 text-lg">⭐</span>
-                      <span className="text-white font-medium mr-2">{tool.rating}</span>
-                      <span className="text-dark-text-secondary text-sm">
+                      <span className="text-yellow-500 text-lg">⭐</span>
+                      <span className="text-gray-900 font-medium mr-2">{tool.rating}</span>
+                      <span className="text-gray-600 text-sm">
                         ({tool.click_count || 0} مراجعة)
                       </span>
                     </div>
 
                     {/* الفئة */}
-                    <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                       {tool.category}
                     </span>
 
                     {/* تاريخ الإضافة */}
-                    <span className="text-dark-text-secondary text-sm">
+                    <span className="text-gray-600 text-sm">
                       أُضيفت في: {new Date(tool.created_at).toLocaleDateString('ar-EG', {
                         year: 'numeric',
                         month: 'long',
@@ -298,18 +298,24 @@ export default async function AIToolPage({ params }: Props) {
 
                 {/* أزرار العمل */}
                 <div className="flex flex-col gap-3">
-                  <Link
-                    href={tool.website_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-center"
-                  >
-                    زيارة الأداة
-                  </Link>
+                  {tool.website_url ? (
+                    <Link
+                      href={tool.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-center block"
+                    >
+                      زيارة الأداة
+                    </Link>
+                  ) : (
+                    <div className="bg-gray-400 text-white px-6 py-3 rounded-lg font-semibold text-center cursor-not-allowed opacity-75">
+                      رابط غير متوفر
+                    </div>
+                  )}
 
                   {/* مشاركة على وسائل التواصل */}
-                  <div className="border border-gray-600 rounded-lg p-4">
-                    <h4 className="text-white font-semibold mb-3 text-center">مشاركة الأداة</h4>
+                  <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                    <h4 className="text-gray-900 font-semibold mb-3 text-center">مشاركة الأداة</h4>
                     <SocialShare
                       url={getSharingUrl(`/ai-tools/${tool.slug}`)}
                       title={`${tool.name} - أداة ذكاء اصطناعي`}
@@ -332,10 +338,10 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* الوصف التفصيلي */}
             {tool.detailed_description && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">نظرة عامة شاملة</h2>
-                <div className="prose prose-invert max-w-none">
-                  <p className="text-dark-text-secondary leading-relaxed whitespace-pre-line">
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">نظرة عامة شاملة</h2>
+                <div className="prose max-w-none">
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
                     {tool.detailed_description}
                   </p>
                 </div>
@@ -344,13 +350,13 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* المميزات الرئيسية */}
             {Array.isArray(tool.features) && tool.features.length > 0 && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">المميزات الرئيسية</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">المميزات الرئيسية</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {tool.features.map((feature, index) => (
                     <div key={index} className="flex items-start">
-                      <span className="text-primary text-lg ml-3 mt-1">✓</span>
-                      <span className="text-dark-text-secondary">{feature}</span>
+                      <span className="text-green-600 text-lg ml-3 mt-1">✓</span>
+                      <span className="text-gray-700">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -359,16 +365,16 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* حالات الاستخدام */}
             {Array.isArray(tool.use_cases) && tool.use_cases.length > 0 && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">حالات الاستخدام العملية</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">حالات الاستخدام العملية</h2>
                 <div className="space-y-4">
                   {tool.use_cases.map((useCase, index) => (
-                    <div key={index} className="bg-dark-bg/50 rounded-lg p-4 border border-gray-700">
+                    <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                       <div className="flex items-start">
-                        <span className="bg-primary/20 text-primary px-2 py-1 rounded text-sm font-medium ml-3 mt-1">
+                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm font-medium ml-3 mt-1">
                           {index + 1}
                         </span>
-                        <p className="text-dark-text-secondary leading-relaxed">{useCase}</p>
+                        <p className="text-gray-700 leading-relaxed">{useCase}</p>
                       </div>
                     </div>
                   ))}
@@ -396,16 +402,16 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* دليل الاستخدام */}
             {Array.isArray(tool.tutorial_steps) && tool.tutorial_steps.length > 0 && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">دليل الاستخدام خطوة بخطوة</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">دليل الاستخدام خطوة بخطوة</h2>
                 <div className="space-y-6">
                   {tool.tutorial_steps.map((step, index) => (
                     <div key={index} className="flex items-start">
-                      <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm ml-4 mt-1 flex-shrink-0">
+                      <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm ml-4 mt-1 flex-shrink-0">
                         {index + 1}
                       </div>
                       <div className="flex-1">
-                        <p className="text-dark-text-secondary leading-relaxed">{step}</p>
+                        <p className="text-gray-700 leading-relaxed">{step}</p>
                       </div>
                     </div>
                   ))}
@@ -415,21 +421,21 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* المزايا والعيوب */}
             {((Array.isArray(tool.pros) && tool.pros.length > 0) || (Array.isArray(tool.cons) && tool.cons.length > 0)) && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">تقييم شامل</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">تقييم شامل</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* المزايا */}
                   {Array.isArray(tool.pros) && tool.pros.length > 0 && (
                     <div>
-                      <h3 className="text-xl font-semibold text-green-400 mb-4 flex items-center">
+                      <h3 className="text-xl font-semibold text-green-600 mb-4 flex items-center">
                         <span className="ml-2">👍</span>
                         المزايا
                       </h3>
                       <div className="space-y-3">
                         {tool.pros.map((pro, index) => (
                           <div key={index} className="flex items-start">
-                            <span className="text-green-400 text-lg ml-3 mt-1">+</span>
-                            <span className="text-dark-text-secondary">{pro}</span>
+                            <span className="text-green-600 text-lg ml-3 mt-1">+</span>
+                            <span className="text-gray-700">{pro}</span>
                           </div>
                         ))}
                       </div>
@@ -439,15 +445,15 @@ export default async function AIToolPage({ params }: Props) {
                   {/* العيوب */}
                   {Array.isArray(tool.cons) && tool.cons.length > 0 && (
                     <div>
-                      <h3 className="text-xl font-semibold text-red-400 mb-4 flex items-center">
+                      <h3 className="text-xl font-semibold text-orange-600 mb-4 flex items-center">
                         <span className="ml-2">👎</span>
                         العيوب
                       </h3>
                       <div className="space-y-3">
                         {tool.cons.map((con, index) => (
                           <div key={index} className="flex items-start">
-                            <span className="text-red-400 text-lg ml-3 mt-1">-</span>
-                            <span className="text-dark-text-secondary">{con}</span>
+                            <span className="text-orange-600 text-lg ml-3 mt-1">-</span>
+                            <span className="text-gray-700">{con}</span>
                           </div>
                         ))}
                       </div>
@@ -459,14 +465,14 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* معلومات الأسعار */}
             {tool.pricing_details && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">خطط الأسعار</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">خطط الأسعار</h2>
 
                 {/* الخطة المجانية */}
                 {tool.pricing_details.free_plan && (
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-6 mb-6">
-                    <h3 className="text-xl font-semibold text-green-400 mb-3">الخطة المجانية</h3>
-                    <p className="text-dark-text-secondary">{tool.pricing_details.free_plan}</p>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+                    <h3 className="text-xl font-semibold text-green-700 mb-3">الخطة المجانية</h3>
+                    <p className="text-gray-700">{tool.pricing_details.free_plan}</p>
                   </div>
                 )}
 
@@ -474,14 +480,14 @@ export default async function AIToolPage({ params }: Props) {
                 {Array.isArray(tool.pricing_details?.paid_plans) && tool.pricing_details.paid_plans.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {tool.pricing_details.paid_plans.map((plan, index) => (
-                      <div key={index} className="bg-dark-bg/50 border border-gray-700 rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>
-                        <div className="text-2xl font-bold text-primary mb-4">{plan.price}</div>
+                      <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{plan.name}</h3>
+                        <div className="text-2xl font-bold text-blue-600 mb-4">{plan.price}</div>
                         <ul className="space-y-2">
                           {Array.isArray(plan.features) && plan.features.map((feature, featureIndex) => (
                             <li key={featureIndex} className="flex items-start">
-                              <span className="text-primary text-sm ml-2 mt-1">✓</span>
-                              <span className="text-dark-text-secondary text-sm">{feature}</span>
+                              <span className="text-green-600 text-sm ml-2 mt-1">✓</span>
+                              <span className="text-gray-700 text-sm">{feature}</span>
                             </li>
                           ))}
                         </ul>
@@ -494,13 +500,13 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* الأسئلة الشائعة */}
             {Array.isArray(tool.faq) && tool.faq.length > 0 && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">الأسئلة الشائعة</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">الأسئلة الشائعة</h2>
                 <div className="space-y-6">
                   {tool.faq.map((item, index) => (
-                    <div key={index} className="border-b border-gray-700 pb-6 last:border-b-0 last:pb-0">
-                      <h3 className="text-lg font-semibold text-white mb-3">{item.question}</h3>
-                      <p className="text-dark-text-secondary leading-relaxed">{item.answer}</p>
+                    <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">{item.question}</h3>
+                      <p className="text-gray-700 leading-relaxed">{item.answer}</p>
                     </div>
                   ))}
                 </div>
@@ -509,11 +515,11 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* الكلمات المفتاحية */}
             {Array.isArray(tool.tags) && tool.tags.length > 0 && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">الكلمات المفتاحية</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">الكلمات المفتاحية</h2>
                 <div className="flex flex-wrap gap-3">
                   {tool.tags.map((tag, index) => (
-                    <span key={index} className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                    <span key={index} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
                       #{tag}
                     </span>
                   ))}
@@ -526,14 +532,14 @@ export default async function AIToolPage({ params }: Props) {
 
             {/* الأدوات ذات الصلة */}
             {relatedTools.length > 0 && (
-              <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-8">
-                <h2 className="text-2xl font-bold text-white mb-6">أدوات مشابهة</h2>
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">أدوات مشابهة</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {relatedTools.map((relatedTool) => (
                     <AIToolLink
                       key={relatedTool.id}
                       href={`/ai-tools/${relatedTool.slug}`}
-                      className="bg-dark-bg/50 border border-gray-700 rounded-lg p-4 hover:border-primary transition-all duration-300 group"
+                      className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all duration-300 group"
                     >
                       <div className="flex items-center mb-3">
                         <div className="relative w-12 h-12 ml-3">
@@ -547,16 +553,16 @@ export default async function AIToolPage({ params }: Props) {
                           />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-white group-hover:text-primary transition-colors">
+                          <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                             {relatedTool.name}
                           </h3>
                           <div className="flex items-center">
-                            <span className="text-yellow-400 text-sm">⭐</span>
-                            <span className="text-dark-text-secondary text-sm mr-1">{relatedTool.rating}</span>
+                            <span className="text-yellow-500 text-sm">⭐</span>
+                            <span className="text-gray-600 text-sm mr-1">{relatedTool.rating}</span>
                           </div>
                         </div>
                       </div>
-                      <p className="text-dark-text-secondary text-sm line-clamp-2">
+                      <p className="text-gray-600 text-sm line-clamp-2">
                         {relatedTool.description}
                       </p>
                     </AIToolLink>
@@ -584,31 +590,31 @@ export default async function AIToolPage({ params }: Props) {
           {/* الشريط الجانبي */}
           <aside className="lg:col-span-1">
             {/* معلومات سريعة */}
-            <div className="bg-dark-card rounded-xl p-6 border border-gray-800 mb-6 sticky top-24">
-              <h3 className="text-xl font-bold text-white mb-4">معلومات سريعة</h3>
+            <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6 sticky top-24 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">معلومات سريعة</h3>
               <div className="space-y-4">
                 <div>
-                  <span className="text-dark-text-secondary text-sm">الفئة:</span>
-                  <span className="text-white font-medium block">{tool.category}</span>
+                  <span className="text-gray-600 text-sm">الفئة:</span>
+                  <span className="text-gray-900 font-medium block">{tool.category}</span>
                 </div>
                 <div>
-                  <span className="text-dark-text-secondary text-sm">نوع التسعير:</span>
-                  <span className="text-white font-medium block">{getPricingText(tool.pricing)}</span>
+                  <span className="text-gray-600 text-sm">نوع التسعير:</span>
+                  <span className="text-gray-900 font-medium block">{getPricingText(tool.pricing)}</span>
                 </div>
                 <div>
-                  <span className="text-dark-text-secondary text-sm">التقييم:</span>
+                  <span className="text-gray-600 text-sm">التقييم:</span>
                   <div className="flex items-center">
-                    <span className="text-yellow-400">⭐</span>
-                    <span className="text-white font-medium mr-2">{tool.rating}</span>
+                    <span className="text-yellow-500">⭐</span>
+                    <span className="text-gray-900 font-medium mr-2">{tool.rating}</span>
                   </div>
                 </div>
                 <div>
-                  <span className="text-dark-text-secondary text-sm">عدد المراجعات:</span>
-                  <span className="text-white font-medium block">{tool.click_count || 0}</span>
+                  <span className="text-gray-600 text-sm">عدد المراجعات:</span>
+                  <span className="text-gray-900 font-medium block">{tool.click_count || 0}</span>
                 </div>
                 <div>
-                  <span className="text-dark-text-secondary text-sm">تاريخ الإضافة:</span>
-                  <span className="text-white font-medium block">
+                  <span className="text-gray-600 text-sm">تاريخ الإضافة:</span>
+                  <span className="text-gray-900 font-medium block">
                     {new Date(tool.created_at).toLocaleDateString('ar-EG', {
                       year: 'numeric',
                       month: 'short',

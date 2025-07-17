@@ -56,9 +56,9 @@ export default function AdminServicesPage() {
 
   const getStatusBadge = (status: string) => {
     const statusClasses = {
-      active: 'bg-green-100 text-green-800',
-      inactive: 'bg-red-100 text-red-800',
-      draft: 'bg-yellow-100 text-yellow-800'
+      active: 'bg-green-900 text-green-300',
+      inactive: 'bg-red-900 text-red-300',
+      draft: 'bg-yellow-900 text-yellow-300'
     };
 
     const statusText = {
@@ -68,7 +68,7 @@ export default function AdminServicesPage() {
     };
 
     return (
-      <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusClasses[status as keyof typeof statusClasses] || 'bg-gray-100 text-gray-800'}`}>
+      <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusClasses[status as keyof typeof statusClasses] || 'bg-gray-800 text-gray-300'}`}>
         {statusText[status as keyof typeof statusText] || status}
       </span>
     );
@@ -90,10 +90,10 @@ export default function AdminServicesPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-dark-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">جاري تحميل الخدمات...</p>
+          <p className="text-dark-text-secondary">جاري تحميل الخدمات...</p>
         </div>
       </div>
     );
@@ -101,9 +101,9 @@ export default function AdminServicesPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-dark-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
+          <p className="text-red-400 mb-4">{error}</p>
           <button
             onClick={fetchServices}
             className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90"
@@ -116,13 +116,13 @@ export default function AdminServicesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-dark-background">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">إدارة الخدمات</h1>
-            <p className="text-gray-600 mt-2">
+            <h1 className="text-3xl font-bold text-white">إدارة الخدمات</h1>
+            <p className="text-dark-text-secondary mt-2">
               إدارة وتحرير جميع الخدمات المتاحة في الموقع
             </p>
           </div>
@@ -136,44 +136,44 @@ export default function AdminServicesPage() {
 
         {/* إحصائيات سريعة */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg p-6 shadow-sm">
+          <div className="bg-dark-card rounded-lg p-6 border border-gray-800">
             <div className="text-2xl font-bold text-primary mb-2">
               {services.length}
             </div>
-            <div className="text-gray-600">إجمالي الخدمات</div>
+            <div className="text-dark-text-secondary">إجمالي الخدمات</div>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <div className="text-2xl font-bold text-green-600 mb-2">
+          <div className="bg-dark-card rounded-lg p-6 border border-gray-800">
+            <div className="text-2xl font-bold text-green-500 mb-2">
               {services.filter(s => s.status === 'active').length}
             </div>
-            <div className="text-gray-600">خدمات نشطة</div>
+            <div className="text-dark-text-secondary">خدمات نشطة</div>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <div className="text-2xl font-bold text-yellow-600 mb-2">
+          <div className="bg-dark-card rounded-lg p-6 border border-gray-800">
+            <div className="text-2xl font-bold text-yellow-500 mb-2">
               {services.filter(s => s.featured).length}
             </div>
-            <div className="text-gray-600">خدمات مميزة</div>
+            <div className="text-dark-text-secondary">خدمات مميزة</div>
           </div>
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <div className="text-2xl font-bold text-blue-600 mb-2">
+          <div className="bg-dark-card rounded-lg p-6 border border-gray-800">
+            <div className="text-2xl font-bold text-blue-500 mb-2">
               {services.filter(s => s.pricing_type === 'free').length}
             </div>
-            <div className="text-gray-600">خدمات مجانية</div>
+            <div className="text-dark-text-secondary">خدمات مجانية</div>
           </div>
         </div>
 
         {/* جدول الخدمات */}
         {services.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-            <div className="text-gray-400 mb-4">
+          <div className="bg-dark-card rounded-lg border border-gray-800 p-12 text-center">
+            <div className="text-gray-500 mb-4">
               <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">
+            <h3 className="text-xl font-medium text-white mb-2">
               لا توجد خدمات
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-dark-text-secondary mb-6">
               ابدأ بإضافة خدمة جديدة لعرضها في الموقع
             </p>
             <Link
@@ -184,52 +184,52 @@ export default function AdminServicesPage() {
             </Link>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className="bg-dark-card rounded-lg border border-gray-800 overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-gray-700">
+                <thead className="bg-dark-background">
                   <tr>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
                       الخدمة
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
                       التصنيف
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
                       السعر
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
                       الحالة
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
                       الإجراءات
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-dark-card divide-y divide-gray-700">
                   {services.map((service) => (
-                    <tr key={service.id} className="hover:bg-gray-50">
+                    <tr key={service.id} className="hover:bg-gray-800/50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div>
-                            <div className="text-sm font-medium text-gray-900 flex items-center">
+                            <div className="text-sm font-medium text-white flex items-center">
                               {service.name}
                               {service.featured && (
-                                <span className="mr-2 bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">
+                                <span className="mr-2 bg-yellow-900 text-yellow-300 px-2 py-1 rounded-full text-xs">
                                   مميز
                                 </span>
                               )}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-dark-text-secondary">
                               {service.short_description || service.description.substring(0, 50) + '...'}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
                         {service.category}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
                         {getPricingDisplay(service)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">

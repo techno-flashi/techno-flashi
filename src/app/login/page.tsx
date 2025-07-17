@@ -10,24 +10,58 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { signIn } = useAuth(); // استدعاء الوظيفة من المصدر المركزي
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    // التحقق من البيانات
+    if (!email || !password) {
+      setError('يرجى إدخال البريد الإلكتروني وكلمة المرور');
+      return;
+    }
+
     setLoading(true);
     setError(null);
+
+    console.log('🔐 محاولة تسجيل الدخول...', { email });
+
     try {
       await signIn(email, password);
+      console.log('✅ تم تسجيل الدخول بنجاح');
       // سيتم إعادة التوجيه تلقائياً من داخل وظيفة signIn
     } catch (err: any) {
-      setError(err.message === 'Invalid login credentials' ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة.' : err.message);
+      console.error('❌ خطأ في تسجيل الدخول:', err);
+
+      let errorMessage = 'حدث خطأ غير متوقع';
+
+      if (err.message === 'Invalid login credentials') {
+        errorMessage = 'البريد الإلكتروني أو كلمة المرور غير صحيحة.';
+      } else if (err.message.includes('Email not confirmed')) {
+        errorMessage = 'يرجى تأكيد البريد الإلكتروني أولاً.';
+      } else if (err.message.includes('Too many requests')) {
+        errorMessage = 'محاولات كثيرة جداً. يرجى المحاولة لاحقاً.';
+      } else {
+        errorMessage = err.message || 'حدث خطأ في الاتصال';
+      }
+
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <div className="flex justify-center items-center mt-16">
       <div className="w-full max-w-md p-8 space-y-6 bg-dark-card rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold text-center text-white">تسجيل الدخول</h1>
-        <form onSubmit={handleLogin} className="space-y-6">
+
+        {/* معلومات تسجيل الدخول التجريبية */}
+        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4">
+          <h3 className="text-sm font-medium text-blue-300 mb-2">بيانات تسجيل الدخول:</h3>
+          <p className="text-xs text-blue-200">البريد: ismail@1990.com</p>
+          <p className="text-xs text-blue-200">كلمة المرور: [كلمة المرور الخاصة بك]</p>
+        </div>
+        <form onSubmit={handleLogin} className="space-y-6" method="post" action="#">
           <div>
             <label className="block mb-2 text-sm font-medium text-dark-text-secondary">البريد الإلكتروني</label>
             <input

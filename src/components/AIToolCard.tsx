@@ -30,7 +30,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
 
   return (
     <div className="block group rounded-xl">
-      <div className={`bg-white rounded-lg md:rounded-xl overflow-hidden border border-gray-200 transition-all duration-300 h-full shadow-sm hover:shadow-md ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
+      <div className={`bg-white rounded-lg md:rounded-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 transition-all duration-300 h-full shadow-sm hover:shadow-lg ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
         {/* شارة المميز */}
         {featured && (
           <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">

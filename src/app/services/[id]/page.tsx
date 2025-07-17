@@ -39,7 +39,7 @@ async function getService(id: string): Promise<Service | null> {
 async function getRelatedServices(currentServiceId: string, category: string): Promise<Service[]> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'}/api/services?status=active&category=${category}&limit=3`,
+      `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/services?status=active&category=${category}&limit=3`,
       {
         cache: 'no-store'
       }

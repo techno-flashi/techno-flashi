@@ -78,12 +78,12 @@ export function SimpleEditor({ value, onChange, placeholder = "اكتب محتو
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-300">
+      <label className="block text-sm font-medium text-gray-700">
         محتوى المقال
       </label>
-      <div className="border border-gray-600 rounded-md overflow-hidden">
-        <div className="bg-[#0D1117] px-3 py-2 border-b border-gray-600">
-          <div className="flex items-center space-x-2 space-x-reverse text-xs text-gray-400">
+      <div className="border border-gray-300 rounded-md overflow-hidden">
+        <div className="bg-gray-50 px-3 py-2 border-b border-gray-300">
+          <div className="flex items-center space-x-2 space-x-reverse text-xs text-gray-600">
             <span>💡 نصائح:</span>
             <span>استخدم # للعناوين</span>
             <span>|</span>
@@ -95,7 +95,7 @@ export function SimpleEditor({ value, onChange, placeholder = "اكتب محتو
           onChange={(e) => handleChange(e.target.value)}
           placeholder={placeholder}
           rows={15}
-          className="w-full px-3 py-2 bg-[#161B22] text-white placeholder-gray-400 border-0 focus:outline-none focus:ring-0 resize-none font-mono text-sm leading-relaxed"
+          className="w-full px-3 py-2 bg-white text-gray-900 placeholder-gray-500 border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none font-mono text-sm leading-relaxed"
           style={{ direction: 'rtl' }}
         />
       </div>

@@ -30,8 +30,59 @@ export default function HydrationFix() {
       });
     };
 
-    // تشغيل الإزالة فور التحميل
+    // إصلاح مشاكل الـ AdSense
+    const fixAdSenseIssues = () => {
+      try {
+        // إزالة عناصر AdSense التالفة
+        const brokenAdElements = document.querySelectorAll('[data-ad-client]:empty');
+        brokenAdElements.forEach(el => {
+          if (el.parentNode) {
+            el.parentNode.removeChild(el);
+          }
+        });
+
+        // إصلاح مشاكل parentNode null
+        const adElements = document.querySelectorAll('ins.adsbygoogle');
+        adElements.forEach(el => {
+          if (!el.parentNode) {
+            el.remove();
+          }
+        });
+
+        // إصلاح مشاكل ID5 API
+        if (window.id5 && typeof window.id5.init === 'function') {
+          try {
+            window.id5.init();
+          } catch (error) {
+            console.warn('ID5 API initialization error:', error);
+          }
+        }
+      } catch (error) {
+        console.warn('AdSense fix error:', error);
+      }
+    };
+
+    // إصلاح مشاكل الـ hydration في الـ Header
+    const fixHeaderHydration = () => {
+      try {
+        // التأكد من أن جميع الروابط لها نفس الـ classes
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+          if (!link.querySelector('span')) {
+            const span = document.createElement('span');
+            span.className = 'absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full';
+            link.appendChild(span);
+          }
+        });
+      } catch (error) {
+        console.warn('Header hydration fix error:', error);
+      }
+    };
+
+    // تشغيل الإصلاحات فور التحميل
     removeExtensionAttributes();
+    setTimeout(fixAdSenseIssues, 100);
+    setTimeout(fixHeaderHydration, 200);
 
     // مراقبة التغييرات وإزالة attributes جديدة
     const observer = new MutationObserver((mutations) => {
@@ -77,32 +128,33 @@ export default function HydrationFix() {
  * مكون لقمع تحذيرات الـ hydration في development
  */
 export function SuppressHydrationWarning({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    // قمع تحذيرات hydration في development فقط
-    if (process.env.NODE_ENV === 'development') {
-      const originalError = console.error;
-      console.error = (...args) => {
-        const message = args[0];
-        if (
-          typeof message === 'string' && 
-          (
-            message.includes('hydration') ||
-            message.includes('server rendered HTML') ||
-            message.includes('sapling-installed') ||
-            message.includes('browser extension')
-          )
-        ) {
-          // تجاهل تحذيرات hydration المتعلقة بـ extensions
-          return;
-        }
-        originalError.apply(console, args);
-      };
+  // تم تعطيل قمع الأخطاء مؤقتاً لتجنب مشاكل الـ hydration
+  // useEffect(() => {
+  //   // قمع تحذيرات hydration في development فقط
+  //   if (process.env.NODE_ENV === 'development') {
+  //     const originalError = console.error;
+  //     console.error = (...args) => {
+  //       const message = args[0];
+  //       if (
+  //         typeof message === 'string' &&
+  //         (
+  //           message.includes('hydration') ||
+  //           message.includes('server rendered HTML') ||
+  //           message.includes('sapling-installed') ||
+  //           message.includes('browser extension')
+  //         )
+  //       ) {
+  //         // تجاهل تحذيرات hydration المتعلقة بـ extensions
+  //         return;
+  //       }
+  //       originalError.apply(console, args);
+  //     };
 
-      return () => {
-        console.error = originalError;
-      };
-    }
-  }, []);
+  //     return () => {
+  //       console.error = originalError;
+  //     };
+  //   }
+  // }, []);
 
   return <>{children}</>;
 }

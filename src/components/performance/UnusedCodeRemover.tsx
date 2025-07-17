@@ -140,16 +140,36 @@ export function ExternalResourceOptimizer() {
   useEffect(() => {
     // تحسين تحميل Google Fonts
     const optimizeGoogleFonts = () => {
-      const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
-      
-      fontLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && !href.includes('display=swap')) {
-          const url = new URL(href);
-          url.searchParams.set('display', 'swap');
-          link.setAttribute('href', url.toString());
-        }
-      });
+      try {
+        const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+
+        fontLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && !href.includes('display=swap')) {
+            try {
+              // التحقق من صحة الرابط وإصلاح الروابط النسبية
+              let fullUrl = href;
+              if (href.startsWith('//')) {
+                fullUrl = `https:${href}`;
+              } else if (!href.startsWith('http://') && !href.startsWith('https://')) {
+                // تجاهل الروابط النسبية المحلية
+                return;
+              }
+
+              if (fullUrl.startsWith('http://') || fullUrl.startsWith('https://')) {
+                const url = new URL(fullUrl);
+                url.searchParams.set('display', 'swap');
+                link.setAttribute('href', url.toString());
+              }
+            } catch (error) {
+              // تجاهل الروابط غير الصحيحة
+              console.warn('Invalid font URL:', href, error);
+            }
+          }
+        });
+      } catch (error) {
+        console.warn('Error optimizing Google Fonts:', error);
+      }
     };
 
     // تحسين تحميل أكواد الأطراف الثالثة
@@ -177,9 +197,13 @@ export function ExternalResourceOptimizer() {
       });
     };
 
-    // تطبيق التحسينات
-    optimizeGoogleFonts();
-    optimizeThirdPartyScripts();
+    // تطبيق التحسينات مع معالجة الأخطاء
+    try {
+      optimizeGoogleFonts();
+      optimizeThirdPartyScripts();
+    } catch (error) {
+      console.warn('Error in UnusedCodeOptimizer:', error);
+    }
   }, []);
 
   return null;

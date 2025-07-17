@@ -610,8 +610,8 @@ export function ArticleEditor({ articleId, isEdit = false }: ArticleEditorProps)
               </div>
 
               {/* محتوى المقال */}
-              <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold text-white mb-6">محتوى المقال</h2>
+              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">محتوى المقال</h2>
 
                 <textarea
                   name="content"
@@ -619,11 +619,11 @@ export function ArticleEditor({ articleId, isEdit = false }: ArticleEditorProps)
                   onChange={handleInputChange}
                   rows={15}
                   placeholder="اكتب محتوى المقال هنا... يمكنك إضافة الصور والفيديوهات والأكواد من تبويب الوسائط"
-                  className="w-full px-3 py-2 bg-dark-background border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary leading-relaxed"
+                  className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed"
                 />
 
-                <div className="mt-4 p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg">
-                  <p className="text-blue-400 text-sm">
+                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-blue-700 text-sm">
                     💡 نصيحة: اكتب النص الأساسي هنا، ثم أضف الصور والفيديوهات والأكواد من تبويب "الوسائط"
                   </p>
                 </div>

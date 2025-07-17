@@ -45,28 +45,46 @@ export async function generateStaticParams() {
   }
 }
 
-// جلب بيانات المقال بناءً على الـ slug للـ SSG
+// جلب بيانات المقال بناءً على الـ slug - محسن للأداء
 async function getArticle(slug: string) {
   try {
-    // استخدام SSG function أولاً
-    const article = await getArticleBySlugForSSG(slug);
+    console.log(`🔄 Fetching article: ${slug}`);
 
-    if (article) {
-      return fixObjectEncoding(article);
-    }
-
-    // fallback للـ runtime إذا لم توجد في SSG
+    // استعلام محسن مباشر بدلاً من الجلب المزدوج
     const { data, error } = await supabase
       .from('articles')
-      .select('*')
+      .select(`
+        id,
+        title,
+        slug,
+        excerpt,
+        content,
+        featured_image_url,
+        author,
+        status,
+        tags,
+        meta_description,
+        seo_keywords,
+        reading_time,
+        created_at,
+        updated_at,
+        published_at
+      `)
       .eq('slug', slug)
       .eq('status', 'published')
-      .single();
+      .maybeSingle(); // استخدام maybeSingle لتجنب الأخطاء
 
-    if (error || !data) {
+    if (error) {
+      console.error(`❌ Error fetching article "${slug}":`, error);
       return null;
     }
 
+    if (!data) {
+      console.log(`⚠️ Article "${slug}" not found`);
+      return null;
+    }
+
+    console.log(`✅ Article "${slug}" fetched successfully`);
     return fixObjectEncoding(data);
   } catch (error: any) {
     console.error(`💥 Error fetching article "${slug}":`, {
@@ -121,8 +139,8 @@ function renderArticleContent(content: any, articleImages?: any[]) {
   // التحقق من أن المحتوى موجود
   if (!content) {
     return (
-      <div className="prose prose-invert prose-lg max-w-none">
-        <p className="text-dark-text-secondary">لا يوجد محتوى متاح لهذا المقال.</p>
+      <div className="prose prose-lg max-w-none article-content">
+        <p className="text-gray-600">لا يوجد محتوى متاح لهذا المقال.</p>
       </div>
     );
   }
@@ -135,24 +153,24 @@ function renderArticleContent(content: any, articleImages?: any[]) {
       if (parsedContent && parsedContent.blocks && Array.isArray(parsedContent.blocks)) {
         // إذا كان Editor.js، نحوله إلى Markdown
         const markdownContent = convertEditorJSToMarkdown(parsedContent);
-        return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-invert prose-lg max-w-none" />;
+        return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
       }
     } catch (error) {
       // ليس JSON، إذن هو Markdown عادي
     }
 
-    return <MarkdownPreview content={content} articleImages={articleImages} className="prose prose-invert prose-lg max-w-none" />;
+    return <MarkdownPreview content={content} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
   }
 
   // إذا كان المحتوى بتنسيق EditorJS، نحوله إلى Markdown
   if (content && typeof content === 'object' && content.blocks && Array.isArray(content.blocks)) {
     const markdownContent = convertEditorJSToMarkdown(content);
-    return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-invert prose-lg max-w-none" />;
+    return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
   }
 
   // في حالة عدم التمكن من تحديد النوع، عرض كـ Markdown
   const contentString = typeof content === 'string' ? content : JSON.stringify(content);
-  return <MarkdownPreview content={contentString} articleImages={articleImages} className="prose prose-invert prose-lg max-w-none" />;
+  return <MarkdownPreview content={contentString} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
 }
 
 // دالة لتحويل Editor.js إلى Markdown
@@ -273,10 +291,18 @@ export default async function ArticlePage({ params }: Props) {
           {/* Breadcrumbs */}
           <Breadcrumbs items={breadcrumbItems} />
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-black mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight" style={{ color: '#111111' }}>
             {article.title}
           </h1>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-dark-text-secondary mb-6 md:mb-8 text-sm sm:text-base">
+
+          {/* وصف المقال */}
+          {article.excerpt && (
+            <p className="text-lg mb-6 leading-relaxed" style={{ color: '#4a5568', lineHeight: '1.6' }}>
+              {article.excerpt}
+            </p>
+          )}
+
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 md:mb-8 text-sm sm:text-base" style={{ color: '#666666' }}>
             <span>
               نُشر في: {new Date(article.published_at).toLocaleDateString('ar-EG', {
                 year: 'numeric', month: 'long', day: 'numeric'
@@ -296,7 +322,7 @@ export default async function ArticlePage({ params }: Props) {
               {article.tags.map((tag: string, index: number) => (
                 <span
                   key={index}
-                  className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm"
+                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium"
                 >
                   {tag}
                 </span>
@@ -325,8 +351,8 @@ export default async function ArticlePage({ params }: Props) {
           {/* يمكن إضافة المزيد من المحتوى هنا */}
 
           {/* مشاركة المقال */}
-          <div className="mt-12 pt-8 border-t border-gray-700">
-            <h3 className="text-xl font-bold text-black mb-6 text-center">شارك هذا المقال</h3>
+          <div className="mt-12 pt-8 border-t border-gray-300">
+            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">شارك هذا المقال</h3>
             <SocialShare
               url={getSharingUrl(`/articles/${article.slug}`)}
               title={article.title}
@@ -339,14 +365,14 @@ export default async function ArticlePage({ params }: Props) {
           </div>
 
           {/* Call-to-Action Buttons */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-xl border border-primary/20">
-            <h3 className="text-xl font-bold text-black mb-4 text-center">
+          <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
               استكشف المزيد من المحتوى التقني
             </h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/ai-tools"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary/80 text-black font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
               >
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
@@ -355,7 +381,7 @@ export default async function ArticlePage({ params }: Props) {
               </a>
               <a
                 href="/articles"
-                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-black font-semibold rounded-lg transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold rounded-lg transition-all duration-300"
               >
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -373,12 +399,12 @@ export default async function ArticlePage({ params }: Props) {
         <aside className="lg:col-span-1 order-first lg:order-last">
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
             {/* عناصر التنقل السريع */}
-            <div className="bg-dark-card rounded-lg p-4 lg:p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-black mb-4">التنقل السريع</h3>
+            <div className="bg-white rounded-lg p-4 lg:p-6 border border-gray-200 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">التنقل السريع</h3>
               <nav className="space-y-3">
                 <a
                   href="/"
-                  className="flex items-center text-dark-text-secondary hover:text-primary transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-primary/10"
+                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-blue-50"
                 >
                   <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -387,7 +413,7 @@ export default async function ArticlePage({ params }: Props) {
                 </a>
                 <a
                   href="/ai-tools"
-                  className="flex items-center text-dark-text-secondary hover:text-primary transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-primary/10"
+                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-blue-50"
                 >
                   <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -396,7 +422,7 @@ export default async function ArticlePage({ params }: Props) {
                 </a>
                 <a
                   href="/services"
-                  className="flex items-center text-dark-text-secondary hover:text-primary transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-primary/10"
+                  className="flex items-center text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm lg:text-base min-h-[44px] px-3 py-2 rounded-lg hover:bg-blue-50"
                 >
                   <svg className="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h8z" />
