@@ -210,7 +210,7 @@ export function AIToolSelector({
                           ? 'bg-red-500 hover:bg-red-600 text-white'
                           : canAddMore
                           ? 'bg-primary hover:bg-blue-600 text-white'
-                          : 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                          : 'bg-text-secondary text-text-description cursor-not-allowed'
                       }`}
                     >
                       {isSelected ? 'إزالة' : 'إضافة'}

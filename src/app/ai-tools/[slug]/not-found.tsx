@@ -81,7 +81,7 @@ export default function AIToolNotFound() {
         </div>
 
         {/* روابط إضافية */}
-        <div className="mt-8 pt-8 border-t border-gray-800">
+        <div className="mt-8 pt-8 border-t border-light-border">
           <p className="text-dark-text-secondary mb-4">أو تصفح أقسام أخرى:</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -90,14 +90,14 @@ export default function AIToolNotFound() {
             >
               المقالات
             </Link>
-            <span className="text-gray-600">•</span>
+            <span className="text-text-description">•</span>
             <Link
               href="/services"
               className="text-primary hover:text-blue-400 transition-colors"
             >
               الخدمات
             </Link>
-            <span className="text-gray-600">•</span>
+            <span className="text-text-description">•</span>
             <Link
               href="/ai-tools"
               className="text-primary hover:text-blue-400 transition-colors"

@@ -185,7 +185,7 @@ export function AccessibilityHelper({
       case 'info':
         return 'text-blue-400';
       default:
-        return 'text-gray-400';
+        return 'text-text-description';
     }
   };
 

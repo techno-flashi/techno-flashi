@@ -256,7 +256,7 @@ export function BrowserCompatibility() {
             <h4 className="text-white font-semibold">دعم الميزات</h4>
             {features.map((feature, index) => (
               <div key={index} className="flex justify-between items-center text-xs">
-                <span className="text-gray-300">{feature.feature}:</span>
+                <span className="text-text-secondary">{feature.feature}:</span>
                 <span className={getSupportColor(feature.supported)}>
                   {getSupportIcon(feature.supported)}
                 </span>
@@ -264,7 +264,7 @@ export function BrowserCompatibility() {
             ))}
           </div>
 
-          <div className="mt-4 pt-3 border-t border-gray-700 text-xs text-gray-400">
+          <div className="mt-4 pt-3 border-t border-light-border text-xs text-text-description">
             <div>المدعوم: {features.filter(f => f.supported).length}/{features.length}</div>
           </div>
         </div>

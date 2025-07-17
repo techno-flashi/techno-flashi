@@ -17,7 +17,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
       aria-label={`قراءة مقال: ${article.title}`}
     >
       <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-2 active:scale-95 h-full">
-        <div className="relative w-full h-48 overflow-hidden bg-gray-800">
+        <div className="relative w-full h-48 overflow-hidden bg-background-secondary">
           <Image
             src={article.featured_image_url || "https://placehold.co/600x400/0D1117/38BDF8?text=TechnoFlash"}
             alt={`صورة مقال: ${article.title}`}

@@ -82,7 +82,7 @@ export function CodeEditor({ onCodeAdded, className = "" }: CodeEditorProps) {
       nginx: 'text-green-400',
       apache: 'text-red-400',
     };
-    return colors[lang] || 'text-gray-300';
+    return colors[lang] || 'text-text-secondary';
   };
 
   const copyToClipboard = () => {
@@ -91,7 +91,7 @@ export function CodeEditor({ onCodeAdded, className = "" }: CodeEditorProps) {
   };
 
   return (
-    <div className={`bg-dark-card rounded-lg p-6 border border-gray-700 ${className}`}>
+    <div className={`bg-dark-card rounded-lg p-6 border border-light-border ${className}`}>
       <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
         <svg className="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -248,7 +248,7 @@ export function CodeBlock({ code, language, title, onRemove, className = "" }: C
       go: 'text-cyan-400',
       rust: 'text-orange-300',
     };
-    return colors[lang] || 'text-gray-300';
+    return colors[lang] || 'text-text-secondary';
   };
 
   return (

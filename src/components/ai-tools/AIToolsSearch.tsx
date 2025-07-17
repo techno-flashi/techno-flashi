@@ -96,7 +96,7 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
       case 'free': return 'border-green-500 text-green-400 bg-green-500/10';
       case 'freemium': return 'border-yellow-500 text-yellow-400 bg-yellow-500/10';
       case 'paid': return 'border-red-500 text-red-400 bg-red-500/10';
-      default: return 'border-gray-500 text-gray-400 bg-gray-500/10';
+      default: return 'border-text-description text-text-description bg-text-description/10';
     }
   };
 
@@ -271,8 +271,8 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
       {/* رسالة عدم وجود نتائج */}
       {!loading && filteredTools.length === 0 && (
         <div className="text-center py-12">
-          <div className="text-gray-400 mb-4">🔍 لا توجد أدوات تطابق معايير البحث</div>
-          <p className="text-gray-500 mb-4">
+          <div className="text-text-description mb-4">🔍 لا توجد أدوات تطابق معايير البحث</div>
+          <p className="text-text-description mb-4">
             {searchQuery ? `لم نجد أدوات تحتوي على "${searchQuery}"` : 'لا توجد أدوات في هذه الفئة'}
           </p>
           <button
@@ -291,7 +291,7 @@ export default function AIToolsSearch({ initialTools = [], categories }: AITools
       {loading && (
         <div className="text-center py-12">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-400">جاري تحميل الأدوات...</p>
+          <p className="text-text-description">جاري تحميل الأدوات...</p>
         </div>
       )}
     </div>

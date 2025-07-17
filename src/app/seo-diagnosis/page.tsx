@@ -68,7 +68,7 @@ export default function SEODiagnosisPage() {
       case 'عالي': return 'text-red-400 bg-red-900';
       case 'متوسط': return 'text-yellow-400 bg-yellow-900';
       case 'منخفض': return 'text-green-400 bg-green-900';
-      default: return 'text-gray-400 bg-gray-900';
+      default: return 'text-text-description bg-background-secondary';
     }
   };
 
@@ -77,7 +77,7 @@ export default function SEODiagnosisPage() {
       case 'محلول': return 'text-green-400 bg-green-900';
       case 'قيد العمل': return 'text-yellow-400 bg-yellow-900';
       case 'مفتوح': return 'text-red-400 bg-red-900';
-      default: return 'text-gray-400 bg-gray-900';
+      default: return 'text-text-description bg-background-secondary';
     }
   };
 
@@ -99,25 +99,25 @@ export default function SEODiagnosisPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
               <div className="text-2xl font-bold text-primary mb-1">{seoIssues.length}</div>
-              <div className="text-gray-400 text-sm">إجمالي المشاكل</div>
+              <div className="text-text-description text-sm">إجمالي المشاكل</div>
             </div>
             <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
               <div className="text-2xl font-bold text-green-400 mb-1">
                 {seoIssues.filter(issue => issue.status === 'محلول').length}
               </div>
-              <div className="text-gray-400 text-sm">مشاكل محلولة</div>
+              <div className="text-text-description text-sm">مشاكل محلولة</div>
             </div>
             <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
               <div className="text-2xl font-bold text-yellow-400 mb-1">
                 {seoIssues.filter(issue => issue.status === 'قيد العمل').length}
               </div>
-              <div className="text-gray-400 text-sm">قيد العمل</div>
+              <div className="text-text-description text-sm">قيد العمل</div>
             </div>
             <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
               <div className="text-2xl font-bold text-red-400 mb-1">
                 {seoIssues.filter(issue => issue.status === 'مفتوح').length}
               </div>
-              <div className="text-gray-400 text-sm">مشاكل مفتوحة</div>
+              <div className="text-text-description text-sm">مشاكل مفتوحة</div>
             </div>
           </div>
 
@@ -136,7 +136,7 @@ export default function SEODiagnosisPage() {
                         {issue.status}
                       </span>
                     </div>
-                    <p className="text-gray-300 mb-3">{issue.description}</p>
+                    <p className="text-text-secondary mb-3">{issue.description}</p>
                     <div className="bg-blue-900 border border-blue-700 rounded-lg p-3 mb-3">
                       <h4 className="text-blue-300 font-semibold mb-1">الحل المطبق:</h4>
                       <p className="text-blue-100 text-sm">{issue.solution}</p>
@@ -150,9 +150,9 @@ export default function SEODiagnosisPage() {
                     <h4 className="text-white font-semibold mb-2">URLs المتأثرة:</h4>
                     <div className="space-y-2">
                       {issue.urls.map((url: string, urlIndex: number) => (
-                        <div key={urlIndex} className="bg-gray-800 rounded-lg p-3">
+                        <div key={urlIndex} className="bg-background-secondary rounded-lg p-3">
                           <div className="flex justify-between items-center">
-                            <code className="text-gray-300 text-sm break-all">{url}</code>
+                            <code className="text-text-secondary text-sm break-all">{url}</code>
                             <div className="flex space-x-2 space-x-reverse ml-4">
                               <button
                                 onClick={() => navigator.clipboard.writeText(testCanonicalUrl(url))}
@@ -164,7 +164,7 @@ export default function SEODiagnosisPage() {
                                 href={url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded text-xs"
+                                className="bg-text-secondary hover:bg-text-primary text-white px-3 py-1 rounded text-xs"
                               >
                                 فتح
                               </a>
@@ -172,7 +172,7 @@ export default function SEODiagnosisPage() {
                           </div>
                           {url.includes('?') && (
                             <div className="mt-2 text-xs">
-                              <span className="text-gray-500">Canonical URL: </span>
+                              <span className="text-text-description">Canonical URL: </span>
                               <code className="text-green-400">{testCanonicalUrl(url)}</code>
                             </div>
                           )}
@@ -192,7 +192,7 @@ export default function SEODiagnosisPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold text-green-400 mb-3">ملف robots.txt محسن</h3>
-                <ul className="text-gray-300 space-y-2 text-sm">
+                <ul className="text-text-secondary space-y-2 text-sm">
                   <li>• منع فهرسة صفحات feeds والتعليقات</li>
                   <li>• منع فهرسة المعاملات غير المرغوبة (?m=1)</li>
                   <li>• منع فهرسة الصفحات الإدارية</li>
@@ -203,7 +203,7 @@ export default function SEODiagnosisPage() {
               
               <div>
                 <h3 className="text-lg font-semibold text-blue-400 mb-3">Canonical URLs</h3>
-                <ul className="text-gray-300 space-y-2 text-sm">
+                <ul className="text-text-secondary space-y-2 text-sm">
                   <li>• إضافة canonical URLs لجميع المقالات</li>
                   <li>• إضافة canonical URLs لجميع أدوات AI</li>
                   <li>• تنظيف URLs من المعاملات غير المرغوبة</li>
@@ -270,7 +270,7 @@ export default function SEODiagnosisPage() {
               </Link>
               <Link
                 href="/test-dashboard"
-                className="inline-block px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                className="inline-block px-4 py-2 bg-text-secondary text-white rounded-lg hover:bg-text-primary transition-colors"
               >
                 لوحة الاختبار
               </Link>

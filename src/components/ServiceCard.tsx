@@ -29,16 +29,16 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
             {formatPrice(service.pricing_amount, service.pricing_currency)}
           </span>
         ) : (
-          <span className="text-gray-600">السعر غير محدد</span>
+          <span className="text-text-description">السعر غير محدد</span>
         );
       case 'custom':
       default:
-        return <span className="text-gray-600">حسب الطلب</span>;
+        return <span className="text-text-description">حسب الطلب</span>;
     }
   };
 
   const cardClasses = {
-    default: "bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100",
+    default: "bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-light-border",
     featured: "bg-gradient-to-br from-primary/5 to-blue-50 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-primary/20",
     compact: "bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100"
   };
@@ -78,18 +78,18 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
         )}
 
         {/* اسم الخدمة */}
-        <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
+        <h3 className="text-xl font-bold text-text-primary mb-3 text-center">
           {service.name}
         </h3>
 
         {/* الوصف المختصر */}
-        <p className="text-gray-600 text-center mb-4 leading-relaxed">
+        <p className="text-text-description text-center mb-4 leading-relaxed">
           {service.short_description || service.description.substring(0, 120) + '...'}
         </p>
 
         {/* التصنيف */}
         <div className="flex justify-center mb-4">
-          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+          <span className="bg-background-secondary text-text-secondary px-3 py-1 rounded-full text-sm">
             {service.category}
           </span>
         </div>
@@ -107,7 +107,7 @@ export function ServiceCard({ service, variant = 'default' }: ServiceCardProps) 
                 </span>
               ))}
               {service.features.length > 3 && (
-                <span className="text-gray-500 text-xs">
+                <span className="text-text-description text-xs">
                   +{service.features.length - 3} أكثر
                 </span>
               )}

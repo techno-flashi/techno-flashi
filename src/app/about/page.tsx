@@ -147,7 +147,7 @@ export default function AboutPage() {
                 </svg>
               </div>
               <h3 className="font-bold mb-2">المجتمع</h3>
-              <p className="text-sm text-gray-300">خدمة المجتمع التقني العربي</p>
+              <p className="text-sm text-text-secondary">خدمة المجتمع التقني العربي</p>
             </div>
 
             <div className="text-center">

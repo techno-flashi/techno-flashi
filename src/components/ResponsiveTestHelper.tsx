@@ -70,7 +70,7 @@ export function ResponsiveTestHelper() {
             className={`text-xs p-2 rounded transition-colors duration-200 ${
               currentSize?.name === size.name
                 ? 'bg-primary text-white'
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                : 'bg-text-secondary text-text-secondary hover:bg-text-primary'
             }`}
           >
             {size.name}

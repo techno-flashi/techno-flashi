@@ -14,7 +14,7 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
       case 'free': return 'text-green-400';
       case 'freemium': return 'text-blue-400';
       case 'paid': return 'text-orange-400';
-      default: return 'text-gray-400';
+      default: return 'text-text-description';
     }
   };
 
@@ -48,16 +48,16 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
           {/* المحتوى */}
           <div className="flex-1 p-4">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-1 leading-tight">
+              <h3 className="text-sm font-bold text-text-primary group-hover:text-primary transition-colors duration-300 line-clamp-1 leading-tight">
                 {tool.name}
               </h3>
               <div className="flex items-center mr-2">
                 <span className="text-yellow-400 text-xs">⭐</span>
-                <span className="text-gray-900 text-xs font-medium mr-1">{tool.rating}</span>
+                <span className="text-text-primary text-xs font-medium mr-1">{tool.rating}</span>
               </div>
             </div>
 
-            <p className="text-gray-600 text-xs mb-2 line-clamp-2 leading-relaxed">
+            <p className="text-text-description text-xs mb-2 line-clamp-2 leading-relaxed">
               {tool.description || 'لا يوجد وصف متاح'}
             </p>
             

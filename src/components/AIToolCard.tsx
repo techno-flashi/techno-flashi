@@ -15,7 +15,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
       case 'free': return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'freemium': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'paid': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
-      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+      default: return 'bg-text-description/20 text-text-description border-text-description/30';
     }
   };
 
@@ -58,7 +58,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
               <span className="text-yellow-400 text-xs">⭐</span>
               <span className="text-white text-xs font-medium mr-1">{tool.rating}</span>
               {tool.click_count && tool.click_count > 0 && (
-                <span className="text-gray-600 text-xs mr-1">
+                <span className="text-text-description text-xs mr-1">
                   ({tool.click_count})
                 </span>
               )}
@@ -74,11 +74,11 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
         </div>
 
         <div className="p-3 sm:p-4">
-          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
+          <h3 className="text-base sm:text-lg font-bold text-text-primary mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
             {tool.name}
           </h3>
 
-          <p className="text-gray-600 text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2">
+          <p className="text-text-description text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2">
             {tool.description || 'لا يوجد وصف متاح'}
           </p>
 
@@ -94,7 +94,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
               {(Array.isArray(tool.features) ? tool.features : []).slice(0, 2).map((feature, index) => (
                 <span
                   key={index}
-                  className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
+                  className="bg-background-secondary text-text-description px-2 py-1 rounded text-xs"
                 >
                   {feature}
                 </span>
@@ -107,7 +107,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
             </div>
           </div>
           
-          <div className="text-xs text-gray-600">
+          <div className="text-xs text-text-description">
             {new Date(tool.created_at).toLocaleDateString('ar-EG', {
               month: 'short',
               day: 'numeric'

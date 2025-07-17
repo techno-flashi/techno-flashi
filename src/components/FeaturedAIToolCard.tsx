@@ -14,7 +14,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
       case 'free': return 'text-green-400';
       case 'freemium': return 'text-blue-400';
       case 'paid': return 'text-orange-400';
-      default: return 'text-gray-400';
+      default: return 'text-text-description';
     }
   };
 
@@ -63,7 +63,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
 
         <div className="p-6">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
+            <h2 className="text-2xl md:text-3xl font-bold text-text-primary group-hover:text-primary transition-colors duration-300">
               {tool.name}
             </h2>
             <span className={`text-sm font-medium ${getPricingColor(tool.pricing)}`}>
@@ -71,7 +71,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
             </span>
           </div>
 
-          <p className="text-gray-600 text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
+          <p className="text-text-description text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
             {tool.description}
           </p>
           
@@ -83,12 +83,12 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
           
           {/* المميزات */}
           <div className="mb-4">
-            <h4 className="text-gray-900 font-semibold mb-2 text-sm">المميزات الرئيسية:</h4>
+            <h4 className="text-text-primary font-semibold mb-2 text-sm">المميزات الرئيسية:</h4>
             <div className="flex flex-wrap gap-2">
               {(Array.isArray(tool.features) ? tool.features : []).slice(0, 3).map((feature, index) => (
                 <span
                   key={index}
-                  className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
+                  className="bg-background-secondary text-text-description px-2 py-1 rounded text-xs"
                 >
                   {feature}
                 </span>
@@ -101,7 +101,7 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
             </div>
           </div>
           
-          <div className="text-xs text-gray-600">
+          <div className="text-xs text-text-description">
             أُضيفت في: {new Date(tool.created_at).toLocaleDateString('ar-EG', {
               month: 'short',
               day: 'numeric'

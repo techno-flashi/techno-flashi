@@ -27,7 +27,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
       case 'free': return 'text-green-400 border-green-400';
       case 'freemium': return 'text-yellow-400 border-yellow-400';
       case 'paid': return 'text-red-400 border-red-400';
-      default: return 'text-gray-400 border-gray-400';
+      default: return 'text-text-description border-text-description';
     }
   };
 

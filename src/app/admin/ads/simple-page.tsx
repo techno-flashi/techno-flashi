@@ -159,7 +159,7 @@ export default function SimpleAdsAdminPage() {
       case 'html': return 'bg-orange-900 text-orange-300';
       case 'banner': return 'bg-pink-900 text-pink-300';
       case 'adsense': return 'bg-yellow-900 text-yellow-300';
-      default: return 'bg-gray-900 text-gray-300';
+      default: return 'bg-background-secondary text-text-secondary';
     }
   };
 

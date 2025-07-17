@@ -71,14 +71,14 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-8 space-x-reverse">
             <Link
               href="/"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
             >
               الرئيسية
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href="/articles"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
             >
               المقالات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -86,7 +86,7 @@ export function Header() {
 
             <Link
               href="/services"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
             >
               الخدمات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -94,7 +94,7 @@ export function Header() {
             {aboutPage && (
               <Link
                 href={getPageUrl('about-us')}
-                className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+                className="text-text-secondary hover:text-text-primary transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
               >
                 {aboutPage.title_ar}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -138,7 +138,7 @@ export function Header() {
           {/* زر القائمة للهواتف */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2 rounded-lg hover:bg-gray-800 transition-colors duration-300 focus-ring min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="md:hidden text-white p-2 rounded-lg hover:bg-text-secondary/20 transition-colors duration-300 focus-ring min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -157,19 +157,19 @@ export function Header() {
         {isMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden py-3 sm:py-4 border-t border-gray-200 bg-white/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300"
+            className="md:hidden py-3 sm:py-4 border-t border-light-border bg-white/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300"
           >
             <nav className="flex flex-col space-y-1 sm:space-y-2">
               <Link
                 href="/"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 الرئيسية
               </Link>
               <Link
                 href="/articles"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 المقالات
@@ -177,7 +177,7 @@ export function Header() {
 
               <Link
                 href="/services"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 الخدمات
@@ -185,7 +185,7 @@ export function Header() {
               {aboutPage && (
                 <Link
                   href={getPageUrl('about-us')}
-                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
+                  className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {aboutPage.title_ar}
@@ -194,7 +194,7 @@ export function Header() {
               {contactPage && (
                 <Link
                   href={getPageUrl('contact-us')}
-                  className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
+                  className="text-text-secondary hover:text-text-primary hover:bg-background-secondary/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {contactPage.title_ar}

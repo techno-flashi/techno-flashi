@@ -24,15 +24,15 @@ export function ServicesSection({
 
   if (!services || services.length === 0) {
     return (
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-background-secondary">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
+            <h2 className="text-3xl font-bold text-text-primary mb-4">{title}</h2>
             <div className="max-w-2xl mx-auto">
-              <p className="text-gray-600 mb-4">
+              <p className="text-text-description mb-4">
                 حاليًا، لا نقدم أي خدمات مدفوعة أو منتجات للبيع.
               </p>
-              <p className="text-gray-600">
+              <p className="text-text-description">
                 الموقع مخصص لتقديم محتوى تثقيفي وتعليمي مجاني عن تقنيات وأدوات الذكاء الاصطناعي.
               </p>
             </div>
@@ -43,12 +43,12 @@ export function ServicesSection({
   }
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-background-secondary">
       <div className="container mx-auto px-4">
         {/* عنوان القسم */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-text-primary mb-4">{title}</h2>
+          <p className="text-text-description max-w-2xl mx-auto">
             نقدم مجموعة متنوعة من الخدمات التقنية المتطورة لمساعدتك في تحقيق أهدافك الرقمية
           </p>
         </div>
@@ -83,19 +83,19 @@ export function ServicesSection({
               <div className="text-3xl font-bold text-primary mb-2">
                 {services.length}
               </div>
-              <div className="text-gray-600">خدمة متاحة</div>
+              <div className="text-text-description">خدمة متاحة</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-2">
                 {services.filter(s => s.featured).length}
               </div>
-              <div className="text-gray-600">خدمة مميزة</div>
+              <div className="text-text-description">خدمة مميزة</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-primary mb-2">
                 {services.filter(s => s.pricing_type === 'free').length}
               </div>
-              <div className="text-gray-600">خدمة مجانية</div>
+              <div className="text-text-description">خدمة مجانية</div>
             </div>
           </div>
         )}

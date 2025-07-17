@@ -113,7 +113,7 @@ export default function LazyAIToolsGrid({
       case 'free': return 'border-green-500 text-green-400 bg-green-500/10';
       case 'freemium': return 'border-yellow-500 text-yellow-400 bg-yellow-500/10';
       case 'paid': return 'border-red-500 text-red-400 bg-red-500/10';
-      default: return 'border-gray-500 text-gray-400 bg-gray-500/10';
+      default: return 'border-text-description text-text-description bg-text-description/10';
     }
   };
 

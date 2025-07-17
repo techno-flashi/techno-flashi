@@ -116,7 +116,7 @@ export default async function ArticlesPage() {
             اكتشف مجموعة شاملة من المقالات التقنية المتخصصة في الذكاء الاصطناعي والبرمجة
           </p>
           {/* إضافة عداد للتشخيص */}
-          <div className="mt-4 text-sm text-gray-400">
+          <div className="mt-4 text-sm text-text-description">
             عدد المقالات المتاحة: {articles.length}
           </div>
         </div>

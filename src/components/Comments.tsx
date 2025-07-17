@@ -150,7 +150,7 @@ export default function Comments({ articleId, articleTitle }: CommentsProps) {
           </div>
         )}
 
-        <p className="text-gray-400 text-sm mt-4">
+        <p className="text-text-description text-sm mt-4">
           💡 ملاحظة: التعليقات تخضع للمراجعة قبل النشر لضمان جودة المحتوى
         </p>
       </div>
@@ -159,23 +159,23 @@ export default function Comments({ articleId, articleTitle }: CommentsProps) {
       {loading ? (
         <div className="text-center py-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="text-gray-400 mt-2">جاري تحميل التعليقات...</p>
+          <p className="text-text-description mt-2">جاري تحميل التعليقات...</p>
         </div>
       ) : comments.length === 0 ? (
         <div className="text-center py-8">
-          <p className="text-gray-400">لا توجد تعليقات بعد. كن أول من يعلق!</p>
+          <p className="text-text-description">لا توجد تعليقات بعد. كن أول من يعلق!</p>
         </div>
       ) : (
         <div className="space-y-6">
           {comments.map((comment) => (
-            <div key={comment.id} className="bg-gray-800 rounded-lg p-6">
+            <div key={comment.id} className="bg-background-secondary rounded-lg p-6">
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h5 className="font-semibold text-white">{comment.name}</h5>
-                  <p className="text-gray-400 text-sm">{formatDate(comment.created_at)}</p>
+                  <p className="text-text-description text-sm">{formatDate(comment.created_at)}</p>
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed">{comment.content}</p>
+              <p className="text-text-secondary leading-relaxed">{comment.content}</p>
             </div>
           ))}
         </div>

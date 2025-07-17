@@ -101,11 +101,11 @@ export default async function RelatedArticles({
                 {article.title}
               </h4>
               
-              <p className="text-gray-400 text-sm line-clamp-2 mb-3">
+              <p className="text-text-description text-sm line-clamp-2 mb-3">
                 {article.excerpt}
               </p>
               
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center justify-between text-xs text-text-description">
                 <span>{formatDate(article.published_at)}</span>
                 <span className="text-primary group-hover:text-blue-400 transition-colors duration-200">
                   اقرأ المزيد ←

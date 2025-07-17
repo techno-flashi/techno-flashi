@@ -129,14 +129,14 @@ export function AIToolsFilter({ tools, onFilterChange }: AIToolsFilterProps) {
           
           {/* فلتر التسعير */}
           <div className="flex flex-col">
-            <label htmlFor="pricing-filter" className="text-sm text-gray-300 mb-2 sr-only">
+            <label htmlFor="pricing-filter" className="text-sm text-text-secondary mb-2 sr-only">
               فلترة حسب التسعير
             </label>
             <select
               id="pricing-filter"
               value={selectedPricing}
               onChange={(e) => setSelectedPricing(e.target.value)}
-              className="bg-dark-background border border-gray-700 text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
+              className="bg-dark-background border border-light-border text-white px-3 sm:px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-w-[120px] sm:min-w-[150px] text-sm sm:text-base min-h-[44px]"
               aria-label="فلترة حسب التسعير"
             >
               <option value="all">جميع الأسعار</option>

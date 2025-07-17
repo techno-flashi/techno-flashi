@@ -73,7 +73,7 @@ export function IndividualToolComparison({
       case 'free': return 'text-green-400';
       case 'paid': return 'text-red-400';
       case 'freemium': return 'text-yellow-400';
-      default: return 'text-gray-400';
+      default: return 'text-text-description';
     }
   };
 

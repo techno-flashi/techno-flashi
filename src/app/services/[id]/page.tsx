@@ -197,8 +197,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 )}
 
                 {/* مشاركة الخدمة */}
-                <div className="mt-12 pt-8 border-t border-gray-200">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">شارك هذه الخدمة</h3>
+                <div className="mt-12 pt-8 border-t border-light-border">
+                  <h3 className="text-xl font-bold text-text-primary mb-6 text-center">شارك هذه الخدمة</h3>
                   <SocialShare
                     url={getSharingUrl(`/services/${service.id}`)}
                     title={`${service.name} - خدمة تقنية`}
@@ -213,8 +213,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
               {/* الشريط الجانبي */}
               <div className="lg:col-span-1">
-                <div className="bg-gray-50 rounded-xl p-6 sticky top-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <div className="bg-background-secondary rounded-xl p-6 sticky top-8">
+                  <h3 className="text-xl font-bold text-text-primary mb-4">
                     معلومات الخدمة
                   </h3>
                   
@@ -263,8 +263,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   )}
 
                   {/* مشاركة مدمجة */}
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4">شارك الخدمة</h4>
+                  <div className="mt-6 pt-6 border-t border-light-border">
+                    <h4 className="text-lg font-semibold text-text-primary mb-4">شارك الخدمة</h4>
                     <SocialShare
                       url={getSharingUrl(`/services/${service.id}`)}
                       title={`${service.name} - خدمة تقنية`}
@@ -305,10 +305,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-text-primary mb-2">
                       {relatedService.name}
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-text-description mb-4">
                       {relatedService.short_description || 
                        relatedService.description.substring(0, 100) + '...'}
                     </p>

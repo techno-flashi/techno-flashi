@@ -274,7 +274,7 @@ export default function RootLayout({
       </head>
 
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
-      <body className="bg-white text-gray-900 font-sans">
+      <body className="bg-white text-text-primary font-sans">
         <GoogleAnalytics />
         <AdSenseScript publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
         <InitializeAdSense publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
@@ -408,15 +408,15 @@ export default function RootLayout({
               <div className="mb-6">
                 <div className="flex flex-wrap justify-center gap-4 text-sm">
                   <a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a>
-                  <span className="text-gray-600">|</span>
+                  <span className="text-text-description">|</span>
                   <a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a>
-                  <span className="text-gray-600">|</span>
+                  <span className="text-text-description">|</span>
                   <a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
-                  <span className="text-gray-600">|</span>
+                  <span className="text-text-description">|</span>
                   <a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
-                  <span className="text-gray-600">|</span>
+                  <span className="text-text-description">|</span>
                   <a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a>
-                  <span className="text-gray-600">|</span>
+                  <span className="text-text-description">|</span>
                   <a href="/youtube" className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
                 </div>
               </div>
