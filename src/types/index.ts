@@ -22,6 +22,7 @@ export interface ArticleSummary {
   featured_image_url: string;
   published_at: string;
   created_at: string;
+  status?: 'draft' | 'published';
   reading_time?: number;
   author?: string;
   tags?: string[];

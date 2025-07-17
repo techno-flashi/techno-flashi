@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
-import { getArticles, deleteArticle } from '@/lib/database';
+import { getAllArticlesForAdmin, deleteArticle } from '@/lib/database';
 import { ArticleSummary } from '@/types';
 
 function ArticlesManagement() {
@@ -21,7 +21,7 @@ function ArticlesManagement() {
   const loadArticles = async () => {
     try {
       setLoading(true);
-      const data = await getArticles();
+      const data = await getAllArticlesForAdmin();
       setArticles(data);
     } catch (err: any) {
       setError(err.message);
@@ -46,7 +46,7 @@ function ArticlesManagement() {
     }
   };
 
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status?: string) => {
     if (status === 'published') {
       return (
         <span

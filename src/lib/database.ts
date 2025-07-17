@@ -61,6 +61,36 @@ export async function getLatestArticlesOptimized(limit: number = 8): Promise<Art
   }, 1800); // 30 دقيقة للصفحة الرئيسية
 }
 
+// جلب جميع المقالات للأدمن (مع جميع الحالات)
+export async function getAllArticlesForAdmin(limit: number = 50): Promise<ArticleSummary[]> {
+  return cachedQuery(`admin-articles-all-${limit}`, async () => {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        id,
+        title,
+        slug,
+        excerpt,
+        featured_image_url,
+        published_at,
+        created_at,
+        status,
+        reading_time,
+        author,
+        tags,
+        featured
+      `)
+      .order('created_at', { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      throw new Error(`خطأ في جلب المقالات للأدمن: ${error.message}`);
+    }
+
+    return data as ArticleSummary[];
+  }, 300); // 5 دقائق للأدمن (تحديث أسرع)
+}
+
 // جلب مقال واحد بالـ ID
 export async function getArticleById(id: string) {
   const { data, error } = await supabase
