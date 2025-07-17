@@ -2,9 +2,10 @@
 // نضع فيه الأشياء المشتركة مثل الخطوط، الهيدر، الفوتر، ودعم اللغة العربية
 
 import type { Metadata } from "next";
-// استيراد الخطوط من جوجل
+// استيراد الخطوط من جوجل للموقع التقني الحديث
 import { Inter } from "next/font/google";
 import { Tajawal } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -20,19 +21,30 @@ import HydrationFix, { SuppressHydrationWarning } from "@/components/HydrationFi
 import { DevHydrationSuppressor } from "@/components/HydrationSafeWrapper";
 import AdSenseScript, { InitializeAdSense } from "@/components/AdSenseScript";
 
-// إعداد الخطوط مع تحسينات الأداء
+// إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: 'swap', // Prevent FOIT/FOUT
+  display: 'swap',
   preload: true,
 });
+
+// استخدام Cairo كخط أساسي للمحتوى العربي (أكثر حداثة من Tajawal)
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "600", "700"], // Regular, SemiBold, Bold
+  variable: "--font-cairo",
+  display: 'swap',
+  preload: true,
+});
+
+// Tajawal كخط احتياطي
 const tajawal = Tajawal({
   subsets: ["arabic"],
   weight: ["400", "700"],
   variable: "--font-tajawal",
-  display: 'swap', // Prevent FOIT/FOUT
-  preload: true,
+  display: 'swap',
+  preload: false, // Secondary font
 });
 
 // إعداد بيانات SEO المحسنة للموقع
@@ -106,7 +118,7 @@ export default function RootLayout({
 }>) {
   return (
     // إضافة dir="rtl" لدعم اللغة العربية بشكل كامل
-    <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
+    <html lang="ar" dir="rtl" className={`${inter.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
         {/* Critical performance optimizations - preconnect for critical resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -123,14 +135,15 @@ export default function RootLayout({
         {/* Critical CSS for above-the-fold content and CLS prevention */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Critical CSS for immediate rendering and CLS prevention */
+            /* Critical CSS for modern tech design and CLS prevention */
             body {
               margin: 0;
-              font-family: system-ui, -apple-system, sans-serif;
-              background: #ffffff;
-              color: #1f2937;
-              line-height: 1.6;
+              font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+              background: #FFFFFF;
+              color: #1C1C1C;
+              line-height: 1.7;
               font-display: swap;
+              -webkit-font-smoothing: antialiased;
             }
             .hero-section {
               min-height: 60vh;

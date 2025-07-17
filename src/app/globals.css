@@ -154,19 +154,89 @@
   }
 }
 
-/* تحسينات للحركات والانتقالات */
+/* Modern tech website typography and base styles */
 @layer base {
   * {
     scroll-behavior: smooth;
   }
 
   body {
+    font-family: var(--font-cairo), var(--font-tajawal), var(--font-inter), system-ui, -apple-system, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.7; /* Improved readability for Arabic content */
     /* Performance optimizations */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    background-color: #FFFFFF;
+    color: #1C1C1C;
   }
+
+  /* Modern tech typography scale */
+  h1 {
+    font-family: var(--font-cairo), var(--font-tajawal), sans-serif;
+    font-weight: 700;
+    font-size: 2rem; /* 32px */
+    line-height: 1.2;
+    color: #1C1C1C;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: var(--font-cairo), var(--font-tajawal), sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.3;
+    color: #1C1C1C;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 {
+    font-family: var(--font-cairo), var(--font-tajawal), sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.4;
+    color: #1C1C1C;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.7;
+    color: #666666;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #0077C8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #005a9e;
+    text-decoration: underline;
+  }
+
+  /* Mobile responsive typography */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem; /* 24px */
+    }
+
+    h2 {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    h3 {
+      font-size: 1.125rem; /* 18px */
+    }
+
+    p {
+      font-size: 1rem; /* 16px */
+    }
+  }
+}
 
   /* Optimize rendering performance */
   img, video {
@@ -202,6 +272,80 @@
 
   .animate-shimmer {
     animation: shimmer 2s infinite;
+  }
+}
+
+/* Modern tech website components */
+@layer components {
+  /* Tech-style buttons */
+  .btn-primary {
+    @apply bg-tech-primary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply border-2 border-tech-primary text-tech-primary hover:bg-tech-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+  }
+
+  /* Modern cards */
+  .tech-card {
+    @apply bg-white border border-tech-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-tech-primary/20;
+  }
+
+  .tech-card-hover {
+    @apply tech-card hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  /* Content sections */
+  .tech-section {
+    @apply py-16 px-4;
+  }
+
+  .tech-container {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* Typography utilities */
+  .tech-heading {
+    @apply text-tech-text font-bold mb-4;
+  }
+
+  .tech-subheading {
+    @apply text-tech-text-secondary font-semibold mb-3;
+  }
+
+  .tech-body {
+    @apply text-tech-text-secondary leading-relaxed;
+  }
+
+  .tech-caption {
+    @apply text-tech-text-light text-sm;
+  }
+
+  /* Modern spacing */
+  .tech-spacing {
+    @apply space-y-6;
+  }
+
+  .tech-grid {
+    @apply grid gap-6 md:gap-8;
+  }
+
+  /* Focus states for accessibility */
+  .tech-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-tech-primary focus:ring-offset-2 focus:ring-offset-white;
+  }
+
+  /* Hover effects */
+  .tech-hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .tech-hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
   }
 }
 

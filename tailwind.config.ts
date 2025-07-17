@@ -16,23 +16,45 @@ const config: Config = {
         sans: ["var(--font-tajawal)", "var(--font-inter)"],
       },
       colors: {
-        // هنا نضع الألوان الأساسية للمشروع لسهولة استخدامها
-        primary: "#38BDF8",
+        // Modern tech website color scheme inspired by TechCrunch/The Verge
+        primary: "#0077C8", // Professional tech blue for links and buttons
+        secondary: "#FF5722", // Modern orange for CTA elements
+
+        // Main color palette
+        tech: {
+          white: "#FFFFFF", // Clean white background
+          text: "#1C1C1C", // Dark gray-black for main text
+          "text-secondary": "#666666", // Medium gray for paragraphs
+          "text-light": "#999999", // Light gray for captions
+          background: "#FFFFFF", // Main background
+          card: "#F5F7FA", // Light gray for cards/blocks
+          border: "#E1E5E9", // Subtle borders
+          hover: "#F0F2F5", // Hover states
+        },
+
+        // Keep existing structure for compatibility
         light: {
           background: "#FFFFFF",
-          card: "#F8FAFC",
-          text: "#1F2937",
-          "text-secondary": "#6B7280",
-          border: "#E5E7EB",
+          card: "#F5F7FA",
+          text: "#1C1C1C",
+          "text-secondary": "#666666",
+          border: "#E1E5E9",
         },
-        // Keep dark colors for reference but switch to light theme
         dark: {
-          background: "#FFFFFF", // Changed to white
-          card: "#F8FAFC", // Changed to light gray
-          text: "#1F2937", // Changed to dark gray
-          "text-secondary": "#6B7280", // Changed to medium gray
+          background: "#FFFFFF",
+          card: "#F5F7FA",
+          text: "#1C1C1C",
+          "text-secondary": "#666666",
         },
       },
+
+      fontFamily: {
+        sans: ["var(--font-cairo)", "var(--font-tajawal)", "var(--font-inter)", "system-ui", "sans-serif"],
+        arabic: ["var(--font-cairo)", "var(--font-tajawal)", "system-ui", "sans-serif"],
+        tech: ["var(--font-cairo)", "var(--font-inter)", "system-ui", "sans-serif"],
+        heading: ["var(--font-cairo)", "var(--font-tajawal)", "system-ui", "sans-serif"],
+      },
+
       screens: {
         'xs': '320px',
         'sm': '375px',
