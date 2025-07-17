@@ -9,11 +9,11 @@ export default function CriticalCSS() {
   useEffect(() => {
     // تحميل CSS غير الأساسي بعد تحميل الصفحة
     const loadNonCriticalCSS = () => {
-      // قائمة ملفات CSS غير الأساسية
-      const nonCriticalCSS = [
-        '/styles/components.css',
-        '/styles/animations.css',
-        '/styles/responsive-enhancements.css'
+      // قائمة ملفات CSS غير الأساسية (تم تعطيلها لحل مشكلة MIME type)
+      const nonCriticalCSS: string[] = [
+        // '/styles/components.css',
+        // '/styles/animations.css',
+        // '/styles/responsive-enhancements.css'
       ];
 
       nonCriticalCSS.forEach(href => {

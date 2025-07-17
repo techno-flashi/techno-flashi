@@ -29,7 +29,9 @@ export default function TTFBOptimizer() {
       // إضافة preconnect للمواقع الحرجة
       const criticalDomains = [
         'https://fonts.googleapis.com',
-        'https://zgktrwpladrkhhemhnni.supabase.co'
+        'https://zgktrwpladrkhhemhnni.supabase.co',
+        'https://www.googletagmanager.com',
+        'https://www.google-analytics.com'
       ];
 
       criticalDomains.forEach(domain => {

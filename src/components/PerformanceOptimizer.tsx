@@ -62,9 +62,9 @@ const ServicesSkeleton = () => (
 );
 
 const AdSkeleton = () => (
-  <div className="ad-banner bg-gray-100 border border-gray-200 rounded-lg">
+  <div className="ad-banner bg-background-secondary border border-light-border rounded-lg">
     <div className="h-20 flex items-center justify-center">
-      <div className="text-gray-400 text-sm">إعلان</div>
+      <div className="text-text-description text-sm">إعلان</div>
     </div>
   </div>
 );

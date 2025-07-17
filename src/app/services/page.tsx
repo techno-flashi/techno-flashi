@@ -64,7 +64,7 @@ export default async function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#services"
-              className="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
+              className="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-background-secondary transition-colors duration-200"
             >
               استكشف خدماتنا
             </a>

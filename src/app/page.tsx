@@ -196,7 +196,7 @@ export default async function HomePage() {
           <div className="flex justify-center">
             <a
               href="/articles"
-              className="group bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 max-w-sm shadow-sm hover:shadow-md"
+              className="group bg-white rounded-xl p-6 border border-light-border hover:border-primary/50 transition-all duration-300 transform hover:scale-105 max-w-sm shadow-sm hover:shadow-md"
             >
               <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

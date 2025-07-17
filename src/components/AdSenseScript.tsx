@@ -66,15 +66,16 @@ export function InitializeAdSense({ publisherId }: { publisherId: string }) {
     if (typeof window !== 'undefined' && !window.adsenseInitialized) {
       // انتظار تحميل AdSense script
       const initAds = () => {
-        if (window.adsbygoogle && !window.adsenseInitialized) {
+        if (window.adsbygoogle && !window.adsenseInitialized && !document.querySelector('[data-adsense-initialized]')) {
           try {
             window.adsbygoogle.push({
               google_ad_client: publisherId,
               enable_page_level_ads: true,
               overlays: { bottom: true }
             });
-            // تعيين علامة لمنع التهيئة المكررة
+            // تعيين علامات متعددة لمنع التهيئة المكررة
             window.adsenseInitialized = true;
+            document.body.setAttribute('data-adsense-initialized', 'true');
             console.log('✅ AdSense initialized successfully');
           } catch (error) {
             console.warn('❌ AdSense initialization error:', error);
