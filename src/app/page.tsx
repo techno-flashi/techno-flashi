@@ -17,6 +17,9 @@ import YouTubeSection from "@/components/YouTubeSection";
 
 import { ArticleSummary, AITool, Service } from "@/types";
 
+// Import critical CSS for faster LCP
+import "@/styles/critical-homepage.css";
+
 // Optimized ISR for faster updates while maintaining performance
 export const revalidate = 300; // 5 minutes for faster updates
 export const dynamic = 'force-static';

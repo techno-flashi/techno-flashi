@@ -223,13 +223,23 @@ const nextConfig = {
           }
         ]
       },
-      // Homepage cache settings
+      // Homepage cache settings - optimized for performance
       {
         source: '/',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=180, s-maxage=180, stale-while-revalidate=300'
+            value: 'public, max-age=300, s-maxage=300, stale-while-revalidate=600'
+          }
+        ]
+      },
+      // Third-party scripts cache optimization
+      {
+        source: '/(.*\\.(js|css|woff2|woff|ttf|eot))',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
           }
         ]
       },

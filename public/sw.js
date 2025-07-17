@@ -24,11 +24,12 @@ const EXCLUDE_URLS = [
   '/_next/static/chunks/webpack',
 ];
 
-// Cache duration settings (in milliseconds)
+// Cache duration settings (in milliseconds) - Optimized for performance
 const CACHE_DURATION = {
-  STATIC: 1 * 60 * 1000,    // 1 minute for static assets
-  DYNAMIC: 30 * 1000,       // 30 seconds for dynamic content
-  PAGES: 10 * 1000          // 10 seconds for pages
+  STATIC: 24 * 60 * 60 * 1000,    // 24 hours for static assets (fonts, images)
+  DYNAMIC: 5 * 60 * 1000,         // 5 minutes for dynamic content
+  PAGES: 2 * 60 * 1000,           // 2 minutes for pages
+  THIRD_PARTY: 60 * 60 * 1000     // 1 hour for third-party scripts
 };
 
 // تثبيت Service Worker
@@ -105,6 +106,8 @@ self.addEventListener('fetch', (event) => {
             maxAge = CACHE_DURATION.STATIC;
           } else if (request.destination === 'document') {
             maxAge = CACHE_DURATION.PAGES;
+          } else if (isThirdPartyScript(request.url)) {
+            maxAge = CACHE_DURATION.THIRD_PARTY;
           }
 
           // Return cached response if still fresh
@@ -196,6 +199,22 @@ self.addEventListener('message', (event) => {
 function isStaticAsset(url) {
   const staticExtensions = ['.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico', '.woff', '.woff2'];
   return staticExtensions.some(ext => url.includes(ext)) || url.includes('/_next/static/');
+}
+
+// دالة مساعدة لتحديد سكريبتات الطرف الثالث (89 KiB cache optimization)
+function isThirdPartyScript(url) {
+  const thirdPartyDomains = [
+    'ezojs.com',
+    'gatekeeperconsent.com',
+    'googletagmanager.com',
+    'google-analytics.com',
+    'doubleclick.net',
+    'googlesyndication.com',
+    'fonts.googleapis.com',
+    'fonts.gstatic.com'
+  ];
+
+  return thirdPartyDomains.some(domain => url.includes(domain));
 }
 
 // تنظيف الكاش القديم

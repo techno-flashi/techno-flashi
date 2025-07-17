@@ -7,6 +7,46 @@ import { useEffect } from 'react';
  */
 export default function UnusedCodeRemover() {
   useEffect(() => {
+    // إزالة Legacy JavaScript (66 KiB potential savings)
+    const removeLegacyJS = () => {
+      if (typeof window !== 'undefined') {
+        // List of legacy patterns to remove
+        const legacyPatterns = [
+          'babel-polyfill',
+          'core-js',
+          'regenerator-runtime',
+          'whatwg-fetch',
+          'es6-promise',
+          'object-assign'
+        ];
+
+        // Remove scripts containing legacy patterns
+        legacyPatterns.forEach(pattern => {
+          const scripts = document.querySelectorAll(`script[src*="${pattern}"]`);
+          scripts.forEach(script => {
+            console.log(`Removing legacy script: ${pattern}`);
+            script.remove();
+          });
+        });
+
+        // Check if modern features are supported
+        const isModernBrowser =
+          'fetch' in window &&
+          'Promise' in window &&
+          'IntersectionObserver' in window;
+
+        if (isModernBrowser) {
+          // Remove polyfill scripts that are no longer needed
+          const polyfillScripts = document.querySelectorAll('script[src*="polyfill"]');
+          polyfillScripts.forEach(script => {
+            if (script.parentNode) {
+              script.parentNode.removeChild(script);
+            }
+          });
+        }
+      }
+    };
+
     // إزالة CSS غير المستخدم
     const removeUnusedCSS = () => {
       const stylesheets = Array.from(document.styleSheets);
@@ -270,6 +310,8 @@ export function MemoryOptimizer() {
     };
 
     // تشغيل التحسينات
+    removeLegacyJS();
+    removeUnusedCSS();
     cleanupEventListeners();
     monitorMemoryUsage();
     

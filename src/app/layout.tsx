@@ -28,6 +28,8 @@ import { ResourceOptimizationSuite } from "@/components/performance/ResourceOpti
 import { UnusedCodeOptimizer } from "@/components/performance/UnusedCodeRemover";
 import { TTFBOptimizationSuite } from "@/components/performance/TTFBOptimizer";
 import { CacheManager, AutoCacheInvalidator, ServiceWorkerUpdater } from "@/components/CacheManager";
+import { AccessibilityOptimizer, SEOLinkOptimizer } from "@/components/performance/AccessibilityOptimizer";
+import { MainThreadOptimizer, ScriptEvaluationOptimizer } from "@/components/performance/MainThreadOptimizer";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -135,10 +137,24 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-        {/* Preload critical fonts for faster LCP */}
+        {/* Preload critical fonts for faster LCP - Multiple weights */}
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6HkvalIhTp2mxdt0UX8.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/cairo/v28/SLXlc1nY6HkvalIkTp2mxdt0UX8.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
           as="font"
           type="font/woff2"
           crossOrigin=""
@@ -477,6 +493,12 @@ export default function RootLayout({
         {/* Cache Management Components */}
         <AutoCacheInvalidator />
         <ServiceWorkerUpdater />
+
+        {/* Performance Optimization Components */}
+        <MainThreadOptimizer />
+        <ScriptEvaluationOptimizer />
+        <AccessibilityOptimizer />
+        <SEOLinkOptimizer />
 
         {/* Development Cache Manager */}
         {process.env.NODE_ENV === 'development' && (
