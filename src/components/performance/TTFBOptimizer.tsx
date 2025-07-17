@@ -171,8 +171,8 @@ export function TTFBMonitor() {
           }
           
           // إرسال البيانات للتحليل (اختياري)
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'timing_complete', {
+          if (typeof (window as any).gtag !== 'undefined') {
+            (window as any).gtag('event', 'timing_complete', {
               name: 'TTFB',
               value: Math.round(ttfb)
             });
