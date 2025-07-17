@@ -335,7 +335,7 @@
 
   /* Focus states for accessibility */
   .tech-focus {
-    @apply focus:outline-none focus:ring-2 focus:ring-tech-primary focus:ring-offset-2 focus:ring-offset-white;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white;
   }
 
   /* Hover effects */
