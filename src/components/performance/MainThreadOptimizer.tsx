@@ -108,8 +108,10 @@ export function MainThreadOptimizer() {
     // Optimize image loading to reduce layout shifts
     const optimizeImageLoading = () => {
       const images = document.querySelectorAll('img:not([width]):not([height])');
-      
-      images.forEach(img => {
+
+      images.forEach(imgElement => {
+        const img = imgElement as HTMLImageElement;
+
         // Add aspect ratio containers for images without dimensions
         if (!img.parentElement?.classList.contains('aspect-ratio-container')) {
           const container = document.createElement('div');
@@ -120,10 +122,10 @@ export function MainThreadOptimizer() {
             aspect-ratio: 16/9;
             overflow: hidden;
           `;
-          
+
           img.parentNode?.insertBefore(container, img);
           container.appendChild(img);
-          
+
           img.style.cssText = `
             position: absolute;
             top: 0;
