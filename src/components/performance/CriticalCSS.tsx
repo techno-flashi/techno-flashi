@@ -96,7 +96,7 @@ export function JavaScriptOptimizer() {
     // تأجيل تحميل JavaScript غير الأساسي
     const loadNonCriticalJS = () => {
       // قائمة بالسكريبتات غير الأساسية
-      const nonCriticalScripts = [
+      const nonCriticalScripts: string[] = [
         // يمكن إضافة سكريبتات غير أساسية هنا
       ];
 
