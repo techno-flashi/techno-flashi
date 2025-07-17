@@ -20,6 +20,11 @@ import { AccessibilityHelper } from "@/components/AccessibilityHelper";
 import HydrationFix, { SuppressHydrationWarning } from "@/components/HydrationFix";
 import { DevHydrationSuppressor } from "@/components/HydrationSafeWrapper";
 import AdSenseScript, { InitializeAdSense } from "@/components/AdSenseScript";
+import { PerformanceOptimizer } from "@/components/performance/CriticalCSS";
+import { SecuritySuite } from "@/components/security/CSPHeaders";
+import { ResourceOptimizationSuite } from "@/components/performance/ResourceOptimizer";
+import { UnusedCodeOptimizer } from "@/components/performance/UnusedCodeRemover";
+import { TTFBOptimizationSuite } from "@/components/performance/TTFBOptimizer";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -407,21 +412,21 @@ export default function RootLayout({
               {/* روابط الصفحات الأساسية */}
               <div className="mb-6">
                 <div className="flex flex-wrap justify-center gap-4 text-sm">
-                  <a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a>
-                  <span className="text-text-description">|</span>
-                  <a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a>
-                  <span className="text-text-description">|</span>
-                  <a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
-                  <span className="text-text-description">|</span>
-                  <a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
-                  <span className="text-text-description">|</span>
-                  <a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a>
-                  <span className="text-text-description">|</span>
-                  <a href="/youtube" className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
+                  <a href="/page/about-us" className="text-white/80 hover:text-primary transition-colors duration-300">من نحن</a>
+                  <span className="text-white/60">|</span>
+                  <a href="/page/contact" className="text-white/80 hover:text-primary transition-colors duration-300">اتصل بنا</a>
+                  <span className="text-white/60">|</span>
+                  <a href="/page/privacy-policy" className="text-white/80 hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
+                  <span className="text-white/60">|</span>
+                  <a href="/page/terms-of-use" className="text-white/80 hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
+                  <span className="text-white/60">|</span>
+                  <a href="/page/services" className="text-white/80 hover:text-primary transition-colors duration-300">الخدمات</a>
+                  <span className="text-white/60">|</span>
+                  <a href="/youtube" className="text-white/80 hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
                 </div>
               </div>
 
-              <p className="text-dark-text-secondary">
+              <p className="text-white/70">
                 © 2025 TechnoFlash. جميع الحقوق محفوظة.
               </p>
             </div>
@@ -441,6 +446,13 @@ export default function RootLayout({
         {/* إصلاح مشاكل الـ hydration */}
         <HydrationFix />
         <DevHydrationSuppressor />
+
+        {/* مكونات تحسين الأداء والأمان */}
+        <PerformanceOptimizer />
+        <SecuritySuite />
+        <ResourceOptimizationSuite />
+        <UnusedCodeOptimizer />
+        <TTFBOptimizationSuite />
       </body>
     </html>
   );

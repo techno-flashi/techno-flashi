@@ -123,6 +123,10 @@ const nextConfig = {
           {
             key: 'Content-Language',
             value: 'ar'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://ezojs.com https://www.ezojs.com https://go.ezojs.com https://gatekeeperconsent.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: blob: https://images.unsplash.com https://i.imgur.com https://placehold.co https://via.placeholder.com https://upload.wikimedia.org https://i.pinimg.com https://zgktrwpladrkhhemhnni.supabase.co https://ugrfqcfhoxgpxcwnnbxu.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com; connect-src 'self' https://zgktrwpladrkhhemhnni.supabase.co https://ugrfqcfhoxgpxcwnnbxu.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://ezojs.com https://www.ezojs.com https://go.ezojs.com; frame-src 'self' https://www.youtube.com https://www.google.com https://pagead2.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
           }
         ]
       },
@@ -165,6 +169,34 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=3600'
+          }
+        ]
+      },
+      // تحسين cache للموارد الثابتة
+      {
+        source: '/favicon.ico',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400'
           }
         ]
       }

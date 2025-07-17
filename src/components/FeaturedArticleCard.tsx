@@ -41,11 +41,11 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
             <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
               {article.title}
             </h2>
-            <p className="text-white/90 text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
+            <p className="text-white text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
               {article.excerpt}
             </p>
             <div className="flex items-center justify-between">
-              <div className="text-sm text-white/80">
+              <div className="text-sm text-white">
                 {new Date(article.published_at).toLocaleDateString('ar-EG', {
                   year: 'numeric', 
                   month: 'long', 

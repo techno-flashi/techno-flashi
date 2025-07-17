@@ -1,9 +1,9 @@
 // Service Worker for TechnoFlash
 // تحسين الأداء والتخزين المؤقت
 
-const CACHE_NAME = 'technoflash-v1';
-const STATIC_CACHE_NAME = 'technoflash-static-v1';
-const DYNAMIC_CACHE_NAME = 'technoflash-dynamic-v1';
+const CACHE_NAME = 'technoflash-v1.1.0';
+const STATIC_CACHE_NAME = 'technoflash-static-v1.1.0';
+const DYNAMIC_CACHE_NAME = 'technoflash-dynamic-v1.1.0';
 
 // الملفات المهمة للتخزين المؤقت
 const STATIC_ASSETS = [
