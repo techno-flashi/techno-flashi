@@ -310,10 +310,12 @@ export function MemoryOptimizer() {
     };
 
     // تشغيل التحسينات
-    removeLegacyJS();
     removeUnusedCSS();
     cleanupEventListeners();
     monitorMemoryUsage();
+
+    // تشغيل إزالة Legacy JavaScript
+    removeLegacyJS();
     
     // تنظيف دوري كل 5 دقائق
     const cleanupInterval = setInterval(memoryCleanup, 300000);
