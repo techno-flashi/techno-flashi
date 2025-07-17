@@ -22,7 +22,7 @@ export default function CriticalCSS() {
         link.href = href;
         link.media = 'print';
         link.onload = function() {
-          this.media = 'all';
+          (this as HTMLLinkElement).media = 'all';
         };
         document.head.appendChild(link);
       });
@@ -76,7 +76,7 @@ export function FontOptimizer() {
         link.href = font.href;
         link.crossOrigin = font.crossOrigin;
         link.onload = function() {
-          this.rel = 'stylesheet';
+          (this as HTMLLinkElement).rel = 'stylesheet';
         };
         document.head.appendChild(link);
       });
