@@ -13,8 +13,8 @@ import { AIToolsClient } from '@/components/AIToolsClient';
 import LazyAIToolsGrid from '@/components/ai-tools/LazyAIToolsGrid';
 import AIToolsSearch from '@/components/ai-tools/AIToolsSearch';
 
-// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
-export const revalidate = 86400; // 24 ساعة
+// Optimized ISR settings for faster updates
+export const revalidate = 300; // 5 minutes for AI tools listing
 export const dynamic = 'force-static';
 
 // تحميل عدد محدود من الأدوات للصفحة الأولى للـ SSG

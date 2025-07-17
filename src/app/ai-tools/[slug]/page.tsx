@@ -20,8 +20,8 @@ import SocialShare from '@/components/SocialShare';
 import SocialShareCompact from '@/components/SocialShareCompact';
 import { AIToolComparisonContainer } from '@/components/AIToolComparisonContainer';
 
-// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
-export const revalidate = 86400; // 24 ساعة
+// Optimized ISR settings for faster updates
+export const revalidate = 600; // 10 minutes for individual AI tools
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 

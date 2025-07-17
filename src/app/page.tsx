@@ -17,8 +17,8 @@ import YouTubeSection from "@/components/YouTubeSection";
 
 import { ArticleSummary, AITool, Service } from "@/types";
 
-// تحسين استهلاك الموارد - ISR محسن لتوفير Vercel ISR writes
-export const revalidate = 86400; // 24 ساعة بدلاً من دقيقة واحدة
+// Optimized ISR for faster updates while maintaining performance
+export const revalidate = 300; // 5 minutes for faster updates
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 

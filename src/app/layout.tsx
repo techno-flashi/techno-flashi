@@ -27,6 +27,7 @@ import { PerformanceOptimizer } from "@/components/performance/CriticalCSS";
 import { ResourceOptimizationSuite } from "@/components/performance/ResourceOptimizer";
 import { UnusedCodeOptimizer } from "@/components/performance/UnusedCodeRemover";
 import { TTFBOptimizationSuite } from "@/components/performance/TTFBOptimizer";
+import { CacheManager, AutoCacheInvalidator, ServiceWorkerUpdater } from "@/components/CacheManager";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -133,6 +134,16 @@ export default function RootLayout({
         {/* Critical performance optimizations - preconnect for critical resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
+        {/* Preload critical fonts for faster LCP */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6HkvalIhTp2mxdt0UX8.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://cmp.gatekeeperconsent.com" />
@@ -462,6 +473,15 @@ export default function RootLayout({
         <ResourceOptimizationSuite />
         <UnusedCodeOptimizer />
         <TTFBOptimizationSuite />
+
+        {/* Cache Management Components */}
+        <AutoCacheInvalidator />
+        <ServiceWorkerUpdater />
+
+        {/* Development Cache Manager */}
+        {process.env.NODE_ENV === 'development' && (
+          <CacheManager enabled={true} showDebugInfo={true} />
+        )}
       </body>
     </html>
   );

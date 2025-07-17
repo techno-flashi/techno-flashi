@@ -8,7 +8,7 @@ interface CacheItem {
 class SimpleCache {
   private cache: Map<string, CacheItem> = new Map();
 
-  set(key: string, data: any, ttlSeconds: number = 300): void {
+  set(key: string, data: any, ttlSeconds: number = 60): void { // Reduced default TTL to 1 minute
     this.cache.set(key, {
       data,
       timestamp: Date.now(),
@@ -52,18 +52,18 @@ class SimpleCache {
 
 export const cache = new SimpleCache();
 
-// تنظيف دوري كل 5 دقائق
+// تنظيف دوري كل دقيقة للاستجابة السريعة
 if (typeof window === 'undefined') { // server-side only
   setInterval(() => {
     cache.cleanup();
-  }, 5 * 60 * 1000);
+  }, 1 * 60 * 1000); // Cleanup every minute
 }
 
 // مساعد للاستعلامات المخزنة مؤقتاً
 export async function cachedQuery<T>(
   key: string,
   queryFn: () => Promise<T>,
-  ttlSeconds: number = 300
+  ttlSeconds: number = 60 // Reduced default TTL to 1 minute
 ): Promise<T> {
   // محاولة الحصول من الكاش
   const cached = cache.get(key);

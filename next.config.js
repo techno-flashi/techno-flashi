@@ -132,7 +132,15 @@ const nextConfig = {
                 https://www.googletagmanager.com
                 https://www.google-analytics.com
                 https://cdn.jsdelivr.net
-                https://unpkg.com;
+                https://unpkg.com
+                https://cmp.gatekeeperconsent.com
+                https://the.gatekeeperconsent.com
+                https://privacy.gatekeeperconsent.com
+                https://*.gatekeeperconsent.com
+                https://www.ezojs.com
+                https://ezojs.com
+                https://go.ezojs.com
+                https://*.ezojs.com;
               style-src 'self' 'unsafe-inline'
                 https://fonts.googleapis.com
                 https://cdn.jsdelivr.net;
@@ -151,10 +159,20 @@ const nextConfig = {
                 https://www.google-analytics.com
                 https://www.googletagmanager.com
                 https://cdn.jsdelivr.net;
-              connect-src 'self' https:;
+              connect-src 'self' https:
+                https://cmp.gatekeeperconsent.com
+                https://the.gatekeeperconsent.com
+                https://privacy.gatekeeperconsent.com
+                https://*.gatekeeperconsent.com
+                https://www.ezojs.com
+                https://ezojs.com
+                https://*.ezojs.com;
               frame-src 'self'
                 https://www.youtube.com
-                https://www.google.com;
+                https://www.google.com
+                https://cmp.gatekeeperconsent.com
+                https://the.gatekeeperconsent.com
+                https://*.gatekeeperconsent.com;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
@@ -172,13 +190,13 @@ const nextConfig = {
           }
         ]
       },
-      // إعدادات cache للصفحات الثابتة
+      // Optimized cache settings for faster updates
       {
         source: '/articles/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400'
+            value: 'public, max-age=300, s-maxage=300, stale-while-revalidate=600'
           }
         ]
       },
@@ -187,7 +205,17 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=86400'
+            value: 'public, max-age=300, s-maxage=300, stale-while-revalidate=600'
+          }
+        ]
+      },
+      // Homepage cache settings
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=180, s-maxage=180, stale-while-revalidate=300'
           }
         ]
       },

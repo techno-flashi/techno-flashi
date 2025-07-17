@@ -61,8 +61,8 @@ async function getAllArticles() {
   }
 }
 
-// تحسين استهلاك الموارد - ISR محسن
-export const revalidate = 86400; // 24 ساعة لتوفير ISR writes
+// Optimized ISR for faster content updates
+export const revalidate = 300; // 5 minutes for faster updates
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 

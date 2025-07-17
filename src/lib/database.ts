@@ -31,7 +31,7 @@ export async function getArticles(limit: number = 20): Promise<ArticleSummary[]>
     }
 
     return data as ArticleSummary[];
-  }, 3600); // ساعة واحدة للتخزين المؤقت
+  }, 300); // 5 minutes for faster updates
 }
 
 // جلب المقالات الأحدث للصفحة الرئيسية - محسن للأداء
@@ -58,7 +58,7 @@ export async function getLatestArticlesOptimized(limit: number = 8): Promise<Art
     }
 
     return data as ArticleSummary[];
-  }, 1800); // 30 دقيقة للصفحة الرئيسية
+  }, 300); // 5 minutes for homepage
 }
 
 // جلب جميع المقالات للأدمن (مع جميع الحالات)
@@ -88,7 +88,7 @@ export async function getAllArticlesForAdmin(limit: number = 50): Promise<Articl
     }
 
     return data as ArticleSummary[];
-  }, 300); // 5 دقائق للأدمن (تحديث أسرع)
+  }, 60); // 1 minute for admin (fastest updates)
 }
 
 // جلب مقال واحد بالـ ID

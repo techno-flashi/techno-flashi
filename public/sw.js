@@ -1,9 +1,11 @@
 // Service Worker for TechnoFlash
 // تحسين الأداء والتخزين المؤقت
 
-const CACHE_NAME = 'technoflash-v1.1.0';
-const STATIC_CACHE_NAME = 'technoflash-static-v1.1.0';
-const DYNAMIC_CACHE_NAME = 'technoflash-dynamic-v1.1.0';
+// Updated cache version to force cache invalidation
+const CACHE_VERSION = Date.now(); // Use timestamp for unique versioning
+const CACHE_NAME = `technoflash-v${CACHE_VERSION}`;
+const STATIC_CACHE_NAME = `technoflash-static-v${CACHE_VERSION}`;
+const DYNAMIC_CACHE_NAME = `technoflash-dynamic-v${CACHE_VERSION}`;
 
 // الملفات المهمة للتخزين المؤقت
 const STATIC_ASSETS = [
@@ -21,6 +23,13 @@ const EXCLUDE_URLS = [
   '/_next/webpack-hmr',
   '/_next/static/chunks/webpack',
 ];
+
+// Cache duration settings (in milliseconds)
+const CACHE_DURATION = {
+  STATIC: 1 * 60 * 1000,    // 1 minute for static assets
+  DYNAMIC: 30 * 1000,       // 30 seconds for dynamic content
+  PAGES: 10 * 1000          // 10 seconds for pages
+};
 
 // تثبيت Service Worker
 self.addEventListener('install', (event) => {
@@ -84,9 +93,28 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(request)
       .then((cachedResponse) => {
-        // إذا وُجد في الكاش، أرجعه
+        // Check if cached response exists and is still fresh
         if (cachedResponse) {
-          return cachedResponse;
+          const cachedDate = new Date(cachedResponse.headers.get('sw-cached-date') || 0);
+          const now = new Date();
+          const cacheAge = now.getTime() - cachedDate.getTime();
+
+          // Determine cache duration based on content type
+          let maxAge = CACHE_DURATION.DYNAMIC;
+          if (isStaticAsset(request.url)) {
+            maxAge = CACHE_DURATION.STATIC;
+          } else if (request.destination === 'document') {
+            maxAge = CACHE_DURATION.PAGES;
+          }
+
+          // Return cached response if still fresh
+          if (cacheAge < maxAge) {
+            console.log('SW: Serving from cache (fresh):', request.url);
+            return cachedResponse;
+          } else {
+            console.log('SW: Cache expired, fetching fresh:', request.url);
+            // Cache expired, continue to fetch fresh content
+          }
         }
         
         // إذا لم يوجد، اجلبه من الشبكة
@@ -97,15 +125,26 @@ self.addEventListener('fetch', (event) => {
               return response;
             }
             
-            // نسخ الاستجابة للتخزين المؤقت
+            // نسخ الاستجابة للتخزين المؤقت مع إضافة timestamp
             const responseToCache = response.clone();
-            
+
+            // Add timestamp header for cache expiration
+            const responseWithTimestamp = new Response(responseToCache.body, {
+              status: responseToCache.status,
+              statusText: responseToCache.statusText,
+              headers: {
+                ...Object.fromEntries(responseToCache.headers.entries()),
+                'sw-cached-date': new Date().toISOString()
+              }
+            });
+
             // تحديد نوع الكاش بناءً على نوع الطلب
             const cacheToUse = isStaticAsset(request.url) ? STATIC_CACHE_NAME : DYNAMIC_CACHE_NAME;
-            
+
             caches.open(cacheToUse)
               .then((cache) => {
-                cache.put(request, responseToCache);
+                cache.put(request, responseWithTimestamp);
+                console.log('SW: Cached with timestamp:', request.url);
               });
             
             return response;

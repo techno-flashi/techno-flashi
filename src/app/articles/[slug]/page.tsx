@@ -19,8 +19,11 @@ import { generateArticleSocialMeta, getSharingUrl, getSharingHashtags } from "@/
 import SocialShare from "@/components/SocialShare";
 import SocialShareCompact from "@/components/SocialShareCompact";
 
-// إعدادات ISR - إعادة بناء الصفحة كل 24 ساعة
-export const revalidate = 86400; // 24 ساعة
+// Import critical CSS for faster LCP
+import "@/styles/critical-article.css";
+
+// Optimized ISR settings for faster updates
+export const revalidate = 600; // 10 minutes for individual articles
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 

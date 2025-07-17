@@ -1,5 +1,26 @@
 {
   "framework": "nextjs",
+  "buildCommand": "BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ) next build",
+  "headers": [
+    {
+      "source": "/api/version",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Cache-Status",
+          "value": "MISS"
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/ads.txt",
