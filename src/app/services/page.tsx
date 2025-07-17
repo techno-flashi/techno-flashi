@@ -53,7 +53,7 @@ export default async function ServicesPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-blue-600 text-white py-20">
+      <section className="bg-gradient-to-br from-primary to-blue-600 text-black py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             خدماتنا التقنية المتطورة
@@ -70,7 +70,7 @@ export default async function ServicesPage() {
             </a>
             <a
               href="/page/contact-us"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition-colors duration-200"
+              className="border-2 border-white text-black px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition-colors duration-200"
             >
               تواصل معنا
             </a>
@@ -133,7 +133,7 @@ export default async function ServicesPage() {
       )}
 
       {/* قسم الاتصال */}
-      <section className="py-16 bg-gray-900 text-white">
+      <section className="py-16 bg-gray-900 text-black">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">
             هل تحتاج خدمة مخصصة؟
@@ -143,7 +143,7 @@ export default async function ServicesPage() {
           </p>
           <a
             href="/page/contact-us"
-            className="inline-block bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
+            className="inline-block bg-primary text-black px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
           >
             تواصل معنا الآن
           </a>

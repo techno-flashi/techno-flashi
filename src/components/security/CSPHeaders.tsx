@@ -17,15 +17,17 @@ export default function CSPHeaders() {
         meta.httpEquiv = 'Content-Security-Policy';
         meta.content = `
           default-src 'self';
-          script-src 'self' 'unsafe-inline' 'unsafe-eval' 
-            https://www.googletagmanager.com 
-            https://www.google-analytics.com 
-            https://pagead2.googlesyndication.com 
+          script-src 'self' 'unsafe-inline' 'unsafe-eval'
+            https://www.googletagmanager.com
+            https://www.google-analytics.com
+            https://pagead2.googlesyndication.com
             https://partner.googleadservices.com
             https://ezojs.com
             https://www.ezojs.com
             https://go.ezojs.com
             https://gatekeeperconsent.com
+            https://privacy.gatekeeperconsent.com
+            https://cdn.id5-sync.com
             https://cdn.jsdelivr.net
             https://unpkg.com;
           style-src 'self' 'unsafe-inline' 
@@ -46,7 +48,7 @@ export default function CSPHeaders() {
             https://www.google-analytics.com
             https://www.googletagmanager.com
             https://pagead2.googlesyndication.com;
-          connect-src 'self' 
+          connect-src 'self'
             https://zgktrwpladrkhhemhnni.supabase.co
             https://ugrfqcfhoxgpxcwnnbxu.supabase.co
             https://www.google-analytics.com
@@ -54,11 +56,15 @@ export default function CSPHeaders() {
             https://region1.google-analytics.com
             https://ezojs.com
             https://www.ezojs.com
-            https://go.ezojs.com;
-          frame-src 'self' 
+            https://go.ezojs.com
+            https://g.ezoic.net
+            https://privacy.gatekeeperconsent.com
+            https://ep1.adtrafficquality.google;
+          frame-src 'self'
             https://www.youtube.com
             https://www.google.com
-            https://pagead2.googlesyndication.com;
+            https://pagead2.googlesyndication.com
+            https://googleads.g.doubleclick.net;
           object-src 'none';
           base-uri 'self';
           form-action 'self';

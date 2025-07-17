@@ -135,7 +135,7 @@ export default function LazyAIToolsGrid({
             setError(null);
             loadMoreTools();
           }}
-          className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+          className="bg-primary text-black px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
         >
           إعادة المحاولة
         </button>
@@ -177,7 +177,7 @@ export default function LazyAIToolsGrid({
             {/* محتوى البطاقة */}
             <div className="p-6">
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors duration-300 line-clamp-1">
+                <h3 className="text-xl font-bold text-black group-hover:text-primary transition-colors duration-300 line-clamp-1">
                   {tool.name}
                 </h3>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPricingColor(tool.pricing)}`}>
@@ -238,7 +238,7 @@ export default function LazyAIToolsGrid({
           <button
             onClick={loadMoreTools}
             disabled={loading}
-            className="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 font-medium"
+            className="bg-primary text-black px-8 py-3 rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 font-medium"
           >
             {loading ? (
               <div className="flex items-center">

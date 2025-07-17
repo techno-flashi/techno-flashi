@@ -273,7 +273,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* Breadcrumbs */}
           <Breadcrumbs items={breadcrumbItems} />
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-black mb-4 leading-tight">
             {article.title}
           </h1>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-dark-text-secondary mb-6 md:mb-8 text-sm sm:text-base">
@@ -326,7 +326,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* مشاركة المقال */}
           <div className="mt-12 pt-8 border-t border-gray-700">
-            <h3 className="text-xl font-bold text-white mb-6 text-center">شارك هذا المقال</h3>
+            <h3 className="text-xl font-bold text-black mb-6 text-center">شارك هذا المقال</h3>
             <SocialShare
               url={getSharingUrl(`/articles/${article.slug}`)}
               title={article.title}
@@ -340,13 +340,13 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* Call-to-Action Buttons */}
           <div className="mt-8 p-6 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-xl border border-primary/20">
-            <h3 className="text-xl font-bold text-white mb-4 text-center">
+            <h3 className="text-xl font-bold text-black mb-4 text-center">
               استكشف المزيد من المحتوى التقني
             </h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/ai-tools"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary/80 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+                className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary/80 text-black font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
               >
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
@@ -355,7 +355,7 @@ export default async function ArticlePage({ params }: Props) {
               </a>
               <a
                 href="/articles"
-                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-black font-semibold rounded-lg transition-all duration-300"
               >
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -374,7 +374,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
             {/* عناصر التنقل السريع */}
             <div className="bg-dark-card rounded-lg p-4 lg:p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">التنقل السريع</h3>
+              <h3 className="text-lg font-semibold text-black mb-4">التنقل السريع</h3>
               <nav className="space-y-3">
                 <a
                   href="/"
@@ -420,22 +420,22 @@ export default async function ArticlePage({ params }: Props) {
 
             {/* معلومات إضافية */}
             <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">معلومات المقال</h3>
+              <h3 className="text-lg font-semibold text-black mb-4">معلومات المقال</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-dark-text-secondary">تاريخ النشر:</span>
-                  <span className="text-white">
+                  <span className="text-black">
                     {new Date(article.published_at).toLocaleDateString('ar-EG')}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-dark-text-secondary">وقت القراءة:</span>
-                  <span className="text-white">{article.reading_time || 5} دقائق</span>
+                  <span className="text-black">{article.reading_time || 5} دقائق</span>
                 </div>
                 {article.author && (
                   <div className="flex justify-between">
                     <span className="text-dark-text-secondary">الكاتب:</span>
-                    <span className="text-white">{article.author}</span>
+                    <span className="text-black">{article.author}</span>
                   </div>
                 )}
                 {Array.isArray(article.tags) && article.tags.length > 0 && (
@@ -463,7 +463,7 @@ export default async function ArticlePage({ params }: Props) {
 
             {/* مشاركة المقال */}
             <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
-              <h3 className="text-lg font-semibold text-white mb-4">شارك المقال</h3>
+              <h3 className="text-lg font-semibold text-black mb-4">شارك المقال</h3>
               <SocialShare
                 url={getSharingUrl(`/articles/${article.slug}`)}
                 title={article.title}
@@ -484,7 +484,7 @@ export default async function ArticlePage({ params }: Props) {
       {relatedArticles.length > 0 && (
         <section className="mt-16 mb-12">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">
+            <h2 className="text-3xl font-bold text-black mb-8 text-center">
               مقالات ذات صلة
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -514,7 +514,7 @@ export default async function ArticlePage({ params }: Props) {
 
                   {/* محتوى المقال */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-black mb-3 line-clamp-2 group-hover:text-primary transition-colors duration-300">
                       <a href={`/articles/${relatedArticle.slug}`}>
                         {relatedArticle.title}
                       </a>
@@ -564,7 +564,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* قسم التنقل للأجهزة المحمولة */}
       <section className="lg:hidden mt-12 bg-dark-card rounded-lg p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6 text-center">استكشف المزيد</h3>
+        <h3 className="text-xl font-semibold text-black mb-6 text-center">استكشف المزيد</h3>
         <div className="grid grid-cols-2 gap-4">
           <a
             href="/"
@@ -573,7 +573,7 @@ export default async function ArticlePage({ params }: Props) {
             <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
-            <span className="text-white text-sm font-medium">الرئيسية</span>
+            <span className="text-black text-sm font-medium">الرئيسية</span>
           </a>
           <a
             href="/ai-tools"
@@ -582,7 +582,7 @@ export default async function ArticlePage({ params }: Props) {
             <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <span className="text-white text-sm font-medium">أدوات الذكاء</span>
+            <span className="text-black text-sm font-medium">أدوات الذكاء</span>
           </a>
           <a
             href="/services"
@@ -591,7 +591,7 @@ export default async function ArticlePage({ params }: Props) {
             <svg className="w-6 h-6 text-primary mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h8z" />
             </svg>
-            <span className="text-white text-sm font-medium">الخدمات</span>
+            <span className="text-black text-sm font-medium">الخدمات</span>
           </a>
           <a
             href="/articles"

@@ -316,19 +316,19 @@
 @layer components {
   /* الأزرار بالألوان الموحدة */
   .btn-primary {
-    @apply bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-primary hover:bg-primary-hover text-black px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
     font-size: 16px;
     font-weight: 500;
   }
 
   .btn-secondary {
-    @apply bg-secondary hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-secondary hover:bg-orange-600 text-black px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
     font-size: 16px;
     font-weight: 500;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-black px-6 py-3 rounded-lg font-medium transition-all duration-200;
     font-size: 16px;
     font-weight: 500;
   }

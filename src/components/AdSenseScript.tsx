@@ -62,35 +62,56 @@ export default function AdSenseScript({
  */
 export function InitializeAdSense({ publisherId }: { publisherId: string }) {
   useEffect(() => {
+    // فحص شامل لمنع التهيئة المكررة
+    if (typeof window === 'undefined') return;
+
+    // فحص جميع العلامات الممكنة للتهيئة
+    const isAlreadyInitialized =
+      window.adsenseInitialized ||
+      document.querySelector('[data-adsense-initialized]') ||
+      document.querySelector('script[data-ad-client]') ||
+      document.body.hasAttribute('data-adsense-initialized');
+
+    if (isAlreadyInitialized) {
+      console.log('⚠️ AdSense already initialized, skipping duplicate initialization');
+      return;
+    }
+
     // تهيئة AdSense مرة واحدة فقط
-    if (typeof window !== 'undefined' && !window.adsenseInitialized) {
-      // انتظار تحميل AdSense script
-      const initAds = () => {
-        if (window.adsbygoogle && !window.adsenseInitialized && !document.querySelector('[data-adsense-initialized]')) {
-          try {
+    const initAds = () => {
+      if (window.adsbygoogle && !window.adsenseInitialized) {
+        try {
+          // فحص أخير قبل التهيئة
+          if (!document.querySelector('[data-adsense-initialized]')) {
             window.adsbygoogle.push({
               google_ad_client: publisherId,
               enable_page_level_ads: true,
               overlays: { bottom: true }
             });
+
             // تعيين علامات متعددة لمنع التهيئة المكررة
             window.adsenseInitialized = true;
             document.body.setAttribute('data-adsense-initialized', 'true');
-            console.log('✅ AdSense initialized successfully');
-          } catch (error) {
-            console.warn('❌ AdSense initialization error:', error);
-          }
-        } else if (!window.adsbygoogle) {
-          // إعادة المحاولة بعد 500ms
-          setTimeout(initAds, 500);
-        } else if (window.adsenseInitialized) {
-          console.log('⚠️ AdSense already initialized, skipping...');
-        }
-      };
 
-      // تأخير قصير للتأكد من تحميل script
-      setTimeout(initAds, 100);
-    }
+            // إضافة علامة إضافية في head
+            const meta = document.createElement('meta');
+            meta.name = 'adsense-initialized';
+            meta.content = 'true';
+            document.head.appendChild(meta);
+
+            console.log('✅ AdSense initialized successfully');
+          }
+        } catch (error) {
+          console.warn('❌ AdSense initialization error:', error);
+        }
+      } else if (!window.adsbygoogle) {
+        // إعادة المحاولة مرة واحدة فقط
+        setTimeout(initAds, 500);
+      }
+    };
+
+    // بدء التهيئة بعد تأخير قصير
+    setTimeout(initAds, 100);
   }, [publisherId]);
 
   return null;

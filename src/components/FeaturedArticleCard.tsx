@@ -31,21 +31,21 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
           
           {/* شارة "مقال رئيسي" */}
           <div className="absolute top-4 right-4">
-            <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+            <span className="bg-primary text-black px-3 py-1 rounded-full text-sm font-semibold">
               مقال رئيسي
             </span>
           </div>
           
           {/* المحتوى المتراكب */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+          <div className="absolute bottom-0 left-0 right-0 p-6 text-black">
             <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
               {article.title}
             </h2>
-            <p className="text-white text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
+            <p className="text-black text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
               {article.excerpt}
             </p>
             <div className="flex items-center justify-between">
-              <div className="text-sm text-white">
+              <div className="text-sm text-black">
                 {new Date(article.published_at).toLocaleDateString('ar-EG', {
                   year: 'numeric', 
                   month: 'long', 

@@ -59,7 +59,7 @@ export function Header() {
             onClick={() => setIsMenuOpen(false)}
           >
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg sm:text-xl">T</span>
+              <span className="text-black font-bold text-lg sm:text-xl">T</span>
             </div>
             <div className="hidden xs:block">
               <div className="text-lg sm:text-xl lg:text-2xl font-bold text-black">TechnoFlash</div>
@@ -107,7 +107,7 @@ export function Header() {
             {contactPage && (
               <Link
                 href={getPageUrl('contact-us')}
-                className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 lg:px-3 py-2 relative group text-sm lg:text-base"
+                className="text-dark-text-secondary hover:text-black transition-colors duration-300 font-medium focus-ring rounded px-2 lg:px-3 py-2 relative group text-sm lg:text-base"
               >
                 {contactPage.title_ar}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -120,13 +120,13 @@ export function Header() {
               <div className="flex items-center space-x-2 lg:space-x-4 space-x-reverse">
                 <Link
                   href="/admin"
-                  className="bg-primary hover:bg-blue-600 text-white px-3 lg:px-6 py-2 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-primary/25 focus-ring transform hover:scale-105 text-sm lg:text-base"
+                  className="bg-primary hover:bg-blue-600 text-black px-3 lg:px-6 py-2 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-primary/25 focus-ring transform hover:scale-105 text-sm lg:text-base"
                 >
                   لوحة التحكم
                 </Link>
                 <button
                   onClick={signOut}
-                  className="bg-red-600 hover:bg-red-700 text-white px-3 lg:px-6 py-2 rounded-lg transition-all duration-300 font-medium focus-ring transform hover:scale-105 text-sm lg:text-base"
+                  className="bg-red-600 hover:bg-red-700 text-black px-3 lg:px-6 py-2 rounded-lg transition-all duration-300 font-medium focus-ring transform hover:scale-105 text-sm lg:text-base"
                   aria-label="تسجيل الخروج من الحساب"
                 >
                   تسجيل الخروج
@@ -206,7 +206,7 @@ export function Header() {
                 <div className="pt-4 mt-4 border-t border-gray-700 space-y-2">
                   <Link
                     href="/admin"
-                    className="bg-primary hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 font-medium block text-center focus-ring"
+                    className="bg-primary hover:bg-blue-600 text-black px-4 py-3 rounded-lg transition-all duration-300 font-medium block text-center focus-ring"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     لوحة التحكم
@@ -216,7 +216,7 @@ export function Header() {
                       signOut();
                       setIsMenuOpen(false);
                     }}
-                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-all duration-300 font-medium w-full focus-ring"
+                    className="bg-red-600 hover:bg-red-700 text-black px-4 py-3 rounded-lg transition-all duration-300 font-medium w-full focus-ring"
                   >
                     تسجيل الخروج
                   </button>
