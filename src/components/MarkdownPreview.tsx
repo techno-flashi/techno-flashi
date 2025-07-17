@@ -20,7 +20,10 @@ interface MarkdownPreviewProps {
 // مكون فيديو YouTube
 function YouTubeVideo({ videoId }: { videoId: string }) {
   return (
-    <div className="relative w-full aspect-video my-6 rounded-lg overflow-hidden bg-gray-900">
+    <div
+      className="relative w-full my-6 rounded-lg overflow-hidden bg-gray-900"
+      style={{ aspectRatio: '16/9', minHeight: '315px' }}
+    >
       <iframe
         src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
         className="absolute inset-0 w-full h-full border-0"
@@ -28,6 +31,8 @@ function YouTubeVideo({ videoId }: { videoId: string }) {
         allowFullScreen
         title="فيديو يوتيوب"
         loading="lazy"
+        width="560"
+        height="315"
       />
     </div>
   );

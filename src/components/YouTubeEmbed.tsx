@@ -1,7 +1,8 @@
-// مكون تشغيل فيديوهات يوتيوب
+// مكون تشغيل فيديوهات يوتيوب - محسن للأداء
 'use client';
 
 import { useState } from 'react';
+import { YouTubeFacade, extractYouTubeId } from './YouTubeFacade';
 
 interface YouTubeEmbedProps {
   url: string;
@@ -10,25 +11,7 @@ interface YouTubeEmbedProps {
 }
 
 export function YouTubeEmbed({ url, title = "فيديو يوتيوب", className = "" }: YouTubeEmbedProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // استخراج معرف الفيديو من رابط يوتيوب
-  const getVideoId = (url: string): string | null => {
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-      /youtube\.com\/watch\?.*v=([^&\n?#]+)/
-    ];
-
-    for (const pattern of patterns) {
-      const match = url.match(pattern);
-      if (match) {
-        return match[1];
-      }
-    }
-    return null;
-  };
-
-  const videoId = getVideoId(url);
+  const videoId = extractYouTubeId(url);
 
   if (!videoId) {
     return (
@@ -46,63 +29,13 @@ export function YouTubeEmbed({ url, title = "فيديو يوتيوب", className
     );
   }
 
-  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
   return (
-    <div className={`relative w-full ${className}`}>
-      <div className="relative w-full h-0 pb-[56.25%] rounded-lg overflow-hidden bg-dark-card">
-        {!isLoaded ? (
-          // صورة مصغرة مع زر التشغيل
-          <div 
-            className="absolute inset-0 cursor-pointer group"
-            onClick={() => setIsLoaded(true)}
-          >
-            <img
-              src={thumbnailUrl}
-              alt={title}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                // في حالة فشل تحميل الصورة المصغرة، استخدم صورة افتراضية
-                (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-              }}
-            />
-            
-            {/* طبقة تراكب مع زر التشغيل */}
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors duration-300">
-              <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-all duration-300 transform group-hover:scale-110">
-                <svg className="w-8 h-8 text-white mr-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-            </div>
-            
-            {/* شعار يوتيوب */}
-            <div className="absolute bottom-4 right-4">
-              <div className="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-                YouTube
-              </div>
-            </div>
-            
-            {/* عنوان الفيديو */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-              <h3 className="text-white font-semibold text-sm line-clamp-2">
-                {title}
-              </h3>
-            </div>
-          </div>
-        ) : (
-          // مشغل الفيديو الفعلي
-          <iframe
-            src={`${embedUrl}?autoplay=1&rel=0&modestbranding=1`}
-            title={title}
-            className="absolute inset-0 w-full h-full"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        )}
-      </div>
+    <div className={className}>
+      <YouTubeFacade
+        videoId={videoId}
+        title={title}
+        className="mb-4"
+      />
       
       {/* معلومات إضافية */}
       <div className="mt-3 flex items-center justify-between text-sm">

@@ -136,11 +136,16 @@ const nextConfig = {
                 https://cmp.gatekeeperconsent.com
                 https://the.gatekeeperconsent.com
                 https://privacy.gatekeeperconsent.com
+                https://gatekeeperconsent.com
                 https://*.gatekeeperconsent.com
                 https://www.ezojs.com
                 https://ezojs.com
                 https://go.ezojs.com
-                https://*.ezojs.com;
+                https://*.ezojs.com
+                https://pagead2.googlesyndication.com
+                https://googleads.g.doubleclick.net
+                https://tpc.googlesyndication.com
+                https://securepubads.g.doubleclick.net;
               style-src 'self' 'unsafe-inline'
                 https://fonts.googleapis.com
                 https://cdn.jsdelivr.net;
@@ -163,16 +168,25 @@ const nextConfig = {
                 https://cmp.gatekeeperconsent.com
                 https://the.gatekeeperconsent.com
                 https://privacy.gatekeeperconsent.com
+                https://gatekeeperconsent.com
                 https://*.gatekeeperconsent.com
                 https://www.ezojs.com
                 https://ezojs.com
-                https://*.ezojs.com;
+                https://*.ezojs.com
+                https://pagead2.googlesyndication.com
+                https://googleads.g.doubleclick.net
+                https://tpc.googlesyndication.com
+                https://securepubads.g.doubleclick.net;
               frame-src 'self'
                 https://www.youtube.com
                 https://www.google.com
                 https://cmp.gatekeeperconsent.com
                 https://the.gatekeeperconsent.com
-                https://*.gatekeeperconsent.com;
+                https://gatekeeperconsent.com
+                https://*.gatekeeperconsent.com
+                https://pagead2.googlesyndication.com
+                https://googleads.g.doubleclick.net
+                https://tpc.googlesyndication.com;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
