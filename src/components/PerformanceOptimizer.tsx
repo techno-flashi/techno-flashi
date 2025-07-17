@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 // Lazy load non-critical components
 const LazyFeaturedArticlesSection = lazy(() => 
