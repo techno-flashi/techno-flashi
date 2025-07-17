@@ -165,8 +165,9 @@ export function FontOptimizer() {
             const rule = rules[j] as CSSFontFaceRule;
             
             if (rule.type === CSSRule.FONT_FACE_RULE) {
-              if (!rule.style.fontDisplay) {
-                rule.style.fontDisplay = 'swap';
+              const style = rule.style as any;
+              if (!style.fontDisplay) {
+                style.fontDisplay = 'swap';
               }
             }
           }
