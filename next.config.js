@@ -7,7 +7,11 @@ const nextConfig = {
 
   // دعم الأحرف الدولية والعربية
   experimental: {
-    optimizePackageImports: ['react-icons', 'lucide-react'],
+    optimizePackageImports: ['react-icons', 'lucide-react', '@supabase/supabase-js'],
+    // Advanced performance optimizations
+    serverComponentsExternalPackages: ['@supabase/supabase-js'],
+    optimizeCss: true,
+    scrollRestoration: true,
   },
 
   // إعدادات SSG و ISR
@@ -171,20 +175,47 @@ const nextConfig = {
 
   // تحسينات webpack
   webpack: (config, { dev, isServer }) => {
-    // تحسينات الإنتاج
+    // تحسينات الإنتاج المتقدمة
     if (!dev && !isServer) {
-      // Bundle optimization
+      // Advanced bundle optimization
       config.optimization.splitChunks = {
         chunks: 'all',
         minSize: 20000,
-        maxSize: 244000,
+        maxSize: 200000, // Reduced for better loading
         cacheGroups: {
+          // React and React DOM in separate chunk
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 30,
+            enforce: true,
+          },
+          // Supabase in separate chunk
+          supabase: {
+            test: /[\\/]node_modules[\\/]@supabase[\\/]/,
+            name: 'supabase',
+            chunks: 'all',
+            priority: 25,
+            enforce: true,
+          },
+          // UI libraries
+          ui: {
+            test: /[\\/]node_modules[\\/](react-icons|lucide-react|framer-motion)[\\/]/,
+            name: 'ui',
+            chunks: 'all',
+            priority: 20,
+            enforce: true,
+          },
+          // Other vendor libraries
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
             priority: 10,
+            minChunks: 1,
           },
+          // Common application code
           common: {
             name: 'common',
             minChunks: 2,
@@ -192,23 +223,40 @@ const nextConfig = {
             enforce: true,
             priority: 5,
           },
-          react: {
-            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-            name: 'react',
-            chunks: 'all',
-            priority: 20,
-          },
         },
       };
 
-      // Tree shaking optimization
+      // Advanced tree shaking
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
+      config.optimization.providedExports = true;
+      config.optimization.innerGraph = true;
 
-      // Minimize bundle size
+      // Module concatenation for better tree shaking
+      config.optimization.concatenateModules = true;
+
+      // Minimize bundle size with aliases
       config.resolve.alias = {
         ...config.resolve.alias,
         'lodash': 'lodash-es', // Use ES modules version
+        'moment': 'dayjs', // Replace moment with smaller dayjs
+      };
+
+      // Remove unused polyfills for modern browsers
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        stream: false,
+        url: false,
+        zlib: false,
+        http: false,
+        https: false,
+        assert: false,
+        os: false,
+        path: false,
       };
     }
 

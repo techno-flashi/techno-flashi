@@ -20,12 +20,19 @@ import HydrationFix, { SuppressHydrationWarning } from "@/components/HydrationFi
 import { DevHydrationSuppressor } from "@/components/HydrationSafeWrapper";
 import AdSenseScript, { InitializeAdSense } from "@/components/AdSenseScript";
 
-// إعداد الخطوط
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+// إعداد الخطوط مع تحسينات الأداء
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: 'swap', // Prevent FOIT/FOUT
+  preload: true,
+});
 const tajawal = Tajawal({
   subsets: ["arabic"],
   weight: ["400", "700"],
   variable: "--font-tajawal",
+  display: 'swap', // Prevent FOIT/FOUT
+  preload: true,
 });
 
 // إعداد بيانات SEO المحسنة للموقع
@@ -101,34 +108,119 @@ export default function RootLayout({
     // إضافة dir="rtl" لدعم اللغة العربية بشكل كامل
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
       <head>
-        {/* Performance optimizations */}
+        {/* Critical performance optimizations - preconnect for critical resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://cmp.gatekeeperconsent.com" />
+        <link rel="preconnect" href="https://the.gatekeeperconsent.com" />
+        <link rel="preconnect" href="https://www.ezojs.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://zgktrwpladrkhhemhnni.supabase.co" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
-        {/* Ezoic Privacy Scripts - Must be loaded first for compliance */}
+        {/* Critical CSS for above-the-fold content and CLS prevention */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Critical CSS for immediate rendering and CLS prevention */
+            body {
+              margin: 0;
+              font-family: system-ui, -apple-system, sans-serif;
+              background: #ffffff;
+              color: #1f2937;
+              line-height: 1.6;
+              font-display: swap;
+            }
+            .hero-section {
+              min-height: 60vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              padding: 2rem 1rem;
+            }
+            .header {
+              position: sticky;
+              top: 0;
+              background: rgba(255, 255, 255, 0.95);
+              backdrop-filter: blur(8px);
+              border-bottom: 1px solid #e5e7eb;
+              z-index: 50;
+              height: 80px; /* Fixed height to prevent CLS */
+            }
+            .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 1rem;
+            }
+            @media (min-width: 768px) {
+              .container { padding: 0 2rem; }
+              .header { height: 88px; }
+            }
+            /* Prevent layout shifts from dynamic content */
+            .ad-banner {
+              min-height: 90px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .consent-banner {
+              position: fixed;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              z-index: 1000;
+              transform: translateY(100%);
+              transition: transform 0.3s ease-in-out;
+            }
+            .consent-banner.visible {
+              transform: translateY(0);
+            }
+            /* Font loading optimization */
+            @font-face {
+              font-family: 'Inter';
+              font-display: swap;
+            }
+            @font-face {
+              font-family: 'Tajawal';
+              font-display: swap;
+            }
+          `
+        }} />
+
+        {/* Defer non-critical consent scripts to improve FCP */}
         <script
           src="https://cmp.gatekeeperconsent.com/min.js"
+          defer
           data-cfasync="false"
         />
         <script
           src="https://the.gatekeeperconsent.com/cmp.min.js"
+          defer
           data-cfasync="false"
         />
 
-        {/* Ezoic Header Script - Main ad system initialization */}
-        <script
-          async
-          src="//www.ezojs.com/ezoic/sa.min.js"
-        />
+        {/* Optimized Ezoic loading - defer to improve FCP */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.ezstandalone = window.ezstandalone || {};
               ezstandalone.cmd = ezstandalone.cmd || [];
+
+              // Load Ezoic script after page load to improve performance
+              function loadEzoic() {
+                const script = document.createElement('script');
+                script.src = '//www.ezojs.com/ezoic/sa.min.js';
+                script.async = true;
+                document.head.appendChild(script);
+              }
+
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadEzoic);
+              } else {
+                loadEzoic();
+              }
             `,
           }}
         />

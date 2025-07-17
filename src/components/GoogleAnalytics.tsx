@@ -20,13 +20,14 @@ export default function GoogleAnalytics() {
 
   return (
     <>
+      {/* Optimized Google Analytics loading - defer to improve performance */}
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
       <Script
         id="gtag-init"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -40,6 +41,13 @@ export default function GoogleAnalytics() {
               send_page_view: true,
               cookie_domain: 'tflash.site',
               cookie_flags: 'SameSite=None;Secure',
+              // Performance optimizations
+              transport_type: 'beacon',
+              custom_map: {'custom_parameter': 'value'},
+              // Reduce data collection for better performance
+              anonymize_ip: true,
+              allow_google_signals: false,
+              allow_ad_personalization_signals: false,
             });
           `,
         }}

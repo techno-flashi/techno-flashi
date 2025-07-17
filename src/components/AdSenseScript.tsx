@@ -18,9 +18,9 @@ interface AdSenseScriptProps {
 /**
  * مكون تحميل Google AdSense بطريقة آمنة ومحسنة
  */
-export default function AdSenseScript({ 
-  publisherId, 
-  strategy = 'afterInteractive' 
+export default function AdSenseScript({
+  publisherId,
+  strategy = 'lazyOnload' // Changed default to lazyOnload for better performance
 }: AdSenseScriptProps) {
   useEffect(() => {
     // التأكد من عدم تحميل AdSense أكثر من مرة
@@ -31,7 +31,7 @@ export default function AdSenseScript({
 
   return (
     <>
-      {/* Google AdSense Script - محسن */}
+      {/* Google AdSense Script - Performance optimized */}
       <Script
         id="google-adsense"
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}`}
@@ -39,14 +39,18 @@ export default function AdSenseScript({
         async
         crossOrigin="anonymous"
         onLoad={() => {
-          console.log('AdSense script loaded successfully');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('AdSense script loaded successfully');
+          }
           // تهيئة فورية بعد التحميل
           if (typeof window !== 'undefined') {
             window.adsbygoogle = window.adsbygoogle || [];
           }
         }}
         onError={(error) => {
-          console.warn('AdSense script failed to load:', error);
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('AdSense script failed to load:', error);
+          }
         }}
       />
     </>

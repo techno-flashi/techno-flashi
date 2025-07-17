@@ -8,6 +8,7 @@ import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import SponsorsSection from "@/components/SponsorsSection";
 import AdBannerTop from "@/components/AdBannerTop";
 import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
+import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
@@ -87,26 +88,30 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* بانر الإعلان العلوي */}
-      <AdBannerTop />
-
-      {/* القسم الرئيسي (Hero Section) */}
-      <section className="relative bg-gradient-to-br from-dark-background via-dark-card to-dark-background py-20 px-4">
+      {/* القسم الرئيسي (Hero Section) - Fixed dimensions to prevent CLS */}
+      <section className="hero-section relative bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20 px-4 min-h-[60vh] flex items-center">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
-              مستقبلك التقني يبدأ من هنا مع{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                TechnoFlash
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-              اكتشف أحدث المقالات والأدوات في عالم الذكاء الاصطناعي والبرمجة، واحصل على خدمات تقنية متخصصة لتطوير مشاريعك.
-            </p>
-            <div className="flex justify-center">
+            {/* Reserved space for title to prevent layout shift */}
+            <div className="min-h-[200px] md:min-h-[280px] flex flex-col justify-center">
+              <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
+                مستقبلك التقني يبدأ من هنا مع{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+                  TechnoFlash
+                </span>
+              </h1>
+            </div>
+            {/* Reserved space for description to prevent layout shift */}
+            <div className="min-h-[80px] flex items-center justify-center mb-8">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                اكتشف أحدث المقالات والأدوات في عالم الذكاء الاصطناعي والبرمجة، واحصل على خدمات تقنية متخصصة لتطوير مشاريعك.
+              </p>
+            </div>
+            {/* Reserved space for button to prevent layout shift */}
+            <div className="min-h-[60px] flex justify-center items-center">
               <a
                 href="/articles"
-                className="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/25 transform hover:-translate-y-1"
+                className="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/25 will-change-transform"
               >
                 استكشف المقالات
               </a>
@@ -167,11 +172,11 @@ export default async function HomePage() {
       {/* إعلان تكنوفلاش المتحرك */}
       <TechnoFlashContentBanner className="my-8" />
 
-      {/* إعلان الهيدر */}
-      <HeaderAd className="mb-8" />
-
-      {/* قسم أحدث المقالات مع التصميم الجديد */}
-      <FeaturedArticlesSection articles={latestArticles} />
+      {/* Performance optimized sections with lazy loading */}
+      <PerformanceOptimizer
+        latestArticles={latestArticles}
+        latestServices={latestServices}
+      />
 
       {/* إعلان بين الأقسام */}
       <InContentAd className="my-12" />
@@ -205,12 +210,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* قسم الخدمات المميزة */}
-      <ServicesSection
-        services={latestServices}
-        title="خدماتنا المميزة"
-        maxItems={3}
-      />
+
 
       {/* قسم الرعاة */}
       <SponsorsSection />

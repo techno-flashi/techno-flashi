@@ -30,7 +30,7 @@ export function LazyImage({
   quality = 80,
   placeholder = 'empty',
   blurDataURL,
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  sizes = '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw',
   fill = false,
   style,
   onLoad,
@@ -41,7 +41,7 @@ export function LazyImage({
   const [isInView, setIsInView] = useState(priority);
   const imgRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer for lazy loading
+  // Intersection Observer for lazy loading with performance optimization
   useEffect(() => {
     if (priority || isInView) return;
 
@@ -55,8 +55,8 @@ export function LazyImage({
         });
       },
       {
-        rootMargin: '50px', // Start loading 50px before the image enters viewport
-        threshold: 0.1,
+        rootMargin: '100px', // Increased margin for better UX
+        threshold: 0.01, // Lower threshold for earlier loading
       }
     );
 
