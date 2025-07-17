@@ -148,9 +148,10 @@ export default function LazyAIToolsGrid({
       {/* شبكة الأدوات */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {tools.map((tool) => (
-          <div
+          <Link
             key={tool.id}
-            className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 group"
+            href={`/ai-tools/${tool.slug}`}
+            className="block bg-dark-card rounded-xl overflow-hidden border border-gray-800 hover:border-primary/50 transition-all duration-300 group cursor-pointer"
           >
             {/* شعار الأداة */}
             <div className="relative h-48 bg-gradient-to-br from-primary/10 to-blue-600/10">
@@ -222,27 +223,12 @@ export default function LazyAIToolsGrid({
                 </div>
               )}
 
-              {/* أزرار الإجراءات */}
-              <div className="flex space-x-2 space-x-reverse">
-                <Link
-                  href={`/ai-tools/${tool.slug}`}
-                  className="flex-1 bg-primary text-white text-center py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors duration-300 text-sm font-medium"
-                >
-                  عرض التفاصيل
-                </Link>
-                {tool.website_url && (
-                  <a
-                    href={tool.website_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-700 text-white py-2 px-3 rounded-lg hover:bg-gray-600 transition-colors duration-300 text-sm"
-                  >
-                    🔗
-                  </a>
-                )}
+              {/* مؤشر للنقر */}
+              <div className="text-center text-primary text-sm font-medium mt-2">
+                انقر لعرض التفاصيل ←
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

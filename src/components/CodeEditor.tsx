@@ -75,7 +75,7 @@ export function CodeEditor({ onCodeAdded, className = "" }: CodeEditorProps) {
       json: 'text-yellow-300',
       xml: 'text-green-300',
       yaml: 'text-red-300',
-      markdown: 'text-gray-300',
+      markdown: 'text-text-secondary',
       bash: 'text-green-300',
       powershell: 'text-blue-300',
       docker: 'text-blue-400',

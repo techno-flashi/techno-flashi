@@ -11,7 +11,7 @@ function AdminDashboard() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">أهلاً بك في لوحة التحكم</h1>
+        <h1 className="text-3xl font-bold text-white">أهلاً بك في لوحة التحكم</h1>
         <button
           onClick={signOut}
           className="px-4 py-2 font-bold text-white bg-red-600 rounded-md hover:bg-red-700"
@@ -31,7 +31,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📝</div>
           <h3 className="text-lg font-semibold text-white mb-2">المقالات</h3>
-          <p className="text-dark-text-secondary text-sm">إدارة المقالات والمحتوى</p>
+          <p className="text-white/70 text-sm">إدارة المقالات والمحتوى</p>
         </Link>
 
         <Link
@@ -40,7 +40,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🤖</div>
           <h3 className="text-lg font-semibold text-white mb-2">أدوات الذكاء الاصطناعي</h3>
-          <p className="text-dark-text-secondary text-sm">إدارة أدوات الذكاء الاصطناعي</p>
+          <p className="text-white/70 text-sm">إدارة أدوات الذكاء الاصطناعي</p>
         </Link>
 
         <Link
@@ -49,7 +49,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🛠️</div>
           <h3 className="text-lg font-semibold text-white mb-2">الخدمات</h3>
-          <p className="text-dark-text-secondary text-sm">إدارة الخدمات المقدمة</p>
+          <p className="text-white/70 text-sm">إدارة الخدمات المقدمة</p>
         </Link>
 
         <Link
@@ -58,7 +58,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📢</div>
           <h3 className="text-lg font-semibold text-white mb-2">الإعلانات العامة</h3>
-          <p className="text-dark-text-secondary text-sm">إدارة الإعلانات والحملات العامة</p>
+          <p className="text-white/70 text-sm">إدارة الإعلانات والحملات العامة</p>
         </Link>
 
         <Link
@@ -67,7 +67,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🤖</div>
           <h3 className="text-lg font-semibold text-white mb-2">إعلانات الأدوات</h3>
-          <p className="text-dark-text-secondary text-sm">إعلانات مخصصة لأدوات الذكاء الاصطناعي</p>
+          <p className="text-white/70 text-sm">إعلانات مخصصة لأدوات الذكاء الاصطناعي</p>
         </Link>
 
         <Link
@@ -76,7 +76,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📄</div>
           <h3 className="text-lg font-semibold text-white mb-2">الصفحات</h3>
-          <p className="text-dark-text-secondary text-sm">إدارة الصفحات الثابتة</p>
+          <p className="text-white/70 text-sm">إدارة الصفحات الثابتة</p>
         </Link>
 
         <Link
@@ -85,7 +85,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🖼️</div>
           <h3 className="text-lg font-semibold text-white mb-2">الوسائط</h3>
-          <p className="text-dark-text-secondary text-sm">رفع الصور وإدارة الفيديوهات</p>
+          <p className="text-white/70 text-sm">رفع الصور وإدارة الفيديوهات</p>
         </Link>
 
         <Link
@@ -94,7 +94,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🧪</div>
           <h3 className="text-lg font-semibold text-white mb-2">اختبار الإعلانات</h3>
-          <p className="text-dark-text-secondary text-sm">اختبار شامل لجميع أنواع الإعلانات</p>
+          <p className="text-white/70 text-sm">اختبار شامل لجميع أنواع الإعلانات</p>
         </Link>
 
         <Link
@@ -103,7 +103,7 @@ function AdminDashboard() {
         >
           <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔧</div>
           <h3 className="text-lg font-semibold text-white mb-2">اختبار الإصلاحات</h3>
-          <p className="text-dark-text-secondary text-sm">اختبار إصلاحات نظام الإعلانات</p>
+          <p className="text-white/70 text-sm">اختبار إصلاحات نظام الإعلانات</p>
         </Link>
       </div>
     </div>

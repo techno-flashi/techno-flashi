@@ -155,7 +155,7 @@ export function PerformanceMonitor({
   }, [onMetricsUpdate, showDebugInfo]);
 
   const getScoreColor = (metric: string, value: number | null) => {
-    if (value === null) return 'text-gray-400';
+    if (value === null) return 'text-text-description';
     
     switch (metric) {
       case 'lcp':
@@ -169,7 +169,7 @@ export function PerformanceMonitor({
       case 'ttfb':
         return value <= 800 ? 'text-green-400' : value <= 1800 ? 'text-yellow-400' : 'text-red-400';
       default:
-        return 'text-gray-400';
+        return 'text-text-description';
     }
   };
 

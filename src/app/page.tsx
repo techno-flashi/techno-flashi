@@ -184,11 +184,11 @@ export default async function HomePage() {
 
 
       {/* قسم روابط سريعة للصفحات المهمة */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-background-secondary">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">استكشف المزيد</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <h2 className="heading-2 mb-4">استكشف المزيد</h2>
+            <p className="text-description text-lg max-w-2xl mx-auto">
               اكتشف جميع المقالات المتخصصة في مجال التكنولوجيا
             </p>
           </div>
@@ -203,8 +203,8 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">جميع المقالات</h3>
-              <p className="text-gray-600 text-sm">اقرأ جميع المقالات التقنية المتخصصة</p>
+              <h3 className="heading-3 mb-2">جميع المقالات</h3>
+              <p className="text-description text-sm">اقرأ جميع المقالات التقنية المتخصصة</p>
             </a>
           </div>
         </div>
@@ -222,8 +222,8 @@ export default async function HomePage() {
       <section className="py-20 px-4 bg-dark-card/30">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">شارك TechnoFlash</h2>
-            <p className="text-dark-text-secondary text-lg max-w-2xl mx-auto">
+            <h2 className="heading-2 text-white mb-4">شارك TechnoFlash</h2>
+            <p className="text-white/80 text-lg max-w-2xl mx-auto">
               ساعد في نشر المعرفة التقنية وشارك موقعنا مع أصدقائك ومتابعيك
             </p>
           </div>

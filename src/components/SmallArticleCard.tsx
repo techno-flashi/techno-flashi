@@ -33,11 +33,11 @@ export function SmallArticleCard({ article }: SmallArticleCardProps) {
           
           {/* المحتوى */}
           <div className="flex-1 p-4">
-            <h3 className="text-sm font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
+            <h3 className="text-sm font-bold text-text-primary mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
               {article.title}
             </h3>
             <div className="flex items-center justify-between">
-              <div className="text-xs text-dark-text-secondary">
+              <div className="text-xs text-text-description">
                 {new Date(article.published_at).toLocaleDateString('ar-EG', {
                   month: 'short', 
                   day: 'numeric'
