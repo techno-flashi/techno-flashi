@@ -7,9 +7,7 @@ const nextConfig = {
 
   // دعم الأحرف الدولية والعربية
   experimental: {
-    optimizePackageImports: ['react-icons', 'lucide-react', '@supabase/supabase-js'],
-    // Advanced performance optimizations
-    serverComponentsExternalPackages: ['@supabase/supabase-js'],
+    optimizePackageImports: ['react-icons', 'lucide-react'],
     optimizeCss: true,
     scrollRestoration: true,
   },
