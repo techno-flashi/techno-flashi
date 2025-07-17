@@ -62,7 +62,7 @@ export function Header() {
               <span className="text-white font-bold text-lg sm:text-xl">T</span>
             </div>
             <div className="hidden xs:block">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-white">TechnoFlash</div>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-black">TechnoFlash</div>
               <p className="text-xs text-dark-text-secondary hidden sm:block">بوابتك للمستقبل التقني</p>
             </div>
           </Link>
@@ -138,7 +138,7 @@ export function Header() {
           {/* زر القائمة للهواتف */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2 rounded-lg hover:bg-text-secondary/20 transition-colors duration-300 focus-ring min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="md:hidden text-black p-2 rounded-lg hover:bg-text-secondary/20 transition-colors duration-300 focus-ring min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"

@@ -222,8 +222,8 @@ export default async function HomePage() {
       <section className="py-20 px-4 bg-dark-card/30">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="heading-2 text-white mb-4">شارك TechnoFlash</h2>
-            <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            <h2 className="heading-2 text-black mb-4">شارك TechnoFlash</h2>
+            <p className="text-black/80 text-lg max-w-2xl mx-auto">
               ساعد في نشر المعرفة التقنية وشارك موقعنا مع أصدقائك ومتابعيك
             </p>
           </div>
