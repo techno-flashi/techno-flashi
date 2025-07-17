@@ -135,15 +135,49 @@ export default function RootLayout({
         {/* Critical CSS for above-the-fold content and CLS prevention */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Critical CSS for modern tech design and CLS prevention */
+            /* CSS حرج للنظام الموحد ومنع CLS */
             body {
               margin: 0;
-              font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+              font-family: 'Cairo', 'Tajawal', 'Noto Kufi Arabic', 'Inter', 'Roboto', 'Open Sans', system-ui, -apple-system, sans-serif;
               background: #FFFFFF;
               color: #1C1C1C;
-              line-height: 1.7;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 1.6;
               font-display: swap;
               -webkit-font-smoothing: antialiased;
+            }
+            h1 {
+              font-size: 32px;
+              font-weight: 700;
+              line-height: 1.3;
+              color: #1C1C1C;
+            }
+            h2 {
+              font-size: 24px;
+              font-weight: 600;
+              line-height: 1.3;
+              color: #1C1C1C;
+            }
+            h3 {
+              font-size: 20px;
+              font-weight: 500;
+              line-height: 1.3;
+              color: #1C1C1C;
+            }
+            p {
+              font-size: 18px;
+              font-weight: 400;
+              line-height: 1.6;
+              color: #1C1C1C;
+            }
+            a {
+              color: #3333FF;
+              text-decoration: none;
+            }
+            a:hover {
+              color: #3399FF;
+              text-decoration: underline;
             }
             .hero-section {
               min-height: 60vh;

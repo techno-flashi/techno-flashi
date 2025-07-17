@@ -88,26 +88,26 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Modern Tech Hero Section */}
-      <section className="hero-section relative bg-white py-20 px-4 min-h-[60vh] flex items-center">
+      {/* القسم الرئيسي بالنظام الموحد */}
+      <section className="hero-section relative py-20 px-4 min-h-[60vh] flex items-center" style={{backgroundColor: '#FFFFFF'}}>
         <div className="tech-container text-center">
           <div className="max-w-4xl mx-auto space-y-6">
-            {/* Modern tech heading */}
+            {/* العنوان الرئيسي */}
             <div className="min-h-[200px] md:min-h-[280px] flex flex-col justify-center">
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="heading-1 mb-6">
                 مستقبلك التقني يبدأ من هنا مع{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                   TechnoFlash
                 </span>
               </h1>
             </div>
-            {/* Modern description */}
+            {/* الوصف */}
             <div className="min-h-[80px] flex items-center justify-center mb-8">
-              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              <p className="body-text max-w-2xl mx-auto">
                 اكتشف أحدث المقالات والتقنيات في عالم الذكاء الاصطناعي والبرمجة، واحصل على خدمات تقنية متخصصة لتطوير مشاريعك.
               </p>
             </div>
-            {/* Modern CTA button */}
+            {/* زر الدعوة للعمل */}
             <div className="min-h-[60px] flex justify-center items-center">
               <a
                 href="/articles"
@@ -125,12 +125,12 @@ export default async function HomePage() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-blue-500/5 rounded-full blur-3xl -z-10"></div>
       </section>
 
-      {/* Modern Tech Features Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* قسم المميزات بالنظام الموحد */}
+      <section className="py-16 px-4" style={{backgroundColor: '#FAFAFA'}}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">لماذا TechnoFlash؟</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="heading-2 mb-4">لماذا TechnoFlash؟</h2>
+            <p className="body-text max-w-2xl mx-auto text-secondary">
               نقدم لك كل ما تحتاجه لتطوير مهاراتك التقنية ومشاريعك بأحدث المعايير العالمية
             </p>
           </div>
@@ -142,8 +142,8 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-3">المحتوى التقني</h3>
-              <p className="text-gray-600 leading-relaxed">محتوى تقني عالي الجودة يغطي أحدث التطورات في عالم التكنولوجيا والذكاء الاصطناعي</p>
+              <h3 className="heading-3 mb-3">المحتوى التقني</h3>
+              <p className="text-description">محتوى تقني عالي الجودة يغطي أحدث التطورات في عالم التكنولوجيا والذكاء الاصطناعي</p>
             </div>
 
             <div className="tech-card-hover text-center group">
@@ -152,8 +152,8 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-3">الذكاء الاصطناعي</h3>
-              <p className="text-gray-600 leading-relaxed">دليل شامل لأحدث تقنيات الذكاء الاصطناعي والأدوات المتطورة في السوق</p>
+              <h3 className="heading-3 mb-3">الذكاء الاصطناعي</h3>
+              <p className="text-description">دليل شامل لأحدث تقنيات الذكاء الاصطناعي والأدوات المتطورة في السوق</p>
             </div>
 
             <div className="tech-card-hover text-center group">
@@ -162,8 +162,8 @@ export default async function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-3">الحلول التقنية</h3>
-              <p className="text-gray-600 leading-relaxed">خدمات تطوير وتصميم واستشارات تقنية متخصصة لمساعدتك في تحقيق أهدافك</p>
+              <h3 className="heading-3 mb-3">الحلول التقنية</h3>
+              <p className="text-description">خدمات تطوير وتصميم واستشارات تقنية متخصصة لمساعدتك في تحقيق أهدافك</p>
             </div>
           </div>
         </div>

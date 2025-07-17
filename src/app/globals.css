@@ -154,86 +154,124 @@
   }
 }
 
-/* Modern tech website typography and base styles */
+/* نظام الألوان والخطوط الموحد للموقع بالكامل */
 @layer base {
   * {
     scroll-behavior: smooth;
   }
 
   body {
-    font-family: var(--font-cairo), var(--font-tajawal), var(--font-inter), system-ui, -apple-system, sans-serif;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", "Inter", "Roboto", "Open Sans", system-ui, -apple-system, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
-    line-height: 1.7; /* Improved readability for Arabic content */
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6; /* ثابت للنصوص */
     /* Performance optimizations */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    background-color: #FFFFFF;
-    color: #1C1C1C;
+    background-color: #FFFFFF; /* خلفية الموقع العامة */
+    color: #1C1C1C; /* النص الرئيسي */
   }
 
-  /* Modern tech typography scale */
+  /* نظام العناوين الموحد */
   h1 {
-    font-family: var(--font-cairo), var(--font-tajawal), sans-serif;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
     font-weight: 700;
-    font-size: 2rem; /* 32px */
-    line-height: 1.2;
+    font-size: 32px; /* العنوان الرئيسي */
+    line-height: 1.3; /* ثابت للعناوين */
     color: #1C1C1C;
     margin-bottom: 1rem;
   }
 
   h2 {
-    font-family: var(--font-cairo), var(--font-tajawal), sans-serif;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
     font-weight: 600;
-    font-size: 1.5rem; /* 24px */
+    font-size: 24px; /* العنوان الفرعي */
     line-height: 1.3;
     color: #1C1C1C;
     margin-bottom: 0.75rem;
   }
 
   h3 {
-    font-family: var(--font-cairo), var(--font-tajawal), sans-serif;
-    font-weight: 600;
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.4;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    font-weight: 500;
+    font-size: 20px; /* H3-H4 */
+    line-height: 1.3;
     color: #1C1C1C;
     margin-bottom: 0.5rem;
   }
 
+  h4 {
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    font-weight: 500;
+    font-size: 18px; /* H3-H4 */
+    line-height: 1.3;
+    color: #1C1C1C;
+    margin-bottom: 0.5rem;
+  }
+
+  /* النص العادي */
   p {
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.7;
-    color: #666666;
+    font-size: 18px; /* النص العادي */
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1C1C1C; /* النص الرئيسي */
     margin-bottom: 1rem;
   }
 
+  /* العناوين الثانوية والوصف */
+  .text-secondary {
+    color: #4A4A4A; /* العناوين الثانوية */
+    font-weight: 500;
+  }
+
+  .text-description, .text-caption, .text-meta {
+    color: #666666; /* الوصف/الحواشي/Metadata */
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /* نظام الروابط الموحد */
   a {
-    color: #0077C8;
+    color: #3333FF; /* الحالة العادية */
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   a:hover {
-    color: #005a9e;
+    color: #3399FF; /* عند التمرير */
     text-decoration: underline;
   }
 
-  /* Mobile responsive typography */
+  /* الاستجابة للموبايل */
   @media (max-width: 768px) {
+    body {
+      font-size: 16px; /* النص العادي للموبايل */
+    }
+
     h1 {
-      font-size: 1.5rem; /* 24px */
+      font-size: 28px; /* العنوان الرئيسي للموبايل */
     }
 
     h2 {
-      font-size: 1.25rem; /* 20px */
+      font-size: 22px; /* العنوان الفرعي للموبايل */
     }
 
     h3 {
-      font-size: 1.125rem; /* 18px */
+      font-size: 18px; /* H3 للموبايل */
+    }
+
+    h4 {
+      font-size: 16px; /* H4 للموبايل */
     }
 
     p {
-      font-size: 1rem; /* 16px */
+      font-size: 16px; /* النص العادي للموبايل */
+    }
+
+    .text-description, .text-caption, .text-meta {
+      font-size: 14px; /* الوصف للموبايل */
     }
   }
 }
@@ -274,81 +312,123 @@
     animation: shimmer 2s infinite;
   }
 
-/* Modern tech website components */
+/* مكونات الموقع بالنظام الموحد */
 @layer components {
-  /* Tech-style buttons */
+  /* الأزرار بالألوان الموحدة */
   .btn-primary {
-    @apply bg-primary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .btn-secondary {
-    @apply bg-secondary hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-secondary hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    font-size: 16px;
+    font-weight: 500;
   }
 
-  /* Modern cards */
+  /* البطاقات بالخلفيات الموحدة */
   .tech-card {
-    @apply bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/20;
+    @apply rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200;
+    background-color: #F9F9F9; /* خلفيات الصناديق */
+    border: 1px solid #E1E5E9;
   }
 
   .tech-card-hover {
     @apply tech-card hover:-translate-y-1 hover:shadow-lg;
   }
 
-  /* Content sections */
+  /* الأقسام */
   .tech-section {
     @apply py-16 px-4;
+    background-color: #FFFFFF; /* خلفية الموقع العامة */
   }
 
   .tech-container {
     @apply max-w-6xl mx-auto;
   }
 
-  /* Typography utilities */
-  .tech-heading {
-    @apply text-gray-900 font-bold mb-4;
+  /* فئات النصوص الموحدة */
+  .text-primary {
+    color: #1C1C1C; /* النص الرئيسي */
+    font-weight: 400;
   }
 
-  .tech-subheading {
-    @apply text-gray-700 font-semibold mb-3;
+  .text-secondary {
+    color: #4A4A4A; /* العناوين الثانوية */
+    font-weight: 500;
   }
 
-  .tech-body {
-    @apply text-gray-600 leading-relaxed;
+  .text-description {
+    color: #666666; /* الوصف/الحواشي */
+    font-size: 14px;
+    font-weight: 400;
   }
 
-  .tech-caption {
-    @apply text-gray-500 text-sm;
+  /* العناوين بالأحجام الثابتة */
+  .heading-1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1C1C1C;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
   }
 
-  /* Modern spacing */
-  .tech-spacing {
-    @apply space-y-6;
+  .heading-2 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1C1C1C;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
   }
 
-  .tech-grid {
-    @apply grid gap-6 md:gap-8;
+  .heading-3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #1C1C1C;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
   }
 
-  /* Focus states for accessibility */
+  .body-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1C1C1C;
+  }
+
+  /* التركيز */
   .tech-focus {
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white;
   }
 
-  /* Hover effects */
+  /* التأثيرات */
   .tech-hover-lift {
     @apply transition-transform duration-200 hover:-translate-y-1;
   }
 
-  .tech-hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
-  }
+  /* الاستجابة للموبايل */
+  @media (max-width: 768px) {
+    .heading-1 {
+      font-size: 28px;
+    }
 
-  /* Focus states for accessibility */
-  .tech-focus {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white;
+    .heading-2 {
+      font-size: 22px;
+    }
+
+    .heading-3 {
+      font-size: 18px;
+    }
+
+    .body-text {
+      font-size: 16px;
+    }
   }
 }

@@ -13,43 +13,62 @@ const config: Config = {
     extend: {
 
       colors: {
-        // Modern tech website color scheme inspired by TechCrunch/The Verge
-        primary: "#0077C8", // Professional tech blue for links and buttons
-        secondary: "#FF5722", // Modern orange for CTA elements
+        // نظام الألوان الموحد حسب التعليمات النهائية
+        primary: "#3333FF", // لون الروابط الأساسي
+        "primary-hover": "#3399FF", // لون الروابط عند التمرير
+        secondary: "#FF5722", // للعناصر الثانوية (CTA)
 
-        // Main color palette
-        tech: {
-          white: "#FFFFFF", // Clean white background
-          text: "#1C1C1C", // Dark gray-black for main text
-          "text-secondary": "#666666", // Medium gray for paragraphs
-          "text-light": "#999999", // Light gray for captions
-          background: "#FFFFFF", // Main background
-          card: "#F5F7FA", // Light gray for cards/blocks
-          border: "#E1E5E9", // Subtle borders
-          hover: "#F0F2F5", // Hover states
+        // ألوان النصوص الأساسية
+        text: {
+          primary: "#1C1C1C", // النص الرئيسي
+          secondary: "#4A4A4A", // العناوين الثانوية
+          description: "#666666", // الوصف/الحواشي/Metadata
         },
 
-        // Keep existing structure for compatibility
+        // الخلفيات الثابتة
+        background: {
+          primary: "#FFFFFF", // خلفية الموقع العامة
+          secondary: "#F9F9F9", // خلفيات الصناديق والعناصر الفرعية
+          tertiary: "#FAFAFA", // خلفية بديلة للعناصر
+        },
+
+        // للتوافق مع الكود الموجود
         light: {
           background: "#FFFFFF",
-          card: "#F5F7FA",
+          card: "#F9F9F9",
           text: "#1C1C1C",
-          "text-secondary": "#666666",
+          "text-secondary": "#4A4A4A",
           border: "#E1E5E9",
         },
         dark: {
           background: "#FFFFFF",
-          card: "#F5F7FA",
+          card: "#F9F9F9",
           text: "#1C1C1C",
-          "text-secondary": "#666666",
+          "text-secondary": "#4A4A4A",
         },
       },
 
       fontFamily: {
-        sans: ["var(--font-cairo)", "var(--font-tajawal)", "var(--font-inter)", "system-ui", "sans-serif"],
-        arabic: ["var(--font-cairo)", "var(--font-tajawal)", "system-ui", "sans-serif"],
-        tech: ["var(--font-cairo)", "var(--font-inter)", "system-ui", "sans-serif"],
-        heading: ["var(--font-cairo)", "var(--font-tajawal)", "system-ui", "sans-serif"],
+        // نظام الخطوط الموحد حسب التعليمات
+        sans: ["Cairo", "Tajawal", "Noto Kufi Arabic", "Inter", "Roboto", "Open Sans", "system-ui", "sans-serif"],
+        arabic: ["Cairo", "Tajawal", "Noto Kufi Arabic", "system-ui", "sans-serif"],
+        english: ["Inter", "Roboto", "Open Sans", "system-ui", "sans-serif"],
+        heading: ["Cairo", "Tajawal", "Noto Kufi Arabic", "system-ui", "sans-serif"],
+      },
+
+      fontSize: {
+        // أحجام النصوص الثابتة حسب التعليمات
+        'h1': ['32px', { lineHeight: '1.3', fontWeight: '700' }],
+        'h1-mobile': ['28px', { lineHeight: '1.3', fontWeight: '700' }],
+        'h2': ['24px', { lineHeight: '1.3', fontWeight: '600' }],
+        'h2-mobile': ['22px', { lineHeight: '1.3', fontWeight: '600' }],
+        'h3': ['20px', { lineHeight: '1.3', fontWeight: '500' }],
+        'h3-mobile': ['18px', { lineHeight: '1.3', fontWeight: '500' }],
+        'h4': ['18px', { lineHeight: '1.3', fontWeight: '500' }],
+        'h4-mobile': ['16px', { lineHeight: '1.3', fontWeight: '500' }],
+        'body': ['18px', { lineHeight: '1.6', fontWeight: '400' }],
+        'body-mobile': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
+        'caption': ['14px', { lineHeight: '1.6', fontWeight: '400' }],
       },
 
       screens: {
