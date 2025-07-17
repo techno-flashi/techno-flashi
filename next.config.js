@@ -3,26 +3,11 @@ const nextConfig = {
   // تحسينات الأمان والأداء
   poweredByHeader: false,
   compress: true,
-  swcMinify: true, // Use SWC minifier for better performance
   reactStrictMode: true, // Enable React strict mode for better performance and fewer bugs
 
   // دعم الأحرف الدولية والعربية
   experimental: {
-    optimizeCss: true,
-    scrollRestoration: true,
     optimizePackageImports: ['react-icons', 'lucide-react'],
-    // تحسينات SSG
-    optimizeServerReact: true,
-    // Performance optimizations
-    serverMinification: true,
-    serverSourceMaps: false,
-    optimizeServerReact: true,
-    turbo: {
-      loaders: {
-        // Optimize loaders for better performance
-        '.svg': ['@svgr/webpack'],
-      },
-    },
   },
 
   // إعدادات SSG و ISR
@@ -50,7 +35,6 @@ const nextConfig = {
     minimumCacheTTL: 86400, // 24 hours cache
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    quality: 80, // Reduce quality for better performance
     remotePatterns: [
       {
         protocol: 'https',
