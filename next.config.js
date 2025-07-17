@@ -233,13 +233,33 @@ const nextConfig = {
           }
         ]
       },
-      // Third-party scripts cache optimization
+      // Static assets cache optimization
       {
-        source: '/(.*\\.(js|css|woff2|woff|ttf|eot))',
+        source: '/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      // Font files cache optimization
+      {
+        source: '/:path*\\.(woff|woff2|ttf|eot)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      // CSS and JS files cache optimization
+      {
+        source: '/:path*\\.(css|js)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400'
           }
         ]
       },
