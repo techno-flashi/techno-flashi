@@ -11,10 +11,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        // هنا نطلب من Tailwind استخدام متغيرات الخطوط التي أنشأناها في layout.tsx
-        sans: ["var(--font-tajawal)", "var(--font-inter)"],
-      },
+
       colors: {
         // Modern tech website color scheme inspired by TechCrunch/The Verge
         primary: "#0077C8", // Professional tech blue for links and buttons
