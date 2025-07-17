@@ -2,7 +2,6 @@
 'use client';
 
 import { AITool } from "@/types";
-import { AIToolLink } from "./AIToolLink";
 import SVGIcon from "./SVGIcon";
 
 interface AIToolCardProps {
@@ -30,12 +29,8 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
   };
 
   return (
-    <AIToolLink
-      href={`/ai-tools/${tool.slug}`}
-      className="block group focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-xl"
-      aria-label={`عرض تفاصيل أداة ${tool.name}`}
-    >
-      <div className={`bg-dark-card rounded-lg md:rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-1 md:hover:-translate-y-2 active:scale-95 h-full ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
+    <div className="block group rounded-xl">
+      <div className={`bg-white rounded-lg md:rounded-xl overflow-hidden border border-gray-200 transition-all duration-300 h-full shadow-sm hover:shadow-md ${featured ? 'ring-2 ring-yellow-400/50' : ''}`}>
         {/* شارة المميز */}
         {featured && (
           <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
@@ -63,7 +58,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
               <span className="text-yellow-400 text-xs">⭐</span>
               <span className="text-white text-xs font-medium mr-1">{tool.rating}</span>
               {tool.click_count && tool.click_count > 0 && (
-                <span className="text-dark-text-secondary text-xs mr-1">
+                <span className="text-gray-600 text-xs mr-1">
                   ({tool.click_count})
                 </span>
               )}
@@ -79,11 +74,11 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
         </div>
 
         <div className="p-3 sm:p-4">
-          <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight">
             {tool.name}
           </h3>
 
-          <p className="text-dark-text-secondary text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2">
+          <p className="text-gray-600 text-xs sm:text-sm mb-3 leading-relaxed line-clamp-2">
             {tool.description || 'لا يوجد وصف متاح'}
           </p>
 
@@ -99,7 +94,7 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
               {(Array.isArray(tool.features) ? tool.features : []).slice(0, 2).map((feature, index) => (
                 <span
                   key={index}
-                  className="bg-dark-background text-dark-text-secondary px-2 py-1 rounded text-xs"
+                  className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
                 >
                   {feature}
                 </span>
@@ -112,22 +107,14 @@ export function AIToolCard({ tool, featured = false }: AIToolCardProps) {
             </div>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-dark-text-secondary">
-              {new Date(tool.created_at).toLocaleDateString('ar-EG', {
-                month: 'short', 
-                day: 'numeric'
-              })}
-            </div>
-            <div className="flex items-center text-primary font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
-              <span className="text-sm">عرض التفاصيل</span>
-              <svg className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </div>
+          <div className="text-xs text-gray-600">
+            {new Date(tool.created_at).toLocaleDateString('ar-EG', {
+              month: 'short',
+              day: 'numeric'
+            })}
           </div>
         </div>
       </div>
-    </AIToolLink>
+    </div>
   );
 }

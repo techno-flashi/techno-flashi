@@ -79,14 +79,17 @@
   /* تحسينات للنصوص على الموبايل */
   h1 {
     @apply text-2xl md:text-4xl lg:text-5xl;
+    line-height: 1.2;
   }
 
   h2 {
     @apply text-xl md:text-2xl lg:text-3xl;
+    line-height: 1.3;
   }
 
   h3 {
     @apply text-lg md:text-xl lg:text-2xl;
+    line-height: 1.4;
   }
 
   /* تحسينات للحاويات على الموبايل */
@@ -97,11 +100,31 @@
   /* تحسينات للأزرار على الموبايل */
   .btn-mobile {
     @apply min-h-[48px] px-4 py-3 text-base;
+    touch-action: manipulation; /* Improve touch responsiveness */
   }
 
   /* تحسينات للبطاقات على الموبايل */
   .card-mobile {
     @apply mx-2 mb-4;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Improve scrolling performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce animations on mobile for better performance */
+  .reduce-motion {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -139,13 +162,39 @@
 
   body {
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Optimize rendering performance */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Improve paint performance */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }
 
 /* تحسينات للتركيز */
 @layer components {
   .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark-background;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white;
   }
 
   /* تحسينات للأزرار */
@@ -159,7 +208,7 @@
 
   /* تحسينات للحقول */
   .input-field {
-    @apply bg-dark-background border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-h-[44px];
+    @apply bg-white border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 min-h-[44px];
   }
 
   /* تحسينات للبطاقات */

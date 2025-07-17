@@ -101,6 +101,14 @@ export default function RootLayout({
     // إضافة dir="rtl" لدعم اللغة العربية بشكل كامل
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
       <head>
+        {/* Performance optimizations */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://zgktrwpladrkhhemhnni.supabase.co" />
+
         {/* Ezoic Privacy Scripts - Must be loaded first for compliance */}
         <script
           src="https://cmp.gatekeeperconsent.com/min.js"
@@ -127,7 +135,7 @@ export default function RootLayout({
       </head>
 
       {/* تم استخدام أسماء الألوان والخطوط من ملف tailwind.config.ts لتوحيد التصميم */}
-      <body className="bg-dark-background text-dark-text font-sans">
+      <body className="bg-white text-gray-900 font-sans">
         <GoogleAnalytics />
         <AdSenseScript publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />
         <InitializeAdSense publisherId={process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "ca-pub-YOUR_PUBLISHER_ID"} />

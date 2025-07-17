@@ -3,6 +3,8 @@ const nextConfig = {
   // تحسينات الأمان والأداء
   poweredByHeader: false,
   compress: true,
+  swcMinify: true, // Use SWC minifier for better performance
+  reactStrictMode: true, // Enable React strict mode for better performance and fewer bugs
 
   // دعم الأحرف الدولية والعربية
   experimental: {
@@ -11,6 +13,16 @@ const nextConfig = {
     optimizePackageImports: ['react-icons', 'lucide-react'],
     // تحسينات SSG
     optimizeServerReact: true,
+    // Performance optimizations
+    serverMinification: true,
+    serverSourceMaps: false,
+    optimizeServerReact: true,
+    turbo: {
+      loaders: {
+        // Optimize loaders for better performance
+        '.svg': ['@svgr/webpack'],
+      },
+    },
   },
 
   // إعدادات SSG و ISR
@@ -35,7 +47,10 @@ const nextConfig = {
 
   images: {
     formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 86400, // 24 hours cache
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    quality: 80, // Reduce quality for better performance
     remotePatterns: [
       {
         protocol: 'https',
@@ -174,21 +189,42 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     // تحسينات الإنتاج
     if (!dev && !isServer) {
+      // Bundle optimization
       config.optimization.splitChunks = {
         chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
+            priority: 10,
           },
           common: {
             name: 'common',
             minChunks: 2,
             chunks: 'all',
             enforce: true,
+            priority: 5,
+          },
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 20,
           },
         },
+      };
+
+      // Tree shaking optimization
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
+
+      // Minimize bundle size
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'lodash': 'lodash-es', // Use ES modules version
       };
     }
 

@@ -220,23 +220,7 @@ export default async function AIToolsPage() {
             لمساعدتك في اختيار الأداة المناسبة لاحتياجاتك التقنية والإبداعية
           </p>
 
-          {/* أزرار التنقل السريع */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link
-              href="/ai-tools/categories"
-              className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center"
-            >
-              <span className="ml-2">📂</span>
-              تصفح حسب الفئات
-            </Link>
-            <Link
-              href="/ai-tools/compare"
-              className="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center"
-            >
-              <span className="ml-2">⚖️</span>
-              مقارنة الأدوات
-            </Link>
-          </div>
+
         </div>
 
         {/* إعلان وسط الصفحة - معطل */}

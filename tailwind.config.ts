@@ -18,11 +18,19 @@ const config: Config = {
       colors: {
         // هنا نضع الألوان الأساسية للمشروع لسهولة استخدامها
         primary: "#38BDF8",
+        light: {
+          background: "#FFFFFF",
+          card: "#F8FAFC",
+          text: "#1F2937",
+          "text-secondary": "#6B7280",
+          border: "#E5E7EB",
+        },
+        // Keep dark colors for reference but switch to light theme
         dark: {
-          background: "#0D1117",
-          card: "#161B22",
-          text: "#E6EDF3",
-          "text-secondary": "#8B949E",
+          background: "#FFFFFF", // Changed to white
+          card: "#F8FAFC", // Changed to light gray
+          text: "#1F2937", // Changed to dark gray
+          "text-secondary": "#6B7280", // Changed to medium gray
         },
       },
       screens: {

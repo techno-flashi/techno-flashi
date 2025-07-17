@@ -2,7 +2,6 @@
 
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { FeaturedArticlesSection } from "@/components/FeaturedArticlesSection";
-import { FeaturedAIToolsSection } from "@/components/FeaturedAIToolsSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
@@ -52,36 +51,6 @@ async function getLatestArticles() {
   }
 }
 
-async function getLatestAITools() {
-  try {
-    console.log('🏠 Homepage: Fetching latest AI tools...');
-
-    const { data, error } = await supabase
-      .from('ai_tools')
-      .select('*')
-      .in('status', ['published', 'active']) // قبول كلا من published و active
-      .order('rating', { ascending: false }) // ترتيب حسب التقييم أولاً
-      .order('created_at', { ascending: false })
-      .limit(8); // جلب آخر 8 أدوات (1 رئيسية + 4 صغيرة + 3 إضافية)
-
-    if (error) {
-      console.error('Error fetching AI tools:', error);
-      return [];
-    }
-
-    console.log('✅ Homepage: AI tools fetched:', data?.length || 0);
-
-    if (data && data.length > 0) {
-      console.log('📄 Homepage: Top AI tools:', data.slice(0, 3).map(t => t.name));
-    }
-
-    return data as AITool[];
-  } catch (error) {
-    console.error('❌ Homepage: Exception in getLatestAITools:', error);
-    return [];
-  }
-}
-
 
 
 async function getLatestServices() {
@@ -114,7 +83,6 @@ async function getLatestServices() {
 
 export default async function HomePage() {
   const latestArticles = await getLatestArticles();
-  const latestAITools = await getLatestAITools();
   const latestServices = await getLatestServices();
 
   return (
@@ -126,27 +94,21 @@ export default async function HomePage() {
       <section className="relative bg-gradient-to-br from-dark-background via-dark-card to-dark-background py-20 px-4">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
               مستقبلك التقني يبدأ من هنا مع{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
                 TechnoFlash
               </span>
             </h1>
-            <p className="text-xl text-dark-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
               اكتشف أحدث المقالات والأدوات في عالم الذكاء الاصطناعي والبرمجة، واحصل على خدمات تقنية متخصصة لتطوير مشاريعك.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <a
                 href="/articles"
                 className="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/25 transform hover:-translate-y-1"
               >
                 استكشف المقالات
-              </a>
-              <a
-                href="/ai-tools"
-                className="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:-translate-y-1"
-              >
-                أدوات الذكاء الاصطناعي
               </a>
             </div>
           </div>
@@ -159,44 +121,44 @@ export default async function HomePage() {
       </section>
 
       {/* قسم المميزات */}
-      <section className="py-20 px-4 bg-dark-card/50">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">لماذا TechnoFlash؟</h2>
-            <p className="text-dark-text-secondary text-lg max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">لماذا TechnoFlash؟</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               نقدم لك كل ما تحتاجه لتطوير مهاراتك التقنية ومشاريعك
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-xl bg-dark-background border border-gray-800 hover:border-primary/50 transition-all duration-300 group">
+            <div className="text-center p-8 rounded-xl bg-white border border-gray-200 hover:border-primary/50 transition-all duration-300 group shadow-sm hover:shadow-md">
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">المحتوى التقني</h3>
-              <p className="text-dark-text-secondary">محتوى تقني عالي الجودة يغطي أحدث التطورات في عالم التكنولوجيا</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">المحتوى التقني</h3>
+              <p className="text-gray-600">محتوى تقني عالي الجودة يغطي أحدث التطورات في عالم التكنولوجيا</p>
             </div>
 
-            <div className="text-center p-8 rounded-xl bg-dark-background border border-gray-800 hover:border-primary/50 transition-all duration-300 group">
+            <div className="text-center p-8 rounded-xl bg-white border border-gray-200 hover:border-primary/50 transition-all duration-300 group shadow-sm hover:shadow-md">
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">الذكاء الاصطناعي</h3>
-              <p className="text-dark-text-secondary">دليل شامل لأفضل أدوات الذكاء الاصطناعي مع تقييمات ومراجعات مفصلة</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">الذكاء الاصطناعي</h3>
+              <p className="text-gray-600">دليل شامل لأفضل أدوات الذكاء الاصطناعي مع تقييمات ومراجعات مفصلة</p>
             </div>
 
-            <div className="text-center p-8 rounded-xl bg-dark-background border border-gray-800 hover:border-primary/50 transition-all duration-300 group">
+            <div className="text-center p-8 rounded-xl bg-white border border-gray-200 hover:border-primary/50 transition-all duration-300 group shadow-sm hover:shadow-md">
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">الحلول التقنية</h3>
-              <p className="text-dark-text-secondary">خدمات تطوير وتصميم واستشارات تقنية لمساعدتك في تحقيق أهدافك</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">الحلول التقنية</h3>
+              <p className="text-gray-600">خدمات تطوير وتصميم واستشارات تقنية لمساعدتك في تحقيق أهدافك</p>
             </div>
           </div>
         </div>
@@ -214,70 +176,30 @@ export default async function HomePage() {
       {/* إعلان بين الأقسام */}
       <InContentAd className="my-12" />
 
-      {/* قسم أدوات الذكاء الاصطناعي المميزة */}
-      <FeaturedAIToolsSection tools={latestAITools} />
+
 
       {/* قسم روابط سريعة للصفحات المهمة */}
-      <section className="py-16 px-4 bg-dark-card/20">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">استكشف المزيد</h2>
-            <p className="text-dark-text-secondary text-lg max-w-2xl mx-auto">
-              اكتشف جميع الأدوات والمقالات المتخصصة في مجال التكنولوجيا والذكاء الاصطناعي
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">استكشف المزيد</h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              اكتشف جميع المقالات المتخصصة في مجال التكنولوجيا
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <a
-              href="/ai-tools/compare"
-              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">مقارنة الأدوات</h3>
-              <p className="text-gray-300 text-sm">قارن بين أدوات الذكاء الاصطناعي المختلفة</p>
-            </a>
-
-            <a
-              href="/ai-tools/categories"
-              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">فئات الأدوات</h3>
-              <p className="text-gray-300 text-sm">تصفح الأدوات حسب التخصص والفئة</p>
-            </a>
-
+          <div className="flex justify-center">
             <a
               href="/articles"
-              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
+              className="group bg-white rounded-xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 max-w-sm shadow-sm hover:shadow-md"
             >
               <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">جميع المقالات</h3>
-              <p className="text-gray-300 text-sm">اقرأ جميع المقالات التقنية المتخصصة</p>
-            </a>
-
-            <a
-              href="/ai-tools"
-              className="group bg-dark-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">دليل الأدوات</h3>
-              <p className="text-gray-300 text-sm">استكشف دليل شامل لأدوات الذكاء الاصطناعي</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">جميع المقالات</h3>
+              <p className="text-gray-600 text-sm">اقرأ جميع المقالات التقنية المتخصصة</p>
             </a>
           </div>
         </div>

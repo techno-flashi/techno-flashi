@@ -3,7 +3,6 @@
 // مكون أداة الذكاء الاصطناعي الرئيسية الكبيرة
 import { AITool } from "@/types";
 import SVGIcon from "./SVGIcon";
-import Link from "next/link";
 
 interface FeaturedAIToolCardProps {
   tool: AITool;
@@ -29,8 +28,8 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
   };
 
   return (
-    <Link href={`/ai-tools/${tool.slug}`} className="block group">
-      <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-1 h-full">
+    <div className="block group">
+      <div className="bg-white rounded-xl overflow-hidden border border-gray-200 transition-all duration-300 h-full shadow-sm hover:shadow-md">
         <div className="relative w-full h-64 md:h-80 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-600/10">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
@@ -64,15 +63,15 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
 
         <div className="p-6">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-2xl md:text-3xl font-bold text-white group-hover:text-primary transition-colors duration-300">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
               {tool.name}
             </h2>
             <span className={`text-sm font-medium ${getPricingColor(tool.pricing)}`}>
               {getPricingText(tool.pricing)}
             </span>
           </div>
-          
-          <p className="text-dark-text-secondary text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
+
+          <p className="text-gray-600 text-base md:text-lg mb-4 leading-relaxed line-clamp-3">
             {tool.description}
           </p>
           
@@ -84,12 +83,12 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
           
           {/* المميزات */}
           <div className="mb-4">
-            <h4 className="text-white font-semibold mb-2 text-sm">المميزات الرئيسية:</h4>
+            <h4 className="text-gray-900 font-semibold mb-2 text-sm">المميزات الرئيسية:</h4>
             <div className="flex flex-wrap gap-2">
               {(Array.isArray(tool.features) ? tool.features : []).slice(0, 3).map((feature, index) => (
                 <span
                   key={index}
-                  className="bg-dark-background text-dark-text-secondary px-2 py-1 rounded text-xs"
+                  className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
                 >
                   {feature}
                 </span>
@@ -102,22 +101,14 @@ export function FeaturedAIToolCard({ tool }: FeaturedAIToolCardProps) {
             </div>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-dark-text-secondary">
-              أُضيفت في: {new Date(tool.created_at).toLocaleDateString('ar-EG', {
-                month: 'short', 
-                day: 'numeric'
-              })}
-            </div>
-            <div className="flex items-center text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              زيارة الأداة
-              <svg className="w-5 h-5 mr-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </div>
+          <div className="text-xs text-gray-600">
+            أُضيفت في: {new Date(tool.created_at).toLocaleDateString('ar-EG', {
+              month: 'short',
+              day: 'numeric'
+            })}
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

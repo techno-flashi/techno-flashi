@@ -3,7 +3,6 @@
 // مكون أداة الذكاء الاصطناعي الصغيرة
 import { AITool } from "@/types";
 import SVGIcon from "./SVGIcon";
-import Link from "next/link";
 
 interface SmallAIToolCardProps {
   tool: AITool;
@@ -29,8 +28,8 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
   };
 
   return (
-    <Link href={`/ai-tools/${tool.slug}`} className="block group">
-      <div className="bg-dark-card rounded-lg overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transform hover:-translate-y-1 h-full">
+    <div className="block group">
+      <div className="bg-white rounded-lg overflow-hidden border border-gray-200 transition-all duration-300 h-full shadow-sm hover:shadow-md">
         <div className="flex">
           {/* الشعار */}
           <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden bg-gradient-to-br from-primary/10 to-blue-600/10 flex items-center justify-center">
@@ -49,16 +48,16 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
           {/* المحتوى */}
           <div className="flex-1 p-4">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="text-sm font-bold text-white group-hover:text-primary transition-colors duration-300 line-clamp-1 leading-tight">
+              <h3 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-1 leading-tight">
                 {tool.name}
               </h3>
               <div className="flex items-center mr-2">
                 <span className="text-yellow-400 text-xs">⭐</span>
-                <span className="text-white text-xs font-medium mr-1">{tool.rating}</span>
+                <span className="text-gray-900 text-xs font-medium mr-1">{tool.rating}</span>
               </div>
             </div>
-            
-            <p className="text-dark-text-secondary text-xs mb-2 line-clamp-2 leading-relaxed">
+
+            <p className="text-gray-600 text-xs mb-2 line-clamp-2 leading-relaxed">
               {tool.description || 'لا يوجد وصف متاح'}
             </p>
             
@@ -75,6 +74,6 @@ export function SmallAIToolCard({ tool }: SmallAIToolCardProps) {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

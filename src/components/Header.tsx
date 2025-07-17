@@ -49,7 +49,7 @@ export function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className="bg-dark-background/95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 sm:py-4">
           {/* الشعار */}
@@ -71,46 +71,22 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-8 space-x-reverse">
             <Link
               href="/"
-              className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
             >
               الرئيسية
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href="/articles"
-              className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
             >
               المقالات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <div className="relative group">
-              <Link
-                href="/ai-tools"
-                className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
-              >
-                أدوات الذكاء الاصطناعي
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
 
-              {/* قائمة فرعية للأدوات */}
-              <div className="absolute top-full left-0 mt-2 w-48 bg-dark-card border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <Link
-                  href="/ai-tools/compare"
-                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded-t-lg transition-colors"
-                >
-                  مقارنة الأدوات
-                </Link>
-                <Link
-                  href="/ai-tools/categories"
-                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded-b-lg transition-colors"
-                >
-                  فئات الأدوات
-                </Link>
-              </div>
-            </div>
             <Link
               href="/services"
-              className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+              className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
             >
               الخدمات
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -118,7 +94,7 @@ export function Header() {
             {aboutPage && (
               <Link
                 href={getPageUrl('about-us')}
-                className="text-dark-text-secondary hover:text-white transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
+                className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium focus-ring rounded px-2 py-1 relative group"
               >
                 {aboutPage.title_ar}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -181,33 +157,27 @@ export function Header() {
         {isMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden py-3 sm:py-4 border-t border-gray-800 bg-dark-background/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300"
+            className="md:hidden py-3 sm:py-4 border-t border-gray-200 bg-white/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300"
           >
             <nav className="flex flex-col space-y-1 sm:space-y-2">
               <Link
                 href="/"
-                className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 الرئيسية
               </Link>
               <Link
                 href="/articles"
-                className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 المقالات
               </Link>
-              <Link
-                href="/ai-tools"
-                className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                أدوات الذكاء الاصطناعي
-              </Link>
+
               <Link
                 href="/services"
-                className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg focus-ring min-h-[44px] flex items-center text-sm sm:text-base"
                 onClick={() => setIsMenuOpen(false)}
               >
                 الخدمات
@@ -215,7 +185,7 @@ export function Header() {
               {aboutPage && (
                 <Link
                   href={getPageUrl('about-us')}
-                  className="text-dark-text-secondary hover:text-white hover:bg-gray-800/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
+                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition-all duration-300 font-medium px-4 py-3 rounded-lg focus-ring"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {aboutPage.title_ar}
