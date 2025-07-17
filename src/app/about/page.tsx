@@ -31,21 +31,21 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-dark-bg text-white">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
             من نحن
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             نحن فريق TechnoFlash، متخصصون في تقديم أفضل المحتوى التقني وأدوات الذكاء الاصطناعي للمجتمع العربي
           </p>
         </div>
 
         {/* Mission & Vision */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="bg-dark-card rounded-xl p-8 border border-gray-800">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-200 ring-1 ring-gray-100">
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mr-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,21 +54,21 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl font-bold text-primary">رؤيتنا</h2>
             </div>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-base">
               أن نكون المرجع الأول للمحتوى التقني باللغة العربية، ونساهم في بناء مجتمع تقني عربي متقدم ومطلع على أحدث التطورات في عالم التكنولوجيا والذكاء الاصطناعي.
             </p>
           </div>
 
-          <div className="bg-dark-card rounded-xl p-8 border border-gray-800">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-200 ring-1 ring-gray-100">
             <div className="flex items-center mb-6">
               <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-blue-400">رسالتنا</h2>
+              <h2 className="text-2xl font-bold text-blue-600">رسالتنا</h2>
             </div>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-base">
               تقديم محتوى تقني عالي الجودة، ومراجعات شاملة لأدوات الذكاء الاصطناعي، وخدمات متخصصة تساعد الأفراد والشركات على الاستفادة من أحدث التقنيات.
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function AboutPage() {
 
         {/* What We Offer */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12">ما نقدمه</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">ما نقدمه</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
