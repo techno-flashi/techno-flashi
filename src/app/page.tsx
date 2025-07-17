@@ -15,7 +15,7 @@ import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 import YouTubeSection from "@/components/YouTubeSection";
 
-import { Article, AITool, Service } from "@/types";
+import { ArticleSummary, AITool, Service } from "@/types";
 
 // تحسين استهلاك الموارد - ISR محسن لتوفير Vercel ISR writes
 export const revalidate = 86400; // 24 ساعة بدلاً من دقيقة واحدة
@@ -37,7 +37,7 @@ async function getLatestArticles() {
 
     // إصلاح encoding النص العربي
     const fixedData = data?.map(article => fixObjectEncoding(article)) || [];
-    return fixedData as Article[];
+    return fixedData;
   } catch (error) {
     console.error('❌ Homepage: Exception in getLatestArticles:', error);
     return [];

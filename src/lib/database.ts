@@ -1,13 +1,13 @@
 // مساعدات قاعدة البيانات لعمليات CRUD
 import { supabase } from './supabase';
-import { Article, AITool, Service, ArticleFormData, AIToolFormData, ServiceFormData } from '@/types';
+import { Article, ArticleSummary, AITool, Service, ArticleFormData, AIToolFormData, ServiceFormData } from '@/types';
 import { sanitizeHtml, sanitizeText } from './sanitize';
 import { cachedQuery } from './cache';
 
 // ===== مساعدات المقالات =====
 
 // جلب جميع المقالات مع التخزين المؤقت - محسن لتوفير Egress
-export async function getArticles(limit: number = 20) {
+export async function getArticles(limit: number = 20): Promise<ArticleSummary[]> {
   return cachedQuery(`articles-all-${limit}`, async () => {
     const { data, error } = await supabase
       .from('articles')
@@ -30,12 +30,12 @@ export async function getArticles(limit: number = 20) {
       throw new Error(`خطأ في جلب المقالات: ${error.message}`);
     }
 
-    return data as Article[];
+    return data as ArticleSummary[];
   }, 3600); // ساعة واحدة للتخزين المؤقت
 }
 
 // جلب المقالات الأحدث للصفحة الرئيسية - محسن للأداء
-export async function getLatestArticlesOptimized(limit: number = 8) {
+export async function getLatestArticlesOptimized(limit: number = 8): Promise<ArticleSummary[]> {
   return cachedQuery(`latest-articles-${limit}`, async () => {
     const { data, error } = await supabase
       .from('articles')
@@ -57,7 +57,7 @@ export async function getLatestArticlesOptimized(limit: number = 8) {
       throw new Error(`خطأ في جلب المقالات الأحدث: ${error.message}`);
     }
 
-    return data as Article[];
+    return data as ArticleSummary[];
   }, 1800); // 30 دقيقة للصفحة الرئيسية
 }
 

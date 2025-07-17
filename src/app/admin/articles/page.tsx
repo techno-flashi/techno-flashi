@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { getArticles, deleteArticle } from '@/lib/database';
-import { Article } from '@/types';
+import { ArticleSummary } from '@/types';
 
 function ArticlesManagement() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<ArticleSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);

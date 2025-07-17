@@ -13,6 +13,21 @@ export interface Article {
   status: 'draft' | 'published';
 }
 
+// نوع للمقالات المختصرة (بدون content)
+export interface ArticleSummary {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  featured_image_url: string;
+  published_at: string;
+  created_at: string;
+  reading_time?: number;
+  author?: string;
+  tags?: string[];
+  featured?: boolean;
+}
+
 // نموذج بيانات المقال
 export interface ArticleFormData {
   title: string;
