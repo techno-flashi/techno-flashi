@@ -197,14 +197,12 @@ function AIToolsManagement() {
                           >
                             تعديل
                           </Link>
-                          <a
-                            href={tool.website_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-green-400 hover:text-green-300 transition-colors duration-200"
+                          <Link
+                            href={`/ai-tools/${tool.slug}`}
+                            className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
                           >
-                            زيارة
-                          </a>
+                            معاينة
+                          </Link>
                           <button
                             onClick={() => handleDelete(tool.id, tool.name)}
                             disabled={deleteLoading === tool.id}

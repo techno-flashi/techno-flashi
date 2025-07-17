@@ -136,7 +136,7 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
         </table>
       </div>
 
-      {/* أزرار العمل */}
+      {/* أزرار العمل - بدون روابط خارجية */}
       <div className="mt-6 pt-6 border-t border-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {tools.slice(0, 3).map((tool) => (
@@ -147,14 +147,12 @@ export function AIToolComparison({ tools, className = '' }: AIToolComparisonProp
               >
                 مراجعة مفصلة
               </AIToolLink>
-              <Link
-                href={tool.website_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block border border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 py-2 px-4 rounded-lg font-medium transition-colors duration-300"
-              >
-                زيارة الموقع
-              </Link>
+              <div className="block border border-gray-300 text-gray-500 py-2 px-4 rounded-lg font-medium cursor-not-allowed">
+                <div className="flex items-center justify-center gap-2">
+                  <span>📋</span>
+                  <span>معلومات متاحة أعلاه</span>
+                </div>
+              </div>
             </div>
           ))}
         </div>

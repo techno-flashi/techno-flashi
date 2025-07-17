@@ -260,15 +260,13 @@ function EditAIToolForm({ params }: EditAIToolFormProps) {
           </div>
           
           <div className="flex gap-4">
-            <a
-              href={tool.website_url}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={`/ai-tools/${tool.slug}`}
               className="border border-gray-600 hover:border-gray-500 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300"
             >
-              زيارة الموقع
-            </a>
-            
+              معاينة الأداة
+            </Link>
+
             <Link
               href="/admin/ai-tools"
               className="border border-gray-600 hover:border-gray-500 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300"

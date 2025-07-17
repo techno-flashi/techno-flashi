@@ -172,7 +172,7 @@ export default async function AIToolPage({ params }: Props) {
     "@type": "SoftwareApplication",
     "name": tool.name,
     "description": tool.description,
-    "url": tool.website_url,
+    "url": `https://tflash.site/ai-tools/${tool.slug}`,
     "applicationCategory": "AI Tool",
     "operatingSystem": "Web",
     "offers": {
@@ -296,22 +296,15 @@ export default async function AIToolPage({ params }: Props) {
                   </div>
                 </div>
 
-                {/* أزرار العمل */}
+                {/* معلومات إضافية بدلاً من الروابط الخارجية */}
                 <div className="flex flex-col gap-3">
-                  {tool.website_url ? (
-                    <Link
-                      href={tool.website_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-center block"
-                    >
-                      زيارة الأداة
-                    </Link>
-                  ) : (
-                    <div className="bg-gray-400 text-white px-6 py-3 rounded-lg font-semibold text-center cursor-not-allowed opacity-75">
-                      رابط غير متوفر
+                  {/* معلومات الأداة */}
+                  <div className="bg-blue-50 border border-blue-200 text-blue-800 px-6 py-3 rounded-lg font-semibold text-center">
+                    <div className="flex items-center justify-center gap-2">
+                      <span>📋</span>
+                      <span>معلومات شاملة عن الأداة</span>
                     </div>
-                  )}
+                  </div>
 
                   {/* مشاركة على وسائل التواصل */}
                   <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
@@ -625,14 +618,13 @@ export default async function AIToolPage({ params }: Props) {
               </div>
 
               <div className="mt-6 pt-6 border-t border-gray-700 space-y-3">
-                <Link
-                  href={tool.website_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-primary hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 text-center block"
-                >
-                  زيارة الأداة
-                </Link>
+                {/* معلومات الأداة بدلاً من الرابط الخارجي */}
+                <div className="w-full bg-gray-700 text-gray-300 py-3 rounded-lg font-semibold text-center">
+                  <div className="flex items-center justify-center gap-2">
+                    <span>🔍</span>
+                    <span>تفاصيل شاملة متاحة أعلاه</span>
+                  </div>
+                </div>
 
                 {/* مشاركة مدمجة */}
                 <SocialShareCompact

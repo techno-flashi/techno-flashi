@@ -27,7 +27,7 @@ const generateComparisonStructuredData = (tools: AITool[]) => {
         "price": tool.pricing === 'free' ? '0' : 'varies',
         "priceCurrency": "USD"
       },
-      "url": tool.website_url
+      "url": `https://tflash.site/ai-tools/${tool.slug}`
     }))
   };
 };
@@ -229,14 +229,12 @@ export function IndividualToolComparison({
                         عرض التفاصيل
                       </AIToolLink>
                     )}
-                    <Link
-                      href={tool.website_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block border border-gray-600 hover:border-primary text-gray-300 hover:text-primary py-2 px-4 rounded-lg font-medium transition-colors duration-300 text-sm"
-                    >
-                      زيارة الموقع
-                    </Link>
+                    <div className="block border border-gray-600 text-gray-500 py-2 px-4 rounded-lg font-medium cursor-not-allowed text-sm">
+                      <div className="flex items-center justify-center gap-1">
+                        <span>📋</span>
+                        <span>معلومات متاحة</span>
+                      </div>
+                    </div>
                   </div>
                 </td>
               ))}
