@@ -22,7 +22,7 @@ import { AIToolComparisonContainer } from '@/components/AIToolComparisonContaine
 export const revalidate = 600; // إعادة بناء الصفحة كل 10 دقائق كحد أقصى
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // توليد المعاملات الثابتة للـ SSG (هذا الجزء صحيح)
@@ -117,7 +117,8 @@ async function getAllAvailableTools(currentSlug: string): Promise<AITool[]> {
 
 // إنشاء metadata ديناميكي
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tool = await getAITool(params.slug);
+  const { slug } = await params;
+  const tool = await getAITool(slug);
 
   if (!tool) {
     return {
@@ -130,14 +131,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function AIToolPage({ params }: Props) {
-  const tool = await getAITool(params.slug);
+  const { slug } = await params;
+  const tool = await getAITool(slug);
 
   if (!tool) {
     notFound();
   }
 
-  const relatedTools = await getRelatedAITools(params.slug, tool.category);
-  const availableTools = await getAllAvailableTools(params.slug);
+  const relatedTools = await getRelatedAITools(slug, tool.category);
+  const availableTools = await getAllAvailableTools(slug);
 
   const breadcrumbItems = [
     { label: 'أدوات الذكاء الاصطناعي', href: '/ai-tools' },
