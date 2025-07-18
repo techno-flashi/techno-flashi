@@ -7,8 +7,9 @@ import { useEffect } from 'react';
  */
 export default function UnusedCodeRemover() {
   useEffect(() => {
-    // إزالة Legacy JavaScript (66 KiB potential savings)
-    const removeLegacyJS = () => {
+    const runOptimizations = () => {
+      // إزالة Legacy JavaScript (66 KiB potential savings)
+      const removeLegacyJS = () => {
       if (typeof window !== 'undefined') {
         // List of legacy patterns to remove
         const legacyPatterns = [
@@ -309,13 +310,15 @@ export function MemoryOptimizer() {
       });
     };
 
-    // تشغيل التحسينات بعد تعريف جميع الدوال
-    setTimeout(() => {
+      // تشغيل جميع التحسينات
       removeLegacyJS();
       removeUnusedCSS();
       cleanupEventListeners();
       monitorMemoryUsage();
-    }, 100);
+    };
+
+    // تشغيل التحسينات
+    runOptimizations();
     
     // تنظيف دوري كل 5 دقائق
     const cleanupInterval = setInterval(memoryCleanup, 300000);
