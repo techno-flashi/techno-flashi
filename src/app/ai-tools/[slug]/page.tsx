@@ -16,10 +16,15 @@ import { AIToolLink } from '@/components/AIToolLink';
 import { generateAIToolSocialMeta, getSharingUrl, getSharingHashtags } from '@/lib/social-meta';
 import SocialShare from '@/components/SocialShare';
 import SocialShareCompact from '@/components/SocialShareCompact';
+
+// Import critical CSS for faster LCP
+import "@/styles/critical-ai-tool.css";
 import { AIToolComparisonContainer } from '@/components/AIToolComparisonContainer';
 
-// إعدادات ISR محسّنة لتحديثات أسرع
-export const revalidate = 600; // إعادة بناء الصفحة كل 10 دقائق كحد أقصى
+// Optimized ISR settings for faster updates and better performance
+export const revalidate = 600; // 10 minutes for individual AI tools
+export const dynamic = 'force-static';
+export const dynamicParams = true;
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -201,7 +206,7 @@ export default async function AIToolPage({ params }: Props) {
               
               <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                  <div className="relative w-24 h-24 flex-shrink-0">
+                  <div className="relative w-24 h-24 min-h-[96px] flex-shrink-0 bg-gray-50 rounded-lg flex items-center justify-center">
                     <SVGIcon
                       src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
                       alt={tool.name}
@@ -296,9 +301,9 @@ export default async function AIToolPage({ params }: Props) {
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">أدوات مشابهة</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {relatedTools.map((relatedTool) => (
-                      <AIToolLink key={relatedTool.id} href={`/ai-tools/${relatedTool.slug}`} className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all duration-300 group">
+                      <AIToolLink key={relatedTool.id} href={`/ai-tools/${relatedTool.slug}`} className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all duration-300 group min-h-[120px]">
                         <div className="flex items-center mb-3">
-                          <div className="relative w-12 h-12 ml-3">
+                          <div className="relative w-12 h-12 min-h-[48px] ml-3 bg-white rounded flex items-center justify-center">
                             <SVGIcon src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"} alt={relatedTool.name} className="w-12 h-12 rounded object-contain" fallbackIcon="🤖" />
                           </div>
                           <div>

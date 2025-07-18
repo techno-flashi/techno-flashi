@@ -34,7 +34,7 @@ export default function AutoAIToolAds({
 
 // مكونات جاهزة للاستخدام في مواضع مختلفة
 
-// إعلان بداية صفحة الأداة
+// إعلان بداية صفحة الأداة - مع أبعاد ثابتة لمنع Layout Shift
 export function AutoAIToolStartAd({
   toolName,
   toolSlug,
@@ -47,17 +47,19 @@ export function AutoAIToolStartAd({
   className?: string;
 }) {
   return (
-    <AutoAIToolAds
-      position="article-body-start"
-      toolName={toolName}
-      toolSlug={toolSlug}
-      toolCategory={toolCategory}
-      className={className}
-    />
+    <div className={`${className} min-h-[250px] flex items-center justify-center bg-gray-50 rounded-lg`}>
+      <AutoAIToolAds
+        position="article-body-start"
+        toolName={toolName}
+        toolSlug={toolSlug}
+        toolCategory={toolCategory}
+        className="w-full"
+      />
+    </div>
   );
 }
 
-// إعلان وسط صفحة الأداة
+// إعلان وسط صفحة الأداة - مع أبعاد ثابتة لمنع Layout Shift
 export function AutoAIToolMidAd({
   toolName,
   toolSlug,
@@ -70,17 +72,19 @@ export function AutoAIToolMidAd({
   className?: string;
 }) {
   return (
-    <AutoAIToolAds
-      position="article-body-mid"
-      toolName={toolName}
-      toolSlug={toolSlug}
-      toolCategory={toolCategory}
-      className={className}
-    />
+    <div className={`${className} min-h-[300px] flex items-center justify-center bg-gray-50 rounded-lg`}>
+      <AutoAIToolAds
+        position="article-body-mid"
+        toolName={toolName}
+        toolSlug={toolSlug}
+        toolCategory={toolCategory}
+        className="w-full"
+      />
+    </div>
   );
 }
 
-// إعلان نهاية صفحة الأداة
+// إعلان نهاية صفحة الأداة - مع أبعاد ثابتة لمنع Layout Shift
 export function AutoAIToolEndAd({
   toolName,
   toolSlug,
@@ -93,12 +97,14 @@ export function AutoAIToolEndAd({
   className?: string;
 }) {
   return (
-    <AutoAIToolAds
-      position="article-body-end"
-      toolName={toolName}
-      toolSlug={toolSlug}
-      toolCategory={toolCategory}
-      className={className}
-    />
+    <div className={`${className} min-h-[250px] flex items-center justify-center bg-gray-50 rounded-lg`}>
+      <AutoAIToolAds
+        position="article-body-end"
+        toolName={toolName}
+        toolSlug={toolSlug}
+        toolCategory={toolCategory}
+        className="w-full"
+      />
+    </div>
   );
 }

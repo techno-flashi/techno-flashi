@@ -116,11 +116,17 @@ export function EditorJSRenderer({ content, className = '' }: EditorJSRendererPr
       case 'image':
         return (
           <figure key={index} className="mb-6">
-            <img
-              src={data.file?.url || data.url || ''}
-              alt={data.caption || ''}
-              className="w-full rounded-md"
-            />
+            <div className="relative w-full min-h-[300px] bg-gray-100 rounded-md overflow-hidden">
+              <img
+                src={data.file?.url || data.url || ''}
+                alt={data.caption || ''}
+                className="w-full h-auto rounded-md"
+                loading="lazy"
+                width={800}
+                height={400}
+                style={{ aspectRatio: '16/9', objectFit: 'cover' }}
+              />
+            </div>
             {data.caption && (
               <figcaption className="text-center text-sm text-gray-400 mt-2">
                 {data.caption}
