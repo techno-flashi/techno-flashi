@@ -137,27 +137,20 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
-        {/* Preload critical fonts for faster LCP - Multiple weights */}
+        {/* Preload critical fonts for faster LCP - Fixed URLs */}
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6HkvalIhTp2mxdt0UX8.woff2"
           as="font"
           type="font/woff2"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/cairo/v28/SLXlc1nY6HkvalIkTp2mxdt0UX8.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
+          crossOrigin="anonymous"
         />
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
           as="font"
           type="font/woff2"
-          crossOrigin=""
+          crossOrigin="anonymous"
         />
 
         <link rel="preconnect" href="https://www.googletagmanager.com" />

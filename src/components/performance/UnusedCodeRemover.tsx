@@ -310,15 +310,10 @@ export function MemoryOptimizer() {
     };
 
     // تشغيل التحسينات بعد تعريف جميع الدوال
-    const runOptimizations = () => {
-      removeLegacyJS();
-      removeUnusedCSS();
-      cleanupEventListeners();
-      monitorMemoryUsage();
-    };
-
-    // تشغيل التحسينات
-    runOptimizations();
+    removeLegacyJS();
+    removeUnusedCSS();
+    cleanupEventListeners();
+    monitorMemoryUsage();
     
     // تنظيف دوري كل 5 دقائق
     const cleanupInterval = setInterval(memoryCleanup, 300000);

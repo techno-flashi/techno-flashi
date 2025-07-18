@@ -29,7 +29,7 @@ export function generateSocialMeta({
   tags = [],
   section
 }: SocialMetaOptions): Metadata {
-  const baseUrl = 'https://tflash.site';
+  const baseUrl = 'https://www.tflash.site';
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
   const fullImageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
 
