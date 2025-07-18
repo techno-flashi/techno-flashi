@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { cache } from 'react'; // 👈 **مهم:** استيراد cache لمنع جلب البيانات المزدوج
 import SVGIcon from '@/components/SVGIcon';
 import Link from 'next/link';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
@@ -8,9 +9,6 @@ import { AITool } from '@/types';
 import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
 import AdBanner from '@/components/ads/AdBanner';
-import { HeaderAd, FooterAd, InContentAd, SidebarAdManager } from '@/components/ads/AdManager';
-import { SmartAIToolAd, SmartContentAd, SmartSharedAd } from '@/components/ads/SmartAdManager';
-import { TechnoFlashContentBanner } from '@/components/ads/TechnoFlashBanner';
 import { AutoAIToolStartAd, AutoAIToolMidAd, AutoAIToolEndAd } from '@/components/ads/AutoAIToolAds';
 import { AIToolCanonicalUrl } from '@/components/seo/CanonicalUrl';
 import { AIToolPageClient } from '@/components/AIToolPageClient';
@@ -20,20 +18,17 @@ import SocialShare from '@/components/SocialShare';
 import SocialShareCompact from '@/components/SocialShareCompact';
 import { AIToolComparisonContainer } from '@/components/AIToolComparisonContainer';
 
-// Optimized ISR settings for faster updates
-export const revalidate = 600; // 10 minutes for individual AI tools
-export const dynamic = 'force-static';
-export const dynamicParams = true;
+// إعدادات ISR محسّنة لتحديثات أسرع
+export const revalidate = 600; // إعادة بناء الصفحة كل 10 دقائق كحد أقصى
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 };
 
-// توليد المعاملات الثابتة للـ SSG
+// توليد المعاملات الثابتة للـ SSG (هذا الجزء صحيح)
 export async function generateStaticParams() {
   try {
     const aiTools = await getAllAIToolsForSSG();
-
     return aiTools.map((tool) => ({
       slug: tool.slug,
     }));
@@ -43,52 +38,41 @@ export async function generateStaticParams() {
   }
 }
 
-// جلب بيانات الأداة بناءً على الـ slug للـ SSG
-async function getAITool(slug: string): Promise<AITool | null> {
+// **مهم:** تم تغليف دالة جلب البيانات بـ `cache`
+// هذا يضمن أن الدالة ستعمل مرة واحدة فقط لكل طلب، حتى لو تم استدعاؤها من generateMetadata والصفحة
+export const getAITool = cache(async (slug: string): Promise<AITool | null> => {
   try {
-    // فك تشفير الـ slug للتعامل مع الأحرف العربية
     const decodedSlug = decodeURIComponent(slug);
 
     const { data, error } = await supabase
       .from('ai_tools')
       .select('*')
       .eq('slug', decodedSlug)
-      .eq('status', 'published')
+      .in('status', ['published', 'active']) // السماح بعرض الأدوات النشطة أيضاً
       .single();
 
-    if (error) {
-      console.error('Supabase error:', error);
+    if (error || !data) {
+      console.error('Supabase error or no data for slug:', decodedSlug, error);
       return null;
     }
 
-    if (!data) {
-      console.error('No data returned for slug:', decodedSlug);
-      return null;
-    }
-
-    // تحديث عداد النقرات
-    try {
-      await supabase
-        .from('ai_tools')
-        .update({ click_count: (data.click_count || 0) + 1 })
-        .eq('id', data.id);
-    } catch (updateError) {
-      console.error('Error updating click count:', updateError);
-    }
+    // **مهم:** تم حذف منطق تحديث عداد النقرات من هنا.
+    // يجب أن يتم تحديث العداد عبر تفاعل من المستخدم (مثل الضغط على زر "زيارة الموقع")
+    // وليس أثناء عرض الصفحة من الخادم.
 
     return fixObjectEncoding(data) as AITool;
   } catch (error) {
     console.error('Exception in getAITool:', error);
     return null;
   }
-}
+});
 
 // جلب الأدوات ذات الصلة
 async function getRelatedAITools(currentSlug: string, category: string, limit: number = 3): Promise<AITool[]> {
   try {
     const { data, error } = await supabase
       .from('ai_tools')
-      .select('*')
+      .select('id, name, slug, description, logo_url, rating, category, website_url, pricing, features, status, created_at, updated_at') // جميع الحقول المطلوبة
       .eq('status', 'published')
       .eq('category', category)
       .neq('slug', currentSlug)
@@ -99,8 +83,11 @@ async function getRelatedAITools(currentSlug: string, category: string, limit: n
       console.error('Error fetching related AI tools:', error);
       return [];
     }
-
-    return data?.map(tool => fixObjectEncoding(tool)) || [];
+    return data?.map(tool => ({
+      ...fixObjectEncoding(tool),
+      features: tool.features || [],
+      status: (tool.status || 'published') as 'draft' | 'published'
+    })) || [];
   } catch (error) {
     console.error('Exception in getRelatedAITools:', error);
     return [];
@@ -112,19 +99,16 @@ async function getAllAvailableTools(currentSlug: string): Promise<AITool[]> {
   try {
     const { data, error } = await supabase
       .from('ai_tools')
-      .select('*')
+      .select('id, name, slug, description, category, pricing, rating, features, pros, cons') // تحديد الأعمدة لتحسين الأداء
       .neq('slug', currentSlug)
       .in('status', ['published', 'active'])
-      .order('rating', { ascending: false })
-      .order('click_count', { ascending: false });
+      .order('rating', { ascending: false });
 
     if (error) {
       console.error('Error fetching available AI tools:', error);
       return [];
     }
-
-    const fixedData = data?.map(tool => fixObjectEncoding(tool)) || [];
-    return fixedData as AITool[];
+    return (data?.map(tool => fixObjectEncoding(tool)) as AITool[]) || [];
   } catch (error) {
     console.error('Exception in getAllAvailableTools:', error);
     return [];
@@ -133,8 +117,7 @@ async function getAllAvailableTools(currentSlug: string): Promise<AITool[]> {
 
 // إنشاء metadata ديناميكي
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const tool = await getAITool(slug);
+  const tool = await getAITool(params.slug);
 
   if (!tool) {
     return {
@@ -146,27 +129,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return generateAIToolSocialMeta(tool);
 }
 
-// تم حذف الدالة المكررة
-
 export default async function AIToolPage({ params }: Props) {
-  const { slug } = await params;
-  const tool = await getAITool(slug);
+  const tool = await getAITool(params.slug);
 
   if (!tool) {
     notFound();
   }
 
-  const relatedTools = await getRelatedAITools(slug, tool.category);
-  const availableTools = await getAllAvailableTools(slug);
+  const relatedTools = await getRelatedAITools(params.slug, tool.category);
+  const availableTools = await getAllAvailableTools(params.slug);
 
-  // إنشاء breadcrumbs
   const breadcrumbItems = [
     { label: 'أدوات الذكاء الاصطناعي', href: '/ai-tools' },
     { label: tool.name }
   ];
   const breadcrumbJsonLd = createBreadcrumbJsonLd(breadcrumbItems);
 
-  // إنشاء Schema markup للأداة
   const softwareApplicationJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -179,22 +157,13 @@ export default async function AIToolPage({ params }: Props) {
       "@type": "Offer",
       "price": tool.pricing === 'free' ? "0" : "varies",
       "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": tool.rating,
       "ratingCount": tool.click_count || 1,
-      "bestRating": "5",
-      "worstRating": "1"
     },
-    "author": {
-      "@type": "Organization",
-      "name": "TechnoFlash"
-    },
-    "datePublished": tool.created_at,
-    "dateModified": tool.updated_at,
-    "inLanguage": "ar"
+    "author": { "@type": "Organization", "name": "TechnoFlash" },
   };
 
   const getPricingColor = (pricing: string) => {
@@ -218,437 +187,183 @@ export default async function AIToolPage({ params }: Props) {
   return (
     <AIToolPageClient tool={tool}>
       <div className="min-h-screen px-4">
-        {/* Schema Markup */}
         <JsonLd data={softwareApplicationJsonLd} />
         <JsonLd data={breadcrumbJsonLd} />
-
-        {/* Canonical URL لحل مشكلة النسخ المكررة */}
         <AIToolCanonicalUrl slug={tool.slug} />
 
-      <div className="max-w-7xl mx-auto pt-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* المحتوى الرئيسي */}
-          <article className="lg:col-span-3">
-            {/* Breadcrumbs */}
-            <Breadcrumbs items={breadcrumbItems} />
-
-            {/* إعلان تلقائي بداية الصفحة */}
-            <AutoAIToolStartAd
-              toolName={tool.name}
-              toolSlug={tool.slug}
-              toolCategory={tool.category}
-              className="mb-6"
-            />
-
-            {/* رأس الأداة */}
-            <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                {/* الشعار */}
-                <div className="relative w-24 h-24 flex-shrink-0">
-                  <SVGIcon
-                    src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
-                    alt={tool.name}
-                    fill
-                    style={{ objectFit: "contain" }}
-                    className="rounded-lg"
-                    fallbackIcon="🤖"
-                  />
-                </div>
-
-                {/* معلومات الأداة */}
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-                      {tool.name}
-                    </h1>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getPricingColor(tool.pricing)}`}>
-                      {getPricingText(tool.pricing)}
-                    </span>
-                  </div>
-
-                  <p className="text-gray-700 text-lg mb-4 leading-relaxed">
-                    {tool.description}
-                  </p>
-
-                  <div className="flex flex-wrap items-center gap-4">
-                    {/* التقييم */}
-                    <div className="flex items-center">
-                      <span className="text-yellow-500 text-lg">⭐</span>
-                      <span className="text-gray-900 font-medium mr-2">{tool.rating}</span>
-                      <span className="text-gray-600 text-sm">
-                        ({tool.click_count || 0} مراجعة)
-                      </span>
-                    </div>
-
-                    {/* الفئة */}
-                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                      {tool.category}
-                    </span>
-
-                    {/* تاريخ الإضافة */}
-                    <span className="text-gray-600 text-sm">
-                      أُضيفت في: {new Date(tool.created_at).toLocaleDateString('ar-EG', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </span>
-                  </div>
-                </div>
-
-                {/* معلومات إضافية بدلاً من الروابط الخارجية */}
-                <div className="flex flex-col gap-3">
-                  {/* معلومات الأداة */}
-                  <div className="bg-blue-50 border border-blue-200 text-blue-800 px-6 py-3 rounded-lg font-semibold text-center">
-                    <div className="flex items-center justify-center gap-2">
-                      <span>📋</span>
-                      <span>معلومات شاملة عن الأداة</span>
-                    </div>
-                  </div>
-
-                  {/* مشاركة على وسائل التواصل */}
-                  <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-                    <h4 className="text-gray-900 font-semibold mb-3 text-center">مشاركة الأداة</h4>
-                    <SocialShare
-                      url={getSharingUrl(`/ai-tools/${tool.slug}`)}
-                      title={`${tool.name} - أداة ذكاء اصطناعي`}
-                      description={tool.description}
-                      hashtags={getSharingHashtags([tool.category, tool.pricing])}
-                      size="sm"
-                      className="justify-center"
+        <div className="max-w-7xl mx-auto pt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <article className="lg:col-span-3">
+              <Breadcrumbs items={breadcrumbItems} />
+              <AutoAIToolStartAd toolName={tool.name} toolSlug={tool.slug} toolCategory={tool.category} className="mb-6" />
+              
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <div className="relative w-24 h-24 flex-shrink-0">
+                    <SVGIcon
+                      src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
+                      alt={tool.name}
+                      fill
+                      sizes="96px"
+                      style={{ objectFit: "contain" }}
+                      className="rounded-lg"
+                      fallbackIcon="🤖"
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* إعلان ذكي بعد معلومات الأداة - معطل */}
-            {/* <SmartAIToolAd
-              position="in-content"
-              className="my-8"
-              keywords={[tool.name, tool.category, 'أداة', 'AI']}
-            /> */}
-
-            {/* الوصف التفصيلي */}
-            {tool.detailed_description && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">نظرة عامة شاملة</h2>
-                <div className="prose max-w-none">
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {tool.detailed_description}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* المميزات الرئيسية */}
-            {Array.isArray(tool.features) && tool.features.length > 0 && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">المميزات الرئيسية</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {tool.features.map((feature, index) => (
-                    <div key={index} className="flex items-start">
-                      <span className="text-green-600 text-lg ml-3 mt-1">✓</span>
-                      <span className="text-gray-700">{feature}</span>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-3 mb-4">
+                      <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{tool.name}</h1>
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getPricingColor(tool.pricing)}`}>
+                        {getPricingText(tool.pricing)}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* حالات الاستخدام */}
-            {Array.isArray(tool.use_cases) && tool.use_cases.length > 0 && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">حالات الاستخدام العملية</h2>
-                <div className="space-y-4">
-                  {tool.use_cases.map((useCase, index) => (
-                    <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                      <div className="flex items-start">
-                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm font-medium ml-3 mt-1">
-                          {index + 1}
-                        </span>
-                        <p className="text-gray-700 leading-relaxed">{useCase}</p>
+                    <p className="text-gray-700 text-lg mb-4 leading-relaxed">{tool.description}</p>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <div className="flex items-center">
+                        <span className="text-yellow-500 text-lg">⭐</span>
+                        <span className="text-gray-900 font-medium mr-2">{tool.rating}</span>
+                        <span className="text-gray-600 text-sm">({tool.click_count || 0} مراجعة)</span>
                       </div>
+                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">{tool.category}</span>
+                      <span className="text-gray-600 text-sm">
+                        أُضيفت في: {new Date(tool.created_at).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* إعلان ذكي وسط المحتوى - معطل */}
-            {/* <SmartContentAd
-              contentType="ai-tool"
-              className=""
-              keywords={[tool.name, tool.category, 'premium', 'متقدم']}
-            /> */}
-
-            {/* إعلان تكنوفلاش المتحرك - معطل */}
-            {/* <TechnoFlashContentBanner className="my-6" /> */}
-
-            {/* إعلان تلقائي وسط الصفحة */}
-            <AutoAIToolMidAd
-              toolName={tool.name}
-              toolSlug={tool.slug}
-              toolCategory={tool.category}
-              className="my-8"
-            />
-
-            {/* دليل الاستخدام */}
-            {Array.isArray(tool.tutorial_steps) && tool.tutorial_steps.length > 0 && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">دليل الاستخدام خطوة بخطوة</h2>
-                <div className="space-y-6">
-                  {tool.tutorial_steps.map((step, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm ml-4 mt-1 flex-shrink-0">
-                        {index + 1}
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-gray-700 leading-relaxed">{step}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* المزايا والعيوب */}
-            {((Array.isArray(tool.pros) && tool.pros.length > 0) || (Array.isArray(tool.cons) && tool.cons.length > 0)) && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">تقييم شامل</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* المزايا */}
-                  {Array.isArray(tool.pros) && tool.pros.length > 0 && (
-                    <div>
-                      <h3 className="text-xl font-semibold text-green-600 mb-4 flex items-center">
-                        <span className="ml-2">👍</span>
-                        المزايا
-                      </h3>
-                      <div className="space-y-3">
-                        {tool.pros.map((pro, index) => (
-                          <div key={index} className="flex items-start">
-                            <span className="text-green-600 text-lg ml-3 mt-1">+</span>
-                            <span className="text-gray-700">{pro}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* العيوب */}
-                  {Array.isArray(tool.cons) && tool.cons.length > 0 && (
-                    <div>
-                      <h3 className="text-xl font-semibold text-orange-600 mb-4 flex items-center">
-                        <span className="ml-2">👎</span>
-                        العيوب
-                      </h3>
-                      <div className="space-y-3">
-                        {tool.cons.map((con, index) => (
-                          <div key={index} className="flex items-start">
-                            <span className="text-orange-600 text-lg ml-3 mt-1">-</span>
-                            <span className="text-gray-700">{con}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* معلومات الأسعار */}
-            {tool.pricing_details && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">خطط الأسعار</h2>
-
-                {/* الخطة المجانية */}
-                {tool.pricing_details.free_plan && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
-                    <h3 className="text-xl font-semibold text-green-700 mb-3">الخطة المجانية</h3>
-                    <p className="text-gray-700">{tool.pricing_details.free_plan}</p>
                   </div>
-                )}
+                </div>
+              </div>
 
-                {/* الخطط المدفوعة */}
-                {Array.isArray(tool.pricing_details?.paid_plans) && tool.pricing_details.paid_plans.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {tool.pricing_details.paid_plans.map((plan, index) => (
-                      <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{plan.name}</h3>
-                        <div className="text-2xl font-bold text-blue-600 mb-4">{plan.price}</div>
-                        <ul className="space-y-2">
-                          {Array.isArray(plan.features) && plan.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-start">
-                              <span className="text-green-600 text-sm ml-2 mt-1">✓</span>
-                              <span className="text-gray-700 text-sm">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
+              {tool.detailed_description && (
+                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">نظرة عامة شاملة</h2>
+                  <div className="prose max-w-none">
+                    <p className="text-gray-700 leading-relaxed whitespace-pre-line">{tool.detailed_description}</p>
+                  </div>
+                </div>
+              )}
+
+              {Array.isArray(tool.features) && tool.features.length > 0 && (
+                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">المميزات الرئيسية</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {tool.features.map((feature, index) => (
+                      <div key={index} className="flex items-start">
+                        <span className="text-green-600 text-lg ml-3 mt-1">✓</span>
+                        <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
                   </div>
-                )}
-              </div>
-            )}
-
-            {/* الأسئلة الشائعة */}
-            {Array.isArray(tool.faq) && tool.faq.length > 0 && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">الأسئلة الشائعة</h2>
-                <div className="space-y-6">
-                  {tool.faq.map((item, index) => (
-                    <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">{item.question}</h3>
-                      <p className="text-gray-700 leading-relaxed">{item.answer}</p>
-                    </div>
-                  ))}
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* الكلمات المفتاحية */}
-            {Array.isArray(tool.tags) && tool.tags.length > 0 && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">الكلمات المفتاحية</h2>
-                <div className="flex flex-wrap gap-3">
-                  {tool.tags.map((tag, index) => (
-                    <span key={index} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
+              <AutoAIToolMidAd toolName={tool.name} toolSlug={tool.slug} toolCategory={tool.category} className="my-8" />
 
-            {/* إعلان وسط المحتوى */}
-            <AdBanner placement="ai_tool_middle" className="mb-8" />
-
-            {/* الأدوات ذات الصلة */}
-            {relatedTools.length > 0 && (
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">أدوات مشابهة</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {relatedTools.map((relatedTool) => (
-                    <AIToolLink
-                      key={relatedTool.id}
-                      href={`/ai-tools/${relatedTool.slug}`}
-                      className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all duration-300 group"
-                    >
-                      <div className="flex items-center mb-3">
-                        <div className="relative w-12 h-12 ml-3">
-                          <SVGIcon
-                            src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"}
-                            alt={relatedTool.name}
-                            fill
-                            style={{ objectFit: "contain" }}
-                            className="rounded"
-                            fallbackIcon="🤖"
-                          />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                            {relatedTool.name}
-                          </h3>
-                          <div className="flex items-center">
-                            <span className="text-yellow-500 text-sm">⭐</span>
-                            <span className="text-gray-600 text-sm mr-1">{relatedTool.rating}</span>
-                          </div>
+              {((Array.isArray(tool.pros) && tool.pros.length > 0) || (Array.isArray(tool.cons) && tool.cons.length > 0)) && (
+                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">تقييم شامل</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {Array.isArray(tool.pros) && tool.pros.length > 0 && (
+                      <div>
+                        <h3 className="text-xl font-semibold text-green-600 mb-4 flex items-center"><span className="ml-2">👍</span>المزايا</h3>
+                        <div className="space-y-3">
+                          {tool.pros.map((pro, index) => (
+                            <div key={index} className="flex items-start">
+                              <span className="text-green-600 text-lg ml-3 mt-1">+</span>
+                              <span className="text-gray-700">{pro}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                      <p className="text-gray-600 text-sm line-clamp-2">
-                        {relatedTool.description}
-                      </p>
-                    </AIToolLink>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* قسم المقارنة */}
-            <AIToolComparisonContainer
-              currentTool={tool}
-              availableTools={availableTools}
-              className="mb-8"
-            />
-
-            {/* إعلان تلقائي نهاية الصفحة */}
-            <AutoAIToolEndAd
-              toolName={tool.name}
-              toolSlug={tool.slug}
-              toolCategory={tool.category}
-              className="mb-8"
-            />
-          </article>
-
-          {/* الشريط الجانبي */}
-          <aside className="lg:col-span-1">
-            {/* معلومات سريعة */}
-            <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6 sticky top-24 shadow-sm">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">معلومات سريعة</h3>
-              <div className="space-y-4">
-                <div>
-                  <span className="text-gray-600 text-sm">الفئة:</span>
-                  <span className="text-gray-900 font-medium block">{tool.category}</span>
-                </div>
-                <div>
-                  <span className="text-gray-600 text-sm">نوع التسعير:</span>
-                  <span className="text-gray-900 font-medium block">{getPricingText(tool.pricing)}</span>
-                </div>
-                <div>
-                  <span className="text-gray-600 text-sm">التقييم:</span>
-                  <div className="flex items-center">
-                    <span className="text-yellow-500">⭐</span>
-                    <span className="text-gray-900 font-medium mr-2">{tool.rating}</span>
+                    )}
+                    {Array.isArray(tool.cons) && tool.cons.length > 0 && (
+                      <div>
+                        <h3 className="text-xl font-semibold text-orange-600 mb-4 flex items-center"><span className="ml-2">👎</span>العيوب</h3>
+                        <div className="space-y-3">
+                          {tool.cons.map((con, index) => (
+                            <div key={index} className="flex items-start">
+                              <span className="text-orange-600 text-lg ml-3 mt-1">-</span>
+                              <span className="text-gray-700">{con}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div>
-                  <span className="text-gray-600 text-sm">عدد المراجعات:</span>
-                  <span className="text-gray-900 font-medium block">{tool.click_count || 0}</span>
-                </div>
-                <div>
-                  <span className="text-gray-600 text-sm">تاريخ الإضافة:</span>
-                  <span className="text-gray-900 font-medium block">
-                    {new Date(tool.created_at).toLocaleDateString('ar-EG', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
-                  </span>
-                </div>
-              </div>
+              )}
 
-              <div className="mt-6 pt-6 border-t border-gray-700 space-y-3">
-                {/* معلومات الأداة بدلاً من الرابط الخارجي */}
-                <div className="w-full bg-gray-700 text-gray-300 py-3 rounded-lg font-semibold text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>🔍</span>
-                    <span>تفاصيل شاملة متاحة أعلاه</span>
+              {relatedTools.length > 0 && (
+                <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">أدوات مشابهة</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {relatedTools.map((relatedTool) => (
+                      <AIToolLink key={relatedTool.id} href={`/ai-tools/${relatedTool.slug}`} className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all duration-300 group">
+                        <div className="flex items-center mb-3">
+                          <div className="relative w-12 h-12 ml-3">
+                            <SVGIcon src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"} alt={relatedTool.name} fill sizes="48px" style={{ objectFit: "contain" }} className="rounded" fallbackIcon="🤖" />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{relatedTool.name}</h3>
+                            <div className="flex items-center">
+                              <span className="text-yellow-500 text-sm">⭐</span>
+                              <span className="text-gray-600 text-sm mr-1">{relatedTool.rating}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-gray-600 text-sm line-clamp-2">{relatedTool.description}</p>
+                      </AIToolLink>
+                    ))}
                   </div>
                 </div>
+              )}
 
-                {/* مشاركة مدمجة */}
-                <SocialShareCompact
-                  url={getSharingUrl(`/ai-tools/${tool.slug}`)}
-                  title={`${tool.name} - أداة ذكاء اصطناعي`}
-                  description={tool.description}
-                  className="w-full"
-                />
+              <AIToolComparisonContainer currentTool={tool} availableTools={availableTools} className="mb-8" />
+              <AutoAIToolEndAd toolName={tool.name} toolSlug={tool.slug} toolCategory={tool.category} className="mb-8" />
+            </article>
+
+            <aside className="lg:col-span-1">
+              <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6 sticky top-24 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">معلومات سريعة</h3>
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-gray-600 text-sm">الفئة:</span>
+                    <span className="text-gray-900 font-medium block">{tool.category}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600 text-sm">نوع التسعير:</span>
+                    <span className="text-gray-900 font-medium block">{getPricingText(tool.pricing)}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600 text-sm">التقييم:</span>
+                    <div className="flex items-center">
+                      <span className="text-yellow-500">⭐</span>
+                      <span className="text-gray-900 font-medium mr-2">{tool.rating}</span>
+                    </div>
+                  </div>
+                   <div>
+                    <span className="text-gray-600 text-sm">عدد المراجعات:</span>
+                    <span className="text-gray-900 font-medium block">{tool.click_count || 0}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600 text-sm">تاريخ الإضافة:</span>
+                    <span className="text-gray-900 font-medium block">
+                      {new Date(tool.created_at).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    </span>
+                  </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
+                  <AIToolLink href={tool.website_url || '#'} className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 px-4 rounded-lg font-medium transition-colors">
+                    زيارة الموقع الرسمي
+                  </AIToolLink>
+                  <AIToolLink href={`/ai-tools/${tool.slug}`} className="block w-full bg-gray-100 hover:bg-gray-200 text-gray-900 text-center py-3 px-4 rounded-lg font-medium transition-colors">
+                    عرض التفاصيل الكاملة
+                  </AIToolLink>
+                </div>
               </div>
-            </div>
-
-            {/* إعلانات الشريط الجانبي - معطل */}
-            {/* <SidebarAdManager /> */}
-          </aside>
+            </aside>
+          </div>
         </div>
       </div>
-
-      {/* إعلان ذكي أسفل الصفحة - معطل */}
-      {/* <SmartSharedAd
-        position="footer"
-        className="mt-8"
-        keywords={['مجتمع', 'انضم', 'تواصل']}
-      /> */}
-    </div>
     </AIToolPageClient>
   );
 }
