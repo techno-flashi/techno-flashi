@@ -1,6 +1,7 @@
 'use client';
 
 import { SmartAIToolAd } from './SmartAdManager';
+import { useEffect, useRef, useState } from 'react';
 
 interface AutoAIToolAdsProps {
   position: 'article-body-start' | 'article-body-mid' | 'article-body-end';
@@ -12,7 +13,7 @@ interface AutoAIToolAdsProps {
 
 /**
  * مكون الإعلانات التلقائية لصفحات أدوات الذكاء الاصطناعي
- * يستخدم SmartAdManager للبحث عن الإعلانات المناسبة
+ * يستخدم Intersection Observer للتحميل الذكي وتحسين الأداء
  */
 export default function AutoAIToolAds({
   position,
@@ -21,14 +22,40 @@ export default function AutoAIToolAds({
   toolCategory,
   className = ''
 }: AutoAIToolAdsProps) {
-  // استخدم SmartAIToolAd مباشرة - سيتولى البحث عن الإعلانات المناسبة
+  const [isVisible, setIsVisible] = useState(false);
+  const adRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    if (adRef.current) {
+      observer.observe(adRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <SmartAIToolAd
-      position={position}
-      className={className}
-      keywords={[toolName, toolCategory, 'ذكاء اصطناعي', 'أدوات']}
-      toolSlug={toolSlug}
-    />
+    <div ref={adRef} className={className}>
+      {isVisible ? (
+        <SmartAIToolAd
+          position={position}
+          className="w-full"
+          keywords={[toolName, toolCategory, 'ذكاء اصطناعي', 'أدوات']}
+          toolSlug={toolSlug}
+        />
+      ) : (
+        <div className="w-full h-full bg-gray-100 animate-pulse rounded-lg" />
+      )}
+    </div>
   );
 }
 

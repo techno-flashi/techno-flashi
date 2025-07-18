@@ -3,19 +3,17 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react'; // 👈 **مهم:** استيراد cache لمنع جلب البيانات المزدوج
 import SVGIcon from '@/components/SVGIcon';
 import Link from 'next/link';
+import Image from 'next/image';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { getAllAIToolsForSSG } from '@/lib/ssg';
 import { AITool } from '@/types';
 import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
-import AdBanner from '@/components/ads/AdBanner';
 import { AutoAIToolStartAd, AutoAIToolMidAd, AutoAIToolEndAd } from '@/components/ads/AutoAIToolAds';
 import { AIToolCanonicalUrl } from '@/components/seo/CanonicalUrl';
 import { AIToolPageClient } from '@/components/AIToolPageClient';
 import { AIToolLink } from '@/components/AIToolLink';
-import { generateAIToolSocialMeta, getSharingUrl, getSharingHashtags } from '@/lib/social-meta';
-import SocialShare from '@/components/SocialShare';
-import SocialShareCompact from '@/components/SocialShareCompact';
+import { generateAIToolSocialMeta } from '@/lib/social-meta';
 
 // Import critical CSS for faster LCP
 import "@/styles/critical-ai-tool.css";

@@ -5,11 +5,13 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true, // Enable React strict mode for better performance and fewer bugs
 
-  // دعم الأحرف الدولية والعربية
+  // Advanced experimental features for 99 Lighthouse score
   experimental: {
-    optimizePackageImports: ['react-icons', 'lucide-react'],
+    optimizePackageImports: ['react-icons', 'lucide-react', '@/components', '@/lib'],
     optimizeCss: true,
     scrollRestoration: true,
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
+    serverComponentsExternalPackages: ['sharp'],
   },
 
   // إعدادات SSG و ISR

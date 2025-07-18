@@ -101,11 +101,13 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${inter.variable} ${cairo.variable}`}>
       <head>
-        {/* تحسينات الأداء الهامة: الاتصال المسبق بالمصادر الأساسية */}
+        {/* Advanced Resource Hints for 99 Lighthouse Score */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preconnect" href="https://zgktrwpladrkhhemhnni.supabase.co" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
 
-        {/* Preload critical fonts for faster LCP */}
+        {/* Preload critical fonts with optimal loading */}
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2"
@@ -120,14 +122,22 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+
+        {/* Prefetch next likely resources */}
+        <link rel="prefetch" href="/ai-tools" />
+        <link rel="prefetch" href="/articles" />
         
-        {/* CSS حرج لمنع إزاحة التصميم وتحسين سرعة العرض (هذه طريقة ممتازة) */}
+        {/* Ultra-Critical CSS for 99 Lighthouse Score */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            body { font-family: 'Cairo', system-ui, sans-serif; }
-            .header { height: 80px; } /* ارتفاع ثابت لمنع CLS */
-            .ad-banner { min-height: 90px; } /* حجز مساحة للإعلانات لمنع CLS */
-            @media (min-width: 768px) { .header { height: 88px; } }
+            @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2') format('woff2');unicode-range:U+0600-06FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE80-FEFC}
+            @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2') format('woff2')}
+            body{font-family:'Cairo',system-ui,sans-serif;font-display:swap}
+            .header{height:80px}
+            .ad-banner{min-height:90px}
+            @media (min-width:768px){.header{height:88px}}
+            *{box-sizing:border-box}
+            img{max-width:100%;height:auto}
           `
         }} />
 
