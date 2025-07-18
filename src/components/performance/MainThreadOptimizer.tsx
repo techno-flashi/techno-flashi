@@ -12,9 +12,14 @@ export function MainThreadOptimizer() {
     if (typeof window === 'undefined') return;
 
     // Break up long-running tasks using scheduler
-    const scheduleWork = (callback: () => void, priority: 'high' | 'normal' | 'low' = 'normal') => {
+    const scheduleWork = (callback: () => void, priority: 'user-blocking' | 'user-visible' | 'background' = 'user-visible') => {
       if ('scheduler' in window && 'postTask' in (window as any).scheduler) {
-        (window as any).scheduler.postTask(callback, { priority });
+        try {
+          (window as any).scheduler.postTask(callback, { priority });
+        } catch (error) {
+          // Fallback if priority is not supported
+          (window as any).scheduler.postTask(callback);
+        }
       } else if ('requestIdleCallback' in window) {
         requestIdleCallback(callback);
       } else {
@@ -184,7 +189,7 @@ export function MainThreadOptimizer() {
             
             scheduleWork(() => {
               script.setAttribute('src', src);
-            }, priority as 'high' | 'normal' | 'low');
+            }, priority === 'low' ? 'background' : 'user-visible');
           }
         });
       });
@@ -204,7 +209,7 @@ export function MainThreadOptimizer() {
                 if (entry.name === 'script') {
                   scheduleWork(() => {
                     console.log('Breaking up long script task');
-                  }, 'low');
+                  }, 'background');
                 }
               }
             });
@@ -242,18 +247,18 @@ export function MainThreadOptimizer() {
     // Execute optimizations in priority order
     const runOptimizations = () => {
       // High priority - immediate impact
-      scheduleWork(optimizeScriptEvaluation, 'high');
-      scheduleWork(optimizeStyleAndLayout, 'high');
-      
+      scheduleWork(optimizeScriptEvaluation, 'user-blocking');
+      scheduleWork(optimizeStyleAndLayout, 'user-blocking');
+
       // Normal priority - important but can wait
-      scheduleWork(reduceLayoutThrashing, 'normal');
-      scheduleWork(optimizeImageLoading, 'normal');
-      scheduleWork(deferNonCriticalCSS, 'normal');
-      
+      scheduleWork(reduceLayoutThrashing, 'user-visible');
+      scheduleWork(optimizeImageLoading, 'user-visible');
+      scheduleWork(deferNonCriticalCSS, 'user-visible');
+
       // Low priority - nice to have
-      scheduleWork(optimizeThirdPartyScripts, 'low');
-      scheduleWork(monitorLongTasks, 'low');
-      scheduleWork(optimizeFontLoading, 'low');
+      scheduleWork(optimizeThirdPartyScripts, 'background');
+      scheduleWork(monitorLongTasks, 'background');
+      scheduleWork(optimizeFontLoading, 'background');
     };
 
     // Start optimizations after initial page load

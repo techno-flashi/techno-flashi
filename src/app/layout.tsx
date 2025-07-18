@@ -140,7 +140,7 @@ export default function RootLayout({
         {/* Preload critical fonts for faster LCP - Fixed URLs */}
         <link
           rel="preload"
-          href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6HkvalIhTp2mxdt0UX8.woff2"
+          href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
