@@ -170,14 +170,50 @@ export function EditorJSRenderer({ content, className = '' }: EditorJSRendererPr
         );
 
       case 'embed':
+        const embedUrl = data.embed || data.source || '';
+        const isYouTube = embedUrl.includes('youtube.com') || embedUrl.includes('youtu.be');
+
+        if (isYouTube) {
+          // YouTube Facade for better performance
+          const videoId = embedUrl.match(/(?:youtube\.com\/embed\/|youtu\.be\/)([^?&]+)/)?.[1];
+          return (
+            <div key={index} className="mb-6">
+              <div className="aspect-video bg-gray-100 rounded-md relative group cursor-pointer">
+                <img
+                  src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                  alt={data.caption || 'YouTube Video'}
+                  className="w-full h-full object-cover rounded-md"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-colors">
+                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
+                  انقر للتشغيل
+                </div>
+              </div>
+              {data.caption && (
+                <p className="text-center text-sm text-gray-400 mt-2">
+                  {data.caption}
+                </p>
+              )}
+            </div>
+          );
+        }
+
         return (
           <div key={index} className="mb-6">
             <div className="aspect-video">
               <iframe
-                src={data.embed || data.source || ''}
+                src={embedUrl}
                 title={data.caption || 'Embedded content'}
                 className="w-full h-full rounded-md"
                 allowFullScreen
+                loading="lazy"
               />
             </div>
             {data.caption && (

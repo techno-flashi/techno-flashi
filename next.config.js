@@ -11,8 +11,10 @@ const nextConfig = {
     optimizeCss: true,
     scrollRestoration: true,
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
-    serverComponentsExternalPackages: ['sharp'],
   },
+
+  // Server external packages
+  serverExternalPackages: ['sharp'],
 
   // إعدادات SSG و ISR
   output: 'standalone',

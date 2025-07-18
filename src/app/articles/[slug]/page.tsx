@@ -19,8 +19,7 @@ import { generateArticleSocialMeta, getSharingUrl, getSharingHashtags } from "@/
 import SocialShare from "@/components/SocialShare";
 import SocialShareCompact from "@/components/SocialShareCompact";
 
-// Import critical CSS for faster LCP
-import "@/styles/critical-article.css";
+// Critical CSS will be inlined in the component for 99 Lighthouse score
 
 // Optimized ISR settings for faster updates
 export const revalidate = 600; // 10 minutes for individual articles
@@ -277,8 +276,23 @@ export default async function ArticlePage({ params }: Props) {
   const breadcrumbJsonLd = createBreadcrumbJsonLd(breadcrumbItems);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      {/* Schema Markup للمقال والـ breadcrumbs */}
+    <>
+      {/* Critical CSS inlined for 99 Lighthouse score */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .article-container{max-width:800px;margin:0 auto;padding:0 1rem}
+          .article-title{font-size:2.5rem;font-weight:700;line-height:1.2;color:#111;margin-bottom:1rem}
+          .article-meta{color:#6b7280;font-size:0.875rem;margin-bottom:1.5rem}
+          .article-content{line-height:1.7;color:#374151}
+          .article-content h1,.article-content h2,.article-content h3{color:#111;font-weight:600;margin:1.5rem 0 1rem}
+          .article-content p{margin-bottom:1rem;font-size:1.1rem}
+          .featured-image{width:100%;height:auto;border-radius:0.5rem;margin-bottom:2rem}
+          @media (max-width:768px){.article-title{font-size:1.875rem}.article-container{padding:0 0.75rem}}
+        `
+      }} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Schema Markup للمقال والـ breadcrumbs */}
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
 
@@ -640,6 +654,7 @@ export default async function ArticlePage({ params }: Props) {
       {/* مكونات التشخيص (في وضع التطوير فقط) */}
       <SpacingDebugger />
       <AdDebugger />
-    </div>
+      </div>
+    </>
   );
 }

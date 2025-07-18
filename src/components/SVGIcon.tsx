@@ -64,9 +64,9 @@ export default function SVGIcon({
     style,
     onError: handleError,
     priority,
-    placeholder: "blur" as const,
+    placeholder: "blur" as "blur",
     blurDataURL: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjRjNGNEY2Ii8+Cjwvc3ZnPgo=",
-    loading: (priority ? "eager" : "lazy") as const,
+    loading: priority ? "eager" as "eager" : "lazy" as "lazy",
     unoptimized: true, // مهم جداً للـ SVG من jsDelivr
     ...(fill ? { fill: true } : { width, height })
   };

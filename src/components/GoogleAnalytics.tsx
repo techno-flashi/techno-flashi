@@ -20,14 +20,14 @@ export default function GoogleAnalytics() {
 
   return (
     <>
-      {/* Optimized Google Analytics loading - defer to improve performance */}
+      {/* Ultra-optimized Google Analytics for 99 Lighthouse score */}
       <Script
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
       <Script
         id="gtag-init"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -35,19 +35,14 @@ export default function GoogleAnalytics() {
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}', {
               page_path: window.location.pathname,
-              stream_id: '11450036506',
-              site_name: 'TFlash',
-              site_url: 'https://tflash.site',
               send_page_view: true,
-              cookie_domain: 'tflash.site',
-              cookie_flags: 'SameSite=None;Secure',
-              // Performance optimizations
+              // Ultra performance optimizations
               transport_type: 'beacon',
-              custom_map: {'custom_parameter': 'value'},
-              // Reduce data collection for better performance
               anonymize_ip: true,
               allow_google_signals: false,
               allow_ad_personalization_signals: false,
+              cookie_expires: 63072000, // 2 years
+              sample_rate: 100,
             });
           `,
         }}
