@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/lib/supabase';
 import AdSenseAd, { InArticleAd, SidebarAd, BannerAd, MobileAd, DesktopAd } from './AdSenseAd';
 import CustomAd from './CustomAd';

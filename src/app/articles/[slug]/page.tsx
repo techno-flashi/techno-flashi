@@ -277,17 +277,20 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      {/* Critical CSS inlined for 99 Lighthouse score */}
+      {/* Ultra-minimal Critical CSS for emergency performance fix */}
       <style dangerouslySetInnerHTML={{
         __html: `
-          .article-container{max-width:800px;margin:0 auto;padding:0 1rem}
-          .article-title{font-size:2.5rem;font-weight:700;line-height:1.2;color:#111;margin-bottom:1rem}
-          .article-meta{color:#6b7280;font-size:0.875rem;margin-bottom:1.5rem}
-          .article-content{line-height:1.7;color:#374151}
-          .article-content h1,.article-content h2,.article-content h3{color:#111;font-weight:600;margin:1.5rem 0 1rem}
-          .article-content p{margin-bottom:1rem;font-size:1.1rem}
-          .featured-image{width:100%;height:auto;border-radius:0.5rem;margin-bottom:2rem}
-          @media (max-width:768px){.article-title{font-size:1.875rem}.article-container{padding:0 0.75rem}}
+          .max-w-7xl{max-width:80rem}
+          .mx-auto{margin-left:auto;margin-right:auto}
+          .px-4{padding-left:1rem;padding-right:1rem}
+          .py-6{padding-top:1.5rem;padding-bottom:1.5rem}
+          .text-3xl{font-size:1.875rem;line-height:2.25rem}
+          .font-bold{font-weight:700}
+          .text-gray-600{color:#4b5563}
+          .mb-4{margin-bottom:1rem}
+          .mb-6{margin-bottom:1.5rem}
+          .rounded-lg{border-radius:0.5rem}
+          @media (max-width:768px){.text-3xl{font-size:1.5rem}}
         `
       }} />
 
@@ -299,8 +302,8 @@ export default async function ArticlePage({ params }: Props) {
       {/* Canonical URL لحل مشكلة النسخ المكررة */}
       <ArticleCanonicalUrl slug={article.slug} />
 
-      {/* إعلان بداية المقال */}
-      <ArticleStartAd className="mb-8" />
+      {/* Emergency: Ads disabled for performance testing */}
+      {/* <ArticleStartAd className="mb-8" /> */}
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* المحتوى الرئيسي - محسن للقراءة */}
@@ -354,15 +357,18 @@ export default async function ArticlePage({ params }: Props) {
               fill
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              priority // لتحميل الصورة الرئيسية بسرعة
+              priority
+              fetchPriority="high"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
           </div>
 
           {/* محتوى المقال */}
           {renderArticleContent(article.content, articleImages)}
 
-          {/* إعلان وسط المقال */}
-          <ArticleMiddleAd className="my-8" />
+          {/* Emergency: Middle ad disabled for performance */}
+          {/* <ArticleMiddleAd className="my-8" /> */}
 
           {/* باقي المحتوى */}
           {/* يمكن إضافة المزيد من المحتوى هنا */}
@@ -408,8 +414,8 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </div>
 
-          {/* إعلان نهاية المقال */}
-          <ArticleEndAd className="mt-8" />
+          {/* Emergency: End ad disabled for performance */}
+          {/* <ArticleEndAd className="mt-8" /> */}
         </article>
 
         {/* الشريط الجانبي - محسن للأجهزة المحمولة */}

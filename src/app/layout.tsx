@@ -108,17 +108,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://img.youtube.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-        {/* Preload critical fonts with optimal loading */}
+        {/* Emergency: Only preload critical Arabic font */}
         <link
           rel="preload"
           href="https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -128,17 +121,15 @@ export default function RootLayout({
         <link rel="prefetch" href="/ai-tools" />
         <link rel="prefetch" href="/articles" />
         
-        {/* Ultra-Critical CSS for 99 Lighthouse Score */}
+        {/* Emergency Critical CSS - Minimal for 90+ score */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2') format('woff2');unicode-range:U+0600-06FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE80-FEFC}
-            @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2') format('woff2')}
-            body{font-family:'Cairo',system-ui,sans-serif;font-display:swap}
-            .header{height:80px}
-            .ad-banner{min-height:90px}
-            @media (min-width:768px){.header{height:88px}}
+            @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2') format('woff2')}
+            body{font-family:'Cairo',system-ui,sans-serif;font-display:swap;margin:0;padding:0}
             *{box-sizing:border-box}
-            img{max-width:100%;height:auto}
+            img{max-width:100%;height:auto;display:block}
+            .header{height:80px;min-height:80px}
+            @media (min-width:768px){.header{height:88px;min-height:88px}}
           `
         }} />
 
