@@ -162,8 +162,8 @@ export default function UnusedCodeRemover() {
     // تأجيل تنفيذ التحسينات لتجنب التأثير على الأداء الأولي
     const timeoutId = setTimeout(() => {
       removeUnusedCSS();
-      removeUnusedJS();
-      optimizePolyfills();
+      cleanupEventListeners();
+      monitorMemoryUsage();
     }, 3000); // 3 ثوان بعد تحميل الصفحة
 
     return () => {
