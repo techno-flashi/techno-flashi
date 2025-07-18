@@ -29,7 +29,7 @@ import { UnusedCodeOptimizer } from "@/components/performance/UnusedCodeRemover"
 import { TTFBOptimizationSuite } from "@/components/performance/TTFBOptimizer";
 import { CacheManager, AutoCacheInvalidator, ServiceWorkerUpdater } from "@/components/CacheManager";
 import { AccessibilityOptimizer, SEOLinkOptimizer } from "@/components/performance/AccessibilityOptimizer";
-import { MainThreadOptimizer, ScriptEvaluationOptimizer } from "@/components/performance/MainThreadOptimizer";
+import MainThreadOptimizer from "@/components/performance/MainThreadOptimizer";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -355,112 +355,112 @@ export default function RootLayout({
             {children}
           </main>
 
-        {/* إعلان الفوتر المتحرك */}
-        <TechnoFlashFooterBanner />
+          {/* إعلان الفوتر المتحرك */}
+          <TechnoFlashFooterBanner />
 
-        <footer className="bg-dark-card border-t border-gray-800">
-          <div className="container mx-auto px-4 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {/* معلومات الموقع */}
-              <div className="md:col-span-2">
-                <div className="flex items-center space-x-3 space-x-reverse mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">T</span>
+          <footer className="bg-dark-card border-t border-gray-800">
+            <div className="container mx-auto px-4 py-12">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {/* معلومات الموقع */}
+                <div className="md:col-span-2">
+                  <div className="flex items-center space-x-3 space-x-reverse mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold text-xl">T</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white">TechnoFlash</h3>
+                      <p className="text-sm text-dark-text-secondary">بوابتك للمستقبل التقني</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white">TechnoFlash</h3>
-                    <p className="text-sm text-dark-text-secondary">بوابتك للمستقبل التقني</p>
+                  <p className="text-dark-text-secondary mb-4 leading-relaxed">
+                    منصة ويب متكاملة تقدم مقالات تقنية، ودليل لأدوات الذكاء الاصطناعي، وخدمات متخصصة لمساعدتك في رحلتك التقنية.
+                  </p>
+                </div>
+
+                {/* روابط سريعة */}
+                <div>
+                  <h4 className="text-white font-semibold mb-4">روابط سريعة</h4>
+                  <ul className="space-y-2">
+                    <li><a href="/" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الرئيسية</a></li>
+                    <li><a href="/articles" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">المقالات</a></li>
+                    <li><a href="/ai-tools" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">أدوات الذكاء الاصطناعي</a></li>
+                    <li><a href="/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
+                  </ul>
+                </div>
+
+                {/* تواصل معنا */}
+                <div>
+                  <h4 className="text-white font-semibold mb-4">تواصل معنا</h4>
+                  <ul className="space-y-2">
+                    <li><a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a></li>
+                    <li><a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a></li>
+                    <li><a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a></li>
+                    <li><a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a></li>
+                    <li><a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
+                  </ul>
+                </div>
+
+                {/* وسائل التواصل الاجتماعي */}
+                <div>
+                  <h4 className="text-white font-semibold mb-4">تابعنا</h4>
+                  <ul className="space-y-2">
+                    <li>
+                      <a
+                        href="https://www.youtube.com/@Techno_flash"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300 flex items-center gap-2"
+                      >
+                        <span className="text-red-500">▶️</span>
+                        قناة اليوتيوب (19K+)
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/youtube"
+                        className="text-dark-text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                      >
+                        <span className="text-blue-500">📺</span>
+                        صفحة القناة
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="mailto:i2s2mail22@gmail.com"
+                        className="text-dark-text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2"
+                      >
+                        <span className="text-green-500">📧</span>
+                        البريد الإلكتروني
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+                {/* روابط الصفحات الأساسية */}
+                <div className="mb-6">
+                  <div className="flex flex-wrap justify-center gap-4 text-sm">
+                    <a href="/page/about-us" className="text-white/80 hover:text-primary transition-colors duration-300">من نحن</a>
+                    <span className="text-white/60">|</span>
+                    <a href="/page/contact" className="text-white/80 hover:text-primary transition-colors duration-300">اتصل بنا</a>
+                    <span className="text-white/60">|</span>
+                    <a href="/page/privacy-policy" className="text-white/80 hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
+                    <span className="text-white/60">|</span>
+                    <a href="/page/terms-of-use" className="text-white/80 hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
+                    <span className="text-white/60">|</span>
+                    <a href="/page/services" className="text-white/80 hover:text-primary transition-colors duration-300">الخدمات</a>
+                    <span className="text-white/60">|</span>
+                    <a href="/youtube" className="text-white/80 hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
                   </div>
                 </div>
-                <p className="text-dark-text-secondary mb-4 leading-relaxed">
-                  منصة ويب متكاملة تقدم مقالات تقنية، ودليل لأدوات الذكاء الاصطناعي، وخدمات متخصصة لمساعدتك في رحلتك التقنية.
+
+                <p className="text-white/70">
+                  © 2025 TechnoFlash. جميع الحقوق محفوظة.
                 </p>
               </div>
-
-              {/* روابط سريعة */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">روابط سريعة</h4>
-                <ul className="space-y-2">
-                  <li><a href="/" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الرئيسية</a></li>
-                  <li><a href="/articles" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">المقالات</a></li>
-                  <li><a href="/ai-tools" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">أدوات الذكاء الاصطناعي</a></li>
-                  <li><a href="/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
-                </ul>
-              </div>
-
-              {/* تواصل معنا */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">تواصل معنا</h4>
-                <ul className="space-y-2">
-                  <li><a href="/page/about-us" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">من نحن</a></li>
-                  <li><a href="/page/contact" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">اتصل بنا</a></li>
-                  <li><a href="/page/privacy-policy" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">سياسة الخصوصية</a></li>
-                  <li><a href="/page/terms-of-use" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">شروط الاستخدام</a></li>
-                  <li><a href="/page/services" className="text-dark-text-secondary hover:text-primary transition-colors duration-300">الخدمات</a></li>
-                </ul>
-              </div>
-
-              {/* وسائل التواصل الاجتماعي */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">تابعنا</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="https://www.youtube.com/@Techno_flash"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-dark-text-secondary hover:text-red-400 transition-colors duration-300 flex items-center gap-2"
-                    >
-                      <span className="text-red-500">▶️</span>
-                      قناة اليوتيوب (19K+)
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/youtube"
-                      className="text-dark-text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2"
-                    >
-                      <span className="text-blue-500">📺</span>
-                      صفحة القناة
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="mailto:i2s2mail22@gmail.com"
-                      className="text-dark-text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2"
-                    >
-                      <span className="text-green-500">📧</span>
-                      البريد الإلكتروني
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
-
-            <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-              {/* روابط الصفحات الأساسية */}
-              <div className="mb-6">
-                <div className="flex flex-wrap justify-center gap-4 text-sm">
-                  <a href="/page/about-us" className="text-white/80 hover:text-primary transition-colors duration-300">من نحن</a>
-                  <span className="text-white/60">|</span>
-                  <a href="/page/contact" className="text-white/80 hover:text-primary transition-colors duration-300">اتصل بنا</a>
-                  <span className="text-white/60">|</span>
-                  <a href="/page/privacy-policy" className="text-white/80 hover:text-primary transition-colors duration-300">سياسة الخصوصية</a>
-                  <span className="text-white/60">|</span>
-                  <a href="/page/terms-of-use" className="text-white/80 hover:text-primary transition-colors duration-300">شروط الاستخدام</a>
-                  <span className="text-white/60">|</span>
-                  <a href="/page/services" className="text-white/80 hover:text-primary transition-colors duration-300">الخدمات</a>
-                  <span className="text-white/60">|</span>
-                  <a href="/youtube" className="text-white/80 hover:text-red-400 transition-colors duration-300">قناة اليوتيوب</a>
-                </div>
-              </div>
-
-              <p className="text-white/70">
-                © 2025 TechnoFlash. جميع الحقوق محفوظة.
-              </p>
-            </div>
-          </div>
-        </footer>
+          </footer>
         </AuthProvider>
         </SuppressHydrationWarning>
 
@@ -489,7 +489,8 @@ export default function RootLayout({
 
         {/* Performance Optimization Components */}
         <MainThreadOptimizer />
-        <ScriptEvaluationOptimizer />
+        {/* THIS COMPONENT WAS REMOVED AS ITS LOGIC IS NOW IN MainThreadOptimizer */}
+        {/* <ScriptEvaluationOptimizer /> */} 
         <AccessibilityOptimizer />
         <SEOLinkOptimizer />
 
