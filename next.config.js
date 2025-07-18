@@ -41,7 +41,6 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year cache for better performance
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    quality: 85, // Optimized quality for performance
     remotePatterns: [
       {
         protocol: 'https',
