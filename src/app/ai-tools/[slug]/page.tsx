@@ -40,7 +40,7 @@ export async function generateStaticParams() {
 
 // **مهم:** تم تغليف دالة جلب البيانات بـ `cache`
 // هذا يضمن أن الدالة ستعمل مرة واحدة فقط لكل طلب، حتى لو تم استدعاؤها من generateMetadata والصفحة
-export const getAITool = cache(async (slug: string): Promise<AITool | null> => {
+const getAITool = cache(async (slug: string): Promise<AITool | null> => {
   try {
     const decodedSlug = decodeURIComponent(slug);
 
@@ -203,10 +203,7 @@ export default async function AIToolPage({ params }: Props) {
                     <SVGIcon
                       src={tool.logo_url || "https://placehold.co/200x200/38BDF8/FFFFFF?text=AI"}
                       alt={tool.name}
-                      fill
-                      sizes="96px"
-                      style={{ objectFit: "contain" }}
-                      className="rounded-lg"
+                      className="w-24 h-24 rounded-lg object-contain"
                       fallbackIcon="🤖"
                     />
                   </div>
@@ -300,7 +297,7 @@ export default async function AIToolPage({ params }: Props) {
                       <AIToolLink key={relatedTool.id} href={`/ai-tools/${relatedTool.slug}`} className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all duration-300 group">
                         <div className="flex items-center mb-3">
                           <div className="relative w-12 h-12 ml-3">
-                            <SVGIcon src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"} alt={relatedTool.name} fill sizes="48px" style={{ objectFit: "contain" }} className="rounded" fallbackIcon="🤖" />
+                            <SVGIcon src={relatedTool.logo_url || "https://placehold.co/100x100/38BDF8/FFFFFF?text=AI"} alt={relatedTool.name} className="w-12 h-12 rounded object-contain" fallbackIcon="🤖" />
                           </div>
                           <div>
                             <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{relatedTool.name}</h3>
