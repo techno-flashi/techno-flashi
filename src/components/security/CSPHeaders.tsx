@@ -22,13 +22,7 @@ export default function CSPHeaders() {
             https://www.google-analytics.com
             https://pagead2.googlesyndication.com
             https://partner.googleadservices.com
-            https://ezojs.com
-            https://www.ezojs.com
-            https://go.ezojs.com
-            https://gatekeeperconsent.com
-            https://privacy.gatekeeperconsent.com
-            https://cmp.gatekeeperconsent.com
-            https://the.gatekeeperconsent.com
+
             https://cdn.id5-sync.com
             https://cdn.jsdelivr.net
             https://unpkg.com
@@ -57,13 +51,7 @@ export default function CSPHeaders() {
             https://www.google-analytics.com
             https://www.googletagmanager.com
             https://region1.google-analytics.com
-            https://ezojs.com
-            https://www.ezojs.com
-            https://go.ezojs.com
-            https://g.ezoic.net
-            https://privacy.gatekeeperconsent.com
-            https://cmp.gatekeeperconsent.com
-            https://the.gatekeeperconsent.com
+
             https://ep1.adtrafficquality.google
             https://ep2.adtrafficquality.google
             https://id5-sync.com

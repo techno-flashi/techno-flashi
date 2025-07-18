@@ -133,15 +133,7 @@ const nextConfig = {
                 https://www.google-analytics.com
                 https://cdn.jsdelivr.net
                 https://unpkg.com
-                https://cmp.gatekeeperconsent.com
-                https://the.gatekeeperconsent.com
-                https://privacy.gatekeeperconsent.com
-                https://gatekeeperconsent.com
-                https://*.gatekeeperconsent.com
-                https://www.ezojs.com
-                https://ezojs.com
-                https://go.ezojs.com
-                https://*.ezojs.com
+
                 https://pagead2.googlesyndication.com
                 https://googleads.g.doubleclick.net
                 https://tpc.googlesyndication.com
@@ -165,14 +157,6 @@ const nextConfig = {
                 https://www.googletagmanager.com
                 https://cdn.jsdelivr.net;
               connect-src 'self' https:
-                https://cmp.gatekeeperconsent.com
-                https://the.gatekeeperconsent.com
-                https://privacy.gatekeeperconsent.com
-                https://gatekeeperconsent.com
-                https://*.gatekeeperconsent.com
-                https://www.ezojs.com
-                https://ezojs.com
-                https://*.ezojs.com
                 https://pagead2.googlesyndication.com
                 https://googleads.g.doubleclick.net
                 https://tpc.googlesyndication.com

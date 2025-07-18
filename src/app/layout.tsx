@@ -3,7 +3,7 @@
 
 import type { Metadata } from "next";
 // استيراد الخطوط من جوجل للموقع التقني الحديث
-import { Inter, Tajawal, Cairo } from "next/font/google";
+import { Inter, Cairo } from "next/font/google";
 import "./globals.css";
 import "../styles/article-content.css";
 import "../styles/admin-override.css";
@@ -117,28 +117,7 @@ export default function RootLayout({
           `
         }} />
 
-        {/* تأخير تحميل سكربتات الطرف الثالث لتحسين الأداء */}
-        <script src="https://cmp.gatekeeperconsent.com/min.js" defer data-cfasync="false" />
-        <script src="https://the.gatekeeperconsent.com/cmp.min.js" defer data-cfasync="false" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.ezstandalone = window.ezstandalone || {};
-              ezstandalone.cmd = ezstandalone.cmd || [];
-              function loadEzoic() {
-                const script = document.createElement('script');
-                script.src = '//www.ezojs.com/ezoic/sa.min.js';
-                script.async = true;
-                document.head.appendChild(script);
-              }
-              if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', loadEzoic);
-              } else {
-                loadEzoic();
-              }
-            `,
-          }}
-        />
+        {/* تم إزالة جميع سكريبتات الطرف الثالث الثقيلة لتحسين الأداء والـ SEO */}
       </head>
 
       <body className="bg-white text-text-primary font-sans">

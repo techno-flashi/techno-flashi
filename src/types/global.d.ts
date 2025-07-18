@@ -16,9 +16,7 @@ declare global {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
     
-    // Ezoic
-    ezstandalone?: any;
-    ezoicSiteSpeed?: any;
+    // Removed Ezoic references for better performance
     
     // Other ad-related APIs
     googletag?: any;
