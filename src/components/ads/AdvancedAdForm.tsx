@@ -100,10 +100,54 @@ export default function AdvancedAdForm({ ad, onSave, onCancel, isOpen }: Advance
     setIsSubmitting(true);
 
     try {
-      await onSave(formData);
+      // Clean and validate form data before submission
+      const cleanedFormData = {
+        ...formData,
+        // Convert empty strings to null for optional fields
+        start_date: formData.start_date && formData.start_date.trim() !== '' ? formData.start_date + 'T00:00:00Z' : undefined,
+        end_date: formData.end_date && formData.end_date.trim() !== '' ? formData.end_date + 'T23:59:59Z' : undefined,
+        // Ensure numeric fields are properly typed
+        max_impressions: formData.max_impressions || undefined,
+        max_clicks: formData.max_clicks || undefined,
+        frequency_cap: formData.frequency_cap || undefined,
+        // Ensure required fields are not empty
+        name: formData.name.trim(),
+        description: formData.description?.trim() || '',
+      };
+
+      // Validate required fields
+      if (!cleanedFormData.name) {
+        alert('❌ Ad name is required');
+        return;
+      }
+
+      if (!cleanedFormData.ad_type) {
+        alert('❌ Ad type is required');
+        return;
+      }
+
+      if (!cleanedFormData.position) {
+        alert('❌ Ad position is required');
+        return;
+      }
+
+      await onSave(cleanedFormData);
     } catch (error) {
       console.error('Error saving ad:', error);
-      alert('Error saving ad. Please try again.');
+
+      // More specific error handling
+      if (error && typeof error === 'object' && 'message' in error) {
+        const errorMessage = (error as any).message;
+        if (errorMessage.includes('timestamp')) {
+          alert('❌ Invalid date format. Please check your start and end dates.');
+        } else if (errorMessage.includes('duplicate')) {
+          alert('❌ An ad with this name already exists. Please choose a different name.');
+        } else {
+          alert(`❌ Error saving ad: ${errorMessage}`);
+        }
+      } else {
+        alert('❌ Error saving ad. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }

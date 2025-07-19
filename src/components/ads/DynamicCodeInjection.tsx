@@ -119,9 +119,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     priority: 3
   },
   'monetag-vignette': {
-    name: 'Monetag Vignette (gizokraijaw.net)',
+    name: 'Monetag Vignette Template',
     position: 'head_end' as const,
-    code: `<script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',9594022,document.createElement('script'))</script>`,
+    code: `<script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('DOMAIN_PLACEHOLDER',ZONE_ID_PLACEHOLDER,document.createElement('script'))</script>`,
     priority: 9
   },
   'monetag-banner-new': {

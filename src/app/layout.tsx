@@ -105,6 +105,16 @@ export default function RootLayout({
         {/* Dynamic Code Injection - HEAD START */}
         <DynamicCodeInjection position="head_start" />
 
+        {/* Google Fonts - Reliable Online Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+
         {/* Advanced Resource Hints for 99 Lighthouse Score */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -127,24 +137,7 @@ export default function RootLayout({
 
 
 
-        {/* Service Worker Registration */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                      console.log('SW registered: ', registration);
-                    })
-                    .catch(function(registrationError) {
-                      console.log('SW registration failed: ', registrationError);
-                    });
-                });
-              }
-            `
-          }}
-        />
+
         
         {/* Emergency Critical CSS - Minimal for 90+ score */}
         <style dangerouslySetInnerHTML={{

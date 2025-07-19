@@ -184,9 +184,28 @@ export async function getAdvancedAds(filters?: {
 
 export async function createAdvancedAd(ad: Omit<AdvancedAd, 'id' | 'created_at' | 'updated_at'>): Promise<AdvancedAd | null> {
   try {
+    // Clean up the data before sending to database
+    const cleanedAd = {
+      ...ad,
+      // Convert empty strings to null for timestamp fields
+      start_date: ad.start_date && ad.start_date.trim() !== '' ? ad.start_date : null,
+      end_date: ad.end_date && ad.end_date.trim() !== '' ? ad.end_date : null,
+      // Ensure numeric fields are properly typed
+      max_impressions: ad.max_impressions || null,
+      max_clicks: ad.max_clicks || null,
+      frequency_cap: ad.frequency_cap || null,
+      // Ensure arrays are properly formatted
+      target_pages: Array.isArray(ad.target_pages) ? ad.target_pages : ['*'],
+      target_devices: Array.isArray(ad.target_devices) ? ad.target_devices : ['desktop', 'mobile', 'tablet'],
+      target_countries: Array.isArray(ad.target_countries) ? ad.target_countries : [],
+      schedule_days: Array.isArray(ad.schedule_days) ? ad.schedule_days : [0, 1, 2, 3, 4, 5, 6],
+      schedule_hours: Array.isArray(ad.schedule_hours) ? ad.schedule_hours : [],
+      tags: Array.isArray(ad.tags) ? ad.tags : []
+    };
+
     const { data, error } = await supabase
       .from('ads')
-      .insert([ad])
+      .insert([cleanedAd])
       .select()
       .single();
 
@@ -204,9 +223,26 @@ export async function createAdvancedAd(ad: Omit<AdvancedAd, 'id' | 'created_at' 
 
 export async function updateAdvancedAd(id: string, updates: Partial<AdvancedAd>): Promise<AdvancedAd | null> {
   try {
+    // Clean up the updates before sending to database
+    const cleanedUpdates = {
+      ...updates,
+      // Convert empty strings to null for timestamp fields
+      start_date: updates.start_date !== undefined ?
+        (updates.start_date && updates.start_date.trim() !== '' ? updates.start_date : null) :
+        undefined,
+      end_date: updates.end_date !== undefined ?
+        (updates.end_date && updates.end_date.trim() !== '' ? updates.end_date : null) :
+        undefined,
+      // Ensure numeric fields are properly typed
+      max_impressions: updates.max_impressions !== undefined ? (updates.max_impressions || null) : undefined,
+      max_clicks: updates.max_clicks !== undefined ? (updates.max_clicks || null) : undefined,
+      frequency_cap: updates.frequency_cap !== undefined ? (updates.frequency_cap || null) : undefined,
+      updated_at: new Date().toISOString()
+    };
+
     const { data, error } = await supabase
       .from('ads')
-      .update({ ...updates, updated_at: new Date().toISOString() })
+      .update(cleanedUpdates)
       .eq('id', id)
       .select()
       .single();

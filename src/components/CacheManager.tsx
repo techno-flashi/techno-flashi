@@ -132,7 +132,6 @@ export function CacheManager({ enabled = false, showDebugInfo = false }: CacheMa
 
       {showDebugInfo && (
         <div className="mt-2 text-xs text-gray-400">
-          <div>SW: {navigator.serviceWorker ? '✅' : '❌'}</div>
           <div>Cache API: {'caches' in window ? '✅' : '❌'}</div>
         </div>
       )}
@@ -198,39 +197,10 @@ export function AutoCacheInvalidator() {
  */
 export function ServiceWorkerUpdater() {
   useEffect(() => {
-    if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
+    if (typeof window === 'undefined') return;
 
-    const updateServiceWorker = async () => {
-      try {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        
-        for (const registration of registrations) {
-          // Force update
-          await registration.update();
-          
-          // Listen for new service worker
-          registration.addEventListener('updatefound', () => {
-            const newWorker = registration.installing;
-            if (newWorker) {
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('🔄 New service worker available, clearing cache...');
-                  
-                  // Clear cache and reload
-                  clientCacheUtils.clearBrowserCache().then(() => {
-                    window.location.reload();
-                  });
-                }
-              });
-            }
-          });
-        }
-      } catch (error) {
-        console.error('Service worker update failed:', error);
-      }
-    };
-
-    updateServiceWorker();
+    // Service Worker functionality removed as per requirements
+    console.log('Cache manager initialized without service worker');
   }, []);
 
   return null;

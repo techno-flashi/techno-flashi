@@ -203,11 +203,11 @@ export default function SupabaseAdsAdminPage() {
               <div className="text-sm opacity-90">Zone: 9593331</div>
             </button>
             <button
-              onClick={() => addMonetagAd('9593378', 'in-content', 'Monetag In-Content')}
+              onClick={() => addMonetagAd('ZONE_ID_PLACEHOLDER', 'in-content', 'Monetag In-Content')}
               className="bg-purple-600 text-white p-4 rounded-lg hover:bg-purple-700 text-center"
             >
               <div className="font-medium">In-Content</div>
-              <div className="text-sm opacity-90">Zone: 9593378</div>
+              <div className="text-sm opacity-90">Zone: Enter Your Zone ID</div>
             </button>
           </div>
         </div>

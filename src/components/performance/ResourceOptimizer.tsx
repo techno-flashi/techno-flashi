@@ -115,17 +115,9 @@ export function CacheOptimizer() {
   useEffect(() => {
     // تحسين التخزين المؤقت للموارد
     const optimizeCache = () => {
-      // إضافة headers للتخزين المؤقت
+      // Cache headers optimization - Service Worker removed as per requirements
       const addCacheHeaders = (url: string, maxAge: number) => {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.ready.then(registration => {
-            registration.active?.postMessage({
-              type: 'CACHE_RESOURCE',
-              url,
-              maxAge
-            });
-          });
-        }
+        console.log(`Cache optimization for ${url} with maxAge: ${maxAge}`);
       };
 
       // تخزين الموارد الثابتة
