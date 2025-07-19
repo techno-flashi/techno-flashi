@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { Metadata } from 'next';
+import { generatePageCanonicalUrl, generateSingleCanonicalMeta } from '@/lib/canonical-url-manager';
 
 interface PageData {
   id: string;
@@ -61,8 +62,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://techno-flashi.vercel.app';
-  const canonicalUrl = `${baseUrl}/page/${slug}`;
+  // Generate canonical URL using canonical URL manager - SEO audit fix
+  const canonicalUrl = generatePageCanonicalUrl('page', slug);
 
   return {
     title: `${pageData.title_ar} - TechnoFlash`,
@@ -165,6 +166,15 @@ export default async function DynamicPage({ params }: PageProps) {
         {/* محتوى الصفحة */}
         <main className="mb-16">
           <div className="modern-card p-8 lg:p-12">
+            {/* إضافة H2 مفقودة - SEO audit fix */}
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 mt-8 leading-tight">
+              {pageData.title_ar === 'سياسة الخصوصية' ? 'تفاصيل سياسة الخصوصية' :
+               pageData.title_ar === 'شروط الاستخدام' ? 'شروط وأحكام الاستخدام' :
+               pageData.title_ar === 'من نحن' ? 'معلومات عن TechnoFlash' :
+               pageData.title_ar === 'اتصل بنا' ? 'طرق التواصل معنا' :
+               `تفاصيل ${pageData.title_ar}`}
+            </h2>
+
             <div
               className="prose prose-lg max-w-none text-right text-gray-800 leading-relaxed"
               style={{
@@ -179,6 +189,37 @@ export default async function DynamicPage({ params }: PageProps) {
                   .replace(/$/, '</p>')
               }}
             />
+
+            {/* إضافة محتوى إضافي للصفحات ذات المحتوى القليل - SEO audit fix */}
+            {pageData.content_ar && pageData.content_ar.length < 500 && (
+              <div className="mt-8 p-6 bg-gray-50 rounded-lg border-r-4 border-blue-500">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                  {pageData.title_ar === 'سياسة الخصوصية' ? 'التزامنا بحماية خصوصيتك' :
+                   pageData.title_ar === 'شروط الاستخدام' ? 'استخدام آمن ومسؤول للموقع' :
+                   pageData.title_ar === 'من نحن' ? 'رؤيتنا ورسالتنا' :
+                   pageData.title_ar === 'اتصل بنا' ? 'نحن هنا لمساعدتك' :
+                   'معلومات إضافية مهمة'}
+                </h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  {pageData.title_ar === 'سياسة الخصوصية' ?
+                    'في TechnoFlash، نؤمن بأن خصوصية المستخدمين هي حق أساسي. نحن ملتزمون بحماية بياناتك الشخصية وضمان استخدامها بطريقة آمنة وشفافة. تطبق هذه السياسة على جميع خدماتنا ومنتجاتنا التقنية.' :
+                   pageData.title_ar === 'شروط الاستخدام' ?
+                    'باستخدامك لموقع TechnoFlash، فإنك توافق على الالتزام بهذه الشروط والأحكام. نحن نسعى لتوفير بيئة آمنة ومفيدة لجميع المستخدمين، ونتوقع منك المساهمة في ذلك من خلال الاستخدام المسؤول لخدماتنا.' :
+                   pageData.title_ar === 'من نحن' ?
+                    'TechnoFlash هي منصة تقنية رائدة تهدف إلى تمكين الأفراد والشركات من الاستفادة من أحدث التقنيات والذكاء الاصطناعي. نحن نؤمن بأن التكنولوجيا يجب أن تكون في متناول الجميع وسهلة الاستخدام.' :
+                   pageData.title_ar === 'اتصل بنا' ?
+                    'فريق TechnoFlash متاح دائماً لمساعدتك والإجابة على استفساراتك. سواء كنت تحتاج إلى دعم تقني، أو لديك اقتراحات لتحسين خدماتنا، أو تريد التعاون معنا، نحن نرحب بتواصلك معنا.' :
+                    'نحن في TechnoFlash نسعى دائماً لتقديم أفضل الخدمات التقنية وأحدث المعلومات في مجال التكنولوجيا والذكاء الاصطناعي لمساعدتك في تحقيق أهدافك.'}
+                </p>
+                <p className="text-gray-600 text-sm">
+                  آخر تحديث: {new Date().toLocaleDateString('ar-SA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </p>
+              </div>
+            )}
           </div>
         </main>
 
