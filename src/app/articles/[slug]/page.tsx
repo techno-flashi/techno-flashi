@@ -18,6 +18,8 @@ import { Breadcrumbs, createBreadcrumbJsonLd } from "@/components/Breadcrumbs";
 import { generateArticleSocialMeta, getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 import SocialShare from "@/components/SocialShare";
 import SocialShareCompact from "@/components/SocialShareCompact";
+import { generateUniqueMetaDescription, generateUniquePageTitle, generateUniqueContentSnippet } from '@/lib/unique-meta-generator';
+import { generatePageCanonicalUrl, generateCanonicalMetaTags } from '@/lib/canonical-url-manager';
 
 // Critical CSS will be inlined in the component for 99 Lighthouse score
 
@@ -215,7 +217,7 @@ function convertEditorJSToMarkdown(editorData: any): string {
   }).join('\n\n');
 }
 
-// إعداد بيانات SEO الديناميكية للصفحة
+// إعداد بيانات SEO الديناميكية للصفحة - محسن لإزالة المحتوى المكرر
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const article = await getArticle(slug);
@@ -227,11 +229,28 @@ export async function generateMetadata({ params }: Props) {
   }
 
   const keywords = article.seo_keywords || article.tags || [];
-  const keywordsString = Array.isArray(keywords) ? keywords.join(', ') : '';
 
-  return generateArticleSocialMeta({
+  // Generate unique meta data to fix duplicate content issue (33% → <10%)
+  const uniqueMetaData = {
     title: article.title,
-    excerpt: article.meta_description || article.excerpt || article.title,
+    description: article.meta_description || article.excerpt || article.title,
+    category: article.category || 'تقنية',
+    tags: keywords,
+    author: article.author,
+    publishedDate: article.created_at,
+    type: 'article' as const,
+    slug: article.slug
+  };
+
+  const uniqueTitle = generateUniquePageTitle(uniqueMetaData);
+  const uniqueDescription = generateUniqueMetaDescription(uniqueMetaData);
+  const canonicalUrl = generatePageCanonicalUrl('article', article.slug);
+  const canonicalMeta = generateCanonicalMetaTags(canonicalUrl);
+
+  // إنشاء الـ metadata المحسن للـ SEO مع محتوى فريد
+  const socialMeta = generateArticleSocialMeta({
+    title: uniqueTitle,
+    excerpt: uniqueDescription,
     slug: article.slug,
     featured_image: article.featured_image_url,
     category: article.category || 'تقنية',
@@ -240,6 +259,14 @@ export async function generateMetadata({ params }: Props) {
     updated_at: article.updated_at,
     tags: keywords
   });
+
+  // Merge with canonical meta to prevent duplicate URLs
+  return {
+    ...socialMeta,
+    ...canonicalMeta,
+    title: uniqueTitle,
+    description: uniqueDescription
+  };
 }
 
 export default async function ArticlePage({ params }: Props) {

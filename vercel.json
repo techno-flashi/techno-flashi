@@ -26,6 +26,26 @@
       "source": "/ads.txt",
       "destination": "https://srv.adstxtmanager.com/19390/tflash.site",
       "permanent": true
+    },
+    {
+      "source": "https://tflash.site/:path*",
+      "destination": "https://www.tflash.site/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://www.tflash.site/:path*",
+      "destination": "https://www.tflash.site/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://tflash.site/:path*",
+      "destination": "https://www.tflash.site/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "permanent": true
     }
   ]
 }

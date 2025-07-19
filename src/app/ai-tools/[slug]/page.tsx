@@ -14,6 +14,8 @@ import { AIToolCanonicalUrl } from '@/components/seo/CanonicalUrl';
 import { AIToolPageClient } from '@/components/AIToolPageClient';
 import { AIToolLink } from '@/components/AIToolLink';
 import { generateAIToolSocialMeta } from '@/lib/social-meta';
+import { generateUniqueMetaDescription, generateUniquePageTitle, generateUniqueContentSnippet } from '@/lib/unique-meta-generator';
+import { generatePageCanonicalUrl, generateCanonicalMetaTags } from '@/lib/canonical-url-manager';
 
 // Import critical CSS for faster LCP
 import "@/styles/critical-ai-tool.css";
@@ -118,7 +120,7 @@ async function getAllAvailableTools(currentSlug: string): Promise<AITool[]> {
   }
 }
 
-// إنشاء metadata ديناميكي
+// إنشاء metadata ديناميكي - محسن لإزالة المحتوى المكرر
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const tool = await getAITool(slug);
@@ -130,7 +132,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  return generateAIToolSocialMeta(tool);
+  // Generate unique meta data to fix duplicate content issue (33% → <10%)
+  const uniqueMetaData = {
+    title: tool.name,
+    description: tool.description,
+    category: tool.category,
+    tags: tool.features || [],
+    type: 'ai-tool' as const,
+    slug: tool.slug
+  };
+
+  const uniqueTitle = generateUniquePageTitle(uniqueMetaData);
+  const uniqueDescription = generateUniqueMetaDescription(uniqueMetaData);
+  const canonicalUrl = generatePageCanonicalUrl('ai-tool', tool.slug);
+  const canonicalMeta = generateCanonicalMetaTags(canonicalUrl);
+
+  // إنشاء الـ metadata المحسن للـ SEO مع محتوى فريد
+  const socialMeta = generateAIToolSocialMeta({
+    ...tool,
+    name: uniqueTitle,
+    description: uniqueDescription
+  });
+
+  // Merge with canonical meta to prevent duplicate URLs
+  return {
+    ...socialMeta,
+    ...canonicalMeta,
+    title: uniqueTitle,
+    description: uniqueDescription
+  };
 }
 
 export default async function AIToolPage({ params }: Props) {
