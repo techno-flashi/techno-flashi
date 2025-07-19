@@ -2,8 +2,8 @@
 // نضع فيه الأشياء المشتركة مثل الخطوط، الهيدر، الفوتر، ودعم اللغة العربية
 
 import type { Metadata } from "next";
-// استيراد الخطوط من جوجل للموقع التقني الحديث
-import { Inter, Cairo } from "next/font/google";
+// استيراد الخطوط الحديثة للموقع التقني 2025
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "../styles/article-content.css";
 import "../styles/admin-override.css";
@@ -16,7 +16,7 @@ import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
 import DynamicCodeInjection from "@/components/ads/DynamicCodeInjection";
 import AdScriptLoader, { AdScriptDebugger, MonetagVerifier } from "@/components/ads/AdScriptLoader";
-import AdvancedAdRenderer from "@/components/ads/AdvancedAdRenderer";
+
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -25,12 +25,7 @@ const inter = Inter({
   display: 'swap',
 });
 
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-cairo",
-  display: 'swap',
-});
+
 
 // إعداد بيانات SEO المحسنة للموقع (هذا الجزء ممتاز ولا يحتاج تعديل)
 export const metadata: Metadata = {
@@ -100,10 +95,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${inter.variable} ${cairo.variable}`}>
+    <html lang="ar" dir="rtl" className={`${inter.variable}`}>
       <head>
         {/* Dynamic Code Injection - HEAD START */}
         <DynamicCodeInjection position="head_start" />
+
+        {/* الخطوط الحديثة لعام 2025 */}
+        <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/droid-arabic-kufi" />
 
         {/* Google Fonts - Reliable Online Fonts */}
         <link
@@ -161,8 +161,7 @@ export default function RootLayout({
         {/* Dynamic Code Injection - BODY START */}
         <DynamicCodeInjection position="body_start" />
 
-        {/* Advanced Ad Renderer - Header */}
-        <AdvancedAdRenderer position="header" />
+
 
         <GoogleAnalytics />
         <ScrollTracker />
@@ -282,8 +281,7 @@ export default function RootLayout({
 </footer>
         </AuthProvider>
 
-        {/* Advanced Ad Renderer - Footer */}
-        <AdvancedAdRenderer position="footer" />
+
 
         {/* Dynamic Code Injection - FOOTER */}
         <DynamicCodeInjection position="footer" />

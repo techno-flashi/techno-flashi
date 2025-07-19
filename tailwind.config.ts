@@ -66,11 +66,16 @@ const config: Config = {
       },
 
       fontFamily: {
-        // نظام الخطوط الموحد حسب التعليمات
-        sans: ["Cairo", "Tajawal", "Noto Kufi Arabic", "Inter", "Roboto", "Open Sans", "system-ui", "sans-serif"],
-        arabic: ["Cairo", "Tajawal", "Noto Kufi Arabic", "system-ui", "sans-serif"],
-        english: ["Inter", "Roboto", "Open Sans", "system-ui", "sans-serif"],
-        heading: ["Cairo", "Tajawal", "Noto Kufi Arabic", "system-ui", "sans-serif"],
+        // نظام الخطوط الحديث لعام 2025
+        sans: ["Amiri", "Inter", "system-ui", "sans-serif"],
+        arabic: ["Amiri", "serif"],
+        'arabic-secondary': ["Scheherazade New", "serif"],
+        kufi: ["DroidArabicKufiRegular", "sans-serif"],
+        english: ["Inter", "system-ui", "sans-serif"],
+        heading: ["Amiri", "serif"],
+        amiri: ["Amiri", "serif"],
+        scheherazade: ["Scheherazade New", "serif"],
+        inter: ["Inter", "sans-serif"],
       },
 
       fontSize: {
