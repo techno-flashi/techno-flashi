@@ -14,7 +14,7 @@ import { AIToolCanonicalUrl } from '@/components/seo/CanonicalUrl';
 import { AIToolPageClient } from '@/components/AIToolPageClient';
 import { AIToolLink } from '@/components/AIToolLink';
 import { generateAIToolSocialMeta } from '@/lib/social-meta';
-import { generateUniqueMetaDescription, generateUniquePageTitle, generateUniqueContentSnippet } from '@/lib/unique-meta-generator';
+import { generateUniqueMetaDescription, generateUniquePageTitle } from '@/lib/unique-meta-generator';
 import { generatePageCanonicalUrl, generateCanonicalMetaTags } from '@/lib/canonical-url-manager';
 
 // Import critical CSS for faster LCP
