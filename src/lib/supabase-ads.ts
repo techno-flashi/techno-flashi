@@ -32,6 +32,18 @@ export interface AdPerformance {
   ip_address?: string;
 }
 
+export interface CodeInjection {
+  id: string;
+  name: string;
+  position: 'head_start' | 'head_end' | 'body_start' | 'footer';
+  code: string;
+  enabled: boolean;
+  pages: string[];
+  priority: number;
+  created_at: string;
+  updated_at: string;
+}
+
 // Create ads table SQL (run this in Supabase SQL editor)
 export const CREATE_ADS_TABLE_SQL = `
 -- Create ads table
@@ -358,5 +370,144 @@ export async function initializeAdsSystem(): Promise<boolean> {
   } catch (error) {
     console.error('Error initializing ads system:', error);
     return false;
+  }
+}
+
+// ==================== CODE INJECTION FUNCTIONS ====================
+
+// Get code injections by position and page
+export async function getCodeInjections(
+  position?: string,
+  currentPage?: string
+): Promise<CodeInjection[]> {
+  try {
+    let query = supabase
+      .from('code_injections')
+      .select('*')
+      .eq('enabled', true)
+      .order('priority', { ascending: false });
+
+    if (position) {
+      query = query.eq('position', position);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Error fetching code injections:', error);
+      return [];
+    }
+
+    if (!currentPage) {
+      return data || [];
+    }
+
+    // Filter by page patterns
+    const filteredInjections = (data || []).filter(injection => {
+      const pages = injection.pages || [];
+
+      // If pages array contains "*", show on all pages
+      if (pages.includes('*')) return true;
+
+      // Check if current page matches any pattern
+      return pages.some((pattern: string) => {
+        if (pattern === currentPage) return true;
+        if (pattern.endsWith('*') && currentPage.startsWith(pattern.slice(0, -1))) return true;
+        return false;
+      });
+    });
+
+    return filteredInjections;
+  } catch (error) {
+    console.error('Error in getCodeInjections:', error);
+    return [];
+  }
+}
+
+// Create new code injection
+export async function createCodeInjection(
+  injection: Omit<CodeInjection, 'id' | 'created_at' | 'updated_at'>
+): Promise<CodeInjection | null> {
+  try {
+    const { data, error } = await supabase
+      .from('code_injections')
+      .insert([injection])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error creating code injection:', error);
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error in createCodeInjection:', error);
+    return null;
+  }
+}
+
+// Update code injection
+export async function updateCodeInjection(
+  id: string,
+  updates: Partial<CodeInjection>
+): Promise<CodeInjection | null> {
+  try {
+    const { data, error } = await supabase
+      .from('code_injections')
+      .update({ ...updates, updated_at: new Date().toISOString() })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error updating code injection:', error);
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error in updateCodeInjection:', error);
+    return null;
+  }
+}
+
+// Delete code injection
+export async function deleteCodeInjection(id: string): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from('code_injections')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting code injection:', error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error in deleteCodeInjection:', error);
+    return false;
+  }
+}
+
+// Get all code injections for admin
+export async function getAllCodeInjections(): Promise<CodeInjection[]> {
+  try {
+    const { data, error } = await supabase
+      .from('code_injections')
+      .select('*')
+      .order('priority', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching all code injections:', error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('Error in getAllCodeInjections:', error);
+    return [];
   }
 }

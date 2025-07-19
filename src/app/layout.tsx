@@ -14,6 +14,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
+import DynamicCodeInjection from "@/components/ads/DynamicCodeInjection";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -99,6 +100,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${inter.variable} ${cairo.variable}`}>
       <head>
+        {/* Dynamic Code Injection - HEAD START */}
+        <DynamicCodeInjection position="head_start" />
+
         {/* Advanced Resource Hints for 99 Lighthouse Score */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -156,9 +160,15 @@ export default function RootLayout({
         }} />
 
         {/* تم إزالة جميع سكريبتات الطرف الثالث الثقيلة لتحسين الأداء والـ SEO */}
+
+        {/* Dynamic Code Injection - HEAD END */}
+        <DynamicCodeInjection position="head_end" />
       </head>
 
       <body className="bg-white text-text-primary font-sans">
+        {/* Dynamic Code Injection - BODY START */}
+        <DynamicCodeInjection position="body_start" />
+
         <GoogleAnalytics />
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
@@ -276,6 +286,9 @@ export default function RootLayout({
   </div>
 </footer>
         </AuthProvider>
+
+        {/* Dynamic Code Injection - FOOTER */}
+        <DynamicCodeInjection position="footer" />
 
         {/* Monetag Scripts - في نهاية body للعمل بشكل صحيح */}
         <script
