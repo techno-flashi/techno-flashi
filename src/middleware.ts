@@ -82,7 +82,7 @@ export function middleware(request: NextRequest) {
   // إضافة header للغة العربية
   response.headers.set('Content-Language', 'ar');
 
-  // إضافة headers للأمان - Complete SEO audit security fixes
+  // إضافة headers للأمان - Complete SEO audit security fixes + Monetag CSP fix
   response.headers.set('X-DNS-Prefetch-Control', 'on');
   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
   response.headers.set('X-Frame-Options', 'SAMEORIGIN');
@@ -90,6 +90,28 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-XSS-Protection', '1; mode=block');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+
+  // CSP مُحدث لدعم Monetag - إصلاح مشكلة عدم تحميل الإعلانات
+  response.headers.set('Content-Security-Policy',
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' " +
+    "https://www.googletagmanager.com " +
+    "https://www.google-analytics.com " +
+    "https://cdn.jsdelivr.net " +
+    "https://unpkg.com " +
+    "https://pagead2.googlesyndication.com " +
+    "https://googleads.g.doubleclick.net " +
+    "https://tpc.googlesyndication.com " +
+    "https://securepubads.g.doubleclick.net " +
+    "https://vemtoutcheeg.com " +
+    "https://*.vemtoutcheeg.com; " +
+    "style-src 'self' 'unsafe-inline'; " +
+    "img-src 'self' data: https: blob:; " +
+    "font-src 'self' data: https:; " +
+    "connect-src 'self' https: wss:; " +
+    "frame-src 'self' https:; " +
+    "object-src 'none';"
+  );
 
   // Add cache control for better performance
   if (pathname.startsWith('/api/')) {

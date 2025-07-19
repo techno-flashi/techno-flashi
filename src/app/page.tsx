@@ -11,9 +11,7 @@ import AdBannerTop from "@/components/AdBannerTop";
 import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
-import MonetagManager from "@/components/ads/MonetagManager";
-import MonetagChecker from "@/components/ads/MonetagChecker";
-import { MonetagBanner, MonetagInContent, MonetagTest } from "@/components/ads/DirectMonetagAd";
+import { SupabaseHeaderAd, SupabaseInContentAd } from "@/components/ads/SupabaseAdManager";
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 import YouTubeSection from "@/components/YouTubeSection";
@@ -124,9 +122,9 @@ export default async function HomePage() {
               لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
             </p>
 
-            {/* إعلان Monetag Header - مباشر */}
+            {/* إعلان Supabase Header */}
             <div className="max-w-4xl mx-auto my-8">
-              <MonetagBanner className="w-full" />
+              <SupabaseHeaderAd currentPage="/" className="w-full" />
             </div>
 
             {/* الأزرار */}
@@ -293,10 +291,10 @@ export default async function HomePage() {
       {/* إعلان بين الأقسام */}
       <InContentAd className="my-12" />
 
-      {/* إعلان Monetag In-Content - مباشر */}
+      {/* إعلان Supabase In-Content */}
       <div className="container mx-auto px-4 my-12">
         <div className="max-w-4xl mx-auto">
-          <MonetagInContent />
+          <SupabaseInContentAd currentPage="/" />
         </div>
       </div>
 
@@ -371,13 +369,7 @@ export default async function HomePage() {
       {/* إعلان الفوتر */}
       <FooterAd className="mt-12" />
 
-      {/* Monetag Test & Status Checker - للتطوير فقط */}
-      {process.env.NODE_ENV === 'development' && (
-        <>
-          <MonetagTest />
-          <MonetagChecker showDebug={true} />
-        </>
-      )}
+
     </div>
   );
 }

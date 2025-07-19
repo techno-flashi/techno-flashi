@@ -9,7 +9,7 @@ import { ArticleStartAd, ArticleMiddleAd, ArticleEndAd, SidebarAdManager } from 
 import { SmartArticleAd, SmartContentAd, SmartSharedAd } from "@/components/ads/SmartAdManager";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SpacingDebugger, { AdDebugger } from "@/components/debug/SpacingDebugger";
-import MonetagManager from "@/components/ads/MonetagManager";
+import { SupabaseSidebarAd, SupabaseInContentAd } from "@/components/ads/SupabaseAdManager";
 
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
@@ -443,10 +443,9 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </div>
 
-          {/* إعلان Monetag في نهاية المقال */}
+          {/* إعلان Supabase في نهاية المقال */}
           <div className="mt-8">
-            <MonetagManager
-              position="in-content"
+            <SupabaseInContentAd
               currentPage={`/articles/${article.slug}`}
               className="max-w-full"
             />
@@ -459,10 +458,9 @@ export default async function ArticlePage({ params }: Props) {
         {/* الشريط الجانبي - محسن للأجهزة المحمولة */}
         <aside className="lg:col-span-1 order-first lg:order-last">
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
-            {/* إعلان Monetag في الشريط الجانبي */}
+            {/* إعلان Supabase في الشريط الجانبي */}
             <div className="mb-6">
-              <MonetagManager
-                position="sidebar"
+              <SupabaseSidebarAd
                 currentPage={`/articles/${article.slug}`}
                 className="w-full"
               />
