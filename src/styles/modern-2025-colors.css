@@ -1,11 +1,10 @@
 /* نظام الألوان والخطوط الحديث لعام 2025 - مريح للعين ومتطور */
 
 :root {
-  /* الخطوط الحديثة */
+  /* الخطوط المحلية الحديثة */
   --font-arabic-primary: 'Amiri', serif;
-  --font-arabic-secondary: 'Scheherazade New', serif;
-  --font-arabic-kufi: 'DroidArabicKufiRegular', sans-serif;
-  --font-english: 'Inter', sans-serif;
+  --font-arabic-modern: 'Cairo', sans-serif;
+  --font-english: 'Roboto', sans-serif;
   /* الألوان الأساسية الحديثة */
   --color-primary: #6366F1;
   --color-primary-hover: #4F46E5;
@@ -50,26 +49,26 @@ body {
   font-family: var(--font-arabic-primary), var(--font-english), serif;
 }
 
-/* فئات الخطوط الجديدة */
+/* فئات الخطوط المحلية الجديدة */
 .font-amiri {
   font-family: var(--font-arabic-primary);
 }
 
-.font-scheherazade {
-  font-family: var(--font-arabic-secondary);
+.font-cairo {
+  font-family: var(--font-arabic-modern);
 }
 
-.font-kufi {
-  font-family: var(--font-arabic-kufi);
-}
-
-.font-inter {
+.font-roboto {
   font-family: var(--font-english);
 }
 
 /* خطوط للنصوص العربية والإنجليزية */
 .text-arabic {
   font-family: var(--font-arabic-primary);
+}
+
+.text-arabic-modern {
+  font-family: var(--font-arabic-modern);
 }
 
 .text-english {

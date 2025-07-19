@@ -1,0 +1,147 @@
+/* الخطوط المحلية الحديثة لعام 2025 */
+
+/* خط أميري - للنصوص العربية الأساسية (WOFF2 محسن) */
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* خط القاهرة - للنصوص العربية الحديثة (WOFF2 محسن) */
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/Cairo-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/Cairo-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/fonts/Cairo-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* خط روبوتو - للنصوص الإنجليزية (WOFF2 محسن) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* متغيرات CSS للخطوط المحلية */
+:root {
+  --font-arabic-primary: 'Amiri', serif;
+  --font-arabic-modern: 'Cairo', sans-serif;
+  --font-english: 'Roboto', sans-serif;
+}
+
+/* تطبيق الخطوط على العناصر */
+body {
+  font-family: var(--font-arabic-primary), var(--font-english), serif;
+}
+
+/* فئات الخطوط للاستخدام المباشر */
+.font-amiri {
+  font-family: var(--font-arabic-primary);
+}
+
+.font-cairo {
+  font-family: var(--font-arabic-modern);
+}
+
+.font-roboto {
+  font-family: var(--font-english);
+}
+
+/* خطوط للنصوص العربية والإنجليزية */
+.text-arabic {
+  font-family: var(--font-arabic-primary);
+}
+
+.text-arabic-modern {
+  font-family: var(--font-arabic-modern);
+}
+
+.text-english {
+  font-family: var(--font-english);
+}
+
+/* العناوين بخط القاهرة */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-arabic-modern);
+}
+
+/* النصوص العادية بخط أميري */
+p, span, div {
+  font-family: var(--font-arabic-primary);
+}
+
+/* الأزرار والعناصر التفاعلية بخط القاهرة */
+button, .btn, .button {
+  font-family: var(--font-arabic-modern);
+}
+
+/* النصوص الإنجليزية */
+.english-text, [lang="en"] {
+  font-family: var(--font-english);
+}
+
+/* النصوص العربية */
+.arabic-text, [lang="ar"] {
+  font-family: var(--font-arabic-primary);
+}
+
+/* تحسينات للأداء */
+.font-preload {
+  font-display: swap;
+}
+
+/* تحسينات للموبايل */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+  }
+}
+
+/* تحسينات للطباعة */
+@media print {
+  body {
+    font-family: var(--font-arabic-primary), serif;
+  }
+}

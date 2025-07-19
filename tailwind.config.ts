@@ -66,16 +66,15 @@ const config: Config = {
       },
 
       fontFamily: {
-        // نظام الخطوط الحديث لعام 2025
-        sans: ["Amiri", "Inter", "system-ui", "sans-serif"],
+        // نظام الخطوط المحلية الحديث لعام 2025
+        sans: ["Cairo", "Roboto", "system-ui", "sans-serif"],
         arabic: ["Amiri", "serif"],
-        'arabic-secondary': ["Scheherazade New", "serif"],
-        kufi: ["DroidArabicKufiRegular", "sans-serif"],
-        english: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Amiri", "serif"],
+        'arabic-modern': ["Cairo", "sans-serif"],
+        english: ["Roboto", "system-ui", "sans-serif"],
+        heading: ["Cairo", "sans-serif"],
         amiri: ["Amiri", "serif"],
-        scheherazade: ["Scheherazade New", "serif"],
-        inter: ["Inter", "sans-serif"],
+        cairo: ["Cairo", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
 
       fontSize: {

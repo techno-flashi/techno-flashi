@@ -16,6 +16,9 @@
 /* استيراد نظام الألوان الحديث لعام 2025 */
 @import '../styles/modern-2025-colors.css';
 
+/* استيراد الخطوط المحلية */
+@import '../styles/local-fonts.css';
+
 /* Font Family Configuration */
 @layer base {
   body {
