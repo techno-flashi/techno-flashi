@@ -8,7 +8,7 @@ import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import SponsorsSection from "@/components/SponsorsSection";
 import AdBannerTop from "@/components/AdBannerTop";
-import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
+import { HeaderAnimatedAd, FooterAnimatedAd, InContentAnimatedAd } from "@/components/ads/AnimatedAdRenderer";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 
@@ -168,6 +168,9 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* إعلان الهيدر */}
+      <HeaderAnimatedAd currentPage="/" className="my-8" />
+
       {/* قسم المميزات المحدث بتصميم 2025 */}
       <section className="py-24 px-4 bg-white relative overflow-hidden">
         {/* خلفية هندسية */}
@@ -286,7 +289,7 @@ export default async function HomePage() {
       />
 
       {/* إعلان بين الأقسام */}
-      <InContentAd className="my-12" />
+      <InContentAnimatedAd currentPage="/" className="my-12" />
 
 
 
@@ -359,7 +362,7 @@ export default async function HomePage() {
       />
 
       {/* إعلان الفوتر */}
-      <FooterAd className="mt-12" />
+      <FooterAnimatedAd currentPage="/" className="mt-12" />
 
 
     </div>

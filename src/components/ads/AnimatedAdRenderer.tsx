@@ -37,7 +37,7 @@ export default function AnimatedAdRenderer({
         const fetchedAds = await getAdvancedAds({
           enabled: true,
           position,
-          network: 'custom' // Only get our animated ads
+          network: 'affiliate' // Get Hostinger affiliate ads
         });
 
         // Filter ads based on targeting
