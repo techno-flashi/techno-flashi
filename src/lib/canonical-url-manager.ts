@@ -3,18 +3,35 @@
 
 export const CANONICAL_DOMAIN = 'https://www.tflash.site';
 
-// Generate canonical URL for any page
+// Generate canonical URL for any page - ENHANCED to prevent canonicalised URLs
 export function generateCanonicalUrl(path: string): string {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
+
   // Remove trailing slash except for root
   const normalizedPath = cleanPath === '' ? '' : cleanPath.replace(/\/$/, '');
-  
+
   // Remove common URL parameters that cause duplication
   const pathWithoutParams = normalizedPath.split('?')[0];
-  
-  return `${CANONICAL_DOMAIN}/${pathWithoutParams}`;
+
+  // Ensure we don't create canonicalised URLs by using the actual current path
+  const finalPath = pathWithoutParams || '';
+
+  return `${CANONICAL_DOMAIN}/${finalPath}`;
+}
+
+// Check if current URL matches its canonical (prevents canonicalised URLs)
+export function shouldUseCurrentUrlAsCanonical(currentPath: string, suggestedCanonical: string): boolean {
+  try {
+    const currentUrl = `${CANONICAL_DOMAIN}/${currentPath.startsWith('/') ? currentPath.slice(1) : currentPath}`;
+    const canonicalUrl = new URL(suggestedCanonical);
+    const currentUrlObj = new URL(currentUrl);
+
+    // If paths are the same, use current URL as canonical
+    return currentUrlObj.pathname === canonicalUrl.pathname;
+  } catch {
+    return true; // Default to current URL if there's an error
+  }
 }
 
 // Generate canonical URL with specific rules for different page types

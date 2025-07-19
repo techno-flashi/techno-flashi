@@ -188,6 +188,19 @@ export function generateUniquePageTitle(data: PageData): string {
     }
   }
 
+  // Fix titles below 30 characters - SEO audit requirement
+  if (selectedTitle.length < 30) {
+    if (category && selectedTitle.length < 45) {
+      selectedTitle += ` | ${category}`;
+    }
+    if (selectedTitle.length < 30 && !selectedTitle.includes('TechnoFlash')) {
+      selectedTitle += ' | TechnoFlash';
+    }
+    if (selectedTitle.length < 30) {
+      selectedTitle += ' - دليل شامل';
+    }
+  }
+
   // Add unique identifier if title is still potentially duplicate
   if (selectedTitle.length < 55 && slug) {
     const uniqueId = slug.substring(0, 3);
