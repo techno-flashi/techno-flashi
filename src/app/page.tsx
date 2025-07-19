@@ -11,6 +11,8 @@ import AdBannerTop from "@/components/AdBannerTop";
 import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
+import MonetagManager from "@/components/ads/MonetagManager";
+import MonetagChecker from "@/components/ads/MonetagChecker";
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 import YouTubeSection from "@/components/YouTubeSection";
@@ -120,6 +122,15 @@ export default async function HomePage() {
               <br className="hidden md:block" />
               لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
             </p>
+
+            {/* إعلان Monetag Header */}
+            <div className="max-w-4xl mx-auto">
+              <MonetagManager
+                position="header"
+                currentPage="/"
+                className="my-8"
+              />
+            </div>
 
             {/* الأزرار */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
@@ -285,6 +296,15 @@ export default async function HomePage() {
       {/* إعلان بين الأقسام */}
       <InContentAd className="my-12" />
 
+      {/* إعلان Monetag In-Content */}
+      <div className="container mx-auto px-4 my-12">
+        <MonetagManager
+          position="in-content"
+          currentPage="/"
+          className="max-w-4xl mx-auto"
+        />
+      </div>
+
 
 
       {/* قسم روابط سريعة للصفحات المهمة */}
@@ -355,6 +375,11 @@ export default async function HomePage() {
 
       {/* إعلان الفوتر */}
       <FooterAd className="mt-12" />
+
+      {/* Monetag Status Checker - للتطوير فقط */}
+      {process.env.NODE_ENV === 'development' && (
+        <MonetagChecker showDebug={true} />
+      )}
     </div>
   );
 }

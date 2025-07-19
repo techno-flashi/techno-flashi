@@ -9,6 +9,7 @@ import { ArticleStartAd, ArticleMiddleAd, ArticleEndAd, SidebarAdManager } from 
 import { SmartArticleAd, SmartContentAd, SmartSharedAd } from "@/components/ads/SmartAdManager";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SpacingDebugger, { AdDebugger } from "@/components/debug/SpacingDebugger";
+import MonetagManager from "@/components/ads/MonetagManager";
 
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
@@ -442,6 +443,15 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </div>
 
+          {/* إعلان Monetag في نهاية المقال */}
+          <div className="mt-8">
+            <MonetagManager
+              position="in-content"
+              currentPage={`/articles/${article.slug}`}
+              className="max-w-full"
+            />
+          </div>
+
           {/* Emergency: End ad disabled for performance */}
           {/* <ArticleEndAd className="mt-8" /> */}
         </article>
@@ -449,6 +459,15 @@ export default async function ArticlePage({ params }: Props) {
         {/* الشريط الجانبي - محسن للأجهزة المحمولة */}
         <aside className="lg:col-span-1 order-first lg:order-last">
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
+            {/* إعلان Monetag في الشريط الجانبي */}
+            <div className="mb-6">
+              <MonetagManager
+                position="sidebar"
+                currentPage={`/articles/${article.slug}`}
+                className="w-full"
+              />
+            </div>
+
             {/* عناصر التنقل السريع */}
             <div className="bg-white rounded-lg p-4 lg:p-6 border border-gray-200 shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">التنقل السريع</h3>
