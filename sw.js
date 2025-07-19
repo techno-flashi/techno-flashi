@@ -1,5 +1,5 @@
-// Service Worker for TechnoFlash
-// تحسين الأداء والتخزين المؤقت
+// Service Worker for TechnoFlash - Root Level
+// تحسين الأداء والتخزين المؤقت للوصول إلى 90+ Lighthouse
 
 // Updated cache version to force cache invalidation
 const CACHE_VERSION = Date.now(); // Use timestamp for unique versioning
@@ -268,7 +268,7 @@ self.addEventListener('push', (event) => {
         }
       ]
     };
-    
+
     event.waitUntil(
       self.registration.showNotification(data.title, options)
     );
@@ -278,7 +278,7 @@ self.addEventListener('push', (event) => {
 // التعامل مع النقر على الإشعارات
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  
+
   if (event.action === 'explore') {
     event.waitUntil(
       clients.openWindow('/')
@@ -286,4 +286,4 @@ self.addEventListener('notificationclick', (event) => {
   }
 });
 
-console.log('Service Worker: Loaded successfully');
+console.log('Service Worker: Loaded successfully from root - Performance optimized');

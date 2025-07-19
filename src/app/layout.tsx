@@ -120,6 +120,25 @@ export default function RootLayout({
         {/* Prefetch next likely resources */}
         <link rel="prefetch" href="/ai-tools" />
         <link rel="prefetch" href="/articles" />
+
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    });
+                });
+              }
+            `
+          }}
+        />
         
         {/* Emergency Critical CSS - Minimal for 90+ score */}
         <style dangerouslySetInnerHTML={{
