@@ -55,12 +55,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md p-8 space-y-6 bg-dark-card rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold text-center text-white">تسجيل الدخول</h1>
 
-        {/* معلومات تسجيل الدخول التجريبية */}
-        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4">
-          <h3 className="text-sm font-medium text-blue-300 mb-2">بيانات تسجيل الدخول:</h3>
-          <p className="text-xs text-blue-200">البريد: ismail@1990.com</p>
-          <p className="text-xs text-blue-200">كلمة المرور: [كلمة المرور الخاصة بك]</p>
-        </div>
+
         <form onSubmit={handleLogin} className="space-y-6" method="post" action="#">
           <div>
             <label className="block mb-2 text-sm font-medium text-dark-text-secondary">البريد الإلكتروني</label>

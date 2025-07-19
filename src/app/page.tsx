@@ -11,7 +11,7 @@ import AdBannerTop from "@/components/AdBannerTop";
 import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
-import { SupabaseHeaderAd, SupabaseInContentAd } from "@/components/ads/SupabaseAdManager";
+
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 import YouTubeSection from "@/components/YouTubeSection";
@@ -122,10 +122,7 @@ export default async function HomePage() {
               لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
             </p>
 
-            {/* إعلان Supabase Header */}
-            <div className="max-w-4xl mx-auto my-8">
-              <SupabaseHeaderAd currentPage="/" className="w-full" />
-            </div>
+
 
             {/* الأزرار */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
@@ -291,12 +288,7 @@ export default async function HomePage() {
       {/* إعلان بين الأقسام */}
       <InContentAd className="my-12" />
 
-      {/* إعلان Supabase In-Content */}
-      <div className="container mx-auto px-4 my-12">
-        <div className="max-w-4xl mx-auto">
-          <SupabaseInContentAd currentPage="/" />
-        </div>
-      </div>
+
 
 
 

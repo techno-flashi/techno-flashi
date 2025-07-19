@@ -91,7 +91,7 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
-  // CSP مُحدث لدعم Monetag - إصلاح مشكلة عدم تحميل الإعلانات
+  // CSP configured for admin-controlled ads only - Clean system
   response.headers.set('Content-Security-Policy',
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' " +
@@ -103,8 +103,13 @@ export function middleware(request: NextRequest) {
     "https://googleads.g.doubleclick.net " +
     "https://tpc.googlesyndication.com " +
     "https://securepubads.g.doubleclick.net " +
+    "https://connect.facebook.net " +
+    "https://*.monetag.com " +
+    "https://monetag.com " +
     "https://vemtoutcheeg.com " +
-    "https://*.vemtoutcheeg.com; " +
+    "https://*.vemtoutcheeg.com " +
+    "https://gizokraijaw.net " +
+    "https://*.gizokraijaw.net; " +
     "style-src 'self' 'unsafe-inline'; " +
     "img-src 'self' data: https: blob:; " +
     "font-src 'self' data: https:; " +

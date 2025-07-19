@@ -123,10 +123,7 @@ export default function RootLayout({
         <link rel="prefetch" href="/ai-tools" />
         <link rel="prefetch" href="/articles" />
 
-        {/* Monetag Verification */}
-        <meta name="monetag" content="2c67654574d1973053c8621d861c3782" />
 
-        {/* Monetag Scripts - تم نقلها إلى body */}
 
         {/* Service Worker Registration */}
         <script
@@ -289,31 +286,6 @@ export default function RootLayout({
 
         {/* Dynamic Code Injection - FOOTER */}
         <DynamicCodeInjection position="footer" />
-
-        {/* Monetag Scripts - في نهاية body للعمل بشكل صحيح */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Monetag Script 1
-              (function(d,z,s){
-                s.src='https://'+d+'/400/'+z;
-                try{
-                  (document.body||document.documentElement).appendChild(s)
-                }catch(e){}
-              })('vemtoutcheeg.com',9593378,document.createElement('script'));
-
-              // Monetag Script 2
-              (function(d,z,s){
-                s.src='https://'+d+'/400/'+z;
-                try{
-                  (document.body||document.documentElement).appendChild(s)
-                }catch(e){}
-              })('vemtoutcheeg.com',9593331,document.createElement('script'));
-
-              console.log('Monetag scripts loaded');
-            `
-          }}
-        />
       </body>
     </html>
   );
