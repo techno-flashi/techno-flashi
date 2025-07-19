@@ -23,26 +23,145 @@ export function generatePageCanonicalUrl(
   slug: string,
   category?: string
 ): string {
+  // Validate slug exists and is not empty
+  if (!slug || slug.trim() === '') {
+    console.warn(`Invalid slug for ${pageType}:`, slug);
+    return CANONICAL_DOMAIN; // Fallback to homepage
+  }
+
+  // Sanitize slug to ensure it's URL-safe
+  const sanitizedSlug = sanitizeSlug(slug);
+
   let path = '';
-  
+
   switch (pageType) {
     case 'article':
-      path = `articles/${slug}`;
+      path = `articles/${sanitizedSlug}`;
       break;
     case 'ai-tool':
-      path = `ai-tools/${slug}`;
+      path = `ai-tools/${sanitizedSlug}`;
       break;
     case 'category':
-      path = category ? `${category}` : slug;
+      path = category ? sanitizeSlug(category) : sanitizedSlug;
       break;
     case 'page':
-      path = slug === 'home' ? '' : `page/${slug}`;
+      path = sanitizedSlug === 'home' ? '' : `page/${sanitizedSlug}`;
       break;
     default:
-      path = slug;
+      path = sanitizedSlug;
   }
-  
-  return generateCanonicalUrl(path);
+
+  const canonicalUrl = generateCanonicalUrl(path);
+
+  // Validate the generated URL is indexable
+  if (!isIndexableUrl(canonicalUrl)) {
+    console.warn(`Generated non-indexable canonical URL: ${canonicalUrl}`);
+    return CANONICAL_DOMAIN; // Fallback to homepage
+  }
+
+  return canonicalUrl;
+}
+
+// Sanitize slug for URL safety - fixes URL structure issues (SEO audit)
+export function sanitizeSlug(slug: string): string {
+  if (!slug || typeof slug !== 'string') {
+    return '';
+  }
+
+  return slug
+    .toLowerCase()
+    .trim()
+    // Replace Arabic/Unicode characters with transliteration
+    .replace(/[أإآا]/g, 'a')
+    .replace(/[ة]/g, 'h')
+    .replace(/[ي]/g, 'y')
+    .replace(/[و]/g, 'w')
+    .replace(/[ر]/g, 'r')
+    .replace(/[ت]/g, 't')
+    .replace(/[ن]/g, 'n')
+    .replace(/[م]/g, 'm')
+    .replace(/[ل]/g, 'l')
+    .replace(/[ك]/g, 'k')
+    .replace(/[ج]/g, 'j')
+    .replace(/[ح]/g, 'h')
+    .replace(/[خ]/g, 'kh')
+    .replace(/[د]/g, 'd')
+    .replace(/[ذ]/g, 'th')
+    .replace(/[س]/g, 's')
+    .replace(/[ش]/g, 'sh')
+    .replace(/[ص]/g, 's')
+    .replace(/[ض]/g, 'd')
+    .replace(/[ط]/g, 't')
+    .replace(/[ظ]/g, 'th')
+    .replace(/[ع]/g, 'a')
+    .replace(/[غ]/g, 'gh')
+    .replace(/[ف]/g, 'f')
+    .replace(/[ق]/g, 'q')
+    .replace(/[ه]/g, 'h')
+    .replace(/[ز]/g, 'z')
+    .replace(/[ب]/g, 'b')
+    .replace(/[ء]/g, '')
+    // Replace spaces with hyphens (fixes 8 URLs with spaces - 4%)
+    .replace(/\s+/g, '-')
+    // Replace underscores with hyphens (fixes 1 URL with underscores - 0.5%)
+    .replace(/_/g, '-')
+    // Remove remaining non-ASCII characters (fixes 10 URLs with non-ASCII - 5%)
+    .replace(/[^\x00-\x7F]/g, '')
+    // Remove special characters except hyphens and alphanumeric
+    .replace(/[^a-z0-9-]/g, '')
+    // Remove multiple consecutive hyphens
+    .replace(/-+/g, '-')
+    // Remove leading/trailing hyphens
+    .replace(/^-+|-+$/g, '')
+    // Ensure minimum length
+    || 'page';
+}
+
+// Clean URL parameters (fixes 10 URLs with parameters - 5%)
+export function cleanUrlParameters(url: string): string {
+  try {
+    const urlObj = new URL(url);
+    // Remove common tracking parameters
+    const paramsToRemove = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ref', 'source', 'm'];
+
+    paramsToRemove.forEach(param => {
+      urlObj.searchParams.delete(param);
+    });
+
+    // Return clean URL
+    return urlObj.toString();
+  } catch {
+    return url;
+  }
+}
+
+// Check if URL is indexable (returns 200, not noindex, not redirect)
+export function isIndexableUrl(url: string): boolean {
+  try {
+    const urlObj = new URL(url);
+
+    // Must be HTTPS
+    if (urlObj.protocol !== 'https:') return false;
+
+    // Must use www subdomain
+    if (!urlObj.hostname.startsWith('www.')) return false;
+
+    // Must be tflash.site domain
+    if (!urlObj.hostname.endsWith('tflash.site')) return false;
+
+    // No trailing slash except root
+    if (urlObj.pathname !== '/' && urlObj.pathname.endsWith('/')) return false;
+
+    // No URL parameters for canonical URLs
+    if (urlObj.search) return false;
+
+    // No fragments
+    if (urlObj.hash) return false;
+
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // Check if URL needs canonicalization

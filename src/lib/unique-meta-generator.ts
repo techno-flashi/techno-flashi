@@ -110,53 +110,66 @@ export function generateUniqueMetaDescription(data: PageData): string {
     : uniqueDescription;
 }
 
-// Generate unique page title
+// Generate unique page title - OPTIMIZED for 60 char limit (SEO audit fix)
 export function generateUniquePageTitle(data: PageData): string {
   const { type, title, category } = data;
-  
+
+  // Shorter title variations to fit 60 char limit
   const titleVariations = {
     article: [
-      `${title} - دليل شامل`,
-      `كيفية ${title}`,
-      `${title} - نصائح الخبراء`,
-      `دليل ${title} المفصل`,
-      `${title} - خطوة بخطوة`
+      `${title} - دليل`,
+      `${title} - نصائح`,
+      `${title} - شرح`,
+      `دليل ${title}`,
+      `${title} - كيفية`
     ],
     'ai-tool': [
-      `مراجعة ${title}`,
-      `${title} - تقييم شامل`,
-      `دليل ${title}`,
-      `${title} - مميزات وعيوب`,
-      `تجربة ${title}`
+      `${title} - مراجعة`,
+      `${title} - تقييم`,
+      `${title} - دليل`,
+      `${title} - تجربة`,
+      `مراجعة ${title}`
     ],
     page: [
+      `${title}`,
       `${title} - TechnoFlash`,
-      `معلومات ${title}`,
       `دليل ${title}`,
-      `${title} الشامل`
+      `معلومات ${title}`
     ],
     category: [
-      `مقالات ${title}`,
+      `${title} - مقالات`,
       `محتوى ${title}`,
-      `${title} - جميع المقالات`,
-      `دليل ${title}`
+      `${title} - دليل`,
+      `مقالات ${title}`
     ]
   };
-  
+
   const variations = titleVariations[type] || titleVariations.page;
-  const randomTitle = variations[Math.floor(Math.random() * variations.length)];
-  
-  // Add category context for articles and AI tools
-  const categoryContext = (type === 'article' || type === 'ai-tool') && category
-    ? ` | ${category}`
-    : '';
+  let selectedTitle = variations[Math.floor(Math.random() * variations.length)];
 
-  const fullTitle = `${randomTitle}${categoryContext} | TechnoFlash`;
+  // Add category context only if there's space
+  if ((type === 'article' || type === 'ai-tool') && category && selectedTitle.length < 45) {
+    selectedTitle += ` | ${category}`;
+  }
 
-  // Ensure title is under 60 characters - SEO audit fix
-  return fullTitle.length > 60
-    ? fullTitle.substring(0, 57) + '...'
-    : fullTitle;
+  // Add TechnoFlash brand only if there's space and not already included
+  if (!selectedTitle.includes('TechnoFlash') && selectedTitle.length < 45) {
+    selectedTitle += ' | TechnoFlash';
+  }
+
+  // STRICT 60 character limit - SEO audit requirement
+  if (selectedTitle.length > 60) {
+    // Try without category first
+    const withoutCategory = variations[Math.floor(Math.random() * variations.length)];
+    if (withoutCategory.length <= 60) {
+      selectedTitle = withoutCategory;
+    } else {
+      // Last resort: truncate
+      selectedTitle = selectedTitle.substring(0, 57) + '...';
+    }
+  }
+
+  return selectedTitle;
 }
 
 // Generate unique content snippets for pages

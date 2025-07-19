@@ -47,7 +47,6 @@
       "destination": "https://srv.adstxtmanager.com/19390/tflash.site",
       "permanent": true
     },
-
     {
       "source": "/:path+/",
       "destination": "/:path+",
