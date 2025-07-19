@@ -142,6 +142,39 @@ export function fixInternalRedirect(path: string): string {
   return INTERNAL_REDIRECT_FIXES[path] || path;
 }
 
+// Fix Internal No Response (1 URL - 0.38%) - NEW CRITICAL ISSUE
+export const BROKEN_INTERNAL_URLS: Record<string, string | null> = {
+  // Common broken internal URLs and their fixes
+  '/broken-internal-link': '/',
+  '/malformed-url': '/',
+  '/timeout-url': '/',
+  // Add specific broken URLs as discovered
+};
+
+export function fixBrokenInternalUrl(url: string): string | null {
+  // Check direct fixes
+  if (BROKEN_INTERNAL_URLS[url] !== undefined) {
+    return BROKEN_INTERNAL_URLS[url];
+  }
+
+  // Try to fix common malformed URL patterns
+  try {
+    // Remove double slashes
+    const cleanUrl = url.replace(/\/+/g, '/');
+
+    // Fix common encoding issues
+    const decodedUrl = decodeURIComponent(cleanUrl);
+
+    // Remove invalid characters
+    const validUrl = decodedUrl.replace(/[^\w\-\/\.\?&=]/g, '');
+
+    return validUrl !== url ? validUrl : url;
+  } catch {
+    // If URL is completely malformed, redirect to homepage
+    return '/';
+  }
+}
+
 // Fix Image Size Attributes (7 URLs - 12.07%)
 export interface ImageDimensions {
   width: number;
