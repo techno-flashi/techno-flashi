@@ -177,6 +177,7 @@ function ArticlesManagement() {
                           <Link
                             href={`/articles/${article.slug}`}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="text-green-400 hover:text-green-300 transition-colors duration-200"
                           >
                             عرض

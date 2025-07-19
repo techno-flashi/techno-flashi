@@ -167,12 +167,9 @@ export function validateCanonicalUrl(url: string): boolean {
   }
 }
 
-// Generate meta tags for canonical URL
+// Generate meta tags for canonical URL (without canonical to avoid duplication)
 export function generateCanonicalMetaTags(canonicalUrl: string) {
   return {
-    alternates: {
-      canonical: canonicalUrl
-    },
     robots: {
       index: true,
       follow: true,
@@ -187,6 +184,15 @@ export function generateCanonicalMetaTags(canonicalUrl: string) {
     other: {
       'og:url': canonicalUrl,
       'twitter:url': canonicalUrl
+    }
+  };
+}
+
+// Generate ONLY canonical URL for Next.js metadata
+export function generateSingleCanonicalMeta(canonicalUrl: string) {
+  return {
+    alternates: {
+      canonical: canonicalUrl
     }
   };
 }

@@ -64,9 +64,7 @@ export function generateSocialMeta({
       description: cleanDescription,
       images: [fullImageUrl],
     },
-    alternates: {
-      canonical: fullUrl,
-    },
+
     robots: {
       index: true,
       follow: true,

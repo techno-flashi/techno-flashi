@@ -9,7 +9,7 @@ import { ArticleStartAd, ArticleMiddleAd, ArticleEndAd, SidebarAdManager } from 
 import { SmartArticleAd, SmartContentAd, SmartSharedAd } from "@/components/ads/SmartAdManager";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SpacingDebugger, { AdDebugger } from "@/components/debug/SpacingDebugger";
-import { ArticleCanonicalUrl } from "@/components/seo/CanonicalUrl";
+
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
 import MarkdownPreview from "@/components/MarkdownPreview";
@@ -19,7 +19,7 @@ import { generateArticleSocialMeta, getSharingUrl, getSharingHashtags } from "@/
 import SocialShare from "@/components/SocialShare";
 import SocialShareCompact from "@/components/SocialShareCompact";
 import { generateUniqueMetaDescription, generateUniquePageTitle, generateUniqueContentSnippet } from '@/lib/unique-meta-generator';
-import { generatePageCanonicalUrl, generateCanonicalMetaTags } from '@/lib/canonical-url-manager';
+import { generatePageCanonicalUrl, generateSingleCanonicalMeta } from '@/lib/canonical-url-manager';
 
 // Critical CSS will be inlined in the component for 99 Lighthouse score
 
@@ -245,7 +245,7 @@ export async function generateMetadata({ params }: Props) {
   const uniqueTitle = generateUniquePageTitle(uniqueMetaData);
   const uniqueDescription = generateUniqueMetaDescription(uniqueMetaData);
   const canonicalUrl = generatePageCanonicalUrl('article', article.slug);
-  const canonicalMeta = generateCanonicalMetaTags(canonicalUrl);
+  const canonicalMeta = generateSingleCanonicalMeta(canonicalUrl);
 
   // إنشاء الـ metadata المحسن للـ SEO مع محتوى فريد
   const socialMeta = generateArticleSocialMeta({
@@ -260,7 +260,7 @@ export async function generateMetadata({ params }: Props) {
     tags: keywords
   });
 
-  // Merge with canonical meta to prevent duplicate URLs
+  // SINGLE canonical URL implementation - fixes multiple canonicals issue
   return {
     ...socialMeta,
     ...canonicalMeta,
@@ -326,8 +326,7 @@ export default async function ArticlePage({ params }: Props) {
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
 
-      {/* Canonical URL لحل مشكلة النسخ المكررة */}
-      <ArticleCanonicalUrl slug={article.slug} />
+      {/* Canonical URL handled in metadata - no duplicate tags */}
 
       {/* Emergency: Ads disabled for performance testing */}
       {/* <ArticleStartAd className="mb-8" /> */}
@@ -381,8 +380,9 @@ export default async function ArticlePage({ params }: Props) {
             <Image
               src={article.featured_image_url || "https://placehold.co/1200x600/0D1117/38BDF8?text=TechnoFlash"}
               alt={article.title}
-              fill
-              style={{ objectFit: 'cover' }}
+              width={1200}
+              height={600}
+              style={{ objectFit: 'cover', width: "100%", height: "100%" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               priority
               fetchPriority="high"

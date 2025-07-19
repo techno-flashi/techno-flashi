@@ -20,8 +20,9 @@ export function SmallArticleCard({ article }: SmallArticleCardProps) {
               src={article.featured_image_url || "https://placehold.co/200x150/0D1117/38BDF8?text=T"}
               alt={article.title}
               title={article.title}
-              fill
-              style={{ objectFit: "cover" }}
+              width={200}
+              height={150}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
               className="transition-transform duration-300 group-hover:scale-110"
               onError={(e) => {
                 console.log('Image failed to load:', article.featured_image_url);

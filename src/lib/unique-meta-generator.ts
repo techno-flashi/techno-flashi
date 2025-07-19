@@ -104,9 +104,9 @@ export function generateUniqueMetaDescription(data: PageData): string {
   // Construct unique description
   const uniqueDescription = `${randomPrefix} ${title}${categoryContext}. ${baseDescription} ${randomSuffix}${tagsContext}. محتوى حصري من TechnoFlash.`;
   
-  // Ensure optimal length (150-160 characters)
-  return uniqueDescription.length > 160 
-    ? uniqueDescription.substring(0, 157) + '...'
+  // Ensure optimal length (150-155 characters) - SEO audit fix
+  return uniqueDescription.length > 155
+    ? uniqueDescription.substring(0, 152) + '...'
     : uniqueDescription;
 }
 
@@ -147,11 +147,16 @@ export function generateUniquePageTitle(data: PageData): string {
   const randomTitle = variations[Math.floor(Math.random() * variations.length)];
   
   // Add category context for articles and AI tools
-  const categoryContext = (type === 'article' || type === 'ai-tool') && category 
+  const categoryContext = (type === 'article' || type === 'ai-tool') && category
     ? ` | ${category}`
     : '';
-  
-  return `${randomTitle}${categoryContext} | TechnoFlash`;
+
+  const fullTitle = `${randomTitle}${categoryContext} | TechnoFlash`;
+
+  // Ensure title is under 60 characters - SEO audit fix
+  return fullTitle.length > 60
+    ? fullTitle.substring(0, 57) + '...'
+    : fullTitle;
 }
 
 // Generate unique content snippets for pages

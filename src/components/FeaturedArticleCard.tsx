@@ -18,8 +18,9 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
             src={article.featured_image_url || "https://placehold.co/800x600/0D1117/38BDF8?text=TechnoFlash"}
             alt={article.title}
             title={article.title}
-            fill
-            style={{ objectFit: "cover" }}
+            width={800}
+            height={600}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
             className="transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               console.log('Image failed to load:', article.featured_image_url);

@@ -77,9 +77,7 @@ export const metadata: Metadata = {
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.',
     images: ['https://www.tflash.site/og-image.jpg'],
   },
-  alternates: {
-    canonical: 'https://www.tflash.site',
-  },
+
   verification: {
     google: '717743998652694e',
     other: {

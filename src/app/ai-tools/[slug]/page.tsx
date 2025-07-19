@@ -10,12 +10,12 @@ import { AITool } from '@/types';
 import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
 import { AutoAIToolStartAd, AutoAIToolMidAd, AutoAIToolEndAd } from '@/components/ads/AutoAIToolAds';
-import { AIToolCanonicalUrl } from '@/components/seo/CanonicalUrl';
+
 import { AIToolPageClient } from '@/components/AIToolPageClient';
 import { AIToolLink } from '@/components/AIToolLink';
 import { generateAIToolSocialMeta } from '@/lib/social-meta';
 import { generateUniqueMetaDescription, generateUniquePageTitle } from '@/lib/unique-meta-generator';
-import { generatePageCanonicalUrl, generateCanonicalMetaTags } from '@/lib/canonical-url-manager';
+import { generatePageCanonicalUrl, generateSingleCanonicalMeta } from '@/lib/canonical-url-manager';
 
 // Import critical CSS for faster LCP
 import "@/styles/critical-ai-tool.css";
@@ -145,7 +145,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const uniqueTitle = generateUniquePageTitle(uniqueMetaData);
   const uniqueDescription = generateUniqueMetaDescription(uniqueMetaData);
   const canonicalUrl = generatePageCanonicalUrl('ai-tool', tool.slug);
-  const canonicalMeta = generateCanonicalMetaTags(canonicalUrl);
+  const canonicalMeta = generateSingleCanonicalMeta(canonicalUrl);
 
   // إنشاء الـ metadata المحسن للـ SEO مع محتوى فريد
   const socialMeta = generateAIToolSocialMeta({
@@ -154,7 +154,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: uniqueDescription
   });
 
-  // Merge with canonical meta to prevent duplicate URLs
+  // SINGLE canonical URL implementation - fixes multiple canonicals issue
   return {
     ...socialMeta,
     ...canonicalMeta,
@@ -224,7 +224,7 @@ export default async function AIToolPage({ params }: Props) {
       <div className="min-h-screen px-4">
         <JsonLd data={softwareApplicationJsonLd} />
         <JsonLd data={breadcrumbJsonLd} />
-        <AIToolCanonicalUrl slug={tool.slug} />
+
 
         <div className="max-w-7xl mx-auto pt-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

@@ -21,8 +21,9 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <Image
             src={article.featured_image_url || "https://placehold.co/600x400/F3F4F6/3B82F6?text=TechnoFlash"}
             alt={`صورة مقال: ${article.title}`}
-            fill
-            style={{ objectFit: "cover" }}
+            width={600}
+            height={400}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
             className="transition-transform duration-500 group-hover:scale-110"
             priority={false}
             quality={80}
