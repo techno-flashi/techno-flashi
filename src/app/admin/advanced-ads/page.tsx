@@ -1,17 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { 
-  getAdvancedAds, 
-  createAdvancedAd, 
-  updateAdvancedAd, 
+import {
+  getAdvancedAds,
+  createAdvancedAd,
+  updateAdvancedAd,
   deleteAdvancedAd,
   getAdTemplates,
   createAdFromTemplate,
   getAdAnalytics,
   type AdvancedAd,
-  type AdTemplate 
+  type AdTemplate
 } from '@/lib/advanced-ads';
+import AdvancedAdForm from '@/components/ads/AdvancedAdForm';
 
 export default function AdvancedAdsAdminPage() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'ads' | 'templates' | 'analytics' | 'settings'>('dashboard');
@@ -60,18 +61,36 @@ export default function AdvancedAdsAdminPage() {
   });
 
   const handleCreateAd = async (adData: Omit<AdvancedAd, 'id' | 'created_at' | 'updated_at'>) => {
-    const newAd = await createAdvancedAd(adData);
-    if (newAd) {
-      setAds(prev => [...prev, newAd]);
-      setShowAdForm(false);
+    try {
+      const newAd = await createAdvancedAd(adData);
+      if (newAd) {
+        setAds(prev => [...prev, newAd]);
+        setShowAdForm(false);
+        alert('✅ Ad created successfully!');
+      } else {
+        alert('❌ Failed to create ad. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error creating ad:', error);
+      alert('❌ Error creating ad. Please check the console for details.');
     }
   };
 
-  const handleUpdateAd = async (id: string, updates: Partial<AdvancedAd>) => {
-    const updatedAd = await updateAdvancedAd(id, updates);
-    if (updatedAd) {
-      setAds(prev => prev.map(ad => ad.id === id ? updatedAd : ad));
-      setSelectedAd(null);
+  const handleUpdateAd = async (adData: Omit<AdvancedAd, 'id' | 'created_at' | 'updated_at'>) => {
+    if (!selectedAd) return;
+
+    try {
+      const updatedAd = await updateAdvancedAd(selectedAd.id, adData);
+      if (updatedAd) {
+        setAds(prev => prev.map(ad => ad.id === selectedAd.id ? updatedAd : ad));
+        setSelectedAd(null);
+        alert('✅ Ad updated successfully!');
+      } else {
+        alert('❌ Failed to update ad. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error updating ad:', error);
+      alert('❌ Error updating ad. Please check the console for details.');
     }
   };
 
@@ -85,7 +104,15 @@ export default function AdvancedAdsAdminPage() {
   };
 
   const handleToggleAd = async (ad: AdvancedAd) => {
-    await handleUpdateAd(ad.id, { enabled: !ad.enabled });
+    try {
+      const updatedAd = await updateAdvancedAd(ad.id, { enabled: !ad.enabled });
+      if (updatedAd) {
+        setAds(prev => prev.map(a => a.id === ad.id ? updatedAd : a));
+      }
+    } catch (error) {
+      console.error('Error toggling ad:', error);
+      alert('❌ Error toggling ad status.');
+    }
   };
 
   const handleCreateFromTemplate = async (templateId: string, variables: Record<string, any>) => {
@@ -303,7 +330,10 @@ export default function AdvancedAdsAdminPage() {
                         {ad.enabled ? '⏸️ Pause' : '▶️ Enable'}
                       </button>
                       <button
-                        onClick={() => setSelectedAd(ad)}
+                        onClick={() => {
+                          setSelectedAd(ad);
+                          setShowAdForm(true);
+                        }}
                         className="px-3 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium hover:bg-blue-200"
                       >
                         ✏️ Edit
@@ -417,7 +447,10 @@ export default function AdvancedAdsAdminPage() {
                           {ad.enabled ? '⏸️ Pause' : '▶️ Enable'}
                         </button>
                         <button
-                          onClick={() => setSelectedAd(ad)}
+                          onClick={() => {
+                            setSelectedAd(ad);
+                            setShowAdForm(true);
+                          }}
                           className="px-3 py-1 bg-blue-100 text-blue-800 rounded text-sm font-medium hover:bg-blue-200"
                         >
                           ✏️ Edit
@@ -504,6 +537,17 @@ export default function AdvancedAdsAdminPage() {
           </div>
         )}
       </div>
+
+      {/* Advanced Ad Form Modal */}
+      <AdvancedAdForm
+        ad={selectedAd}
+        onSave={selectedAd ? handleUpdateAd : handleCreateAd}
+        onCancel={() => {
+          setShowAdForm(false);
+          setSelectedAd(null);
+        }}
+        isOpen={showAdForm || selectedAd !== null}
+      />
     </div>
   );
 }

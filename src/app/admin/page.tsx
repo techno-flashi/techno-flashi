@@ -70,23 +70,23 @@ function AdminDashboard() {
           </Link>
 
           <Link
+            href="/admin/advanced-ads"
+            className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
+            style={{ backgroundColor: '#ffffff' }}
+          >
+            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🎯</div>
+            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>نظام الإعلانات المتقدم</h3>
+            <p className="text-sm" style={{ color: '#666666' }}>إدارة شاملة للإعلانات متعددة الشبكات</p>
+          </Link>
+
+          <Link
             href="/admin/ads"
             className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
             style={{ backgroundColor: '#ffffff' }}
           >
             <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📢</div>
-            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>الإعلانات العامة</h3>
-            <p className="text-sm" style={{ color: '#666666' }}>إدارة الإعلانات والحملات العامة</p>
-          </Link>
-
-          <Link
-            href="/admin/ads/ai-tools"
-            className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
-            style={{ backgroundColor: '#ffffff' }}
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🤖</div>
-            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>إعلانات الأدوات</h3>
-            <p className="text-sm" style={{ color: '#666666' }}>إعلانات مخصصة لأدوات الذكاء الاصطناعي</p>
+            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>الإعلانات التقليدية</h3>
+            <p className="text-sm" style={{ color: '#666666' }}>النظام القديم لإدارة الإعلانات</p>
           </Link>
 
           <Link
