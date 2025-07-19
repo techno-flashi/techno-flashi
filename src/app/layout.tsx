@@ -119,6 +119,9 @@ export default function RootLayout({
         <link rel="prefetch" href="/ai-tools" />
         <link rel="prefetch" href="/articles" />
 
+        {/* Monetag Verification */}
+        <meta name="monetag" content="2c67654574d1973053c8621d861c3782" />
+
         {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{

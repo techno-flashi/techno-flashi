@@ -110,45 +110,64 @@ export function generateUniqueMetaDescription(data: PageData): string {
     : uniqueDescription;
 }
 
-// Generate unique page title - OPTIMIZED for 60 char limit (SEO audit fix)
+// Generate unique page title - OPTIMIZED for 60 char limit + ANTI-DUPLICATE (SEO audit fix)
 export function generateUniquePageTitle(data: PageData): string {
-  const { type, title, category } = data;
+  const { type, title, category, slug } = data;
 
-  // Shorter title variations to fit 60 char limit
+  // Create unique seed based on slug to ensure consistent but unique titles
+  const uniqueSeed = slug ? slug.split('').reduce((a, b) => a + b.charCodeAt(0), 0) : 0;
+
+  // Shorter title variations to fit 60 char limit - ANTI-DUPLICATE
   const titleVariations = {
     article: [
-      `${title} - دليل`,
-      `${title} - نصائح`,
-      `${title} - شرح`,
-      `دليل ${title}`,
-      `${title} - كيفية`
+      `${title} - دليل شامل`,
+      `${title} - نصائح خبراء`,
+      `${title} - شرح مفصل`,
+      `دليل ${title} العملي`,
+      `${title} - كيفية التطبيق`,
+      `${title} - أساسيات`,
+      `${title} - خطوات عملية`,
+      `${title} - معلومات مهمة`
     ],
     'ai-tool': [
-      `${title} - مراجعة`,
-      `${title} - تقييم`,
-      `${title} - دليل`,
-      `${title} - تجربة`,
-      `مراجعة ${title}`
+      `${title} - مراجعة شاملة`,
+      `${title} - تقييم مفصل`,
+      `${title} - دليل الاستخدام`,
+      `${title} - تجربة عملية`,
+      `مراجعة أداة ${title}`,
+      `${title} - تحليل كامل`,
+      `${title} - مميزات وعيوب`,
+      `${title} - دليل المبتدئين`
     ],
     page: [
-      `${title}`,
       `${title} - TechnoFlash`,
-      `دليل ${title}`,
-      `معلومات ${title}`
+      `دليل ${title} الشامل`,
+      `معلومات ${title} المفصلة`,
+      `${title} - كل ما تحتاج معرفته`,
+      `${title} - الدليل الكامل`,
+      `${title} - معلومات مهمة`,
+      `${title} - تفاصيل شاملة`,
+      `${title} - دليل متكامل`
     ],
     category: [
-      `${title} - مقالات`,
-      `محتوى ${title}`,
-      `${title} - دليل`,
-      `مقالات ${title}`
+      `${title} - مقالات متخصصة`,
+      `محتوى ${title} المتميز`,
+      `${title} - دليل شامل`,
+      `مقالات ${title} المفيدة`,
+      `${title} - محتوى حصري`,
+      `${title} - مواضيع متنوعة`,
+      `${title} - دليل متكامل`,
+      `${title} - معلومات قيمة`
     ]
   };
 
   const variations = titleVariations[type] || titleVariations.page;
-  let selectedTitle = variations[Math.floor(Math.random() * variations.length)];
+  // Use unique seed to select variation consistently but uniquely
+  const selectedIndex = uniqueSeed % variations.length;
+  let selectedTitle = variations[selectedIndex];
 
-  // Add category context only if there's space
-  if ((type === 'article' || type === 'ai-tool') && category && selectedTitle.length < 45) {
+  // Add category context only if there's space and creates uniqueness
+  if ((type === 'article' || type === 'ai-tool') && category && selectedTitle.length < 40) {
     selectedTitle += ` | ${category}`;
   }
 
@@ -160,13 +179,19 @@ export function generateUniquePageTitle(data: PageData): string {
   // STRICT 60 character limit - SEO audit requirement
   if (selectedTitle.length > 60) {
     // Try without category first
-    const withoutCategory = variations[Math.floor(Math.random() * variations.length)];
+    const withoutCategory = variations[selectedIndex];
     if (withoutCategory.length <= 60) {
       selectedTitle = withoutCategory;
     } else {
-      // Last resort: truncate
+      // Last resort: truncate intelligently
       selectedTitle = selectedTitle.substring(0, 57) + '...';
     }
+  }
+
+  // Add unique identifier if title is still potentially duplicate
+  if (selectedTitle.length < 55 && slug) {
+    const uniqueId = slug.substring(0, 3);
+    selectedTitle += ` ${uniqueId}`;
   }
 
   return selectedTitle;
