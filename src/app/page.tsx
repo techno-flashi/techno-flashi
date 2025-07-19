@@ -13,6 +13,7 @@ import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import MonetagManager from "@/components/ads/MonetagManager";
 import MonetagChecker from "@/components/ads/MonetagChecker";
+import { MonetagBanner, MonetagInContent, MonetagTest } from "@/components/ads/DirectMonetagAd";
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
 import YouTubeSection from "@/components/YouTubeSection";
@@ -123,13 +124,9 @@ export default async function HomePage() {
               لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
             </p>
 
-            {/* إعلان Monetag Header */}
-            <div className="max-w-4xl mx-auto">
-              <MonetagManager
-                position="header"
-                currentPage="/"
-                className="my-8"
-              />
+            {/* إعلان Monetag Header - مباشر */}
+            <div className="max-w-4xl mx-auto my-8">
+              <MonetagBanner className="w-full" />
             </div>
 
             {/* الأزرار */}
@@ -296,13 +293,11 @@ export default async function HomePage() {
       {/* إعلان بين الأقسام */}
       <InContentAd className="my-12" />
 
-      {/* إعلان Monetag In-Content */}
+      {/* إعلان Monetag In-Content - مباشر */}
       <div className="container mx-auto px-4 my-12">
-        <MonetagManager
-          position="in-content"
-          currentPage="/"
-          className="max-w-4xl mx-auto"
-        />
+        <div className="max-w-4xl mx-auto">
+          <MonetagInContent />
+        </div>
       </div>
 
 
@@ -376,9 +371,12 @@ export default async function HomePage() {
       {/* إعلان الفوتر */}
       <FooterAd className="mt-12" />
 
-      {/* Monetag Status Checker - للتطوير فقط */}
+      {/* Monetag Test & Status Checker - للتطوير فقط */}
       {process.env.NODE_ENV === 'development' && (
-        <MonetagChecker showDebug={true} />
+        <>
+          <MonetagTest />
+          <MonetagChecker showDebug={true} />
+        </>
       )}
     </div>
   );
