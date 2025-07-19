@@ -16,6 +16,7 @@ import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
 import DynamicCodeInjection from "@/components/ads/DynamicCodeInjection";
 import AdScriptLoader, { AdScriptDebugger, MonetagVerifier } from "@/components/ads/AdScriptLoader";
+import AdvancedAdRenderer from "@/components/ads/AdvancedAdRenderer";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -167,6 +168,9 @@ export default function RootLayout({
         {/* Dynamic Code Injection - BODY START */}
         <DynamicCodeInjection position="body_start" />
 
+        {/* Advanced Ad Renderer - Header */}
+        <AdvancedAdRenderer position="header" />
+
         <GoogleAnalytics />
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
@@ -284,6 +288,9 @@ export default function RootLayout({
   </div>
 </footer>
         </AuthProvider>
+
+        {/* Advanced Ad Renderer - Footer */}
+        <AdvancedAdRenderer position="footer" />
 
         {/* Dynamic Code Injection - FOOTER */}
         <DynamicCodeInjection position="footer" />
