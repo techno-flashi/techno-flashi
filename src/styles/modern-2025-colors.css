@@ -1,0 +1,235 @@
+/* نظام الألوان الحديث لعام 2025 - مريح للعين ومتطور */
+
+:root {
+  /* الألوان الأساسية الحديثة */
+  --color-primary: #6366F1;
+  --color-primary-hover: #4F46E5;
+  --color-primary-light: #EEF2FF;
+  --color-secondary: #10B981;
+  --color-accent: #F59E0B;
+  
+  /* ألوان النصوص المحسنة */
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-description: #6B7280;
+  --color-text-muted: #9CA3AF;
+  
+  /* خلفيات متدرجة وناعمة */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F9FAFB;
+  --color-bg-tertiary: #F3F4F6;
+  --color-bg-accent: #F0F9FF;
+  
+  /* حدود وفواصل */
+  --color-border-light: #E5E7EB;
+  --color-border-medium: #D1D5DB;
+  --color-border-dark: #9CA3AF;
+  
+  /* ألوان الحالة */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* تدرجات حديثة */
+  --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  --gradient-secondary: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  --gradient-accent: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --gradient-soft: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+}
+
+/* تطبيق الألوان على العناصر الأساسية */
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* العناوين بالألوان الجديدة */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+}
+
+/* الروابط بالألوان الحديثة */
+a {
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* الأزرار الحديثة */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
+}
+
+.btn-secondary {
+  background: var(--gradient-secondary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
+}
+
+/* البطاقات الحديثة */
+.card-modern {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-light);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary-light);
+}
+
+/* الهيدر الحديث */
+.header-modern {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* النصوص الوصفية */
+.text-description {
+  color: var(--color-text-description);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* خلفيات متدرجة للأقسام */
+.section-gradient {
+  background: var(--gradient-soft);
+}
+
+.section-primary {
+  background: var(--color-bg-accent);
+}
+
+/* تحسينات للفوكس والوصولية */
+*:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* تحسينات للموبايل */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .card-modern {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+}
+
+/* تأثيرات حديثة للتفاعل */
+.interactive-element {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: scale(1.02);
+}
+
+/* ألوان خاصة للإعلانات */
+.ad-container-modern {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* تحسينات للنماذج */
+.form-input-modern {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-medium);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+
+.form-input-modern:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ألوان للحالات المختلفة */
+.status-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.status-info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-info);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* تحسينات للظلال الحديثة */
+.shadow-modern {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-modern-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* تدرجات نصية حديثة */
+.text-gradient-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

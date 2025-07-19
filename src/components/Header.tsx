@@ -86,14 +86,14 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-8 space-x-reverse" suppressHydrationWarning>
             <Link
               href="/"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
+              className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
             >
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               الرئيسية
             </Link>
             <Link
               href="/articles"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
+              className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
             >
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               المقالات
@@ -101,7 +101,7 @@ export function Header() {
 
             <Link
               href="/services"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
+              className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
             >
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               الخدمات
@@ -109,7 +109,7 @@ export function Header() {
             {aboutPage && (
               <Link
                 href={getPageUrl('about-us')}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
+                className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
               >
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 {aboutPage.title_ar}
@@ -132,7 +132,7 @@ export function Header() {
               <div className="flex items-center space-x-2 lg:space-x-4 space-x-reverse" suppressHydrationWarning>
                 <Link
                   href="/admin"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 lg:px-6 py-2 text-sm lg:text-base rounded-lg transition-colors duration-300 font-medium"
+                  className="btn-primary px-4 lg:px-6 py-2 text-sm lg:text-base rounded-lg font-medium"
                 >
                   لوحة التحكم
                 </Link>

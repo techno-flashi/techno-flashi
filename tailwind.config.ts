@@ -13,38 +13,55 @@ const config: Config = {
     extend: {
 
       colors: {
-        // نظام الألوان الموحد حسب التعليمات النهائية
-        primary: "#3333FF", // لون الروابط الأساسي
-        "primary-hover": "#3399FF", // لون الروابط عند التمرير
-        secondary: "#FF5722", // للعناصر الثانوية (CTA)
+        // نظام الألوان الحديث لعام 2025 - مريح للعين ومتطور
+        primary: "#6366F1", // Indigo-500 - لون أساسي حديث ومريح
+        "primary-hover": "#4F46E5", // Indigo-600 - للتفاعل
+        "primary-light": "#EEF2FF", // Indigo-50 - خلفية فاتحة
+        secondary: "#10B981", // Emerald-500 - أخضر حديث للنجاح
+        accent: "#F59E0B", // Amber-500 - للتنبيهات والعناصر المهمة
 
-        // ألوان النصوص الأساسية
+        // ألوان النصوص المحدثة - مريحة للعين
         text: {
-          primary: "#1C1C1C", // النص الرئيسي
-          secondary: "#4A4A4A", // العناوين الثانوية
-          description: "#666666", // الوصف/الحواشي/Metadata
+          primary: "#111827", // Gray-900 - نص رئيسي واضح
+          secondary: "#374151", // Gray-700 - عناوين ثانوية
+          description: "#6B7280", // Gray-500 - وصف ومعلومات إضافية
+          muted: "#9CA3AF", // Gray-400 - نص خفيف
         },
 
-        // الخلفيات الثابتة
+        // خلفيات حديثة ومتدرجة
         background: {
-          primary: "#FFFFFF", // خلفية الموقع العامة
-          secondary: "#F9F9F9", // خلفيات الصناديق والعناصر الفرعية
-          tertiary: "#FAFAFA", // خلفية بديلة للعناصر
+          primary: "#FFFFFF", // أبيض نقي
+          secondary: "#F9FAFB", // Gray-50 - خلفية ناعمة
+          tertiary: "#F3F4F6", // Gray-100 - خلفية بديلة
+          accent: "#F0F9FF", // Sky-50 - خلفية مميزة
         },
 
-        // للتوافق مع الكود الموجود
+        // حدود وفواصل حديثة
+        border: {
+          light: "#E5E7EB", // Gray-200 - حدود فاتحة
+          medium: "#D1D5DB", // Gray-300 - حدود متوسطة
+          dark: "#9CA3AF", // Gray-400 - حدود داكنة
+        },
+
+        // ألوان الحالة الحديثة
+        success: "#10B981", // Emerald-500
+        warning: "#F59E0B", // Amber-500
+        error: "#EF4444", // Red-500
+        info: "#3B82F6", // Blue-500
+
+        // للتوافق مع الكود الموجود - محدث بالألوان الجديدة
         light: {
           background: "#FFFFFF",
-          card: "#F9F9F9",
-          text: "#1C1C1C",
-          "text-secondary": "#4A4A4A",
-          border: "#E1E5E9",
+          card: "#F9FAFB",
+          text: "#111827",
+          "text-secondary": "#374151",
+          border: "#E5E7EB",
         },
         dark: {
-          background: "#FFFFFF",
-          card: "#F9F9F9",
-          text: "#1C1C1C",
-          "text-secondary": "#4A4A4A",
+          background: "#FFFFFF", // نبقي على الوضع الفاتح
+          card: "#F9FAFB",
+          text: "#111827",
+          "text-secondary": "#374151",
         },
       },
 
