@@ -18,15 +18,33 @@ export default async function DynamicCodeInjection({
 
     return (
       <>
-        {injections.map((injection) => (
-          <div
-            key={injection.id}
-            data-injection-id={injection.id}
-            data-injection-name={injection.name}
-            data-injection-position={injection.position}
-            dangerouslySetInnerHTML={{ __html: injection.code }}
-          />
-        ))}
+        {injections.map((injection) => {
+          // For script tags, we need to handle them specially to ensure proper execution
+          if (injection.code.includes('<script')) {
+            return (
+              <script
+                key={injection.id}
+                data-injection-id={injection.id}
+                data-injection-name={injection.name}
+                data-injection-position={injection.position}
+                dangerouslySetInnerHTML={{
+                  __html: injection.code.replace(/<\/?script[^>]*>/g, '')
+                }}
+              />
+            );
+          }
+
+          // For other HTML content
+          return (
+            <div
+              key={injection.id}
+              data-injection-id={injection.id}
+              data-injection-name={injection.name}
+              data-injection-position={injection.position}
+              dangerouslySetInnerHTML={{ __html: injection.code }}
+            />
+          );
+        })}
       </>
     );
   } catch (error) {

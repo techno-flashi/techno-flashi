@@ -15,6 +15,7 @@ import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
 import DynamicCodeInjection from "@/components/ads/DynamicCodeInjection";
+import AdScriptLoader, { AdScriptDebugger, MonetagVerifier } from "@/components/ads/AdScriptLoader";
 
 // إعداد الخطوط للموقع التقني الحديث
 const inter = Inter({
@@ -286,6 +287,14 @@ export default function RootLayout({
 
         {/* Dynamic Code Injection - FOOTER */}
         <DynamicCodeInjection position="footer" />
+
+        {/* Enhanced Ad Script Loader - Ensures proper script execution */}
+        <AdScriptLoader position="footer" />
+        <AdScriptLoader position="head_end" />
+
+        {/* Ad Verification and Debug Components */}
+        <AdScriptDebugger />
+        <MonetagVerifier />
       </body>
     </html>
   );
