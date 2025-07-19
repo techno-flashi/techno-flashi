@@ -122,6 +122,18 @@ export default function RootLayout({
         {/* Monetag Verification */}
         <meta name="monetag" content="2c67654574d1973053c8621d861c3782" />
 
+        {/* Monetag Scripts */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',9593378,document.createElement('script'))`
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',9593331,document.createElement('script'))`
+          }}
+        />
+
         {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{
