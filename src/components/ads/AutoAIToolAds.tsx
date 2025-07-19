@@ -52,16 +52,14 @@ export default function AutoAIToolAds({
           keywords={[toolName, toolCategory, 'ذكاء اصطناعي', 'أدوات']}
           toolSlug={toolSlug}
         />
-      ) : (
-        <div className="w-full h-full bg-gray-100 animate-pulse rounded-lg" />
-      )}
+      ) : null}
     </div>
   );
 }
 
 // مكونات جاهزة للاستخدام في مواضع مختلفة
 
-// إعلان بداية صفحة الأداة - مع أبعاد ثابتة لمنع Layout Shift
+// إعلان بداية صفحة الأداة - تم إزالة المساحة الفارغة
 export function AutoAIToolStartAd({
   toolName,
   toolSlug,
@@ -74,19 +72,17 @@ export function AutoAIToolStartAd({
   className?: string;
 }) {
   return (
-    <div className={`${className} min-h-[250px] flex items-center justify-center bg-gray-50 rounded-lg`}>
-      <AutoAIToolAds
-        position="article-body-start"
-        toolName={toolName}
-        toolSlug={toolSlug}
-        toolCategory={toolCategory}
-        className="w-full"
-      />
-    </div>
+    <AutoAIToolAds
+      position="article-body-start"
+      toolName={toolName}
+      toolSlug={toolSlug}
+      toolCategory={toolCategory}
+      className={className}
+    />
   );
 }
 
-// إعلان وسط صفحة الأداة - مع أبعاد ثابتة لمنع Layout Shift
+// إعلان وسط صفحة الأداة - تم إزالة المساحة الفارغة
 export function AutoAIToolMidAd({
   toolName,
   toolSlug,
@@ -99,19 +95,17 @@ export function AutoAIToolMidAd({
   className?: string;
 }) {
   return (
-    <div className={`${className} min-h-[300px] flex items-center justify-center bg-gray-50 rounded-lg`}>
-      <AutoAIToolAds
-        position="article-body-mid"
-        toolName={toolName}
-        toolSlug={toolSlug}
-        toolCategory={toolCategory}
-        className="w-full"
-      />
-    </div>
+    <AutoAIToolAds
+      position="article-body-mid"
+      toolName={toolName}
+      toolSlug={toolSlug}
+      toolCategory={toolCategory}
+      className={className}
+    />
   );
 }
 
-// إعلان نهاية صفحة الأداة - مع أبعاد ثابتة لمنع Layout Shift
+// إعلان نهاية صفحة الأداة - تم إزالة المساحة الفارغة
 export function AutoAIToolEndAd({
   toolName,
   toolSlug,
@@ -124,14 +118,12 @@ export function AutoAIToolEndAd({
   className?: string;
 }) {
   return (
-    <div className={`${className} min-h-[250px] flex items-center justify-center bg-gray-50 rounded-lg`}>
-      <AutoAIToolAds
-        position="article-body-end"
-        toolName={toolName}
-        toolSlug={toolSlug}
-        toolCategory={toolCategory}
-        className="w-full"
-      />
-    </div>
+    <AutoAIToolAds
+      position="article-body-end"
+      toolName={toolName}
+      toolSlug={toolSlug}
+      toolCategory={toolCategory}
+      className={className}
+    />
   );
 }

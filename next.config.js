@@ -132,55 +132,15 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval'
-                https://www.googletagmanager.com
-                https://www.google-analytics.com
-                https://cdn.jsdelivr.net
-                https://unpkg.com
-
-                https://pagead2.googlesyndication.com
-                https://googleads.g.doubleclick.net
-                https://tpc.googlesyndication.com
-                https://securepubads.g.doubleclick.net;
-              style-src 'self' 'unsafe-inline'
-                https://fonts.googleapis.com
-                https://cdn.jsdelivr.net;
-              style-src-elem 'self' 'unsafe-inline'
-                https://fonts.googleapis.com;
-              font-src 'self'
-                https://fonts.gstatic.com
-                https://cdn.jsdelivr.net;
-              img-src 'self' data: blob:
-                https://images.unsplash.com
-                https://i.imgur.com
-                https://placehold.co
-                https://via.placeholder.com
-                https://upload.wikimedia.org
-                https://i.pinimg.com
-                https://zgktrwpladrkhhemhnni.supabase.co
-                https://ugrfqcfhoxgpxcwnnbxu.supabase.co
-                https://www.google-analytics.com
-                https://www.googletagmanager.com
-                https://cdn.jsdelivr.net;
-              connect-src 'self' https:
-                https://pagead2.googlesyndication.com
-                https://googleads.g.doubleclick.net
-                https://tpc.googlesyndication.com
-                https://securepubads.g.doubleclick.net;
-              frame-src 'self'
-                https://www.youtube.com
-                https://www.google.com
-                https://cmp.gatekeeperconsent.com
-                https://the.gatekeeperconsent.com
-                https://gatekeeperconsent.com
-                https://*.gatekeeperconsent.com
-                https://pagead2.googlesyndication.com
-                https://googleads.g.doubleclick.net
-                https://tpc.googlesyndication.com;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval';
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+              img-src 'self' data: https:;
+              font-src 'self' https://fonts.gstatic.com;
+              connect-src 'self' https:;
               object-src 'none';
+              frame-ancestors 'self';
               base-uri 'self';
               form-action 'self';
-              upgrade-insecure-requests;
             `.replace(/\s{2,}/g, ' ').trim()
           }
         ]

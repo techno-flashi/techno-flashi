@@ -193,45 +193,39 @@ export function SidebarAdManager({ className = 'mb-6' }: { className?: string })
   );
 }
 
-// إعلان بداية المقال - مع أبعاد ثابتة لمنع Layout Shift
+// إعلان بداية المقال - تم إزالة المساحة الفارغة
 export function ArticleStartAd({ className = 'my-6' }: { className?: string }) {
   return (
-    <div className={`${className} min-h-[250px] flex items-center justify-center bg-gray-50 rounded-lg`}>
-      <AdManager
-        placement="article-body-start"
-        className="w-full"
-        fallbackAdSenseSlot="1234567893"
-        showFallback={true}
-      />
-    </div>
+    <AdManager
+      placement="article-body-start"
+      className={className}
+      fallbackAdSenseSlot="1234567893"
+      showFallback={false}
+    />
   );
 }
 
-// إعلان وسط المقال - مع أبعاد ثابتة لمنع Layout Shift
+// إعلان وسط المقال - تم إزالة المساحة الفارغة
 export function ArticleMiddleAd({ className = 'my-8' }: { className?: string }) {
   return (
-    <div className={`${className} min-h-[300px] flex items-center justify-center bg-gray-50 rounded-lg`}>
-      <AdManager
-        placement="article-body-mid"
-        className="w-full"
-        fallbackAdSenseSlot="1234567894"
-        showFallback={true}
-      />
-    </div>
+    <AdManager
+      placement="article-body-mid"
+      className={className}
+      fallbackAdSenseSlot="1234567894"
+      showFallback={false}
+    />
   );
 }
 
-// إعلان نهاية المقال - مع أبعاد ثابتة لمنع Layout Shift
+// إعلان نهاية المقال - تم إزالة المساحة الفارغة
 export function ArticleEndAd({ className = 'my-6' }: { className?: string }) {
   return (
-    <div className={`${className} min-h-[250px] flex items-center justify-center bg-gray-50 rounded-lg`}>
-      <AdManager
-        placement="article-body-end"
-        className="w-full"
-        fallbackAdSenseSlot="1234567895"
-        showFallback={true}
-      />
-    </div>
+    <AdManager
+      placement="article-body-end"
+      className={className}
+      fallbackAdSenseSlot="1234567895"
+      showFallback={false}
+    />
   );
 }
 

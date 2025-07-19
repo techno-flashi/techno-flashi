@@ -204,29 +204,10 @@ export default function SmartAdManager({
     );
   }
 
-  // عرض الخطأ مع fallback
+  // عرض الخطأ مع fallback - تم تعطيله لتجنب المساحات الفارغة
   if (error && showFallback && fallbackAdSenseSlot) {
-    return (
-      <ClientOnlyContent>
-        <div className={`smart-ad-fallback ${className}`}>
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
-          <ins
-            className="adsbygoogle"
-            style={{ display: 'block' }}
-            data-ad-client="ca-pub-1234567890123456"
-            data-ad-slot={fallbackAdSenseSlot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-          <script>
-            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-          </script>
-        </div>
-      </ClientOnlyContent>
-    );
+    // لا نعرض AdSense fallback لتجنب المساحات الفارغة
+    return null;
   }
 
   // عرض الإعلانات - بدون مساحة إضافية إذا لم توجد إعلانات
