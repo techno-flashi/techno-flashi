@@ -9,6 +9,7 @@ import { ArticleStartAd, ArticleMiddleAd, ArticleEndAd, SidebarAdManager } from 
 import { SmartArticleAd, SmartContentAd, SmartSharedAd } from "@/components/ads/SmartAdManager";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SpacingDebugger, { AdDebugger } from "@/components/debug/SpacingDebugger";
+import { HeaderAnimatedAd, InContentAnimatedAd, FooterAnimatedAd, SidebarAnimatedAd } from '@/components/ads/AnimatedAdRenderer';
 
 
 import { ArticleContent } from "@/components/ArticleContent";
@@ -329,8 +330,8 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Canonical URL handled in metadata - no duplicate tags */}
 
-      {/* Emergency: Ads disabled for performance testing */}
-      {/* <ArticleStartAd className="mb-8" /> */}
+      {/* Header Animated Ad */}
+      <HeaderAnimatedAd currentPage={`/articles/${slug}`} className="mb-8" />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* المحتوى الرئيسي - محسن للقراءة */}
@@ -396,8 +397,8 @@ export default async function ArticlePage({ params }: Props) {
           {/* محتوى المقال */}
           {renderArticleContent(article.content, articleImages)}
 
-          {/* Emergency: Middle ad disabled for performance */}
-          {/* <ArticleMiddleAd className="my-8" /> */}
+          {/* In-Content Animated Ad */}
+          <InContentAnimatedAd currentPage={`/articles/${slug}`} className="my-8" />
 
           {/* باقي المحتوى */}
           {/* يمكن إضافة المزيد من المحتوى هنا */}
@@ -445,13 +446,16 @@ export default async function ArticlePage({ params }: Props) {
 
 
 
-          {/* Emergency: End ad disabled for performance */}
-          {/* <ArticleEndAd className="mt-8" /> */}
+          {/* Footer Animated Ad */}
+          <FooterAnimatedAd currentPage={`/articles/${slug}`} className="mt-8" />
         </article>
 
         {/* الشريط الجانبي - محسن للأجهزة المحمولة */}
         <aside className="lg:col-span-1 order-first lg:order-last">
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
+
+            {/* Sidebar Animated Ad */}
+            <SidebarAnimatedAd currentPage={`/articles/${slug}`} className="mb-6" />
 
 
             {/* عناصر التنقل السريع */}
