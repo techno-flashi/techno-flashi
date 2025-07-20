@@ -84,89 +84,47 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Hero Section المحدث بتصميم 2025 */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* خلفية متدرجة ديناميكية */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 via-secondary-600/10 to-accent-600/10"></div>
-        </div>
-
+      {/* Hero Section - Modern Design */}
+      <section className="relative pt-24 pb-28 overflow-hidden bg-slate-50">
         {/* عناصر هندسية متحركة */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-primary-400/20 to-secondary-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-secondary-400/20 to-accent-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-accent-400/20 to-primary-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-pink-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
         {/* المحتوى الرئيسي */}
-        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-          <div className="space-y-8 animate-fade-in-up">
-            {/* شارة "جديد" */}
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full text-sm font-medium shadow-lg animate-bounce">
-              <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
-              جديد: أدوات الذكاء الاصطناعي 2025
-            </div>
-
-            {/* العنوان الرئيسي */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
-              <span className="block text-neutral-900 mb-4">مستقبلك التقني</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 animate-pulse">
-                يبدأ من هنا
-              </span>
-            </h1>
-
-            {/* الوصف */}
-            <p className="text-xl md:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-              اكتشف أحدث التقنيات، أدوات الذكاء الاصطناعي المتطورة، ومقالات تقنية متخصصة
-              <br className="hidden md:block" />
-              لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
-            </p>
-
-
-
-            {/* الأزرار */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-              <a
-                href="/articles"
-                className="group relative px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
-              >
-                <span className="relative z-10">استكشف المقالات</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-secondary-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </a>
-              <a
-                href="/services"
-                className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-neutral-900 rounded-2xl font-semibold text-lg border-2 border-neutral-200 hover:border-primary-300 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
-              >
-                تصفح الخدمات
-                <span className="inline-block mr-2 transition-transform group-hover:translate-x-1">←</span>
-              </a>
-            </div>
-
-            {/* إحصائيات سريعة */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 max-w-4xl mx-auto">
-              <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 mb-2">500+</div>
-                <div className="text-neutral-600 font-medium">مقال تقني</div>
-              </div>
-              <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-accent-600 mb-2">50+</div>
-                <div className="text-neutral-600 font-medium">أداة ذكية</div>
-              </div>
-              <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-primary-600 mb-2">10K+</div>
-                <div className="text-neutral-600 font-medium">قارئ نشط</div>
-              </div>
-            </div>
+        <div className="relative z-10 container mx-auto px-6 text-center">
+          {/* Tagline */}
+          <div className="inline-block bg-white/50 backdrop-blur-sm text-purple-800 text-sm font-semibold px-4 py-2 rounded-full mb-5">
+            ✨ بوابتك للمستقبل التقني
           </div>
-        </div>
+          {/* Main Headline */}
+          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
+            مستقبلك التقني<br />يبدأ من هنا
+          </h1>
 
-        {/* مؤشر التمرير */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+          {/* Subtitle */}
+          <p className="max-w-3xl mx-auto text-lg text-slate-700 mb-8">
+            اكتشف أحدث التقنيات، أدوات الذكاء الاصطناعي المتطورة، ومقالات تقنية متخصصة لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع.
+          </p>
+
+
+
+          {/* Action Buttons */}
+          <div className="flex justify-center items-center space-x-4 rtl:space-x-reverse mb-12">
+            <a href="/articles" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-600 transition-all transform hover:scale-105 font-semibold">
+              ابدأ الاستكشاف
+            </a>
+            <a href="/services" className="bg-white text-slate-700 px-8 py-3 rounded-lg shadow-md hover:bg-slate-100 transition-all font-semibold flex items-center space-x-2 rtl:space-x-reverse">
+              <span>تصفح الخدمات</span>
+              <span className="text-lg">←</span>
+            </a>
           </div>
         </div>
       </section>
+
+
 
 
 

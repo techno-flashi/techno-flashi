@@ -73,58 +73,25 @@ export function Header() {
             className="flex items-center space-x-2 sm:space-x-3 space-x-reverse hover:opacity-80 transition-opacity duration-300 rounded-lg p-1"
             onClick={() => setIsMenuOpen(false)}
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg sm:text-xl">T</span>
-            </div>
-            <div className="hidden xs:block">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">TechnoFlash</div>
-              <p className="text-xs text-gray-600 hidden sm:block">بوابتك للمستقبل التقني</p>
-            </div>
+            <span className="bg-gradient-to-br from-purple-600 to-pink-500 text-white font-bold text-2xl rounded-md p-2">T</span>
+            <span className="text-2xl font-bold text-slate-900">TechnoFlash</span>
           </Link>
 
-          {/* التنقل الرئيسي المحدث - سطح المكتب */}
-          <nav className="hidden md:flex items-center space-x-8 space-x-reverse" suppressHydrationWarning>
-            <Link
-              href="/"
-              className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
-            >
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              الرئيسية
-            </Link>
-            <Link
-              href="/articles"
-              className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
-            >
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              المقالات
-            </Link>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
+            <Link href="/" className="text-slate-600 hover:text-purple-600 transition-colors font-semibold">🏠 الرئيسية</Link>
+            <Link href="/articles" className="text-slate-600 hover:text-purple-600 transition-colors">📰 أحدث المقالات</Link>
+            <Link href="/ai-tools" className="text-slate-600 hover:text-purple-600 transition-colors">🤖 أدوات الذكاء الاصطناعي</Link>
+            <Link href="/services" className="text-slate-600 hover:text-purple-600 transition-colors">⚙️ الخدمات</Link>
+          </div>
 
-            <Link
-              href="/services"
-              className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
-            >
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              الخدمات
-            </Link>
-            {aboutPage && (
-              <Link
-                href={getPageUrl('about-us')}
-                className="text-text-secondary hover:text-primary transition-colors duration-300 font-medium rounded-lg px-3 py-2 relative group"
-              >
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                {aboutPage.title_ar}
-              </Link>
-            )}
-          </nav>
-
-          {/* أزرار الإجراءات */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-4 space-x-reverse">
+          {/* Contact Button and Actions */}
+          <div className="flex items-center space-x-4 rtl:space-x-reverse">
             <Link
               href="/contact"
-              className="text-gray-600 hover:text-black transition-colors duration-300 font-medium rounded px-2 lg:px-3 py-2 relative group text-sm lg:text-base"
+              className="hidden sm:block bg-gradient-to-r from-purple-600 to-pink-500 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-lg hover:from-purple-700 hover:to-pink-600 transition-all transform hover:scale-105"
             >
-              تواصل معنا
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              📞 اتصل بنا
             </Link>
 
             {/* عرض معلومات المستخدم فقط بعد التحميل الكامل */}
@@ -145,95 +112,57 @@ export function Header() {
                 </button>
               </div>
             ) : null}
-          </div>
 
-          {/* زر القائمة المحدث للهواتف */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden bg-gray-100 hover:bg-gray-200 p-2 rounded-xl transition-colors duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100 focus:outline-none"
+              aria-label={isMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* القائمة المنسدلة للهواتف */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div
-            id="mobile-menu"
-            className="md:hidden py-3 sm:py-4 border-t border-light-border bg-white/98 backdrop-blur-sm animate-in slide-in-from-top-2 duration-300"
-            suppressHydrationWarning
-          >
-            <nav className="flex flex-col space-y-1 sm:space-y-2">
-              <Link
-                href="/"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg min-h-[44px] flex items-center text-sm sm:text-base"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                الرئيسية
-              </Link>
-              <Link
-                href="/articles"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg min-h-[44px] flex items-center text-sm sm:text-base"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                المقالات
-              </Link>
-
-              <Link
-                href="/services"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-3 sm:px-4 py-2 sm:py-3 rounded-lg min-h-[44px] flex items-center text-sm sm:text-base"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                الخدمات
-              </Link>
-              {aboutPage && (
+          <div id="mobile-menu" className="md:hidden mt-4">
+            <Link href="/" className="block py-2 px-4 text-sm text-slate-700 hover:bg-purple-50 rounded-md" onClick={() => setIsMenuOpen(false)}>🏠 الرئيسية</Link>
+            <Link href="/articles" className="block py-2 px-4 text-sm text-slate-700 hover:bg-purple-50 rounded-md" onClick={() => setIsMenuOpen(false)}>📰 أحدث المقالات</Link>
+            <Link href="/ai-tools" className="block py-2 px-4 text-sm text-slate-700 hover:bg-purple-50 rounded-md" onClick={() => setIsMenuOpen(false)}>🤖 أدوات الذكاء الاصطناعي</Link>
+            <Link href="/services" className="block py-2 px-4 text-sm text-slate-700 hover:bg-purple-50 rounded-md" onClick={() => setIsMenuOpen(false)}>⚙️ الخدمات</Link>
+            <Link href="/contact" className="block mt-2 w-full text-center bg-gradient-to-r from-purple-600 to-pink-500 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all" onClick={() => setIsMenuOpen(false)}>
+              📞 اتصل بنا
+            </Link>
+            {/* أزرار الإجراءات للموبايل */}
+            {!loading && user && (
+              <div className="pt-4 mt-4 border-t border-gray-300 space-y-2">
                 <Link
-                  href={getPageUrl('about-us')}
-                  className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-4 py-3 rounded-lg"
+                  href="/admin"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors duration-300 font-medium block text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {aboutPage.title_ar}
+                  لوحة التحكم
                 </Link>
-              )}
-              <Link
-                href="/contact"
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300 font-medium px-4 py-3 rounded-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                تواصل معنا
-              </Link>
-
-              {/* أزرار الإجراءات للموبايل */}
-              {!loading && user && (
-                <div className="pt-4 mt-4 border-t border-gray-700 space-y-2">
-                  <Link
-                    href="/admin"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors duration-300 font-medium block text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    لوحة التحكم
-                  </Link>
-                  <button
-                    onClick={() => {
-                      signOut();
-                      setIsMenuOpen(false);
-                    }}
-                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors duration-300 font-medium w-full"
-                  >
-                    تسجيل الخروج
-                  </button>
-                </div>
-              )}
-            </nav>
+                <button
+                  onClick={() => {
+                    signOut();
+                    setIsMenuOpen(false);
+                  }}
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors duration-300 font-medium w-full"
+                >
+                  تسجيل الخروج
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
