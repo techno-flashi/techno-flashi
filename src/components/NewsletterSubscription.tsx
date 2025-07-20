@@ -168,20 +168,20 @@ export function NewsletterSubscription({
   // تصميم مميز
   if (variant === 'featured') {
     return (
-      <section className={`py-20 px-4 bg-gradient-to-r from-primary/10 to-blue-600/10 ${className}`}>
+      <section className={`py-12 px-4 bg-gradient-to-r from-primary-50 to-secondary-50 ${className}`}>
         <div className="container mx-auto text-center">
           <div className="max-w-3xl mx-auto">
             {/* الأيقونة */}
-            <div className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
 
-            <h2 className="text-4xl font-bold text-white mb-6">
+            <h2 className="text-4xl font-bold text-neutral-900 mb-6">
               {finalTitle}
             </h2>
-            <p className="text-xl text-dark-text-secondary mb-8">
+            <p className="text-xl text-neutral-600 mb-8">
               {finalDescription}
             </p>
 
@@ -193,8 +193,8 @@ export function NewsletterSubscription({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
                 </div>
-                <h3 className="text-white font-semibold mb-2">مقالات حصرية</h3>
-                <p className="text-dark-text-secondary text-sm">محتوى تقني متخصص لا تجده في أي مكان آخر</p>
+                <h3 className="text-neutral-900 font-semibold mb-2">مقالات حصرية</h3>
+                <p className="text-neutral-600 text-sm">محتوى تقني متخصص لا تجده في أي مكان آخر</p>
               </div>
 
               <div className="text-center">
@@ -203,8 +203,8 @@ export function NewsletterSubscription({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </div>
-                <h3 className="text-white font-semibold mb-2">أدوات ذكية</h3>
-                <p className="text-dark-text-secondary text-sm">اكتشف أحدث أدوات الذكاء الاصطناعي قبل الجميع</p>
+                <h3 className="text-neutral-900 font-semibold mb-2">أدوات ذكية</h3>
+                <p className="text-neutral-600 text-sm">اكتشف أحدث أدوات الذكاء الاصطناعي قبل الجميع</p>
               </div>
 
               <div className="text-center">
@@ -213,8 +213,8 @@ export function NewsletterSubscription({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-white font-semibold mb-2">توقيت مثالي</h3>
-                <p className="text-dark-text-secondary text-sm">نشرة أسبوعية كل يوم أحد في الصباح</p>
+                <h3 className="text-neutral-900 font-semibold mb-2">توقيت مثالي</h3>
+                <p className="text-neutral-600 text-sm">نشرة أسبوعية كل يوم أحد في الصباح</p>
               </div>
             </div>
 
@@ -228,7 +228,7 @@ export function NewsletterSubscription({
                       onChange={(e) => setName(e.target.value)}
                       placeholder="اسمك (اختياري)"
                       disabled={isLoading}
-                      className="w-full px-6 py-3 bg-dark-card border border-gray-700 rounded-lg text-white placeholder-dark-text-secondary focus:outline-none focus:border-primary transition-colors duration-300 disabled:opacity-50"
+                      className="w-full px-6 py-3 bg-white border border-neutral-300 rounded-lg text-neutral-900 placeholder-neutral-500 focus:outline-none focus:border-primary-600 transition-colors duration-300 disabled:opacity-50"
                     />
                   )}
                   
@@ -239,14 +239,14 @@ export function NewsletterSubscription({
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="بريدك الإلكتروني"
                       disabled={isLoading}
-                      className="flex-1 px-6 py-3 bg-dark-card border border-gray-700 rounded-lg text-white placeholder-dark-text-secondary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 disabled:opacity-50 min-h-[44px]"
+                      className="flex-1 px-6 py-3 bg-white border border-neutral-300 rounded-lg text-neutral-900 placeholder-neutral-500 focus:outline-none focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all duration-300 disabled:opacity-50 min-h-[44px]"
                       required
                       aria-label="عنوان البريد الإلكتروني للاشتراك"
                     />
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="bg-primary hover:bg-blue-600 disabled:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/25 disabled:cursor-not-allowed whitespace-nowrap transform hover:scale-105 active:scale-95 disabled:transform-none focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px]"
+                      className="bg-primary-600 hover:bg-primary-700 disabled:bg-neutral-400 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-primary-600/25 disabled:cursor-not-allowed whitespace-nowrap transform hover:scale-105 active:scale-95 disabled:transform-none focus:outline-none focus:ring-2 focus:ring-primary-600/20 min-h-[44px]"
                       aria-label="اشترك في النشرة البريدية"
                     >
                       {isLoading ? (
@@ -262,12 +262,12 @@ export function NewsletterSubscription({
                 </div>
                 
                 {message && (
-                  <p className={`mt-4 text-center ${isSuccess ? 'text-green-400' : 'text-red-400'}`}>
+                  <p className={`mt-4 text-center ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
                     {message}
                   </p>
                 )}
-                
-                <p className="text-dark-text-secondary text-sm mt-4">
+
+                <p className="text-neutral-600 text-sm mt-4">
                   بالاشتراك، أنت توافق على تلقي رسائل بريدية من TechnoFlash. يمكنك إلغاء الاشتراك في أي وقت.
                 </p>
               </form>

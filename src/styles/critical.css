@@ -7,8 +7,8 @@
   box-sizing: border-box;
 }
 
-/* الخطوط الأساسية */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;600;700&display=swap');
+/* الخطوط المحلية فقط - لا توجد تبعيات خارجية */
+/* Fonts loaded from local-fonts.css */
 
 /* متغيرات الألوان الأساسية */
 :root {

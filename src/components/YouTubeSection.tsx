@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function YouTubeSection() {
   return (
-    <section className="py-16 bg-gradient-to-r from-red-600 to-red-700">
+    <section className="py-12 bg-gradient-to-r from-red-600 to-red-700">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center text-white">
           {/* العنوان الرئيسي */}

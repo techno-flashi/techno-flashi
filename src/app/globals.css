@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Google Fonts loaded via Next.js font optimization - no need for @import */
+/* Local WOFF2 Fonts Only - No External Dependencies */
 
 /* استيراد CSS الإعلانات */
 @import '../styles/ads.css';
