@@ -49,6 +49,53 @@ const config: Config = {
         error: "#EF4444", // Red-500
         info: "#3B82F6", // Blue-500
 
+        // Professional Color Palette - Extended
+        'primary-50': '#EFF6FF',
+        'primary-100': '#DBEAFE',
+        'primary-200': '#BFDBFE',
+        'primary-300': '#93C5FD',
+        'primary-400': '#60A5FA',
+        'primary-500': '#3B82F6',
+        'primary-600': '#2563EB',
+        'primary-700': '#1D4ED8',
+        'primary-800': '#1E40AF',
+        'primary-900': '#1E3A8A',
+
+        'secondary-50': '#ECFDF5',
+        'secondary-100': '#D1FAE5',
+        'secondary-200': '#A7F3D0',
+        'secondary-300': '#6EE7B7',
+        'secondary-400': '#34D399',
+        'secondary-500': '#10B981',
+        'secondary-600': '#059669',
+        'secondary-700': '#047857',
+        'secondary-800': '#065F46',
+        'secondary-900': '#064E3B',
+
+        'accent-50': '#FFF7ED',
+        'accent-100': '#FFEDD5',
+        'accent-200': '#FED7AA',
+        'accent-300': '#FDBA74',
+        'accent-400': '#FB923C',
+        'accent-500': '#F97316',
+        'accent-600': '#EA580C',
+        'accent-700': '#C2410C',
+        'accent-800': '#9A3412',
+        'accent-900': '#7C2D12',
+
+        'neutral-0': '#FFFFFF',
+        'neutral-50': '#FAFAFA',
+        'neutral-100': '#F5F5F5',
+        'neutral-200': '#E5E5E5',
+        'neutral-300': '#D4D4D4',
+        'neutral-400': '#A3A3A3',
+        'neutral-500': '#737373',
+        'neutral-600': '#525252',
+        'neutral-700': '#404040',
+        'neutral-800': '#262626',
+        'neutral-900': '#171717',
+        'neutral-950': '#0A0A0A',
+
         // للتوافق مع الكود الموجود - محدث بالألوان الجديدة
         light: {
           background: "#FFFFFF",

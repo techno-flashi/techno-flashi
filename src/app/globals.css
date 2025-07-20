@@ -19,6 +19,10 @@
 /* استيراد الخطوط المحلية */
 @import '../styles/local-fonts.css';
 
+/* استيراد نظام التصميم الاحترافي */
+@import '../styles/professional-design-system.css';
+@import '../styles/professional-components.css';
+
 /* Font Family Configuration */
 @layer base {
   body {

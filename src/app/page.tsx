@@ -87,36 +87,36 @@ export default async function HomePage() {
       {/* Hero Section المحدث بتصميم 2025 */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* خلفية متدرجة ديناميكية */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 via-secondary-600/10 to-accent-600/10"></div>
         </div>
 
         {/* عناصر هندسية متحركة */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-indigo-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-primary-400/20 to-secondary-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-secondary-400/20 to-accent-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-accent-400/20 to-primary-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
         {/* المحتوى الرئيسي */}
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <div className="space-y-8 animate-fade-in-up">
             {/* شارة "جديد" */}
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-sm font-medium shadow-lg animate-bounce">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full text-sm font-medium shadow-lg animate-bounce">
               <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
               جديد: أدوات الذكاء الاصطناعي 2025
             </div>
 
             {/* العنوان الرئيسي */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
-              <span className="block text-gray-900 mb-4">مستقبلك التقني</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-pulse">
+              <span className="block text-neutral-900 mb-4">مستقبلك التقني</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 animate-pulse">
                 يبدأ من هنا
               </span>
             </h1>
 
             {/* الوصف */}
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
               اكتشف أحدث التقنيات، أدوات الذكاء الاصطناعي المتطورة، ومقالات تقنية متخصصة
               <br className="hidden md:block" />
               لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع
@@ -128,14 +128,14 @@ export default async function HomePage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
               <a
                 href="/articles"
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
+                className="group relative px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
               >
                 <span className="relative z-10">استكشف المقالات</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-secondary-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a
                 href="/services"
-                className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-900 rounded-2xl font-semibold text-lg border-2 border-gray-200 hover:border-blue-300 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
+                className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-neutral-900 rounded-2xl font-semibold text-lg border-2 border-neutral-200 hover:border-primary-300 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 min-w-[220px]"
               >
                 تصفح الخدمات
                 <span className="inline-block mr-2 transition-transform group-hover:translate-x-1">←</span>
@@ -145,16 +145,16 @@ export default async function HomePage() {
             {/* إحصائيات سريعة */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 max-w-4xl mx-auto">
               <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">500+</div>
-                <div className="text-gray-600 font-medium">مقال تقني</div>
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 mb-2">500+</div>
+                <div className="text-neutral-600 font-medium">مقال تقني</div>
               </div>
               <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-2">50+</div>
-                <div className="text-gray-600 font-medium">أداة ذكية</div>
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-accent-600 mb-2">50+</div>
+                <div className="text-neutral-600 font-medium">أداة ذكية</div>
               </div>
               <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-600 mb-2">10K+</div>
-                <div className="text-gray-600 font-medium">قارئ نشط</div>
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-primary-600 mb-2">10K+</div>
+                <div className="text-neutral-600 font-medium">قارئ نشط</div>
               </div>
             </div>
           </div>
@@ -174,19 +174,19 @@ export default async function HomePage() {
       <section className="py-24 px-4 bg-white relative overflow-hidden">
         {/* خلفية هندسية */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600 to-purple-600"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-600 to-secondary-600"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-800 rounded-full text-sm font-medium mb-6">
               ✨ مميزات استثنائية
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
               لماذا تختار
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> TechnoFlash</span>؟
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600"> TechnoFlash</span>؟
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
               نقدم لك تجربة تقنية متكاملة تجمع بين المحتوى عالي الجودة والأدوات المتطورة والخدمات المتخصصة
             </p>
           </div>
@@ -194,9 +194,9 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {/* المحتوى التقني */}
             <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-              <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100">
+                <div className="w-20 h-20 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>

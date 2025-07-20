@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "../styles/article-content.css";
 import "../styles/admin-override.css";
-import { Header } from "@/components/Header";
+import { ProfessionalHeader } from "@/components/ProfessionalHeader";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner } from "@/components/ads/TechnoFlashBanner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
@@ -162,7 +162,7 @@ export default function RootLayout({
 
         <AuthProvider>
           <TechnoFlashHeaderBanner />
-          <Header />
+          <ProfessionalHeader />
           <main className="min-h-screen">
             {children}
           </main>
