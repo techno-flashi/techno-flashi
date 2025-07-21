@@ -256,25 +256,21 @@ export async function getAdvertisementsForSSG(position?: string) {
     }
 
     let query = supabaseSSG
-      .from('advertisements')
+      .from('ads')
       .select(`
         id,
         title,
         content,
-        type,
+        ad_type,
         position,
-        is_active,
-        is_paused,
+        enabled,
         priority,
-        target_url,
+        link_url,
         image_url,
-        custom_css,
-        custom_js,
         created_at,
         updated_at
       `)
-      .eq('is_active', true)
-      .eq('is_paused', false)
+      .eq('enabled', true)
       .order('priority', { ascending: true });
 
     if (position) {
