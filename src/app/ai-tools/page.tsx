@@ -8,6 +8,7 @@ import { AIToolCard } from "@/components/AIToolCard";
 import { AITool } from "@/types";
 import AdBanner from '@/components/ads/AdBanner';
 import { HeaderAd, FooterAd, InContentAd } from '@/components/ads/AdManager';
+import UniversalAdDisplay from '@/components/ads/UniversalAdDisplay';
 import JsonLd from '@/components/JsonLd';
 import { AIToolsClient } from '@/components/AIToolsClient';
 import LazyAIToolsGrid from '@/components/ai-tools/LazyAIToolsGrid';

@@ -70,7 +70,7 @@ export default function AdBanner({ placement, className }: AdBannerProps) {
         <div className="relative w-full h-auto aspect-[8/1] bg-dark-card rounded-lg overflow-hidden">
           <Image
             src={ad.image_url} // الآن هذه القيمة مضمونة ولن تكون فارغة
-            alt={ad.title}
+            alt={ad.title || 'إعلان'}
             fill
             style={{ objectFit: 'cover' }}
             priority

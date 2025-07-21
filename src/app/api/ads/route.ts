@@ -16,25 +16,20 @@ export async function GET(request: NextRequest) {
 
     // بناء الاستعلام
     let query = supabase
-      .from('advertisements')
+      .from('ads')
       .select('*');
 
     // تطبيق الفلاتر
     if (type) {
-      query = query.eq('type', type);
+      query = query.eq('ad_type', type);
     }
 
     if (placement) {
       query = query.eq('position', placement);
     }
 
-    // حقل status لا يوجد في الجدول الجديد - تم استبداله بـ is_active
-    // if (status) {
-    //   query = query.eq('status', status);
-    // }
-
     if (isActive !== null) {
-      query = query.eq('is_active', isActive === 'true');
+      query = query.eq('enabled', isActive === 'true');
     }
 
     // ترتيب حسب الأولوية ثم تاريخ الإنشاء
@@ -88,22 +83,22 @@ export async function POST(request: NextRequest) {
     }
 
     const { data: ad, error } = await supabase
-      .from('advertisements')
+      .from('ads')
       .insert([{
         title: body.title,
-        content: body.content || body.description,
+        description: body.content || body.description,
         image_url: body.image_url,
-        target_url: body.target_url || body.link_url,
+        click_url: body.target_url || body.link_url,
         video_url: body.video_url,
-        custom_css: body.custom_css,
-        custom_js: body.custom_js,
+        css_content: body.custom_css,
+        javascript_content: body.custom_js,
         position: body.position || body.placement,
-        type: body.type || 'text',
+        ad_type: body.type || 'text',
         priority: body.priority || 1,
-        is_active: body.is_active !== false,
+        enabled: body.is_active !== false,
         start_date: body.start_date || null,
         end_date: body.end_date || null,
-        max_views: body.max_views || null,
+        max_impressions: body.max_views || null,
         max_clicks: body.max_clicks || null
       }])
       .select()

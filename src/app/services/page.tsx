@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Service } from '@/types';
 import { ServicesSection } from '@/components/ServicesSection';
 import AdBanner from '@/components/ads/AdBanner';
+import UniversalAdDisplay from '@/components/ads/UniversalAdDisplay';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 
 // إعادة التحقق من البيانات كل 60 ثانية

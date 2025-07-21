@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import UniversalAdDisplay from '@/components/ads/UniversalAdDisplay';
 
 export const metadata: Metadata = {
   title: 'من نحن - TechnoFlash',
@@ -32,6 +33,17 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
+      {/* إعلان الهيدر */}
+      <UniversalAdDisplay
+        position="header"
+        className="mb-4"
+        fallbackAd={{
+          title: "🎉 عرض خاص من Flash!",
+          description: "وفر 50% على فواتير الإنترنت والموبايل والكهرباء",
+          click_url: "https://lets.useflash.app/6gaijh"
+        }}
+      />
+
       {/* Hero Section */}
       <section className="relative py-24 px-4 overflow-hidden">
         {/* خلفية متدرجة */}

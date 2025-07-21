@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
+
 export function ProfessionalHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,7 +62,7 @@ export function ProfessionalHeader() {
 
   return (
     <>
-      <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+      <header className={`header header-interactive gradient-bg-interactive gpu-accelerated ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
           {/* Logo */}
           <Link href="/" className="logo">
@@ -80,7 +81,7 @@ export function ProfessionalHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="nav-link"
+                className="nav-link header-link gpu-accelerated"
               >
                 <span className="ml-2">{item.icon}</span>
                 {item.label}
@@ -91,7 +92,7 @@ export function ProfessionalHeader() {
           {/* User Menu & Mobile Toggle */}
           <div className="flex items-center gap-4">
             {/* Search Button */}
-            <button className="btn btn-ghost btn-sm user-menu">
+            <button className="btn btn-ghost btn-sm user-menu interactive-shadow gpu-accelerated">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -103,12 +104,12 @@ export function ProfessionalHeader() {
               <div className="user-menu">
                 {user ? (
                   <div className="flex items-center gap-2">
-                    <Link href="/admin" className="btn btn-outline btn-sm">
+                    <Link href="/admin" className="btn btn-outline btn-sm interactive-shadow gpu-accelerated">
                       لوحة التحكم
                     </Link>
-                    <button 
+                    <button
                       onClick={signOut}
-                      className="btn btn-ghost btn-sm text-error"
+                      className="btn btn-ghost btn-sm text-error interactive-shadow gpu-accelerated"
                     >
                       تسجيل الخروج
                     </button>

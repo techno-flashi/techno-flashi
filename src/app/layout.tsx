@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "../styles/article-content.css";
 import "../styles/admin-override.css";
+import "../styles/interactive-effects.css";
 import { ProfessionalHeader } from "@/components/ProfessionalHeader";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner } from "@/components/ads/TechnoFlashBanner";

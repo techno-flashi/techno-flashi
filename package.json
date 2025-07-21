@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.38.0",
+    "@types/sanitize-html": "^2.16.0",
     "@types/three": "^0.178.1",
     "isomorphic-dompurify": "^2.26.0",
     "next": "^15.1.0",
@@ -19,6 +20,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.5.2",
+    "sanitize-html": "^2.17.0",
     "swiper": "^11.2.10",
     "three": "^0.178.0"
   },

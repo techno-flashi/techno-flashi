@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import MarkdownEditor from '@/components/MarkdownEditor';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ImageManager from '@/components/ImageManager';
+import ArticleCleanerButton from '@/components/ArticleCleanerButton';
 import AdvancedImageManager from '@/components/AdvancedImageManager';
 import DragDropMarkdownEditor from '@/components/DragDropMarkdownEditor';
 import { calculateReadingTime, getCurrentISOString } from '@/utils/dateUtils';
@@ -539,6 +540,15 @@ function EditArticlePage({ params }: EditArticlePageProps) {
                 </div>
               </>
             )}
+
+            {/* زر تنظيف المقال */}
+            <div className="mb-6">
+              <ArticleCleanerButton
+                content={formData.content}
+                onContentChange={(newContent) => setFormData(prev => ({ ...prev, content: newContent }))}
+                className="w-full"
+              />
+            </div>
 
             {/* أزرار الحفظ */}
             <div className="flex justify-end space-x-4 space-x-reverse">

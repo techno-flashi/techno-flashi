@@ -4,27 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 export function SimpleHeroSection() {
+  const [mounted, setMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
   const mouseRef = useRef({ x: 0, y: 0 });
-  const particlesRef = useRef<Array<{
-    x: number;
-    y: number;
-    vx: number;
-    vy: number;
-    size: number;
-    color: string;
-    opacity: number;
-    pulse: number;
-    pulseSpeed: number;
-    rotationSpeed: number;
-    magnetism: number;
-    trail: Array<{ x: number; y: number }>;
-    energy: number;
-    type: number;
-    phase: number;
-    amplitude: number;
-  }>>([]);
+  const particlesRef = useRef<any[]>([]);
+  const animationRef = useRef<number>(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -300,7 +288,8 @@ export function SimpleHeroSection() {
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.roundRect(-size/2, -size/2, size, size, 8);
+        // استخدام rect بدلاً من roundRect للتوافق مع جميع المتصفحات
+        ctx.rect(-size/2, -size/2, size, size);
         ctx.fill();
 
         ctx.restore();
@@ -447,9 +436,9 @@ export function SimpleHeroSection() {
           ctx.arc(0, 0, finalSize, 0, Math.PI * 2);
           ctx.fill();
         } else if (particle.type === 1) {
-          // مربع مستدير الزوايا
+          // مربع
           ctx.beginPath();
-          ctx.roundRect(-finalSize, -finalSize, finalSize * 2, finalSize * 2, finalSize * 0.3);
+          ctx.rect(-finalSize, -finalSize, finalSize * 2, finalSize * 2);
           ctx.fill();
         } else {
           // نجمة
