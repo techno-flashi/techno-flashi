@@ -15,6 +15,15 @@ export function SimpleHeroSection() {
     size: number;
     color: string;
     opacity: number;
+    pulse: number;
+    pulseSpeed: number;
+    rotationSpeed: number;
+    magnetism: number;
+    trail: Array<{ x: number; y: number }>;
+    energy: number;
+    type: number;
+    phase: number;
+    amplitude: number;
   }>>([]);
 
   useEffect(() => {
