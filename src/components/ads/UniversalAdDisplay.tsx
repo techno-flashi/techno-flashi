@@ -10,7 +10,7 @@ interface Ad {
   title?: string;
   description?: string;
   image_url?: string;
-  click_url?: string;
+  link_url?: string;
   html_content?: string;
   css_content?: string;
   javascript_content?: string;
@@ -136,9 +136,9 @@ export default function UniversalAdDisplay({
   if (selectedAd.image_url) {
     return (
       <div className={`my-4 ${className}`}>
-        <Link 
-          href={selectedAd.click_url || '#'} 
-          target="_blank" 
+        <Link
+          href={selectedAd.link_url || '#'}
+          target="_blank"
           rel="noopener noreferrer"
           onClick={() => handleAdClick(selectedAd)}
         >
@@ -159,9 +159,9 @@ export default function UniversalAdDisplay({
   // إعلان نصي
   return (
     <div className={`my-4 ${className}`}>
-      <Link 
-        href={selectedAd.click_url || '#'} 
-        target="_blank" 
+      <Link
+        href={selectedAd.link_url || '#'}
+        target="_blank"
         rel="noopener noreferrer"
         onClick={() => handleAdClick(selectedAd)}
         className="block"

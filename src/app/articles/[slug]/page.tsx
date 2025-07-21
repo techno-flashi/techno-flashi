@@ -10,6 +10,7 @@ import { SmartArticleAd, SmartContentAd, SmartSharedAd } from "@/components/ads/
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
 import SpacingDebugger, { AdDebugger } from "@/components/debug/SpacingDebugger";
 import { HeaderAnimatedAd, InContentAnimatedAd, FooterAnimatedAd, SidebarAnimatedAd } from '@/components/ads/AnimatedAdRenderer';
+import UniversalAdDisplay from '@/components/ads/UniversalAdDisplay';
 
 
 import { ArticleContent } from "@/components/ArticleContent";
@@ -330,8 +331,17 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Canonical URL handled in metadata - no duplicate tags */}
 
-      {/* Header Animated Ad */}
-      <HeaderAnimatedAd currentPage={`/articles/${slug}`} className="mb-8" />
+      {/* Header Ads */}
+      <HeaderAnimatedAd currentPage={`/articles/${slug}`} className="mb-4" />
+      <UniversalAdDisplay
+        position="header"
+        className="mb-8"
+        fallbackAd={{
+          title: "🚀 TechnoFlash - دليلك للتقنية",
+          description: "اكتشف أحدث أدوات الذكاء الاصطناعي والتقنيات المتطورة",
+          click_url: "/ai-tools"
+        }}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* المحتوى الرئيسي - محسن للقراءة */}
@@ -399,8 +409,17 @@ export default async function ArticlePage({ params }: Props) {
           {/* محتوى المقال */}
           {renderArticleContent(article.content, articleImages)}
 
-          {/* In-Content Animated Ad */}
-          <InContentAnimatedAd currentPage={`/articles/${slug}`} className="my-8" />
+          {/* In-Content Ads */}
+          <InContentAnimatedAd currentPage={`/articles/${slug}`} className="my-4" />
+          <UniversalAdDisplay
+            position="in-content"
+            className="my-8"
+            fallbackAd={{
+              title: "💡 أدوات الذكاء الاصطناعي المجانية",
+              description: "اكتشف مجموعة من أفضل أدوات الذكاء الاصطناعي المجانية",
+              click_url: "/ai-tools"
+            }}
+          />
 
           {/* باقي المحتوى */}
           {/* يمكن إضافة المزيد من المحتوى هنا */}
@@ -448,16 +467,34 @@ export default async function ArticlePage({ params }: Props) {
 
 
 
-          {/* Footer Animated Ad */}
-          <FooterAnimatedAd currentPage={`/articles/${slug}`} className="mt-8" />
+          {/* Footer Ads */}
+          <FooterAnimatedAd currentPage={`/articles/${slug}`} className="mt-4" />
+          <UniversalAdDisplay
+            position="footer"
+            className="mt-8"
+            fallbackAd={{
+              title: "📚 المزيد من المقالات التقنية",
+              description: "تصفح مكتبتنا الشاملة من المقالات التقنية المتخصصة",
+              click_url: "/articles"
+            }}
+          />
         </article>
 
         {/* الشريط الجانبي - محسن للأجهزة المحمولة */}
         <aside className="lg:col-span-1 order-first lg:order-last">
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
 
-            {/* Sidebar Animated Ad */}
-            <SidebarAnimatedAd currentPage={`/articles/${slug}`} className="mb-6" />
+            {/* Sidebar Ads */}
+            <SidebarAnimatedAd currentPage={`/articles/${slug}`} className="mb-4" />
+            <UniversalAdDisplay
+              position="sidebar"
+              className="mb-6"
+              fallbackAd={{
+                title: "🔧 خدماتنا التقنية",
+                description: "استفد من خدماتنا المتخصصة في التطوير والاستشارات التقنية",
+                click_url: "/services"
+              }}
+            />
 
 
             {/* عناصر التنقل السريع */}

@@ -11,6 +11,7 @@ import { Breadcrumbs, createBreadcrumbJsonLd } from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
 import { AutoAIToolStartAd, AutoAIToolMidAd, AutoAIToolEndAd } from '@/components/ads/AutoAIToolAds';
 import { HeaderAnimatedAd, InContentAnimatedAd, FooterAnimatedAd, SidebarAnimatedAd } from '@/components/ads/AnimatedAdRenderer';
+import UniversalAdDisplay from '@/components/ads/UniversalAdDisplay';
 
 import { AIToolPageClient } from '@/components/AIToolPageClient';
 import { AIToolLink } from '@/components/AIToolLink';
@@ -232,8 +233,17 @@ export default async function AIToolPage({ params }: Props) {
             <article className="lg:col-span-3">
               <Breadcrumbs items={breadcrumbItems} />
 
-              {/* Header Animated Ad */}
-              <HeaderAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="mb-6" />
+              {/* Header Ads */}
+              <HeaderAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="mb-4" />
+              <UniversalAdDisplay
+                position="header"
+                className="mb-6"
+                fallbackAd={{
+                  title: "🤖 أدوات الذكاء الاصطناعي المتقدمة",
+                  description: "اكتشف أحدث أدوات الذكاء الاصطناعي لتطوير أعمالك",
+                  click_url: "/ai-tools"
+                }}
+              />
 
               <AutoAIToolStartAd toolName={tool.name} toolSlug={tool.slug} toolCategory={tool.category} className="mb-6" />
               
@@ -295,8 +305,17 @@ export default async function AIToolPage({ params }: Props) {
 
               <AutoAIToolMidAd toolName={tool.name} toolSlug={tool.slug} toolCategory={tool.category} className="my-8" />
 
-              {/* In-Content Animated Ad */}
-              <InContentAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="my-8" />
+              {/* In-Content Ads */}
+              <InContentAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="my-4" />
+              <UniversalAdDisplay
+                position="in-content"
+                className="my-8"
+                fallbackAd={{
+                  title: "⚡ تسريع أعمالك بالذكاء الاصطناعي",
+                  description: "استخدم أدوات الذكاء الاصطناعي لتحسين إنتاجيتك وكفاءة عملك",
+                  click_url: "/ai-tools"
+                }}
+              />
 
               {((Array.isArray(tool.pros) && tool.pros.length > 0) || (Array.isArray(tool.cons) && tool.cons.length > 0)) && (
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
@@ -360,13 +379,31 @@ export default async function AIToolPage({ params }: Props) {
               <AIToolComparisonContainer currentTool={tool} availableTools={availableTools} className="mb-8" />
               <AutoAIToolEndAd toolName={tool.name} toolSlug={tool.slug} toolCategory={tool.category} className="mb-8" />
 
-              {/* Footer Animated Ad */}
-              <FooterAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="mt-8" />
+              {/* Footer Ads */}
+              <FooterAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="mt-4" />
+              <UniversalAdDisplay
+                position="footer"
+                className="mt-8"
+                fallbackAd={{
+                  title: "🎯 المزيد من أدوات الذكاء الاصطناعي",
+                  description: "تصفح مجموعتنا الكاملة من أدوات الذكاء الاصطناعي المتخصصة",
+                  click_url: "/ai-tools"
+                }}
+              />
             </article>
 
             <aside className="lg:col-span-1">
-              {/* Sidebar Animated Ad */}
-              <SidebarAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="mb-6" />
+              {/* Sidebar Ads */}
+              <SidebarAnimatedAd currentPage={`/ai-tools/${tool.slug}`} className="mb-4" />
+              <UniversalAdDisplay
+                position="sidebar"
+                className="mb-6"
+                fallbackAd={{
+                  title: "🚀 خدمات التطوير",
+                  description: "احصل على خدمات تطوير مواقع وتطبيقات احترافية",
+                  click_url: "/services"
+                }}
+              />
 
               <div className="bg-white rounded-xl p-6 border border-gray-200 mb-6 sticky top-24 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">معلومات سريعة</h3>
