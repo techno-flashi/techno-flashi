@@ -241,7 +241,7 @@ export default async function AIToolPage({ params }: Props) {
                 fallbackAd={{
                   title: "🤖 أدوات الذكاء الاصطناعي المتقدمة",
                   description: "اكتشف أحدث أدوات الذكاء الاصطناعي لتطوير أعمالك",
-                  click_url: "/ai-tools"
+                  link_url: "/ai-tools"
                 }}
               />
 
@@ -313,7 +313,7 @@ export default async function AIToolPage({ params }: Props) {
                 fallbackAd={{
                   title: "⚡ تسريع أعمالك بالذكاء الاصطناعي",
                   description: "استخدم أدوات الذكاء الاصطناعي لتحسين إنتاجيتك وكفاءة عملك",
-                  click_url: "/ai-tools"
+                  link_url: "/ai-tools"
                 }}
               />
 
@@ -387,7 +387,7 @@ export default async function AIToolPage({ params }: Props) {
                 fallbackAd={{
                   title: "🎯 المزيد من أدوات الذكاء الاصطناعي",
                   description: "تصفح مجموعتنا الكاملة من أدوات الذكاء الاصطناعي المتخصصة",
-                  click_url: "/ai-tools"
+                  link_url: "/ai-tools"
                 }}
               />
             </article>
@@ -401,7 +401,7 @@ export default async function AIToolPage({ params }: Props) {
                 fallbackAd={{
                   title: "🚀 خدمات التطوير",
                   description: "احصل على خدمات تطوير مواقع وتطبيقات احترافية",
-                  click_url: "/services"
+                  link_url: "/services"
                 }}
               />
 

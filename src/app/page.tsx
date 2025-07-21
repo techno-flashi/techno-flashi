@@ -71,7 +71,7 @@ export default async function HomePage() {
         fallbackAd={{
           title: "🎉 عرض خاص من Flash!",
           description: "وفر 50% على فواتير الإنترنت والموبايل والكهرباء",
-          click_url: "https://lets.useflash.app/6gaijh"
+          link_url: "https://lets.useflash.app/6gaijh"
         }}
       />
 
@@ -150,7 +150,7 @@ export default async function HomePage() {
         fallbackAd={{
           title: "💳 Flash - ادفع فواتيرك بذكاء",
           description: "خصم 50% على فواتير الإنترنت، الموبايل، الكهرباء، والمياه • 🎯 سهل • سريع • آمن",
-          click_url: "https://lets.useflash.app/6gaijh"
+          link_url: "https://lets.useflash.app/6gaijh"
         }}
       />
 
@@ -352,7 +352,7 @@ export default async function HomePage() {
         fallbackAd={{
           title: "🚀 جرب Flash الآن",
           description: "وفر 50% على جميع فواتيرك مع Flash",
-          click_url: "https://lets.useflash.app/6gaijh"
+          link_url: "https://lets.useflash.app/6gaijh"
         }}
       />
 

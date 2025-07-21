@@ -339,7 +339,7 @@ export default async function ArticlePage({ params }: Props) {
         fallbackAd={{
           title: "🚀 TechnoFlash - دليلك للتقنية",
           description: "اكتشف أحدث أدوات الذكاء الاصطناعي والتقنيات المتطورة",
-          click_url: "/ai-tools"
+          link_url: "/ai-tools"
         }}
       />
 
@@ -417,7 +417,7 @@ export default async function ArticlePage({ params }: Props) {
             fallbackAd={{
               title: "💡 أدوات الذكاء الاصطناعي المجانية",
               description: "اكتشف مجموعة من أفضل أدوات الذكاء الاصطناعي المجانية",
-              click_url: "/ai-tools"
+              link_url: "/ai-tools"
             }}
           />
 
@@ -475,7 +475,7 @@ export default async function ArticlePage({ params }: Props) {
             fallbackAd={{
               title: "📚 المزيد من المقالات التقنية",
               description: "تصفح مكتبتنا الشاملة من المقالات التقنية المتخصصة",
-              click_url: "/articles"
+              link_url: "/articles"
             }}
           />
         </article>
@@ -492,7 +492,7 @@ export default async function ArticlePage({ params }: Props) {
               fallbackAd={{
                 title: "🔧 خدماتنا التقنية",
                 description: "استفد من خدماتنا المتخصصة في التطوير والاستشارات التقنية",
-                click_url: "/services"
+                link_url: "/services"
               }}
             />
 

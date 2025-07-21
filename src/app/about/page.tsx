@@ -40,7 +40,7 @@ export default function AboutPage() {
         fallbackAd={{
           title: "🎉 عرض خاص من Flash!",
           description: "وفر 50% على فواتير الإنترنت والموبايل والكهرباء",
-          click_url: "https://lets.useflash.app/6gaijh"
+          link_url: "https://lets.useflash.app/6gaijh"
         }}
       />
 

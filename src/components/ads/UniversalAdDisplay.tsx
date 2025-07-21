@@ -28,7 +28,7 @@ interface UniversalAdDisplayProps {
     title: string;
     description: string;
     image_url?: string;
-    click_url: string;
+    link_url: string;
   };
 }
 
@@ -91,9 +91,9 @@ export default function UniversalAdDisplay({
     if (fallbackAd) {
       return (
         <div className={`my-4 ${className}`}>
-          <Link 
-            href={fallbackAd.click_url} 
-            target="_blank" 
+          <Link
+            href={fallbackAd.link_url || '#'}
+            target="_blank"
             rel="noopener noreferrer"
             className="block"
           >
