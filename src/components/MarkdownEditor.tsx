@@ -1,45 +1,51 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, forwardRef } from 'react';
 
 interface MarkdownEditorProps {
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  content?: string;
+  onChange?: (value: string) => void;
+  onClick?: (e: React.MouseEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
   className?: string;
 }
 
-export default function MarkdownEditor({
+const MarkdownEditor = forwardRef<HTMLTextAreaElement, MarkdownEditorProps>(({
   value,
+  content,
   onChange,
+  onClick,
   placeholder = "اكتب محتواك هنا...",
   className = ""
-}: MarkdownEditorProps) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+}, ref) => {
+  const internalRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = ref || internalRef;
   const [showHelp, setShowHelp] = useState(false);
+  const currentValue = value || content || '';
 
   // Auto-resize textarea
   useEffect(() => {
-    const textarea = textareaRef.current;
+    const textarea = typeof textareaRef === 'object' && textareaRef?.current ? textareaRef.current : null;
     if (textarea) {
       textarea.style.height = 'auto';
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
-  }, [value]);
+  }, [currentValue]);
 
   const insertText = (before: string, after: string = '', placeholder: string = '') => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
+    const textarea = typeof textareaRef === 'object' && textareaRef?.current ? textareaRef.current : null;
+    if (!textarea || !onChange) return;
 
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
-    const selectedText = value.substring(start, end);
+    const selectedText = currentValue.substring(start, end);
     const textToInsert = selectedText || placeholder;
 
     const newValue =
-      value.substring(0, start) +
+      currentValue.substring(0, start) +
       before + textToInsert + after +
-      value.substring(end);
+      currentValue.substring(end);
 
     onChange(newValue);
 
@@ -157,18 +163,23 @@ export default function MarkdownEditor({
       {/* Editor */}
       <textarea
         ref={textareaRef}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={currentValue}
+        onChange={(e) => onChange && onChange(e.target.value)}
+        onClick={onClick}
         placeholder={placeholder}
-        className="w-full min-h-[400px] p-4 bg-white text-gray-900 resize-none focus:outline-none font-mono border-0 focus:ring-2 focus:ring-blue-500"
+        className={`w-full min-h-[400px] p-4 bg-white text-gray-900 resize-none focus:outline-none font-mono border-0 focus:ring-2 focus:ring-blue-500 ${className}`}
         style={{ minHeight: '400px' }}
       />
 
       {/* Footer */}
       <div className="flex justify-between items-center p-3 border-t border-gray-200 bg-gray-50 text-sm text-gray-600">
-        <span>عدد الكلمات: {value.trim().split(/\s+/).filter(word => word.length > 0).length}</span>
-        <span>عدد الأحرف: {value.length}</span>
+        <span>عدد الكلمات: {currentValue.trim().split(/\s+/).filter(word => word.length > 0).length}</span>
+        <span>عدد الأحرف: {currentValue.length}</span>
       </div>
     </div>
   );
-}
+});
+
+MarkdownEditor.displayName = 'MarkdownEditor';
+
+export default MarkdownEditor;

@@ -85,7 +85,7 @@ const nextConfig = {
       },
     ],
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self' https:; script-src 'none'; sandbox;",
   },
 
   // إعدادات إعادة التوجيه
@@ -132,16 +132,17 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval';
-              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-              style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
-              img-src 'self' data: https:;
-              font-src 'self' https://fonts.gstatic.com;
-              connect-src 'self' https:;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com;
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com;
+              style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com;
+              img-src 'self' data: https: blob:;
+              font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
+              connect-src 'self' https: wss: https://zgktrwpladrkhhemhnni.supabase.co;
               object-src 'none';
               frame-ancestors 'self';
               base-uri 'self';
               form-action 'self';
+              media-src 'self' https: data:;
             `.replace(/\s{2,}/g, ' ').trim()
           }
         ]

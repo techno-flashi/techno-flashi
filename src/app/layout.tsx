@@ -96,27 +96,12 @@ export default function RootLayout({
 
 
 
-        {/* Local WOFF2 Fonts Preload - Performance Optimized */}
+        {/* Optimized Font Loading - Preconnect Only */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          rel="preload"
-          href="/fonts/Cairo-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Cairo-Bold.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Roboto-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+          rel="stylesheet"
         />
 
         {/* Advanced Resource Hints for Performance */}
@@ -132,15 +117,21 @@ export default function RootLayout({
 
 
         
-        {/* Emergency Critical CSS - Minimal for 90+ score */}
+        {/* Critical CSS - Minimal for Performance */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            @font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6Hkvalr5TbCmxdt0UX8.woff2') format('woff2')}
-            body{font-family:'Cairo',system-ui,sans-serif;font-display:swap;margin:0;padding:0}
             *{box-sizing:border-box}
+            body{
+              font-family:'Cairo',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+              margin:0;
+              padding:0;
+              line-height:1.6;
+              font-display:swap;
+            }
             img{max-width:100%;height:auto;display:block}
             .header{height:80px;min-height:80px}
             @media (min-width:768px){.header{height:88px;min-height:88px}}
+            .loading{opacity:0.7;pointer-events:none}
           `
         }} />
 
@@ -150,7 +141,7 @@ export default function RootLayout({
         <DynamicCodeInjection position="head_end" />
       </head>
 
-      <body className="bg-white text-text-primary font-sans">
+      <body className="bg-white text-text-primary font-sans" suppressHydrationWarning={true}>
         {/* Dynamic Code Injection - BODY START */}
         <DynamicCodeInjection position="body_start" />
 

@@ -1,0 +1,21 @@
+/* تكوين الخطوط المحسن - تم إنشاؤه تلقائياً */
+@layer base {
+  /* خط Cairo الأساسي فقط */
+  body {
+    font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-display: swap;
+  }
+  
+  /* تحسين عرض الخطوط */
+  * {
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* تحسين الأداء */
+  img, video {
+    content-visibility: auto;
+  }
+}

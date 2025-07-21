@@ -163,11 +163,11 @@ export function AdNetworkVerifier({
         return;
       }
 
-      if (attempts < 10) {
+      if (attempts < 3) {
         setAttempts(prev => prev + 1);
-        setTimeout(checkVerification, 1000);
+        setTimeout(checkVerification, 2000);
       } else {
-        console.log(`❌ ${networkName} verification failed after 10 attempts`);
+        console.warn(`⚠️ ${networkName} verification failed after 3 attempts`);
       }
     };
 

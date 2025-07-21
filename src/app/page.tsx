@@ -3,7 +3,7 @@
 import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { getLatestArticlesOptimized } from "@/lib/database";
 import { FeaturedArticlesSection } from "@/components/FeaturedArticlesSection";
-import { ServicesSection } from "@/components/ServicesSection";
+
 import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import SponsorsSection from "@/components/SponsorsSection";
@@ -11,10 +11,13 @@ import AdBannerTop from "@/components/AdBannerTop";
 import { InContentAnimatedAd } from "@/components/ads/AnimatedAdRenderer";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
+import { SimpleHeroSection } from "@/components/SimpleHeroSection";
+import LatestAIToolsSection from "@/components/LatestAIToolsSection";
 
 import SocialShare from "@/components/SocialShare";
 import { getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
-import YouTubeSection from "@/components/YouTubeSection";
+
+import Link from "next/link";
 
 import { ArticleSummary, AITool, Service } from "@/types";
 
@@ -50,83 +53,15 @@ async function getLatestArticles() {
 
 
 
-async function getLatestServices() {
-  try {
-    // جلب الخدمات مباشرة من Supabase بدلاً من API
-    const { data, error } = await supabase
-      .from('services')
-      .select('*')
-      .eq('status', 'active')
-      // إزالة فلتر featured مؤقتاً لعرض جميع الخدمات النشطة
-      .order('display_order', { ascending: true })
-      .order('created_at', { ascending: false })
-      .limit(3);
 
-    if (error) {
-      console.error('Error fetching services from database:', error);
-      return [];
-    }
-
-    console.log('Services fetched from database:', data?.length || 0);
-
-    // إصلاح encoding النص العربي
-    const fixedData = data?.map(service => fixObjectEncoding(service)) || [];
-    return fixedData as Service[];
-  } catch (error) {
-    console.error('Error fetching services:', error);
-    return [];
-  }
-}
 
 export default async function HomePage() {
   const latestArticles = await getLatestArticles();
-  const latestServices = await getLatestServices();
 
   return (
     <div>
-      {/* Hero Section - Modern Design */}
-      <section className="relative pt-24 pb-28 overflow-hidden bg-slate-50">
-        {/* عناصر هندسية متحركة */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-pink-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-
-        {/* المحتوى الرئيسي */}
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          {/* Tagline */}
-          <div className="inline-block bg-white/50 backdrop-blur-sm text-purple-800 text-sm font-semibold px-4 py-2 rounded-full mb-5">
-            ✨ بوابتك للمستقبل التقني
-          </div>
-          {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4">
-            مستقبلك التقني<br />يبدأ من هنا
-          </h1>
-
-          {/* Subtitle */}
-          <p className="max-w-3xl mx-auto text-lg text-slate-700 mb-8">
-            اكتشف أحدث التقنيات، أدوات الذكاء الاصطناعي المتطورة، ومقالات تقنية متخصصة لتطوير مهاراتك ومواكبة عالم التكنولوجيا المتسارع.
-          </p>
-
-
-
-          {/* Action Buttons */}
-          <div className="flex justify-center items-center space-x-4 rtl:space-x-reverse mb-12">
-            <a href="/articles" className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-600 transition-all transform hover:scale-105 font-semibold">
-              ابدأ الاستكشاف
-            </a>
-            <a href="/services" className="bg-white text-slate-700 px-8 py-3 rounded-lg shadow-md hover:bg-slate-100 transition-all font-semibold flex items-center space-x-2 rtl:space-x-reverse">
-              <span>تصفح الخدمات</span>
-              <span className="text-lg">←</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-
-
-
+      {/* Hero Section */}
+      <SimpleHeroSection />
 
       {/* قسم المميزات المحدث بتصميم 2025 */}
       <section className="py-24 px-4 bg-white relative overflow-hidden">
@@ -242,11 +177,13 @@ export default async function HomePage() {
       {/* Performance optimized sections with lazy loading */}
       <PerformanceOptimizer
         latestArticles={latestArticles}
-        latestServices={latestServices}
       />
 
       {/* إعلان بين الأقسام */}
       <InContentAnimatedAd currentPage="/" className="my-12" />
+
+      {/* قسم أحدث أدوات الذكاء الاصطناعي */}
+      <LatestAIToolsSection />
 
 
 
@@ -284,8 +221,7 @@ export default async function HomePage() {
       {/* قسم الرعاة */}
       <SponsorsSection />
 
-      {/* قسم اليوتيوب */}
-      <YouTubeSection />
+
 
       {/* قسم مشاركة الموقع */}
       <section className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-gray-100">

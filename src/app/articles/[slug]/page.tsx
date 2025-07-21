@@ -394,6 +394,8 @@ export default async function ArticlePage({ params }: Props) {
             />
           </div>
 
+          {/* Article Images Debug Info - Removed for cleaner UI */}
+
           {/* محتوى المقال */}
           {renderArticleContent(article.content, articleImages)}
 
@@ -586,6 +588,7 @@ export default async function ArticlePage({ params }: Props) {
                         src={relatedArticle.featured_image_url}
                         alt={relatedArticle.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         style={{ objectFit: "cover" }}
                         className="group-hover:scale-105 transition-transform duration-300"
                       />

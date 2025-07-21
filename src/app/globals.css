@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Local WOFF2 Fonts Only - No External Dependencies */
+/* Local fonts are loaded via layout.tsx for better performance */
+/* Removed Google Fonts import to prevent duplicate loading */
 
 /* استيراد CSS الإعلانات */
 @import '../styles/ads.css';
@@ -16,17 +17,43 @@
 /* استيراد نظام الألوان الحديث لعام 2025 */
 @import '../styles/modern-2025-colors.css';
 
-/* استيراد الخطوط المحلية */
-@import '../styles/local-fonts.css';
+/* استيراد الخطوط المحلية - تم التعطيل مؤقتاً لحل مشكلة 404 */
+/* @import '../styles/local-fonts.css'; */
 
 /* استيراد نظام التصميم الاحترافي */
 @import '../styles/professional-design-system.css';
 @import '../styles/professional-components.css';
 
-/* Font Family Configuration */
+/* RTL Support for Arabic Content */
+@layer base {
+  html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+
+  html[dir="rtl"] .text-left {
+    text-align: right;
+  }
+
+  html[dir="rtl"] .text-right {
+    text-align: left;
+  }
+
+  html[dir="rtl"] .ml-auto {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  html[dir="rtl"] .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+
+/* Font Family Configuration - Using Local Fonts Only */
 @layer base {
   body {
-    font-family: 'Cairo', 'Inter', sans-serif;
+    font-family: 'Cairo', 'Amiri', sans-serif;
   }
 }
 
@@ -341,7 +368,7 @@
   }
 
   .text-description, .text-caption, .text-meta {
-    color: #666666; /* الوصف/الحواشي/Metadata */
+    color: #64748b; /* الوصف/الحواشي/Metadata للثيم الفاتح */
     font-size: 14px;
     font-weight: 400;
   }
@@ -430,19 +457,19 @@
 @layer components {
   /* الأزرار بالألوان الموحدة */
   .btn-primary {
-    @apply bg-primary hover:bg-primary-hover text-black px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
     font-size: 16px;
     font-weight: 500;
   }
 
   .btn-secondary {
-    @apply bg-secondary hover:bg-orange-600 text-black px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-secondary-600 hover:bg-secondary-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
     font-size: 16px;
     font-weight: 500;
   }
 
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-black px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
     font-size: 16px;
     font-weight: 500;
   }
@@ -468,19 +495,19 @@
     @apply max-w-6xl mx-auto;
   }
 
-  /* فئات النصوص الموحدة */
-  .text-primary {
-    color: #1C1C1C; /* النص الرئيسي */
+  /* فئات النصوص الموحدة - Light Theme */
+  .text-primary-custom {
+    color: #1e293b; /* النص الرئيسي للثيم الفاتح */
     font-weight: 400;
   }
 
   .text-secondary {
-    color: #4A4A4A; /* العناوين الثانوية */
+    color: #475569; /* العناوين الثانوية للثيم الفاتح */
     font-weight: 500;
   }
 
   .text-description {
-    color: #666666; /* الوصف/الحواشي */
+    color: #64748b; /* الوصف/الحواشي للثيم الفاتح */
     font-size: 14px;
     font-weight: 400;
   }

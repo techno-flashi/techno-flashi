@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import React from 'react';
+import Image from 'next/image';
 import ArticleImageGallery from './ArticleImageGallery';
 
 interface MarkdownPreviewProps {
@@ -80,16 +81,112 @@ export default function MarkdownPreview({ content, className = '', articleImages
     const lines = text.split('\n');
     let currentParagraph = '';
     let key = 0;
+    let autoImageIndex = 0; // فهرس الصورة التلقائية
+
+    // معالجة مراجع الصور [صورة:رقم]
+    const processImageReferences = (content: string): React.ReactNode[] => {
+      // تقسيم المحتوى بناءً على مراجع الصور
+      const parts = content.split(/(\[صورة:\d+\])/g);
+      const processedParts: React.ReactNode[] = [];
+
+      parts.forEach((part, index) => {
+        const imageMatch = part.match(/\[صورة:(\d+)\]/);
+
+        if (imageMatch) {
+          const imageNumber = parseInt(imageMatch[1]) - 1; // تحويل إلى فهرس (0-based)
+          const image = articleImages?.[imageNumber];
+
+          if (image) {
+            processedParts.push(
+              <div key={`ref-image-${key++}`} className="my-8 w-full">
+                <div className="relative w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg bg-gray-900 border border-gray-700">
+                  <div className="relative w-full" style={{ aspectRatio: '16/9', minHeight: '300px', maxHeight: '500px' }}>
+                    <Image
+                      src={image.image_url}
+                      alt={image.alt_text || image.caption || `صورة ${imageNumber + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                      className="object-cover"
+                      loading="lazy"
+                      quality={85}
+                    />
+                    {image.caption && (
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                        <p className="text-white text-sm text-center font-medium">
+                          {image.caption}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  {/* رقم الصورة */}
+                  <div className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded shadow-lg">
+                    صورة {imageNumber + 1}
+                  </div>
+                  {/* مؤشر المرجع */}
+                  <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow-lg">
+                    [صورة:{imageNumber + 1}]
+                  </div>
+                </div>
+              </div>
+            );
+          } else {
+            // إذا لم توجد الصورة، اعرض رسالة خطأ مفصلة
+            processedParts.push(
+              <div key={`missing-image-${key++}`} className="my-4 p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
+                <div className="flex items-center justify-center text-red-400">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                  <div>
+                    <p className="font-medium">الصورة رقم {imageNumber + 1} غير موجودة</p>
+                    <p className="text-xs text-red-300 mt-1">
+                      تأكد من رفع الصورة أو تحديث رقم المرجع
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        } else if (part.trim()) {
+          // معالجة النص العادي مع الحفاظ على التنسيق
+          const processedText = processInlineMarkdown(part);
+          if (processedText) {
+            processedParts.push(
+              <span key={`text-${index}`} className="inline">
+                {processedText}
+              </span>
+            );
+          }
+        }
+      });
+
+      return processedParts;
+    };
 
     const flushParagraph = () => {
       if (currentParagraph.trim()) {
-        // معالجة النص داخل الفقرة
-        const processedText = processInlineMarkdown(currentParagraph.trim());
-        elements.push(
-          <p key={key++} className="mb-4 text-dark-text-secondary leading-relaxed">
-            {processedText}
-          </p>
-        );
+        // تحقق من وجود مراجع صور في الفقرة
+        if (currentParagraph.includes('[صورة:')) {
+          // معالجة مراجع الصور
+          const processedContent = processImageReferences(currentParagraph.trim());
+          elements.push(
+            <div key={key++} className="mb-4">
+              {processedContent}
+            </div>
+          );
+        } else {
+          // معالجة النص العادي
+          const processedText = processInlineMarkdown(currentParagraph.trim());
+          elements.push(
+            <p key={key++} className="mb-4 text-dark-text-secondary leading-relaxed">
+              {processedText}
+            </p>
+          );
+
+          // تم إيقاف الإضافة التلقائية للصور - يتم عرض الصور فقط عبر المراجع [صورة:رقم]
+          // أو الروابط المباشرة التي يضعها المحرر يدوياً
+        }
+
         currentParagraph = '';
       }
     };

@@ -98,10 +98,10 @@ const LazyComponent = ({
 // Main performance optimizer component
 interface PerformanceOptimizerProps {
   latestArticles: any[];
-  latestServices: any[];
+  latestServices?: any[];
 }
 
-export function PerformanceOptimizer({ latestArticles, latestServices }: PerformanceOptimizerProps) {
+export function PerformanceOptimizer({ latestArticles, latestServices = [] }: PerformanceOptimizerProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -134,12 +134,14 @@ export function PerformanceOptimizer({ latestArticles, latestServices }: Perform
         </Suspense>
       </LazyComponent>
 
-      {/* Lazy load services section */}
-      <LazyComponent fallback={<ServicesSkeleton />}>
-        <Suspense fallback={<ServicesSkeleton />}>
-          <LazyServicesSection services={latestServices} />
-        </Suspense>
-      </LazyComponent>
+      {/* Lazy load services section - only if services are provided */}
+      {latestServices && latestServices.length > 0 && (
+        <LazyComponent fallback={<ServicesSkeleton />}>
+          <Suspense fallback={<ServicesSkeleton />}>
+            <LazyServicesSection services={latestServices} />
+          </Suspense>
+        </LazyComponent>
+      )}
     </>
   );
 }

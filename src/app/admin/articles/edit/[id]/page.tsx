@@ -8,6 +8,8 @@ import toast from 'react-hot-toast';
 import MarkdownEditor from '@/components/MarkdownEditor';
 import MarkdownPreview from '@/components/MarkdownPreview';
 import ImageManager from '@/components/ImageManager';
+import AdvancedImageManager from '@/components/AdvancedImageManager';
+import DragDropMarkdownEditor from '@/components/DragDropMarkdownEditor';
 import { calculateReadingTime, getCurrentISOString } from '@/utils/dateUtils';
 import Link from 'next/link';
 
@@ -20,6 +22,7 @@ function EditArticlePage({ params }: EditArticlePageProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [previewMode, setPreviewMode] = useState(false);
+  const [useAdvancedEditor, setUseAdvancedEditor] = useState(true);
   const [articleId, setArticleId] = useState<string>('');
   
   // بيانات المقال
@@ -166,15 +169,23 @@ function EditArticlePage({ params }: EditArticlePageProps) {
     }).join('\n\n');
   };
 
-  // دالة لإدراج صورة في المحرر
+  // دالة لإدراج صورة في المحرر (النظام القديم)
   const handleImageInsert = (imageUrl: string, caption?: string) => {
-    const imageMarkdown = caption 
+    const imageMarkdown = caption
       ? `![${caption}](${imageUrl})\n*${caption}*\n\n`
       : `![صورة](${imageUrl})\n\n`;
-    
+
     setFormData(prev => ({
       ...prev,
       content: prev.content + imageMarkdown
+    }));
+  };
+
+  // دالة لإدراج مرجع صورة في المحرر (النظام الجديد)
+  const handleImageReferenceInsert = (imageReference: string, imageData: any) => {
+    setFormData(prev => ({
+      ...prev,
+      content: prev.content + '\n\n' + imageReference + '\n\n'
     }));
   };
 
@@ -419,46 +430,115 @@ function EditArticlePage({ params }: EditArticlePageProps) {
               </div>
             </div>
 
-            {/* إدارة الصور */}
-            <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
-              <h2 className="text-xl font-semibold text-white mb-4">إدارة صور المقال</h2>
-              <ImageManager
-                articleId={articleId}
-                images={articleImages}
-                onImagesChange={setArticleImages}
-                onImageInsert={handleImageInsert}
-                maxImages={20}
-              />
+            {/* اختيار نوع المحرر */}
+            <div className="bg-dark-card rounded-xl p-4 border border-gray-800">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-white">نوع المحرر</h3>
+                <div className="flex items-center gap-4">
+                  <label className="flex items-center gap-2 text-white">
+                    <input
+                      type="radio"
+                      name="editorType"
+                      checked={useAdvancedEditor}
+                      onChange={() => setUseAdvancedEditor(true)}
+                      className="text-purple-600"
+                    />
+                    محرر متقدم (سحب وإفلات)
+                  </label>
+                  <label className="flex items-center gap-2 text-white">
+                    <input
+                      type="radio"
+                      name="editorType"
+                      checked={!useAdvancedEditor}
+                      onChange={() => setUseAdvancedEditor(false)}
+                      className="text-purple-600"
+                    />
+                    محرر تقليدي
+                  </label>
+                </div>
+              </div>
             </div>
 
-            {/* محرر المحتوى */}
-            <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-white">محتوى المقال</h2>
-                <button
-                  type="button"
-                  onClick={() => setPreviewMode(!previewMode)}
-                  className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
-                >
-                  {previewMode ? 'تحرير' : 'معاينة'}
-                </button>
-              </div>
+            {useAdvancedEditor ? (
+              /* المحرر المتقدم مع إدارة الصور */
+              <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-semibold text-white">محرر المحتوى المتقدم</h2>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-gray-400">
+                      {articleImages.length} صورة متاحة
+                    </span>
+                  </div>
+                </div>
 
-              {previewMode ? (
-                <div className="min-h-[400px] p-4 bg-dark-background rounded-lg border border-gray-700">
-                  <MarkdownPreview 
-                    content={formData.content} 
-                    articleImages={articleImages}
+                {/* إدارة الصور المتقدمة */}
+                <div className="mb-6">
+                  <AdvancedImageManager
+                    articleId={articleId}
+                    images={articleImages}
+                    onImagesChange={setArticleImages}
+                    onImageInsert={handleImageReferenceInsert}
+                    content={formData.content}
+                    onContentChange={(content) => setFormData(prev => ({ ...prev, content }))}
+                    maxImages={20}
                   />
                 </div>
-              ) : (
-                <MarkdownEditor
-                  value={formData.content}
-                  onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
-                  placeholder="اكتب محتوى المقال هنا باستخدام Markdown..."
+
+                {/* المحرر مع السحب والإفلات */}
+                <DragDropMarkdownEditor
+                  content={formData.content}
+                  onContentChange={(content) => setFormData(prev => ({ ...prev, content }))}
+                  images={articleImages}
+                  previewMode={previewMode}
+                  onPreviewModeChange={setPreviewMode}
+                  articleImages={articleImages}
                 />
-              )}
-            </div>
+              </div>
+            ) : (
+              /* النظام التقليدي */
+              <>
+                {/* إدارة الصور التقليدية */}
+                <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
+                  <h2 className="text-xl font-semibold text-white mb-4">إدارة صور المقال</h2>
+                  <ImageManager
+                    articleId={articleId}
+                    images={articleImages}
+                    onImagesChange={setArticleImages}
+                    onImageInsert={handleImageInsert}
+                    maxImages={20}
+                  />
+                </div>
+
+                {/* محرر المحتوى التقليدي */}
+                <div className="bg-dark-card rounded-xl p-6 border border-gray-800">
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-semibold text-white">محتوى المقال</h2>
+                    <button
+                      type="button"
+                      onClick={() => setPreviewMode(!previewMode)}
+                      className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                    >
+                      {previewMode ? 'تحرير' : 'معاينة'}
+                    </button>
+                  </div>
+
+                  {previewMode ? (
+                    <div className="min-h-[400px] p-4 bg-dark-background rounded-lg border border-gray-700">
+                      <MarkdownPreview
+                        content={formData.content}
+                        articleImages={articleImages}
+                      />
+                    </div>
+                  ) : (
+                    <MarkdownEditor
+                      value={formData.content}
+                      onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
+                      placeholder="اكتب محتوى المقال هنا باستخدام Markdown..."
+                    />
+                  )}
+                </div>
+              </>
+            )}
 
             {/* أزرار الحفظ */}
             <div className="flex justify-end space-x-4 space-x-reverse">
