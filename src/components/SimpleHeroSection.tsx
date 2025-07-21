@@ -33,29 +33,33 @@ export function SimpleHeroSection() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // إنشاء الجسيمات الذكية المتطورة
+    // إنشاء الجسيمات الذكية المتطورة مع تحسينات جديدة
     const createParticles = () => {
       const particles = [];
       const colors = [
         '#8b5cf6', '#a855f7', '#c084fc', '#d8b4fe', '#e879f9', '#f0abfc',
-        '#fbbf24', '#f59e0b', '#06b6d4', '#0891b2', '#10b981', '#059669'
+        '#fbbf24', '#f59e0b', '#06b6d4', '#0891b2', '#10b981', '#059669',
+        '#f97316', '#ea580c', '#dc2626', '#b91c1c', '#7c3aed', '#6d28d9'
       ];
 
-      for (let i = 0; i < 150; i++) {
+      for (let i = 0; i < 200; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1.5,
-          vy: (Math.random() - 0.5) * 1.5,
-          size: Math.random() * 6 + 1,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+          size: Math.random() * 8 + 2,
           color: colors[Math.floor(Math.random() * colors.length)],
-          opacity: Math.random() * 0.6 + 0.2,
+          opacity: Math.random() * 0.8 + 0.2,
           pulse: Math.random() * Math.PI * 2,
-          pulseSpeed: 0.01 + Math.random() * 0.03,
-          rotationSpeed: (Math.random() - 0.5) * 0.03,
-          magnetism: Math.random() * 0.5 + 0.5, // قوة الجذب للماوس
+          pulseSpeed: 0.008 + Math.random() * 0.04,
+          rotationSpeed: (Math.random() - 0.5) * 0.05,
+          magnetism: Math.random() * 0.8 + 0.6, // قوة جذب أقوى
           trail: [], // مسار الجسيمة
-          energy: Math.random() * 100 + 50 // طاقة الجسيمة
+          energy: Math.random() * 100 + 50, // طاقة الجسيمة
+          type: Math.floor(Math.random() * 3), // نوع الجسيمة (دائرة، مربع، نجمة)
+          phase: Math.random() * Math.PI * 2, // طور للحركة الموجية
+          amplitude: Math.random() * 20 + 10 // سعة الحركة الموجية
         });
       }
 
@@ -102,48 +106,89 @@ export function SimpleHeroSection() {
       const mouseX = mouseRef.current.x * canvas.width * 0.5 + canvas.width * 0.5;
       const mouseY = mouseRef.current.y * canvas.height * 0.5 + canvas.height * 0.5;
 
-      // رسم هالة تتبع الماوس المتوهجة
+      // رسم هالة تتبع الماوس المتوهجة المحسنة
       if (mouseRef.current.x !== 0 || mouseRef.current.y !== 0) {
-        const mouseGlowSize = 100 + Math.sin(time * 3) * 20;
-        const mouseGradient = ctx.createRadialGradient(
+        // هالة خارجية كبيرة
+        const outerGlowSize = 150 + Math.sin(time * 2) * 30;
+        const outerGradient = ctx.createRadialGradient(
           mouseX, mouseY, 0,
-          mouseX, mouseY, mouseGlowSize
+          mouseX, mouseY, outerGlowSize
         );
 
-        mouseGradient.addColorStop(0, `rgba(168, 85, 247, ${0.15 + Math.sin(time * 2) * 0.05})`);
-        mouseGradient.addColorStop(0.3, `rgba(236, 72, 153, ${0.1 + Math.sin(time * 2.5) * 0.03})`);
-        mouseGradient.addColorStop(0.6, `rgba(251, 191, 36, ${0.05 + Math.sin(time * 3) * 0.02})`);
-        mouseGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        outerGradient.addColorStop(0, `rgba(168, 85, 247, ${0.2 + Math.sin(time * 1.5) * 0.08})`);
+        outerGradient.addColorStop(0.2, `rgba(236, 72, 153, ${0.15 + Math.sin(time * 2) * 0.06})`);
+        outerGradient.addColorStop(0.4, `rgba(251, 191, 36, ${0.1 + Math.sin(time * 2.5) * 0.04})`);
+        outerGradient.addColorStop(0.6, `rgba(6, 182, 212, ${0.08 + Math.sin(time * 3) * 0.03})`);
+        outerGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
-        ctx.fillStyle = mouseGradient;
+        ctx.fillStyle = outerGradient;
         ctx.beginPath();
-        ctx.arc(mouseX, mouseY, mouseGlowSize, 0, Math.PI * 2);
+        ctx.arc(mouseX, mouseY, outerGlowSize, 0, Math.PI * 2);
         ctx.fill();
 
-        // رسم دائرة مركزية صغيرة متوهجة
+        // هالة متوسطة
+        const midGlowSize = 80 + Math.sin(time * 3) * 15;
+        const midGradient = ctx.createRadialGradient(
+          mouseX, mouseY, 0,
+          mouseX, mouseY, midGlowSize
+        );
+
+        midGradient.addColorStop(0, `rgba(139, 92, 246, ${0.3 + Math.sin(time * 2.5) * 0.1})`);
+        midGradient.addColorStop(0.5, `rgba(168, 85, 247, ${0.2 + Math.sin(time * 3) * 0.08})`);
+        midGradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+
+        ctx.fillStyle = midGradient;
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, midGlowSize, 0, Math.PI * 2);
+        ctx.fill();
+
+        // دائرة مركزية نابضة
+        const centerSize = 20 + Math.sin(time * 4) * 8;
         const centerGradient = ctx.createRadialGradient(
           mouseX, mouseY, 0,
-          mouseX, mouseY, 15
+          mouseX, mouseY, centerSize
         );
-        centerGradient.addColorStop(0, `rgba(255, 255, 255, ${0.8 + Math.sin(time * 4) * 0.2})`);
+        centerGradient.addColorStop(0, `rgba(255, 255, 255, ${0.9 + Math.sin(time * 5) * 0.1})`);
+        centerGradient.addColorStop(0.7, `rgba(168, 85, 247, ${0.6 + Math.sin(time * 4) * 0.2})`);
         centerGradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
 
         ctx.fillStyle = centerGradient;
         ctx.beginPath();
-        ctx.arc(mouseX, mouseY, 15, 0, Math.PI * 2);
+        ctx.arc(mouseX, mouseY, centerSize, 0, Math.PI * 2);
         ctx.fill();
 
-        // رسم موجات تنتشر من موضع الماوس
-        for (let i = 0; i < 3; i++) {
-          const waveRadius = 50 + (time * 100 + i * 50) % 200;
-          const waveAlpha = Math.max(0, 0.3 - (waveRadius / 200) * 0.3);
+        // رسم موجات متطورة تنتشر من موضع الماوس
+        for (let i = 0; i < 5; i++) {
+          const waveRadius = 30 + (time * 80 + i * 40) % 250;
+          const waveAlpha = Math.max(0, 0.4 - (waveRadius / 250) * 0.4);
 
           if (waveAlpha > 0.01) {
+            // موجة رئيسية
             ctx.strokeStyle = `rgba(168, 85, 247, ${waveAlpha})`;
-            ctx.lineWidth = 2 - (waveRadius / 200);
+            ctx.lineWidth = 3 - (waveRadius / 250) * 2;
             ctx.beginPath();
             ctx.arc(mouseX, mouseY, waveRadius, 0, Math.PI * 2);
             ctx.stroke();
+
+            // موجة ثانوية متداخلة
+            const secondaryRadius = waveRadius * 0.7;
+            const secondaryAlpha = waveAlpha * 0.6;
+            ctx.strokeStyle = `rgba(236, 72, 153, ${secondaryAlpha})`;
+            ctx.lineWidth = 2 - (secondaryRadius / 250) * 1.5;
+            ctx.beginPath();
+            ctx.arc(mouseX, mouseY, secondaryRadius, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // موجة داخلية
+            if (i % 2 === 0) {
+              const innerRadius = waveRadius * 0.4;
+              const innerAlpha = waveAlpha * 0.8;
+              ctx.strokeStyle = `rgba(251, 191, 36, ${innerAlpha})`;
+              ctx.lineWidth = 1.5;
+              ctx.beginPath();
+              ctx.arc(mouseX, mouseY, innerRadius, 0, Math.PI * 2);
+              ctx.stroke();
+            }
           }
         }
       }
@@ -270,8 +315,8 @@ export function SimpleHeroSection() {
         particle.y += particle.vy;
         particle.pulse += particle.pulseSpeed;
 
-        // تأثير الماوس المغناطيسي المحسن والأكثر تفاعلاً
-        const mouseInfluence = 200; // زيادة نطاق التأثير
+        // تأثير الماوس المغناطيسي المتطور والأكثر ذكاءً
+        const mouseInfluence = 250; // نطاق تأثير أوسع
         const dx = mouseX - particle.x;
         const dy = mouseY - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -280,19 +325,31 @@ export function SimpleHeroSection() {
           const force = (mouseInfluence - distance) / mouseInfluence * particle.magnetism;
           const angle = Math.atan2(dy, dx);
 
-          // زيادة قوة التفاعل
-          particle.vx += Math.cos(angle) * force * 0.008;
-          particle.vy += Math.sin(angle) * force * 0.008;
+          // قوة جذب متدرجة حسب المسافة
+          const attractionForce = force * 0.012;
+          particle.vx += Math.cos(angle) * attractionForce;
+          particle.vy += Math.sin(angle) * attractionForce;
 
-          // تأثير الطاقة المحسن
-          particle.energy = Math.min(100, particle.energy + force * 4);
+          // تأثير الطاقة المحسن مع تسارع
+          particle.energy = Math.min(100, particle.energy + force * 6);
 
-          // إضافة تأثير اهتزاز ناعم
-          particle.vx += (Math.random() - 0.5) * force * 0.002;
-          particle.vy += (Math.random() - 0.5) * force * 0.002;
+          // حركة موجية إضافية
+          particle.phase += 0.1;
+          const waveForce = Math.sin(particle.phase) * force * 0.003;
+          particle.vx += Math.cos(angle + Math.PI/2) * waveForce;
+          particle.vy += Math.sin(angle + Math.PI/2) * waveForce;
+
+          // تأثير اهتزاز ذكي
+          const vibrationIntensity = force * 0.004;
+          particle.vx += (Math.random() - 0.5) * vibrationIntensity;
+          particle.vy += (Math.random() - 0.5) * vibrationIntensity;
+
+          // تسريع الدوران عند القرب من الماوس
+          particle.rotationSpeed += force * 0.001;
         } else {
-          // تقليل الطاقة تدريجياً
-          particle.energy = Math.max(50, particle.energy - 0.3);
+          // تقليل الطاقة والدوران تدريجياً
+          particle.energy = Math.max(50, particle.energy - 0.2);
+          particle.rotationSpeed *= 0.98;
         }
 
         // تطبيق الاحتكاك
@@ -364,12 +421,51 @@ export function SimpleHeroSection() {
         ctx.arc(particle.x, particle.y, innerRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // رسم الجسيمة الأساسية
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, Math.max(0.5, pulseSize), 0, Math.PI * 2);
+        // رسم الجسيمة الأساسية بأشكال مختلفة
+        ctx.save();
+        ctx.translate(particle.x, particle.y);
+        ctx.rotate(particle.pulse * particle.rotationSpeed);
+
         ctx.fillStyle = particle.color;
         ctx.globalAlpha = Math.max(0.1, Math.min(1, pulseOpacity));
-        ctx.fill();
+
+        const finalSize = Math.max(0.5, pulseSize);
+
+        // رسم حسب نوع الجسيمة
+        if (particle.type === 0) {
+          // دائرة
+          ctx.beginPath();
+          ctx.arc(0, 0, finalSize, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (particle.type === 1) {
+          // مربع مستدير الزوايا
+          ctx.beginPath();
+          ctx.roundRect(-finalSize, -finalSize, finalSize * 2, finalSize * 2, finalSize * 0.3);
+          ctx.fill();
+        } else {
+          // نجمة
+          ctx.beginPath();
+          const spikes = 5;
+          const outerRadius = finalSize;
+          const innerRadius = finalSize * 0.5;
+
+          for (let i = 0; i < spikes * 2; i++) {
+            const radius = i % 2 === 0 ? outerRadius : innerRadius;
+            const angle = (i * Math.PI) / spikes;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.fill();
+        }
+
+        ctx.restore();
 
         // رسم خطوط الاتصال الذكية المتطورة
         particlesRef.current.forEach((otherParticle, otherIndex) => {

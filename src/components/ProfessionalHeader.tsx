@@ -113,11 +113,7 @@ export function ProfessionalHeader() {
                       تسجيل الخروج
                     </button>
                   </div>
-                ) : (
-                  <Link href="/login" className="btn btn-primary btn-sm">
-                    تسجيل الدخول
-                  </Link>
-                )}
+                ) : null}
               </div>
             )}
 
@@ -184,16 +180,7 @@ export function ProfessionalHeader() {
                             تسجيل الخروج
                           </button>
                         </div>
-                      ) : (
-                        <Link 
-                          href="/login"
-                          onClick={() => setIsMenuOpen(false)}
-                          className="btn btn-primary w-full"
-                        >
-                          <span className="ml-2">🔐</span>
-                          تسجيل الدخول
-                        </Link>
-                      )}
+                      ) : null}
                     </>
                   )}
                 </div>
