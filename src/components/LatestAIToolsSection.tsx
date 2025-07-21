@@ -134,17 +134,17 @@ export default function LatestAIToolsSection({ className = '' }: LatestAIToolsSe
                 {/* معلومات إضافية */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    {tool.pricing_type === 'free' && (
+                    {tool.pricing === 'free' && (
                       <span className="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs font-medium">
                         مجاني
                       </span>
                     )}
-                    {tool.pricing_type === 'freemium' && (
+                    {tool.pricing === 'freemium' && (
                       <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs font-medium">
                         مجاني جزئياً
                       </span>
                     )}
-                    {tool.pricing_type === 'paid' && (
+                    {tool.pricing === 'paid' && (
                       <span className="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-xs font-medium">
                         مدفوع
                       </span>
