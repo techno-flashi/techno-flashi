@@ -19,7 +19,7 @@ export function generateSocialMeta({
   title,
   description,
   url,
-  image = 'https://tflash.site/og-image.jpg',
+  image = '/og-image.jpg',
   type = 'website',
   siteName = 'TechnoFlash',
   locale = 'ar_SA',
@@ -165,7 +165,7 @@ export function generateArticleSocialMeta(article: {
   tags?: string[];
 }) {
   return generateSocialMeta({
-    title: `${article.title} | TechnoFlash`,
+    title: article.title, // Remove | TechnoFlash - will be added by layout.tsx template
     description: article.excerpt,
     url: `/articles/${article.slug}`,
     image: article.featured_image || '/og-image.jpg',

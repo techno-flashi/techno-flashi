@@ -114,95 +114,50 @@ export function generateUniqueMetaDescription(data: PageData): string {
 export function generateUniquePageTitle(data: PageData): string {
   const { type, title, category, slug } = data;
 
-  // Create unique seed based on slug to ensure consistent but unique titles
-  const uniqueSeed = slug ? slug.split('').reduce((a, b) => a + b.charCodeAt(0), 0) : 0;
-
-  // Shorter title variations to fit 60 char limit - ANTI-DUPLICATE
-  const titleVariations = {
-    article: [
-      `${title} - دليل شامل`,
-      `${title} - نصائح خبراء`,
-      `${title} - شرح مفصل`,
-      `دليل ${title} العملي`,
-      `${title} - كيفية التطبيق`,
-      `${title} - أساسيات`,
-      `${title} - خطوات عملية`,
-      `${title} - معلومات مهمة`
-    ],
-    'ai-tool': [
-      `${title} - مراجعة شاملة`,
-      `${title} - تقييم مفصل`,
-      `${title} - دليل الاستخدام`,
-      `${title} - تجربة عملية`,
-      `مراجعة أداة ${title}`,
-      `${title} - تحليل كامل`,
-      `${title} - مميزات وعيوب`,
-      `${title} - دليل المبتدئين`
-    ],
-    page: [
-      `${title} - دليل شامل`,
-      `دليل ${title} الشامل`,
-      `معلومات ${title} المفصلة`,
-      `${title} - كل ما تحتاج معرفته`,
-      `${title} - الدليل الكامل`,
-      `${title} - معلومات مهمة`,
-      `${title} - تفاصيل شاملة`,
-      `${title} - دليل متكامل`
-    ],
-    category: [
-      `${title} - مقالات متخصصة`,
-      `محتوى ${title} المتميز`,
-      `${title} - دليل شامل`,
-      `مقالات ${title} المفيدة`,
-      `${title} - محتوى حصري`,
-      `${title} - مواضيع متنوعة`,
-      `${title} - دليل متكامل`,
-      `${title} - معلومات قيمة`
-    ]
-  };
-
-  const variations = titleVariations[type] || titleVariations.page;
-  // Use unique seed to select variation consistently but uniquely
-  const selectedIndex = uniqueSeed % variations.length;
-  let selectedTitle = variations[selectedIndex];
-
-  // Add category context only if there's space and creates uniqueness
-  if ((type === 'article' || type === 'ai-tool') && category && selectedTitle.length < 35) {
-    selectedTitle += ` | ${category}`;
-  }
-
-  // NOTE: TechnoFlash brand will be added automatically by layout.tsx template
-  // No need to add it here to avoid duplication
-
   // STRICT 45 character limit - leaving space for " | TechnoFlash" (15 chars)
-  if (selectedTitle.length > 45) {
-    // Try without category first
-    const withoutCategory = variations[selectedIndex];
-    if (withoutCategory.length <= 45) {
-      selectedTitle = withoutCategory;
-    } else {
-      // Last resort: truncate intelligently
-      selectedTitle = selectedTitle.substring(0, 42) + '...';
+  const MAX_TITLE_LENGTH = 45;
+
+  // First, try to use the original title if it's short enough
+  if (title.length <= MAX_TITLE_LENGTH) {
+    return title;
+  }
+
+  // If title is too long, create a shortened version
+  let shortTitle = title;
+
+  // Try to truncate at word boundaries for better readability
+  if (title.length > MAX_TITLE_LENGTH) {
+    const words = title.split(' ');
+    shortTitle = '';
+
+    for (const word of words) {
+      if ((shortTitle + ' ' + word).length <= MAX_TITLE_LENGTH - 3) { // -3 for "..."
+        shortTitle += (shortTitle ? ' ' : '') + word;
+      } else {
+        break;
+      }
+    }
+
+    // Add ellipsis if we truncated
+    if (shortTitle.length < title.length) {
+      shortTitle += '...';
     }
   }
 
-  // Fix titles below 20 characters - SEO audit requirement
-  if (selectedTitle.length < 20) {
-    if (category && selectedTitle.length < 35) {
-      selectedTitle += ` | ${category}`;
+  // Ensure minimum length for SEO
+  if (shortTitle.length < 20) {
+    // Add category if available and fits
+    if (category && (shortTitle + ' | ' + category).length <= MAX_TITLE_LENGTH) {
+      shortTitle += ` | ${category}`;
     }
-    if (selectedTitle.length < 20) {
-      selectedTitle += ' - دليل شامل';
+
+    // If still too short, add a generic suffix
+    if (shortTitle.length < 20 && (shortTitle + ' - دليل').length <= MAX_TITLE_LENGTH) {
+      shortTitle += ' - دليل';
     }
   }
 
-  // Add unique identifier if title is still potentially duplicate
-  if (selectedTitle.length < 55 && slug) {
-    const uniqueId = slug.substring(0, 3);
-    selectedTitle += ` ${uniqueId}`;
-  }
-
-  return selectedTitle;
+  return shortTitle;
 }
 
 // Generate unique content snippets for pages

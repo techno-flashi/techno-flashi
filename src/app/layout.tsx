@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'TechnoFlash Team' }],
   creator: 'TechnoFlash',
   publisher: 'TechnoFlash',
-  metadataBase: new URL('https://tflash.site'),
+  metadataBase: new URL('https://www.tflash.site'),
   alternates: {
-    canonical: 'https://tflash.site',
+    canonical: 'https://www.tflash.site',
   },
   robots: {
     index: true,
