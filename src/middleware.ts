@@ -107,16 +107,13 @@ export function middleware(request: NextRequest) {
     "https://fonts.googleapis.com " +
     "https://fonts.gstatic.com " +
     "https://www.youtube.com " +
-    "https://youtube.com; " +ag.com " +
-    "https://vemtoutcheeg.com " +
-    "https://*.vemtoutcheeg.com " +
-    "https://gizokraijaw.net " +
-    "https://*.gizokraijaw.net; " +
-    "style-src 'self' 'unsafe-inline'; " +
+    "https://youtube.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "img-src 'self' data: https: blob:; " +
-    "font-src 'self' data: https:; " +
+    "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; " +
     "connect-src 'self' https: wss:; " +
-    "frame-src 'self' https:; " +
+    "frame-src 'self' https://www.youtube.com https://youtube.com; " +
     "object-src 'none';"
   );
 
