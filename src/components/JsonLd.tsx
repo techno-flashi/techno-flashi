@@ -11,40 +11,63 @@ export default function JsonLd({ data }: JsonLdProps) {
   );
 }
 
-// البيانات المنظمة للموقع الرئيسي
+// البيانات المنظمة المحسنة والمدمجة للموقع الرئيسي (تتبع أفضل الممارسات)
 export const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "TechnoFlash",
   "alternateName": "تكنوفلاش",
   "url": "https://tflash.site",
-  "description": "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا",
+  "description": "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا.",
   "inLanguage": "ar",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://tflash.site/search?q={search_term_string}",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://tflash.site/search?q={search_term_string}"
+    },
     "query-input": "required name=search_term_string"
   },
   "publisher": {
     "@type": "Organization",
     "name": "TechnoFlash",
+    "alternateName": "تكنوفلاش",
     "url": "https://tflash.site",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://tflash.site/logo.png"
+      "url": "https://tflash.site/logo.png",
+      "width": 600,
+      "height": 60
+    },
+    "description": "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.",
+    "foundingDate": "2024",
+    "sameAs": [
+      "https://twitter.com/technoflash",
+      "https://facebook.com/technoflash",
+      "https://linkedin.com/company/technoflash"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": ["Arabic", "English"]
     }
   }
 };
 
-// البيانات المنظمة للمنظمة
+// البيانات المنظمة للمنظمة (للاستخدام في صفحات منفصلة إذا لزم الأمر)
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "TechnoFlash",
   "alternateName": "تكنوفلاش",
   "url": "https://tflash.site",
-  "logo": "https://tflash.site/logo.png",
-  "description": "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://tflash.site/logo.png",
+    "width": 600,
+    "height": 60
+  },
+  "description": "منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.",
   "foundingDate": "2024",
   "sameAs": [
     "https://twitter.com/technoflash",
@@ -58,35 +81,46 @@ export const organizationJsonLd = {
   }
 };
 
-// دالة لإنشاء JSON-LD للمقالات
+// دالة لإنشاء JSON-LD محسنة للمقالات
 export const createArticleJsonLd = (article: any) => ({
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": article.title,
-  "description": article.description,
-  "image": article.featured_image,
+  "description": article.description || article.excerpt,
+  "image": {
+    "@type": "ImageObject",
+    "url": article.featured_image || "https://tflash.site/og-image.jpg",
+    "width": 1200,
+    "height": 630
+  },
   "author": {
     "@type": "Organization",
-    "name": "TechnoFlash"
+    "name": "TechnoFlash",
+    "url": "https://tflash.site"
   },
   "publisher": {
     "@type": "Organization",
     "name": "TechnoFlash",
+    "url": "https://tflash.site",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://tflash.site/logo.png"
+      "url": "https://tflash.site/logo.png",
+      "width": 600,
+      "height": 60
     }
   },
   "datePublished": article.created_at,
-  "dateModified": article.updated_at,
+  "dateModified": article.updated_at || article.created_at,
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": `https://tflash.site/articles/${article.slug}`
   },
-  "inLanguage": "ar"
+  "inLanguage": "ar",
+  "articleSection": "Technology",
+  "keywords": article.tags || ["تقنية", "ذكاء اصطناعي", "تكنولوجيا"]
 });
 
-// دالة لإنشاء JSON-LD للخدمات
+// دالة لإنشاء JSON-LD محسنة للخدمات
 export const createServiceJsonLd = (service: any) => ({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -94,9 +128,39 @@ export const createServiceJsonLd = (service: any) => ({
   "description": service.description,
   "provider": {
     "@type": "Organization",
-    "name": "TechnoFlash"
+    "name": "TechnoFlash",
+    "url": "https://tflash.site"
   },
   "areaServed": "Worldwide",
   "availableLanguage": ["Arabic", "English"],
-  "serviceType": "Technology Services"
+  "serviceType": "Technology Services",
+  "url": `https://tflash.site/services/${service.id}`,
+  "inLanguage": "ar"
+});
+
+// دالة لإنشاء JSON-LD لأدوات الذكاء الاصطناعي
+export const createAIToolJsonLd = (tool: any) => ({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": tool.name,
+  "description": tool.description,
+  "applicationCategory": "AI Tool",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": tool.pricing || "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": tool.rating ? {
+    "@type": "AggregateRating",
+    "ratingValue": tool.rating,
+    "ratingCount": tool.rating_count || 1,
+    "bestRating": 5,
+    "worstRating": 1
+  } : undefined,
+  "url": tool.website_url,
+  "image": tool.logo_url || "https://tflash.site/og-image.jpg",
+  "inLanguage": "ar",
+  "keywords": tool.tags || ["ذكاء اصطناعي", "أدوات AI", "تقنية"]
 });

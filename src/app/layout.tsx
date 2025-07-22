@@ -13,7 +13,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ScrollTracker from "@/components/ScrollTracker";
-import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
+import JsonLd, { websiteJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
 
 
@@ -29,7 +29,7 @@ const cairo = Cairo({
 
 
 
-// إعداد بيانات SEO المحسنة للموقع (هذا الجزء ممتاز ولا يحتاج تعديل)
+// إعداد بيانات SEO المحسنة للموقع مع إصلاح ترميز UTF-8
 export const metadata: Metadata = {
   title: {
     default: "TechnoFlash | أدوات ذكاء اصطناعي وتقنية حديثة",
@@ -44,6 +44,10 @@ export const metadata: Metadata = {
   authors: [{ name: 'TechnoFlash Team' }],
   creator: 'TechnoFlash',
   publisher: 'TechnoFlash',
+  metadataBase: new URL('https://tflash.site'),
+  alternates: {
+    canonical: 'https://tflash.site',
+  },
   robots: {
     index: true,
     follow: true,
@@ -57,25 +61,28 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'ar_SA',
-    url: 'https://www.tflash.site',
+    locale: 'ar_EG',
+    url: 'https://tflash.site',
     siteName: 'TechnoFlash',
     title: 'TechnoFlash | بوابتك للمستقبل التقني',
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا.',
     images: [
       {
-        url: 'https://www.tflash.site/og-image.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'TechnoFlash - بوابتك للمستقبل التقني',
+        type: 'image/jpeg',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
+    site: '@technoflash',
+    creator: '@technoflash',
     title: 'TechnoFlash | بوابتك للمستقبل التقني',
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.',
-    images: ['https://www.tflash.site/og-image.jpg'],
+    images: ['/og-image.jpg'],
   },
 
   verification: {
@@ -99,9 +106,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-
-
-
+        {/* Ensure UTF-8 encoding for proper Arabic text display */}
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* Font optimization handled by Next.js */}
 
@@ -149,7 +156,6 @@ export default function RootLayout({
         <GoogleAnalytics />
         <ScrollTracker />
         <JsonLd data={websiteJsonLd} />
-        <JsonLd data={organizationJsonLd} />
         <Toaster position="top-center" />
 
         <AuthProvider>
