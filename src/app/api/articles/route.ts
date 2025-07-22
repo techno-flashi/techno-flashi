@@ -27,7 +27,9 @@ export async function GET(request: NextRequest) {
         reading_time,
         author,
         tags,
-        featured
+        featured,
+        category,
+        meta_description
       `)
       .eq('status', status)
       .order('published_at', { ascending: false });

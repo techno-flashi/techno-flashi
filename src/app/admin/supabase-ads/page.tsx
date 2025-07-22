@@ -22,7 +22,7 @@ export default function SupabaseAdsAdminPage() {
   // Form state
   const [formData, setFormData] = useState({
     name: '',
-    type: 'monetag' as 'monetag' | 'adsense' | 'custom',
+    type: 'custom' as 'adsense' | 'custom',
     position: 'header' as 'header' | 'sidebar' | 'footer' | 'in-content' | 'popup',
     zone_id: '',
     script_code: '',
@@ -81,7 +81,7 @@ export default function SupabaseAdsAdminPage() {
   const resetForm = () => {
     setFormData({
       name: '',
-      type: 'monetag',
+      type: 'custom',
       position: 'header',
       zone_id: '',
       script_code: '',
@@ -126,20 +126,7 @@ export default function SupabaseAdsAdminPage() {
     }
   };
 
-  const addMonetagAd = (zoneId: string, position: string, name: string) => {
-    setFormData({
-      name: name,
-      type: 'monetag',
-      position: position as any,
-      zone_id: zoneId,
-      script_code: `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',${zoneId},document.createElement('script'));`,
-      enabled: true,
-      pages: ['*'],
-      priority: 5,
-      delay_seconds: 1
-    });
-    setActiveTab('add');
-  };
+  // Monetag functionality removed
 
   if (!systemInitialized) {
     return (
@@ -184,33 +171,7 @@ export default function SupabaseAdsAdminPage() {
           <p className="text-gray-600">نظام إدارة شامل للإعلانات مع قاعدة بيانات Supabase</p>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h2 className="text-lg font-semibold mb-4">⚡ إضافة سريعة - Monetag</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button
-              onClick={() => addMonetagAd('9593378', 'header', 'Monetag Header Banner')}
-              className="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 text-center"
-            >
-              <div className="font-medium">Header Banner</div>
-              <div className="text-sm opacity-90">Zone: 9593378</div>
-            </button>
-            <button
-              onClick={() => addMonetagAd('9593331', 'sidebar', 'Monetag Sidebar')}
-              className="bg-green-600 text-white p-4 rounded-lg hover:bg-green-700 text-center"
-            >
-              <div className="font-medium">Sidebar Ad</div>
-              <div className="text-sm opacity-90">Zone: 9593331</div>
-            </button>
-            <button
-              onClick={() => addMonetagAd('ZONE_ID_PLACEHOLDER', 'in-content', 'Monetag In-Content')}
-              className="bg-purple-600 text-white p-4 rounded-lg hover:bg-purple-700 text-center"
-            >
-              <div className="font-medium">In-Content</div>
-              <div className="text-sm opacity-90">Zone: Enter Your Zone ID</div>
-            </button>
-          </div>
-        </div>
+        {/* Quick Actions - Monetag removed */}
 
         {/* Tabs */}
         <div className="bg-white rounded-lg shadow-sm mb-6">

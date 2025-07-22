@@ -25,7 +25,9 @@ async function getAllArticles() {
         created_at,
         reading_time,
         author,
-        tags
+        tags,
+        featured,
+        category
       `)
       .eq('status', 'published')
       .order('published_at', { ascending: false })

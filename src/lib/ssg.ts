@@ -102,7 +102,13 @@ export async function getArticleBySlugForSSG(slug: string) {
         reading_time,
         created_at,
         updated_at,
-        published_at
+        published_at,
+        language,
+        direction,
+        featured,
+        category,
+        seo_title,
+        seo_description
       `)
       .eq('slug', slug)
       .eq('status', 'published')

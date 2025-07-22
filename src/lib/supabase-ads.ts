@@ -6,7 +6,7 @@ import { supabase } from './supabase';
 export interface SupabaseAd {
   id: string;
   name: string;
-  type: 'monetag' | 'adsense' | 'custom';
+  type: 'adsense' | 'custom';
   position: 'header' | 'sidebar' | 'footer' | 'in-content' | 'popup';
   zone_id?: string;
   script_code: string;
@@ -50,7 +50,7 @@ export const CREATE_ADS_TABLE_SQL = `
 CREATE TABLE IF NOT EXISTS ads (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  type VARCHAR(50) NOT NULL DEFAULT 'monetag',
+  type VARCHAR(50) NOT NULL DEFAULT 'custom',
   position VARCHAR(50) NOT NULL,
   zone_id VARCHAR(100),
   script_code TEXT NOT NULL,
@@ -92,15 +92,8 @@ ALTER TABLE ad_performance ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Allow all operations on ads" ON ads FOR ALL USING (true);
 CREATE POLICY "Allow all operations on ad_performance" ON ad_performance FOR ALL USING (true);
 
--- Insert default Monetag ads
-INSERT INTO ads (name, type, position, zone_id, script_code, enabled, pages, priority) VALUES
-('Monetag Header Banner', 'monetag', 'header', '9593378', 
- '(function(d,z,s){s.src=''https://''+d+''/400/''+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9593378,document.createElement("script"));',
- true, '["*"]', 10),
-('Monetag Sidebar', 'monetag', 'sidebar', '9593331',
- '(function(d,z,s){s.src=''https://''+d+''/400/''+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9593331,document.createElement("script"));',
- true, '["/articles", "/ai-tools"]', 8),
-('Monetag In-Content', 'monetag', 'in-content', '9593378',
+-- Insert default custom ads (Monetag removed)
+-- INSERT INTO ads (name, type, position, zone_id, script_code, enabled, pages, priority) VALUES
  '(function(d,z,s){s.src=''https://''+d+''/400/''+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})("vemtoutcheeg.com",9593378,document.createElement("script"));',
  true, '["/articles", "/ai-tools", "/"]', 5);
 `;

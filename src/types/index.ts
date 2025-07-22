@@ -10,7 +10,21 @@ export interface Article {
   featured_image_url: string;
   published_at: string;
   created_at: string;
+  updated_at: string;
   status: 'draft' | 'published';
+  author: string;
+  meta_description?: string;
+  seo_keywords?: string[];
+  reading_time?: number;
+  tags?: string[];
+  language?: string;
+  direction?: string;
+  validation_errors?: any;
+  validation_warnings?: any;
+  featured?: boolean;
+  category?: string;
+  seo_title?: string;
+  seo_description?: string;
 }
 
 // نوع للمقالات المختصرة (بدون content)

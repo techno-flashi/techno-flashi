@@ -54,7 +54,7 @@ export async function generateStaticParams() {
 // جلب بيانات المقال بناءً على الـ slug - محسن للأداء
 async function getArticle(slug: string) {
   try {
-    console.log(`🔄 Fetching article: ${slug}`);
+
 
     // استعلام محسن مباشر بدلاً من الجلب المزدوج
     const { data, error } = await supabase
@@ -74,7 +74,13 @@ async function getArticle(slug: string) {
         reading_time,
         created_at,
         updated_at,
-        published_at
+        published_at,
+        language,
+        direction,
+        featured,
+        category,
+        seo_title,
+        seo_description
       `)
       .eq('slug', slug)
       .eq('status', 'published')
@@ -86,11 +92,11 @@ async function getArticle(slug: string) {
     }
 
     if (!data) {
-      console.log(`⚠️ Article "${slug}" not found`);
+
       return null;
     }
 
-    console.log(`✅ Article "${slug}" fetched successfully`);
+
     return fixObjectEncoding(data);
   } catch (error: any) {
     console.error(`💥 Error fetching article "${slug}":`, {

@@ -113,14 +113,14 @@ const config: Config = {
       },
 
       fontFamily: {
-        // نظام الخطوط المحلية الحديث لعام 2025
-        sans: ["Cairo", "Roboto", "system-ui", "sans-serif"],
+        // نظام الخطوط المحلية الحديث لعام 2025 مع Next.js Font Optimization
+        sans: ["var(--font-cairo)", "Cairo", "Roboto", "system-ui", "sans-serif"],
         arabic: ["Amiri", "serif"],
-        'arabic-modern': ["Cairo", "sans-serif"],
+        'arabic-modern': ["var(--font-cairo)", "Cairo", "sans-serif"],
         english: ["Roboto", "system-ui", "sans-serif"],
-        heading: ["Cairo", "sans-serif"],
+        heading: ["var(--font-cairo)", "Cairo", "sans-serif"],
         amiri: ["Amiri", "serif"],
-        cairo: ["Cairo", "sans-serif"],
+        cairo: ["var(--font-cairo)", "Cairo", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import ArticleImageGallery from './ArticleImageGallery';
@@ -20,21 +20,40 @@ interface MarkdownPreviewProps {
 
 // مكون فيديو YouTube
 function YouTubeVideo({ videoId }: { videoId: string }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div
       className="relative w-full my-6 rounded-lg overflow-hidden bg-gray-900"
       style={{ aspectRatio: '16/9', minHeight: '315px' }}
     >
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
-        className="absolute inset-0 w-full h-full border-0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        title="فيديو يوتيوب"
-        loading="lazy"
-        width="560"
-        height="315"
-      />
+      {isClient ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+          className="absolute inset-0 w-full h-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          title="فيديو يوتيوب"
+          loading="lazy"
+          width="560"
+          height="315"
+        />
+      ) : (
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gray-800">
+          <div className="text-white text-center">
+            <div className="w-16 h-16 mx-auto mb-4 bg-red-600 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <p className="text-sm">جاري تحميل الفيديو...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -63,12 +82,12 @@ const extractYouTubeId = (url: string): string | null => {
   for (const pattern of patterns) {
     const match = cleanUrl.match(pattern);
     if (match && match[1]) {
-      console.log('Pattern matched:', pattern, 'Video ID:', match[1]);
+
       return match[1];
     }
   }
 
-  console.log('No pattern matched for URL:', cleanUrl);
+
   return null;
 };
 
@@ -194,6 +213,15 @@ export default function MarkdownPreview({ content, className = '', articleImages
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
 
+      // معالجة مراجع الصور في السطر الحالي
+      if (line.includes('[صورة:')) {
+        // إضافة السطر الحالي إلى الفقرة الحالية
+        currentParagraph += (currentParagraph ? '\n' : '') + line;
+        // معالجة الفقرة فوراً
+        flushParagraph();
+        continue;
+      }
+
       // فيديو YouTube
       const youtubeMatch = line.match(/\[youtube\]([^[]+)\[\/youtube\]/);
       if (youtubeMatch) {
@@ -201,8 +229,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
         const url = youtubeMatch[1].trim();
         const videoId = extractYouTubeId(url);
 
-        console.log('YouTube URL found:', url);
-        console.log('Extracted Video ID:', videoId);
+
 
         if (videoId) {
           elements.push(<YouTubeVideo key={key++} videoId={videoId} />);

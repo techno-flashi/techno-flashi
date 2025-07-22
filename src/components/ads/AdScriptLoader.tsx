@@ -189,18 +189,7 @@ export function AdNetworkVerifier({
 }
 
 // Pre-built verifiers for common ad networks
-export function MonetagVerifier() {
-  return (
-    <AdNetworkVerifier
-      networkName="Monetag"
-      verificationFunction={() => {
-        // Check if Monetag scripts are loaded
-        const scripts = document.querySelectorAll('script[data-injection-name*="monetag" i], script[data-injection-name*="Monetag"]');
-        return scripts.length > 0;
-      }}
-    />
-  );
-}
+// Monetag verifier removed
 
 export function GoogleAnalyticsVerifier() {
   return (

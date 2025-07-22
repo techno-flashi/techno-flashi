@@ -132,13 +132,14 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://fonts.gstatic.com https://www.youtube.com https://youtube.com;
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com;
               style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com;
               img-src 'self' data: https: blob:;
               font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
               connect-src 'self' https: wss: https://zgktrwpladrkhhemhnni.supabase.co;
               object-src 'none';
+              frame-src 'self' https://www.youtube.com https://youtube.com;
               frame-ancestors 'self';
               base-uri 'self';
               form-action 'self';

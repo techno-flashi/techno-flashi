@@ -5,6 +5,18 @@
 /* Local fonts are loaded via layout.tsx for better performance */
 /* Removed Google Fonts import to prevent duplicate loading */
 
+/* Font configuration using Next.js Font Optimization */
+@layer base {
+  :root {
+    --font-cairo: 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-cairo);
+    font-display: swap;
+  }
+}
+
 /* استيراد CSS الإعلانات */
 @import '../styles/ads.css';
 

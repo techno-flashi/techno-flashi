@@ -20,7 +20,10 @@ export async function getArticles(limit: number = 20): Promise<ArticleSummary[]>
         published_at,
         created_at,
         reading_time,
-        author
+        author,
+        tags,
+        featured,
+        category
       `)
       .eq('status', 'published')
       .order('published_at', { ascending: false })
@@ -46,8 +49,12 @@ export async function getLatestArticlesOptimized(limit: number = 8): Promise<Art
         excerpt,
         featured_image_url,
         published_at,
+        created_at,
         reading_time,
-        author
+        author,
+        tags,
+        featured,
+        category
       `)
       .eq('status', 'published')
       .order('published_at', { ascending: false })

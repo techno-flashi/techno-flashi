@@ -20,7 +20,7 @@ export default function IntegratedAdsAdminPage() {
   const [ads, setAds] = useState<SupabaseAd[]>([]);
   const [codeInjections, setCodeInjections] = useState<CodeInjection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'list' | 'add' | 'monetag' | 'analytics' | 'code-injections'>('list');
+  const [activeTab, setActiveTab] = useState<'list' | 'add' | 'analytics' | 'code-injections'>('list');
   const [editingAd, setEditingAd] = useState<SupabaseAd | null>(null);
   const [editingInjection, setEditingInjection] = useState<CodeInjection | null>(null);
   const [systemInitialized, setSystemInitialized] = useState(false);
@@ -31,7 +31,7 @@ export default function IntegratedAdsAdminPage() {
   // Form state for new/edit ad
   const [formData, setFormData] = useState({
     name: '',
-    type: 'monetag' as 'monetag' | 'adsense' | 'custom',
+    type: 'custom' as 'adsense' | 'custom',
     position: 'header' as 'header' | 'sidebar' | 'footer' | 'in-content' | 'popup',
     zone_id: '',
     script_code: '',
@@ -52,33 +52,7 @@ export default function IntegratedAdsAdminPage() {
     priority: 5
   });
 
-  // Monetag templates
-  const monetagTemplates = {
-    header: {
-      name: 'Monetag Header Banner',
-      script: (zoneId: string) => `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',${zoneId},document.createElement('script'));`,
-      priority: 10,
-      pages: ['*']
-    },
-    sidebar: {
-      name: 'Monetag Sidebar',
-      script: (zoneId: string) => `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',${zoneId},document.createElement('script'));`,
-      priority: 8,
-      pages: ['/articles', '/ai-tools']
-    },
-    'in-content': {
-      name: 'Monetag In-Content',
-      script: (zoneId: string) => `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',${zoneId},document.createElement('script'));`,
-      priority: 5,
-      pages: ['/articles', '/ai-tools', '/']
-    },
-    footer: {
-      name: 'Monetag Footer',
-      script: (zoneId: string) => `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vemtoutcheeg.com',${zoneId},document.createElement('script'));`,
-      priority: 3,
-      pages: ['*']
-    }
-  };
+  // Monetag templates removed
 
   // Load ads and code injections
   useEffect(() => {
@@ -146,7 +120,7 @@ export default function IntegratedAdsAdminPage() {
   const resetForm = () => {
     setFormData({
       name: '',
-      type: 'monetag',
+      type: 'custom',
       position: 'header',
       zone_id: '',
       script_code: '',
@@ -193,22 +167,7 @@ export default function IntegratedAdsAdminPage() {
     }
   };
 
-  const createMonetagAd = (position: keyof typeof monetagTemplates, zoneId: string) => {
-    const template = monetagTemplates[position];
-    setFormData({
-      name: template.name,
-      type: 'monetag',
-      position: position,
-      zone_id: zoneId,
-      script_code: template.script(zoneId),
-      html_code: '',
-      enabled: true,
-      pages: template.pages,
-      priority: template.priority,
-      delay_seconds: 1
-    });
-    setActiveTab('add');
-  };
+  // Monetag functionality removed
 
   // Code injection handlers
   const handleInjectionSubmit = async (e: React.FormEvent) => {
@@ -317,7 +276,7 @@ export default function IntegratedAdsAdminPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">🎯 إدارة الإعلانات المتكاملة</h1>
-              <p className="text-gray-600">نظام شامل لإدارة إعلانات Monetag وغيرها</p>
+              <p className="text-gray-600">نظام شامل لإدارة الإعلانات</p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-500">
@@ -330,40 +289,7 @@ export default function IntegratedAdsAdminPage() {
           </div>
         </div>
 
-        {/* Quick Monetag Templates */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h2 className="text-lg font-semibold mb-4">⚡ قوالب Monetag السريعة</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <button
-              onClick={() => createMonetagAd('header', '9593378')}
-              className="bg-blue-600 text-white p-4 rounded-lg hover:bg-blue-700 text-center transition-colors"
-            >
-              <div className="font-medium">🔝 Header Banner</div>
-              <div className="text-sm opacity-90">Zone: 9593378</div>
-            </button>
-            <button
-              onClick={() => createMonetagAd('sidebar', '9593331')}
-              className="bg-green-600 text-white p-4 rounded-lg hover:bg-green-700 text-center transition-colors"
-            >
-              <div className="font-medium">📋 Sidebar Ad</div>
-              <div className="text-sm opacity-90">Zone: 9593331</div>
-            </button>
-            <button
-              onClick={() => createMonetagAd('in-content', '9593378')}
-              className="bg-purple-600 text-white p-4 rounded-lg hover:bg-purple-700 text-center transition-colors"
-            >
-              <div className="font-medium">📄 In-Content</div>
-              <div className="text-sm opacity-90">Zone: 9593378</div>
-            </button>
-            <button
-              onClick={() => createMonetagAd('footer', '9593378')}
-              className="bg-orange-600 text-white p-4 rounded-lg hover:bg-orange-700 text-center transition-colors"
-            >
-              <div className="font-medium">🔻 Footer Ad</div>
-              <div className="text-sm opacity-90">Zone: 9593378</div>
-            </button>
-          </div>
-        </div>
+        {/* Quick Templates - Monetag removed */}
 
         {/* Tabs */}
         <div className="bg-white rounded-lg shadow-sm mb-6">
@@ -373,7 +299,7 @@ export default function IntegratedAdsAdminPage() {
                 { id: 'list', label: `📋 قائمة الإعلانات (${filteredAds.length})`, icon: '📋' },
                 { id: 'add', label: editingAd ? '✏️ تعديل إعلان' : '➕ إضافة إعلان', icon: editingAd ? '✏️' : '➕' },
                 { id: 'code-injections', label: `🔧 حقن الكود (${codeInjections.length})`, icon: '🔧' },
-                { id: 'monetag', label: '💰 إعدادات Monetag', icon: '💰' },
+
                 { id: 'analytics', label: '📊 الإحصائيات', icon: '📊' }
               ].map((tab) => (
                 <button
@@ -462,7 +388,7 @@ export default function IntegratedAdsAdminPage() {
                           <div className="flex-1">
                             <div className="flex items-center space-x-3 mb-2">
                               <h3 className="font-medium text-gray-900 flex items-center">
-                                {ad.type === 'monetag' ? '💰' : '📢'} {ad.name}
+                                📢 {ad.name}
                               </h3>
                               <span className={`px-2 py-1 rounded text-xs font-medium ${
                                 ad.enabled ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -549,7 +475,7 @@ export default function IntegratedAdsAdminPage() {
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-                        placeholder="مثال: Monetag Header Banner"
+                        placeholder="مثال: Header Banner"
                         required
                       />
                     </div>

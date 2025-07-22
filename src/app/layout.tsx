@@ -2,6 +2,7 @@
 // نضع فيه الأشياء المشتركة مثل الخطوط، الهيدر، الفوتر، ودعم اللغة العربية
 
 import type { Metadata } from "next";
+import { Cairo } from 'next/font/google';
 // الخطوط المحلية - لا حاجة لاستيراد من Google Fonts
 import "./globals.css";
 import "../styles/article-content.css";
@@ -15,10 +16,16 @@ import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
 import DynamicCodeInjection from "@/components/ads/DynamicCodeInjection";
-import AdScriptLoader, { AdScriptDebugger, MonetagVerifier } from "@/components/ads/AdScriptLoader";
+import AdScriptLoader, { AdScriptDebugger } from "@/components/ads/AdScriptLoader";
 
 
-// الخطوط المحلية محملة من ملف CSS منفصل
+// إعداد خط Cairo باستخدام Next.js Font Optimization
+const cairo = Cairo({
+  subsets: ['arabic', 'latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-cairo',
+});
 
 
 
@@ -97,13 +104,7 @@ export default function RootLayout({
 
 
 
-        {/* Optimized Font Loading - Preconnect Only */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* Font optimization handled by Next.js */}
 
         {/* Advanced Resource Hints for Performance */}
         <link rel="preconnect" href="https://zgktrwpladrkhhemhnni.supabase.co" />
@@ -142,7 +143,7 @@ export default function RootLayout({
         <DynamicCodeInjection position="head_end" />
       </head>
 
-      <body className="bg-white text-text-primary font-sans" suppressHydrationWarning={true}>
+      <body className={`${cairo.variable} bg-white text-text-primary font-sans`} suppressHydrationWarning={true}>
         {/* Dynamic Code Injection - BODY START */}
         <DynamicCodeInjection position="body_start" />
 
@@ -277,7 +278,6 @@ export default function RootLayout({
 
         {/* Ad Verification and Debug Components */}
         <AdScriptDebugger />
-        <MonetagVerifier />
       </body>
     </html>
   );
