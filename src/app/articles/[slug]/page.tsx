@@ -229,7 +229,7 @@ export async function generateMetadata({ params }: Props) {
   const article = await getArticle(slug);
   if (!article) {
     return {
-      title: "المقال غير موجود - TechnoFlash",
+      title: "المقال غير موجود",
       description: "المقال المطلوب غير موجود أو تم حذفه"
     };
   }

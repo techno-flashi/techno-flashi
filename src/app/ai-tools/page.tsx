@@ -85,15 +85,15 @@ async function getCategories() {
 }
 
 export const metadata: Metadata = {
-  title: 'أدوات الذكاء الاصطناعي - دليل شامل ومراجعات متخصصة | TechnoFlash',
+  title: 'دليل أدوات الذكاء الاصطناعي ومراجعات متخصصة',
   description: 'اكتشف أفضل أدوات الذكاء الاصطناعي المتاحة حالياً مع مراجعات شاملة ومقارنات تفصيلية. دليلك الموثوق لاختيار الأداة المناسبة لاحتياجاتك التقنية والإبداعية.',
   keywords: 'أدوات ذكاء اصطناعي, AI tools, تقنيات ذكية, مراجعات أدوات, ChatGPT, Midjourney, تكنوفلاش, أدوات إبداعية, تقنيات متقدمة',
   authors: [{ name: 'TechnoFlash' }],
   openGraph: {
-    title: 'أدوات الذكاء الاصطناعي - دليل شامل ومراجعات متخصصة',
+    title: 'دليل أدوات الذكاء الاصطناعي ومراجعات متخصصة',
     description: 'اكتشف أفضل أدوات الذكاء الاصطناعي مع مراجعات شاملة ومقارنات تفصيلية',
     type: 'website',
-    locale: 'ar_SA',
+    locale: 'ar_EG',
     url: 'https://tflash.site/ai-tools',
     siteName: 'TechnoFlash',
     images: [
@@ -107,9 +107,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'أدوات الذكاء الاصطناعي - دليل شامل ومراجعات متخصصة',
+    title: 'دليل أدوات الذكاء الاصطناعي ومراجعات متخصصة',
     description: 'اكتشف أفضل أدوات الذكاء الاصطناعي مع مراجعات شاملة ومقارنات تفصيلية',
-    images: ['https://tflash.site/og-ai-tools.jpg'],
+    images: ['/og-ai-tools.jpg'],
   },
   alternates: {
     canonical: 'https://tflash.site/ai-tools',

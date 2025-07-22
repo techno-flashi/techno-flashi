@@ -127,7 +127,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!tool) {
     return {
-      title: 'أداة غير موجودة - TechnoFlash',
+      title: 'أداة غير موجودة',
       description: 'الأداة المطلوبة غير موجودة أو تم حذفها'
     };
   }

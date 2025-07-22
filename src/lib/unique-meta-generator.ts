@@ -140,7 +140,7 @@ export function generateUniquePageTitle(data: PageData): string {
       `${title} - دليل المبتدئين`
     ],
     page: [
-      `${title} - TechnoFlash`,
+      `${title} - دليل شامل`,
       `دليل ${title} الشامل`,
       `معلومات ${title} المفصلة`,
       `${title} - كل ما تحتاج معرفته`,
@@ -167,36 +167,31 @@ export function generateUniquePageTitle(data: PageData): string {
   let selectedTitle = variations[selectedIndex];
 
   // Add category context only if there's space and creates uniqueness
-  if ((type === 'article' || type === 'ai-tool') && category && selectedTitle.length < 40) {
+  if ((type === 'article' || type === 'ai-tool') && category && selectedTitle.length < 35) {
     selectedTitle += ` | ${category}`;
   }
 
-  // Add TechnoFlash brand only if there's space and not already included
-  if (!selectedTitle.includes('TechnoFlash') && selectedTitle.length < 45) {
-    selectedTitle += ' | TechnoFlash';
-  }
+  // NOTE: TechnoFlash brand will be added automatically by layout.tsx template
+  // No need to add it here to avoid duplication
 
-  // STRICT 60 character limit - SEO audit requirement
-  if (selectedTitle.length > 60) {
+  // STRICT 45 character limit - leaving space for " | TechnoFlash" (15 chars)
+  if (selectedTitle.length > 45) {
     // Try without category first
     const withoutCategory = variations[selectedIndex];
-    if (withoutCategory.length <= 60) {
+    if (withoutCategory.length <= 45) {
       selectedTitle = withoutCategory;
     } else {
       // Last resort: truncate intelligently
-      selectedTitle = selectedTitle.substring(0, 57) + '...';
+      selectedTitle = selectedTitle.substring(0, 42) + '...';
     }
   }
 
-  // Fix titles below 30 characters - SEO audit requirement
-  if (selectedTitle.length < 30) {
-    if (category && selectedTitle.length < 45) {
+  // Fix titles below 20 characters - SEO audit requirement
+  if (selectedTitle.length < 20) {
+    if (category && selectedTitle.length < 35) {
       selectedTitle += ` | ${category}`;
     }
-    if (selectedTitle.length < 30 && !selectedTitle.includes('TechnoFlash')) {
-      selectedTitle += ' | TechnoFlash';
-    }
-    if (selectedTitle.length < 30) {
+    if (selectedTitle.length < 20) {
       selectedTitle += ' - دليل شامل';
     }
   }

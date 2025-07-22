@@ -46,26 +46,31 @@ export function generatePageCanonicalUrl(
     return CANONICAL_DOMAIN; // Fallback to homepage
   }
 
-  // Sanitize slug to ensure it's URL-safe
-  const sanitizedSlug = sanitizeSlug(slug);
+  // For articles and ai-tools, use the original slug to preserve exact URLs
+  // Only sanitize for categories and pages where we need clean URLs
+  let finalSlug = slug;
+
+  if (pageType === 'category' || pageType === 'page') {
+    finalSlug = sanitizeSlug(slug);
+  }
 
   let path = '';
 
   switch (pageType) {
     case 'article':
-      path = `articles/${sanitizedSlug}`;
+      path = `articles/${finalSlug}`;
       break;
     case 'ai-tool':
-      path = `ai-tools/${sanitizedSlug}`;
+      path = `ai-tools/${finalSlug}`;
       break;
     case 'category':
-      path = category ? sanitizeSlug(category) : sanitizedSlug;
+      path = category ? sanitizeSlug(category) : finalSlug;
       break;
     case 'page':
-      path = sanitizedSlug === 'home' ? '' : `page/${sanitizedSlug}`;
+      path = finalSlug === 'home' ? '' : `page/${finalSlug}`;
       break;
     default:
-      path = sanitizedSlug;
+      path = finalSlug;
   }
 
   const canonicalUrl = generateCanonicalUrl(path);
