@@ -12,6 +12,21 @@ import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
 import MarkdownPreview from "@/components/MarkdownPreview";
 
+// دالة لتنظيف المحتوى من العناوين والصور المكررة
+function cleanArticleContent(content: string): string {
+  if (!content || typeof content !== 'string') {
+    return content;
+  }
+
+  // إزالة العنوان الأول إذا كان يبدأ بـ #
+  let cleanedContent = content.replace(/^#\s+[^\n]+\n\n?/, '');
+
+  // إزالة أول صورة إذا كانت في بداية المحتوى
+  cleanedContent = cleanedContent.replace(/^\[صورة:\d+\]\n\n?/, '');
+
+  return cleanedContent;
+}
+
 // دالة للتحقق من نوع المحتوى وعرضه بالتنسيق المناسب
 function renderArticleContent(content: any, articleImages?: any[]) {
   // التحقق من أن المحتوى موجود
@@ -25,9 +40,12 @@ function renderArticleContent(content: any, articleImages?: any[]) {
 
   // إذا كان المحتوى نص عادي (Markdown) - الأولوية للـ Markdown
   if (typeof content === 'string') {
+    // تنظيف المحتوى من العناوين والصور المكررة
+    const cleanedContent = cleanArticleContent(content);
+
     // التحقق إذا كان النص يحتوي على JSON
     try {
-      const parsedContent = JSON.parse(content);
+      const parsedContent = JSON.parse(cleanedContent);
       if (parsedContent && parsedContent.blocks && Array.isArray(parsedContent.blocks)) {
         // إذا كان Editor.js، نحوله إلى Markdown
         const markdownContent = convertEditorJSToMarkdown(parsedContent);
@@ -37,18 +55,20 @@ function renderArticleContent(content: any, articleImages?: any[]) {
       // ليس JSON، إذن هو Markdown عادي
     }
 
-    return <MarkdownPreview content={content} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+    return <MarkdownPreview content={cleanedContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
   }
 
   // إذا كان المحتوى بتنسيق EditorJS، نحوله إلى Markdown
   if (content && typeof content === 'object' && content.blocks && Array.isArray(content.blocks)) {
     const markdownContent = convertEditorJSToMarkdown(content);
-    return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+    const cleanedMarkdown = cleanArticleContent(markdownContent);
+    return <MarkdownPreview content={cleanedMarkdown} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
   }
 
   // في حالة عدم التمكن من تحديد النوع، عرض كـ Markdown
   const contentString = typeof content === 'string' ? content : JSON.stringify(content);
-  return <MarkdownPreview content={contentString} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+  const cleanedContentString = cleanArticleContent(contentString);
+  return <MarkdownPreview content={cleanedContentString} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
 }
 
 // دالة لتحويل Editor.js إلى Markdown
