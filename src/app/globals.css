@@ -17,6 +17,73 @@
   }
 }
 
+/* Article Content Styling */
+@layer components {
+  .article-content {
+    @apply text-gray-800 leading-relaxed;
+  }
+
+  .article-content h1 {
+    @apply text-3xl font-bold text-gray-900 mb-6 mt-8 leading-tight;
+  }
+
+  .article-content h2 {
+    @apply text-2xl font-semibold text-gray-900 mb-4 mt-6 leading-tight;
+  }
+
+  .article-content h3 {
+    @apply text-xl font-semibold text-gray-900 mb-3 mt-5 leading-tight;
+  }
+
+  .article-content p {
+    @apply mb-4 text-gray-700 leading-relaxed;
+  }
+
+  .article-content ul {
+    @apply list-disc list-inside mb-4 space-y-2;
+  }
+
+  .article-content ol {
+    @apply list-decimal list-inside mb-4 space-y-2;
+  }
+
+  .article-content li {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .article-content blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4;
+  }
+
+  .article-content a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+
+  .article-content strong {
+    @apply font-semibold text-gray-900;
+  }
+
+  .article-content em {
+    @apply italic;
+  }
+
+  .article-content code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
+  }
+
+  .article-content pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .article-content pre code {
+    @apply bg-transparent p-0 text-gray-100;
+  }
+
+  .article-content hr {
+    @apply border-gray-300 my-8;
+  }
+}
+
 /* استيراد CSS الإعلانات */
 @import '../styles/ads.css';
 

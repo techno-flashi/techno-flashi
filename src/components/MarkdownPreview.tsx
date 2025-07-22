@@ -197,7 +197,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
           // معالجة النص العادي
           const processedText = processInlineMarkdown(currentParagraph.trim());
           elements.push(
-            <p key={key++} className="mb-4 text-dark-text-secondary leading-relaxed">
+            <p key={key++} className="mb-4 text-gray-700 leading-relaxed">
               {processedText}
             </p>
           );
@@ -276,7 +276,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
       if (line.startsWith('### ')) {
         flushParagraph();
         elements.push(
-          <h3 key={key++} className="text-lg font-semibold text-white mb-3 mt-6">
+          <h3 key={key++} className="text-xl font-semibold text-gray-900 mb-3 mt-5 leading-tight">
             {line.substring(4)}
           </h3>
         );
@@ -286,7 +286,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
       if (line.startsWith('## ')) {
         flushParagraph();
         elements.push(
-          <h2 key={key++} className="text-xl font-semibold text-white mb-4 mt-8">
+          <h2 key={key++} className="text-2xl font-semibold text-gray-900 mb-4 mt-6 leading-tight">
             {line.substring(3)}
           </h2>
         );
@@ -296,7 +296,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
       if (line.startsWith('# ')) {
         flushParagraph();
         elements.push(
-          <h1 key={key++} className="text-2xl font-bold text-white mb-6 mt-10">
+          <h1 key={key++} className="text-3xl font-bold text-gray-900 mb-6 mt-8 leading-tight">
             {line.substring(2)}
           </h1>
         );
@@ -332,9 +332,9 @@ export default function MarkdownPreview({ content, className = '', articleImages
         }
         i--; // العودة خطوة واحدة
         elements.push(
-          <ul key={key++} className="list-disc list-inside space-y-2 my-4 text-dark-text-secondary">
+          <ul key={key++} className="list-disc list-inside mb-4 space-y-2">
             {listItems.map((item, idx) => (
-              <li key={idx} className="ml-6 mb-2">
+              <li key={idx} className="text-gray-700 leading-relaxed">
                 {processInlineMarkdown(item)}
               </li>
             ))}
@@ -370,7 +370,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
     // معالجة النص العريض
     remaining = remaining.replace(/\*\*(.*?)\*\*/g, (match, content) => {
       const placeholder = `__BOLD_${key++}__`;
-      parts.push(<strong key={placeholder} className="font-semibold text-white">{content}</strong>);
+      parts.push(<strong key={placeholder} className="font-semibold text-gray-900">{content}</strong>);
       return placeholder;
     });
 
@@ -385,7 +385,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
     remaining = remaining.replace(/`([^`]+)`/g, (match, content) => {
       const placeholder = `__CODE_${key++}__`;
       parts.push(
-        <code key={placeholder} className="bg-gray-800 text-primary px-2 py-1 rounded text-sm font-mono">
+        <code key={placeholder} className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800">
           {content}
         </code>
       );
@@ -396,7 +396,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
     remaining = remaining.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
       const placeholder = `__LINK_${key++}__`;
       parts.push(
-        <a key={placeholder} href={url} className="text-primary hover:text-primary/80 underline" target="_blank" rel="noopener noreferrer">
+        <a key={placeholder} href={url} className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">
           {text}
         </a>
       );
@@ -432,7 +432,7 @@ export default function MarkdownPreview({ content, className = '', articleImages
   }
 
   return (
-    <div className={`prose max-w-none ${className}`}>
+    <div className={`article-content ${className}`}>
       {elements}
     </div>
   );
