@@ -164,17 +164,23 @@ export function generateArticleSocialMeta(article: {
   updated_at?: string;
   tags?: string[];
 }) {
+  // Ensure proper UTF-8 encoding for Arabic text
+  const cleanTitle = article.title?.toString() || 'مقال تقني';
+  const cleanExcerpt = article.excerpt?.toString() || 'محتوى تقني متخصص';
+  const cleanCategory = article.category?.toString() || 'تقنية';
+  const cleanAuthor = article.author?.toString() || 'فريق TechnoFlash';
+
   return generateSocialMeta({
-    title: article.title, // Remove | TechnoFlash - will be added by layout.tsx template
-    description: article.excerpt,
+    title: cleanTitle, // Remove | TechnoFlash - will be added by layout.tsx template
+    description: cleanExcerpt,
     url: `/articles/${article.slug}`,
     image: article.featured_image || '/og-image.jpg',
     type: 'article',
-    section: article.category,
-    author: article.author || 'فريق TechnoFlash',
+    section: cleanCategory,
+    author: cleanAuthor,
     publishedTime: article.created_at,
     modifiedTime: article.updated_at || article.created_at,
-    tags: article.tags || [article.category, 'تقنية', 'مقالات']
+    tags: article.tags || [cleanCategory, 'تقنية', 'مقالات']
   });
 }
 

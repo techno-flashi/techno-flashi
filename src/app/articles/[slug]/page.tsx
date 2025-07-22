@@ -167,10 +167,14 @@ async function getArticle(slug: string) {
     }
 
     if (!data) {
-
       return null;
     }
 
+    // Validate article data quality
+    if (!data.title || data.title.trim() === '' || data.title.match(/^\d+$/)) {
+      console.warn(`❌ Article "${slug}" has invalid title:`, data.title);
+      return null;
+    }
 
     return fixObjectEncoding(data);
   } catch (error: any) {

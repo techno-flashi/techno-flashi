@@ -89,35 +89,35 @@ export const createArticleJsonLd = (article: any) => ({
   "description": article.description || article.excerpt,
   "image": {
     "@type": "ImageObject",
-    "url": article.featured_image || "https://tflash.site/og-image.jpg",
+    "url": article.featured_image || article.featured_image_url || "https://www.tflash.site/og-image.jpg",
     "width": 1200,
     "height": 630
   },
   "author": {
     "@type": "Organization",
-    "name": "TechnoFlash",
-    "url": "https://tflash.site"
+    "name": article.author || "TechnoFlash",
+    "url": "https://www.tflash.site"
   },
   "publisher": {
     "@type": "Organization",
     "name": "TechnoFlash",
-    "url": "https://tflash.site",
+    "url": "https://www.tflash.site",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://tflash.site/logo.png",
+      "url": "https://www.tflash.site/logo.png",
       "width": 600,
       "height": 60
     }
   },
-  "datePublished": article.created_at,
+  "datePublished": article.published_at || article.created_at,
   "dateModified": article.updated_at || article.created_at,
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://tflash.site/articles/${article.slug}`
+    "@id": `https://www.tflash.site/articles/${article.slug}`
   },
   "inLanguage": "ar",
-  "articleSection": "Technology",
-  "keywords": article.tags || ["تقنية", "ذكاء اصطناعي", "تكنولوجيا"]
+  "articleSection": article.category || "Technology",
+  "keywords": article.tags || article.seo_keywords || ["تقنية", "ذكاء اصطناعي", "تكنولوجيا"]
 });
 
 // دالة لإنشاء JSON-LD محسنة للخدمات
