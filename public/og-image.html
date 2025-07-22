@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TechnoFlash OG Image Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        #canvas {
+            border: 1px solid #ccc;
+            background: white;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #38BDF8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #06B6D4;
+        }
+    </style>
+</head>
+<body>
+    <h1>TechnoFlash OG Image Generator</h1>
+    <div class="controls">
+        <button onclick="generateImage()">Generate OG Image</button>
+        <button onclick="downloadImage()">Download as JPEG</button>
+    </div>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function generateImage() {
+            // Clear canvas
+            ctx.clearRect(0, 0, 1200, 630);
+
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#0D1117');
+            gradient.addColorStop(0.5, '#1a1a2e');
+            gradient.addColorStop(1, '#16213e');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // Decorative elements
+            ctx.globalAlpha = 0.1;
+            ctx.fillStyle = '#38BDF8';
+            ctx.beginPath();
+            ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.fillStyle = '#06B6D4';
+            ctx.beginPath();
+            ctx.arc(1100, 530, 80, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.globalAlpha = 1;
+
+            // Logo background
+            const logoGradient = ctx.createLinearGradient(100, 200, 160, 260);
+            logoGradient.addColorStop(0, '#38BDF8');
+            logoGradient.addColorStop(1, '#06B6D4');
+            ctx.fillStyle = logoGradient;
+            ctx.roundRect(100, 200, 60, 60, 10);
+            ctx.fill();
+
+            // Logo text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('ت', 130, 240);
+
+            // Main title
+            const titleGradient = ctx.createLinearGradient(200, 280, 800, 280);
+            titleGradient.addColorStop(0, '#38BDF8');
+            titleGradient.addColorStop(1, '#06B6D4');
+            ctx.fillStyle = titleGradient;
+            ctx.font = 'bold 72px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('TechnoFlash', 200, 280);
+
+            // Arabic subtitle
+            ctx.fillStyle = '#E5E7EB';
+            ctx.font = '36px Arial';
+            ctx.fillText('بوابتك للمستقبل التقني', 200, 340);
+
+            // Description
+            ctx.fillStyle = '#9CA3AF';
+            ctx.font = '24px Arial';
+            ctx.fillText('مقالات تقنية • أدوات ذكاء اصطناعي • خدمات متخصصة', 200, 400);
+
+            // Website URL
+            ctx.fillStyle = '#38BDF8';
+            ctx.font = '28px Arial';
+            ctx.fillText('www.tflash.site', 200, 480);
+
+            // Code brackets decoration
+            ctx.globalAlpha = 0.3;
+            ctx.fillStyle = '#38BDF8';
+            ctx.font = 'bold 120px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('</>', 950, 200);
+
+            // AI network decoration
+            ctx.globalAlpha = 0.2;
+            ctx.strokeStyle = '#06B6D4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(950, 350, 30, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            ctx.fillStyle = '#06B6D4';
+            ctx.beginPath();
+            ctx.arc(950, 350, 15, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Network nodes
+            const nodes = [
+                {x: 910, y: 330}, {x: 990, y: 330},
+                {x: 910, y: 370}, {x: 990, y: 370}
+            ];
+
+            ctx.fillStyle = '#38BDF8';
+            nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 8, 0, 2 * Math.PI);
+                ctx.fill();
+
+                // Connect to center
+                ctx.beginPath();
+                ctx.moveTo(950, 350);
+                ctx.lineTo(node.x, node.y);
+                ctx.stroke();
+            });
+
+            ctx.globalAlpha = 1;
+        }
+
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'og-image.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+        }
+
+        // Helper function for rounded rectangles
+        CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+            if (w < 2 * r) r = w / 2;
+            if (h < 2 * r) r = h / 2;
+            this.beginPath();
+            this.moveTo(x + r, y);
+            this.arcTo(x + w, y, x + w, y + h, r);
+            this.arcTo(x + w, y + h, x, y + h, r);
+            this.arcTo(x, y + h, x, y, r);
+            this.arcTo(x, y, x + w, y, r);
+            this.closePath();
+            return this;
+        };
+
+        // Generate image on load
+        generateImage();
+    </script>
+</body>
+</html>

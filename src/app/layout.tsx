@@ -62,17 +62,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_EG',
-    url: 'https://tflash.site',
+    url: 'https://www.tflash.site',
     siteName: 'TechnoFlash',
     title: 'TechnoFlash | بوابتك للمستقبل التقني',
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة في عالم البرمجة والتكنولوجيا.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://www.tflash.site/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'TechnoFlash - بوابتك للمستقبل التقني',
-        type: 'image/jpeg',
+        type: 'image/svg+xml',
       },
     ],
   },
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     creator: '@technoflash',
     title: 'TechnoFlash | بوابتك للمستقبل التقني',
     description: 'منصة ويب متكاملة تقدم مقالات تقنية حصرية، ودليل شامل لأدوات الذكاء الاصطناعي، وخدمات متخصصة.',
-    images: ['/og-image.jpg'],
+    images: ['https://www.tflash.site/og-image.svg'],
   },
 
   verification: {
