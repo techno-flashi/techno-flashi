@@ -118,16 +118,5 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 </script>`,
     priority: 3
   },
-  'monetag-vignette': {
-    name: 'Monetag Vignette Template',
-    position: 'head_end' as const,
-    code: `<script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('DOMAIN_PLACEHOLDER',ZONE_ID_PLACEHOLDER,document.createElement('script'))</script>`,
-    priority: 9
-  },
-  'monetag-banner-new': {
-    name: 'Monetag Banner (gizokraijaw.net)',
-    position: 'head_end' as const,
-    code: `<script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('gizokraijaw.net',ZONE_ID,document.createElement('script'))</script>`,
-    priority: 8
-  }
+  // Monetag templates removed
 };

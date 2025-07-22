@@ -489,7 +489,7 @@ export default function IntegratedAdsAdminPage() {
                         onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value as any }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                       >
-                        <option value="monetag">💰 Monetag</option>
+
                         <option value="adsense">🎯 Google AdSense</option>
                         <option value="custom">🔧 مخصص</option>
                       </select>
@@ -515,7 +515,7 @@ export default function IntegratedAdsAdminPage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        🎯 Zone ID {formData.type === 'monetag' && '*'}
+                        🎯 Zone ID
                       </label>
                       <input
                         type="text"
@@ -523,7 +523,7 @@ export default function IntegratedAdsAdminPage() {
                         onChange={(e) => setFormData(prev => ({ ...prev, zone_id: e.target.value }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                         placeholder="9593378"
-                        required={formData.type === 'monetag'}
+                        required
                       />
                     </div>
 
@@ -567,23 +567,7 @@ export default function IntegratedAdsAdminPage() {
                       placeholder="أدخل كود الإعلان هنا..."
                       required
                     />
-                    {formData.type === 'monetag' && formData.zone_id && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const template = monetagTemplates[formData.position as keyof typeof monetagTemplates];
-                          if (template) {
-                            setFormData(prev => ({
-                              ...prev,
-                              script_code: template.script(formData.zone_id)
-                            }));
-                          }
-                        }}
-                        className="mt-2 text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded hover:bg-blue-200"
-                      >
-                        🔄 إنشاء كود Monetag تلقائياً
-                      </button>
-                    )}
+                    {/* Monetag auto-generation removed */}
                   </div>
 
                   <div>

@@ -30,9 +30,8 @@ export default function AdsVerificationPage() {
       
       injections.forEach(injection => {
         if (injection.name.toLowerCase().includes('monetag')) {
-          // Check for Monetag scripts
-          const monetagScripts = document.querySelectorAll('script[src*="gizokraijaw.net"], script[src*="vemtoutcheeg.com"]');
-          results[injection.id] = monetagScripts.length > 0;
+          // Monetag verification removed
+          results[injection.id] = false;
         } else if (injection.name.toLowerCase().includes('google analytics')) {
           // Check for Google Analytics
           results[injection.id] = typeof (window as any).gtag === 'function';

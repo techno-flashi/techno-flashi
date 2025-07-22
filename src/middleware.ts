@@ -104,8 +104,10 @@ export function middleware(request: NextRequest) {
     "https://tpc.googlesyndication.com " +
     "https://securepubads.g.doubleclick.net " +
     "https://connect.facebook.net " +
-    "https://*.monetag.com " +
-    "https://monetag.com " +
+    "https://fonts.googleapis.com " +
+    "https://fonts.gstatic.com " +
+    "https://www.youtube.com " +
+    "https://youtube.com; " +ag.com " +
     "https://vemtoutcheeg.com " +
     "https://*.vemtoutcheeg.com " +
     "https://gizokraijaw.net " +

@@ -214,7 +214,7 @@ export default function SupabaseAdsAdminPage() {
                         <div className="flex items-center justify-between mb-4">
                           <div>
                             <h3 className="font-medium text-gray-900 flex items-center">
-                              {ad.type === 'monetag' ? '💰' : '📢'} {ad.name}
+                              📢 {ad.name}
                             </h3>
                             <p className="text-sm text-gray-500">
                               {ad.type.toUpperCase()} | 📍 {ad.position} | 🎯 Zone: {ad.zone_id} | ⭐ Priority: {ad.priority}
@@ -300,7 +300,7 @@ export default function SupabaseAdsAdminPage() {
                         onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value as any }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                       >
-                        <option value="monetag">💰 Monetag</option>
+
                         <option value="adsense">🎯 Google AdSense</option>
                         <option value="custom">🔧 مخصص</option>
                       </select>
