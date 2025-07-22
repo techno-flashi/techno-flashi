@@ -3,7 +3,7 @@ import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { getAllArticlesForSSG, getStatsForSSG } from "@/lib/ssg";
 import { ArticleCard } from "@/components/ArticleCard";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
-import { HeaderAd, FooterAd, InContentAd } from "@/components/ads/AdManager";
+
 import { Article } from "@/types";
 
 
@@ -172,8 +172,7 @@ export default async function ArticlesPage() {
           </div>
         </div>
 
-        {/* إعلان أعلى قائمة المقالات */}
-        <HeaderAd className="mb-8" />
+
 
         {/* قائمة المقالات */}
         {articles.length > 0 ? (
@@ -182,12 +181,7 @@ export default async function ArticlesPage() {
               {articles.map((article, index) => (
                 <div key={`article-${article.id}-${index}`} className="contents">
                   <ArticleCard article={article} />
-                  {/* إعلان بين المقالات كل 6 مقالات */}
-                  {(index + 1) % 6 === 0 && (
-                    <div className="col-span-full">
-                      <InContentAd className="my-8" />
-                    </div>
-                  )}
+
                 </div>
               ))}
             </div>
@@ -260,8 +254,7 @@ export default async function ArticlesPage() {
           </div>
         )}
 
-        {/* إعلان الفوتر */}
-        <FooterAd className="mt-12" />
+
       </div>
     </div>
   );

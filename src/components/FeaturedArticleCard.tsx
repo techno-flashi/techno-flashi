@@ -4,6 +4,7 @@
 import { Article } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import SafeDateDisplay from "./SafeDateDisplay";
 
 interface FeaturedArticleCardProps {
   article: Article;
@@ -47,11 +48,12 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
             </p>
             <div className="flex items-center justify-between">
               <div className="text-sm text-black">
-                {new Date(article.published_at).toLocaleDateString('ar-EG', {
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric'
-                })}
+                <SafeDateDisplay
+                  date={article.published_at}
+                  locale="ar-EG"
+                  options={{ year: 'numeric', month: 'long', day: 'numeric' }}
+                  fallback="تاريخ غير محدد"
+                />
               </div>
               <div className="flex items-center text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 اقرأ المقال كاملاً

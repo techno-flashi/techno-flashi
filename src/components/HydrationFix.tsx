@@ -30,37 +30,7 @@ export default function HydrationFix() {
       });
     };
 
-    // إصلاح مشاكل الـ AdSense
-    const fixAdSenseIssues = () => {
-      try {
-        // إزالة عناصر AdSense التالفة
-        const brokenAdElements = document.querySelectorAll('[data-ad-client]:empty');
-        brokenAdElements.forEach(el => {
-          if (el.parentNode) {
-            el.parentNode.removeChild(el);
-          }
-        });
 
-        // إصلاح مشاكل parentNode null
-        const adElements = document.querySelectorAll('ins.adsbygoogle');
-        adElements.forEach(el => {
-          if (!el.parentNode) {
-            el.remove();
-          }
-        });
-
-        // إصلاح مشاكل ID5 API
-        if (window.id5 && typeof window.id5.init === 'function') {
-          try {
-            window.id5.init();
-          } catch (error) {
-            console.warn('ID5 API initialization error:', error);
-          }
-        }
-      } catch (error) {
-        console.warn('AdSense fix error:', error);
-      }
-    };
 
     // إصلاح مشاكل الـ hydration في الـ Header
     const fixHeaderHydration = () => {
@@ -81,8 +51,7 @@ export default function HydrationFix() {
 
     // تشغيل الإصلاحات فور التحميل
     removeExtensionAttributes();
-    setTimeout(fixAdSenseIssues, 100);
-    setTimeout(fixHeaderHydration, 200);
+    setTimeout(fixHeaderHydration, 100);
 
     // مراقبة التغييرات وإزالة attributes جديدة
     const observer = new MutationObserver((mutations) => {

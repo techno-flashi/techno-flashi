@@ -14,7 +14,7 @@ const nextConfig = {
   },
 
   // Server external packages
-  serverExternalPackages: ['sharp'],
+  serverExternalPackages: ['sharp', '@supabase/supabase-js'],
 
   // إعدادات SSG و ISR
   output: 'standalone',
@@ -263,6 +263,21 @@ const nextConfig = {
 
   // تحسينات webpack
   webpack: (config, { dev, isServer }) => {
+    // Fix Supabase module resolution
+    config.resolve.extensionAlias = {
+      '.js': ['.js', '.ts', '.tsx'],
+      '.jsx': ['.jsx', '.tsx'],
+    };
+
+    // Ensure proper module resolution for Supabase
+    config.resolve.modules = ['node_modules', ...(config.resolve.modules || [])];
+
+    // Fix vendor chunks naming
+    if (!dev) {
+      config.optimization = config.optimization || {};
+      config.optimization.moduleIds = 'deterministic';
+      config.optimization.chunkIds = 'deterministic';
+    }
     // تحسينات الإنتاج المتقدمة
     if (!dev && !isServer) {
       // Advanced bundle optimization
@@ -279,13 +294,14 @@ const nextConfig = {
             priority: 30,
             enforce: true,
           },
-          // Supabase in separate chunk
+          // Supabase in separate chunk - fixed for vendor chunks
           supabase: {
             test: /[\\/]node_modules[\\/]@supabase[\\/]/,
-            name: 'supabase',
+            name: 'vendor-supabase',
             chunks: 'all',
             priority: 25,
             enforce: true,
+            reuseExistingChunk: true,
           },
           // UI libraries
           ui: {
@@ -346,6 +362,10 @@ const nextConfig = {
         os: false,
         path: false,
       };
+
+      // Fix Supabase vendor chunks issue
+      config.optimization.splitChunks.cacheGroups.default = false;
+      config.optimization.splitChunks.cacheGroups.defaultVendors = false;
     }
 
     return config;

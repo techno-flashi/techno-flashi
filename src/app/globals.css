@@ -15,6 +15,13 @@
     font-family: var(--font-cairo);
     font-display: swap;
   }
+
+  /* Fallback for when Google Fonts fails to load */
+  @font-face {
+    font-family: 'Cairo-Fallback';
+    src: local('Segoe UI'), local('Tahoma'), local('Arial');
+    font-display: swap;
+  }
 }
 
 /* Article Content Styling */
@@ -84,8 +91,7 @@
   }
 }
 
-/* استيراد CSS الإعلانات */
-@import '../styles/ads.css';
+
 
 /* استيراد تحسينات التصميم المتجاوب */
 @import '../styles/responsive-enhancements.css';

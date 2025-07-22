@@ -34,11 +34,11 @@ function AdminDashboard() {
           </p>
         )}
         <p className="mt-4" style={{ color: '#000000' }}>
-          من هنا يمكنك إدارة المقالات والأدوات والخدمات والإعلانات.
+          من هنا يمكنك إدارة المقالات والأدوات والخدمات والصفحات.
         </p>
 
         {/* لوحة التحكم السريعة */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <Link
             href="/admin/articles"
             className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
@@ -69,25 +69,7 @@ function AdminDashboard() {
             <p className="text-sm" style={{ color: '#666666' }}>إدارة الخدمات المقدمة</p>
           </Link>
 
-          <Link
-            href="/admin/advanced-ads"
-            className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
-            style={{ backgroundColor: '#ffffff' }}
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🎯</div>
-            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>نظام الإعلانات المتقدم</h3>
-            <p className="text-sm" style={{ color: '#666666' }}>إدارة شاملة للإعلانات متعددة الشبكات</p>
-          </Link>
 
-          <Link
-            href="/admin/ads"
-            className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
-            style={{ backgroundColor: '#ffffff' }}
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📢</div>
-            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>الإعلانات التقليدية</h3>
-            <p className="text-sm" style={{ color: '#666666' }}>النظام القديم لإدارة الإعلانات</p>
-          </Link>
 
           <Link
             href="/admin/pages"
@@ -109,25 +91,7 @@ function AdminDashboard() {
             <p className="text-sm" style={{ color: '#666666' }}>رفع الصور وإدارة الفيديوهات</p>
           </Link>
 
-          <Link
-            href="/test-ads-comprehensive"
-            className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
-            style={{ backgroundColor: '#ffffff' }}
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🧪</div>
-            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>اختبار الإعلانات</h3>
-            <p className="text-sm" style={{ color: '#666666' }}>اختبار شامل لجميع أنواع الإعلانات</p>
-          </Link>
 
-          <Link
-            href="/test-advertisement-fixes"
-            className="bg-white p-6 rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-300 text-center group"
-            style={{ backgroundColor: '#ffffff' }}
-          >
-            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🔧</div>
-            <h3 className="text-lg font-semibold mb-2" style={{ color: '#000000' }}>اختبار الإصلاحات</h3>
-            <p className="text-sm" style={{ color: '#666666' }}>اختبار إصلاحات نظام الإعلانات</p>
-          </Link>
         </div>
       </div>
     </div>

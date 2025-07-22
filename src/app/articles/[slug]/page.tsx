@@ -4,17 +4,92 @@ import { supabase } from "@/lib/supabase";
 import { getAllArticlesForSSG, getArticleBySlugForSSG, fixObjectEncoding } from "@/lib/ssg";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import AdBanner from "@/components/ads/AdBanner";
-import { ArticleStartAd, ArticleMiddleAd, ArticleEndAd, SidebarAdManager } from "@/components/ads/AdManager";
-import { SmartArticleAd, SmartContentAd, SmartSharedAd } from "@/components/ads/SmartAdManager";
-import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
-import SpacingDebugger, { AdDebugger } from "@/components/debug/SpacingDebugger";
-import { HeaderAnimatedAd, InContentAnimatedAd, FooterAnimatedAd, SidebarAnimatedAd } from '@/components/ads/AnimatedAdRenderer';
+import SpacingDebugger from "@/components/debug/SpacingDebugger";
+import SafeDateDisplay from "@/components/SafeDateDisplay";
 
 
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
 import MarkdownPreview from "@/components/MarkdownPreview";
+
+// دالة للتحقق من نوع المحتوى وعرضه بالتنسيق المناسب
+function renderArticleContent(content: any, articleImages?: any[]) {
+  // التحقق من أن المحتوى موجود
+  if (!content) {
+    return (
+      <div className="prose prose-lg max-w-none article-content">
+        <p className="text-gray-600">لا يوجد محتوى متاح لهذا المقال.</p>
+      </div>
+    );
+  }
+
+  // إذا كان المحتوى نص عادي (Markdown) - الأولوية للـ Markdown
+  if (typeof content === 'string') {
+    // التحقق إذا كان النص يحتوي على JSON
+    try {
+      const parsedContent = JSON.parse(content);
+      if (parsedContent && parsedContent.blocks && Array.isArray(parsedContent.blocks)) {
+        // إذا كان Editor.js، نحوله إلى Markdown
+        const markdownContent = convertEditorJSToMarkdown(parsedContent);
+        return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+      }
+    } catch (error) {
+      // ليس JSON، إذن هو Markdown عادي
+    }
+
+    return <MarkdownPreview content={content} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+  }
+
+  // إذا كان المحتوى بتنسيق EditorJS، نحوله إلى Markdown
+  if (content && typeof content === 'object' && content.blocks && Array.isArray(content.blocks)) {
+    const markdownContent = convertEditorJSToMarkdown(content);
+    return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+  }
+
+  // في حالة عدم التمكن من تحديد النوع، عرض كـ Markdown
+  const contentString = typeof content === 'string' ? content : JSON.stringify(content);
+  return <MarkdownPreview content={contentString} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
+}
+
+// دالة لتحويل Editor.js إلى Markdown
+function convertEditorJSToMarkdown(editorData: any): string {
+  if (!editorData.blocks || !Array.isArray(editorData.blocks)) {
+    return '';
+  }
+
+  return editorData.blocks.map((block: any) => {
+    switch (block.type) {
+      case 'paragraph':
+        return block.data.text || '';
+
+      case 'header':
+        const level = block.data.level || 1;
+        const hashes = '#'.repeat(level);
+        return `${hashes} ${block.data.text || ''}`;
+
+      case 'list':
+        if (block.data.style === 'ordered') {
+          return block.data.items.map((item: string, index: number) => `${index + 1}. ${item}`).join('\n');
+        } else {
+          return block.data.items.map((item: string) => `- ${item}`).join('\n');
+        }
+
+      case 'quote':
+        return `> ${block.data.text || ''}`;
+
+      case 'code':
+        return `\`\`\`\n${block.data.code || ''}\n\`\`\``;
+
+      case 'image':
+        const url = block.data.file?.url || block.data.url || '';
+        const caption = block.data.caption || '';
+        return caption ? `![${caption}](${url})` : `![صورة](${url})`;
+
+      default:
+        return block.data.text || '';
+    }
+  }).join('\n\n');
+}
 import JsonLd, { createArticleJsonLd } from "@/components/JsonLd";
 import { Breadcrumbs, createBreadcrumbJsonLd } from "@/components/Breadcrumbs";
 import { generateArticleSocialMeta, getSharingUrl, getSharingHashtags } from "@/lib/social-meta";
@@ -146,84 +221,7 @@ async function getRelatedArticles(currentSlug: string, tags: string[] = []) {
   return data || [];
 }
 
-// دالة للتحقق من نوع المحتوى وعرضه بالتنسيق المناسب
-function renderArticleContent(content: any, articleImages?: any[]) {
-  // التحقق من أن المحتوى موجود
-  if (!content) {
-    return (
-      <div className="prose prose-lg max-w-none article-content">
-        <p className="text-gray-600">لا يوجد محتوى متاح لهذا المقال.</p>
-      </div>
-    );
-  }
 
-  // إذا كان المحتوى نص عادي (Markdown) - الأولوية للـ Markdown
-  if (typeof content === 'string') {
-    // التحقق إذا كان النص يحتوي على JSON
-    try {
-      const parsedContent = JSON.parse(content);
-      if (parsedContent && parsedContent.blocks && Array.isArray(parsedContent.blocks)) {
-        // إذا كان Editor.js، نحوله إلى Markdown
-        const markdownContent = convertEditorJSToMarkdown(parsedContent);
-        return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
-      }
-    } catch (error) {
-      // ليس JSON، إذن هو Markdown عادي
-    }
-
-    return <MarkdownPreview content={content} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
-  }
-
-  // إذا كان المحتوى بتنسيق EditorJS، نحوله إلى Markdown
-  if (content && typeof content === 'object' && content.blocks && Array.isArray(content.blocks)) {
-    const markdownContent = convertEditorJSToMarkdown(content);
-    return <MarkdownPreview content={markdownContent} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
-  }
-
-  // في حالة عدم التمكن من تحديد النوع، عرض كـ Markdown
-  const contentString = typeof content === 'string' ? content : JSON.stringify(content);
-  return <MarkdownPreview content={contentString} articleImages={articleImages} className="prose prose-lg max-w-none article-content" />;
-}
-
-// دالة لتحويل Editor.js إلى Markdown
-function convertEditorJSToMarkdown(editorData: any): string {
-  if (!editorData.blocks || !Array.isArray(editorData.blocks)) {
-    return '';
-  }
-
-  return editorData.blocks.map((block: any) => {
-    switch (block.type) {
-      case 'paragraph':
-        return block.data.text || '';
-
-      case 'header':
-        const level = block.data.level || 1;
-        const hashes = '#'.repeat(level);
-        return `${hashes} ${block.data.text || ''}`;
-
-      case 'list':
-        if (block.data.style === 'ordered') {
-          return block.data.items.map((item: string, index: number) => `${index + 1}. ${item}`).join('\n');
-        } else {
-          return block.data.items.map((item: string) => `- ${item}`).join('\n');
-        }
-
-      case 'quote':
-        return `> ${block.data.text || ''}`;
-
-      case 'code':
-        return `\`\`\`\n${block.data.code || ''}\n\`\`\``;
-
-      case 'image':
-        const url = block.data.file?.url || block.data.url || '';
-        const caption = block.data.caption || '';
-        return caption ? `![${caption}](${url})` : `![صورة](${url})`;
-
-      default:
-        return block.data.text || '';
-    }
-  }).join('\n\n');
-}
 
 // إعداد بيانات SEO الديناميكية للصفحة - محسن لإزالة المحتوى المكرر
 export async function generateMetadata({ params }: Props) {
@@ -336,9 +334,6 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Canonical URL handled in metadata - no duplicate tags */}
 
-      {/* Header Animated Ad */}
-      <HeaderAnimatedAd currentPage={`/articles/${slug}`} className="mb-8" />
-
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* المحتوى الرئيسي - محسن للقراءة */}
         <article className="lg:col-span-3 max-w-none lg:max-w-[80%]">
@@ -358,9 +353,12 @@ export default async function ArticlePage({ params }: Props) {
 
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 md:mb-8 text-sm sm:text-base" style={{ color: '#666666' }}>
             <span>
-              نُشر في: {new Date(article.published_at).toLocaleDateString('ar-EG', {
-                year: 'numeric', month: 'long', day: 'numeric'
-              })}
+              نُشر في: <SafeDateDisplay
+                date={article.published_at}
+                locale="ar-EG"
+                options={{ year: 'numeric', month: 'long', day: 'numeric' }}
+                fallback="تاريخ غير محدد"
+              />
             </span>
             {article.author && (
               <span>• بواسطة: {article.author}</span>
@@ -400,16 +398,12 @@ export default async function ArticlePage({ params }: Props) {
             />
           </div>
 
+
+
           {/* Article Images Debug Info - Removed for cleaner UI */}
 
           {/* محتوى المقال */}
           {renderArticleContent(article.content, articleImages)}
-
-          {/* In-Content Animated Ad */}
-          <InContentAnimatedAd currentPage={`/articles/${slug}`} className="my-8" />
-
-          {/* باقي المحتوى */}
-          {/* يمكن إضافة المزيد من المحتوى هنا */}
 
           {/* مشاركة المقال */}
           <div className="mt-12 pt-8 border-t border-gray-300">
@@ -454,16 +448,14 @@ export default async function ArticlePage({ params }: Props) {
 
 
 
-          {/* Footer Animated Ad */}
-          <FooterAnimatedAd currentPage={`/articles/${slug}`} className="mt-8" />
+
         </article>
 
         {/* الشريط الجانبي - محسن للأجهزة المحمولة */}
         <aside className="lg:col-span-1 order-first lg:order-last">
           <div className="sticky top-4 lg:top-8 space-y-4 lg:space-y-6">
 
-            {/* Sidebar Animated Ad */}
-            <SidebarAnimatedAd currentPage={`/articles/${slug}`} className="mb-6" />
+
 
 
             {/* عناصر التنقل السريع */}
@@ -509,8 +501,7 @@ export default async function ArticlePage({ params }: Props) {
               </nav>
             </div>
 
-            {/* إعلان الشريط الجانبي - معطل */}
-            {/* <AdBanner placement="sidebar" /> */}
+
 
             {/* معلومات إضافية */}
             <div className="bg-dark-card rounded-lg p-6 border border-gray-700">
@@ -519,7 +510,11 @@ export default async function ArticlePage({ params }: Props) {
                 <div className="flex justify-between">
                   <span className="text-dark-text-secondary">تاريخ النشر:</span>
                   <span className="text-black">
-                    {new Date(article.published_at).toLocaleDateString('ar-EG')}
+                    <SafeDateDisplay
+                      date={article.published_at}
+                      locale="ar-EG"
+                      fallback="تاريخ غير محدد"
+                    />
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -568,8 +563,7 @@ export default async function ArticlePage({ params }: Props) {
               />
             </div>
 
-            {/* إعلانات الشريط الجانبي */}
-            <SidebarAdManager />
+
           </div>
         </aside>
       </div>
@@ -622,7 +616,11 @@ export default async function ArticlePage({ params }: Props) {
                     {/* التاريخ والعلامات */}
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-dark-text-secondary">
-                        {new Date(relatedArticle.created_at).toLocaleDateString('ar-SA')}
+                        <SafeDateDisplay
+                          date={relatedArticle.created_at}
+                          locale="ar-SA"
+                          fallback="تاريخ غير محدد"
+                        />
                       </span>
 
                       {Array.isArray(relatedArticle.tags) && relatedArticle.tags.length > 0 && (
@@ -700,12 +698,10 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       </section>
 
-      {/* إعلان أسفل المقال - معطل */}
-      {/* <AdBanner placement="article_bottom" className="mt-8 lg:mt-12" /> */}
+
 
       {/* مكونات التشخيص (في وضع التطوير فقط) */}
       <SpacingDebugger />
-      <AdDebugger />
       </div>
     </>
   );

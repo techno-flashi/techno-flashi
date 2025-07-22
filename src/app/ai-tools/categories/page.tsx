@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { AITool } from '@/types';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import AdBanner from '@/components/ads/AdBanner';
+
 import JsonLd from '@/components/JsonLd';
 
 export const revalidate = 60;
@@ -125,8 +125,7 @@ export default async function AIToolsCategoriesPage() {
       {/* Schema Markup */}
       <JsonLd data={categoriesJsonLd} />
 
-      {/* إعلان أعلى الصفحة */}
-      <AdBanner placement="ai_tools_categories_top" className="mb-8" />
+
 
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumbs */}
@@ -184,8 +183,7 @@ export default async function AIToolsCategoriesPage() {
           </div>
         )}
 
-        {/* إعلان وسط المحتوى */}
-        <AdBanner placement="ai_tools_categories_middle" className="mb-12" />
+
 
         {/* معلومات إضافية */}
         <div className="bg-dark-card rounded-xl p-8 border border-gray-800">
@@ -233,8 +231,7 @@ export default async function AIToolsCategoriesPage() {
         </div>
       </div>
 
-      {/* إعلان أسفل الصفحة */}
-      <AdBanner placement="ai_tools_categories_bottom" className="mt-8" />
+
     </div>
   );
 }

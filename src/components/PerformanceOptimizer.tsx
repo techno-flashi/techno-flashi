@@ -11,9 +11,7 @@ const LazyServicesSection = lazy(() =>
   import('./ServicesSection').then(module => ({ default: module.ServicesSection }))
 );
 
-const LazyAdBannerTop = lazy(() => 
-  import('./AdBannerTop').then(module => ({ default: module.default }))
-);
+
 
 // Loading skeleton components
 const ArticlesSkeleton = () => (
@@ -61,13 +59,7 @@ const ServicesSkeleton = () => (
   </div>
 );
 
-const AdSkeleton = () => (
-  <div className="ad-banner bg-background-secondary border border-light-border rounded-lg">
-    <div className="h-20 flex items-center justify-center">
-      <div className="text-text-description text-sm">إعلان</div>
-    </div>
-  </div>
-);
+
 
 // Performance-optimized component wrapper
 interface LazyComponentProps {
@@ -111,7 +103,6 @@ export function PerformanceOptimizer({ latestArticles, latestServices = [] }: Pe
   if (!isClient) {
     return (
       <>
-        <AdSkeleton />
         <ArticlesSkeleton />
         <ServicesSkeleton />
       </>
@@ -120,12 +111,7 @@ export function PerformanceOptimizer({ latestArticles, latestServices = [] }: Pe
 
   return (
     <>
-      {/* Lazy load ad banner */}
-      <LazyComponent fallback={<AdSkeleton />}>
-        <Suspense fallback={<AdSkeleton />}>
-          <LazyAdBannerTop />
-        </Suspense>
-      </LazyComponent>
+
 
       {/* Lazy load articles section */}
       <LazyComponent fallback={<ArticlesSkeleton />}>

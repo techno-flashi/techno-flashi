@@ -4,7 +4,7 @@ import { supabase, fixObjectEncoding } from '@/lib/supabase';
 import { AITool } from '@/types';
 import { AIToolComparison } from '@/components/AIToolComparison';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import AdBanner from '@/components/ads/AdBanner';
+
 import JsonLd from '@/components/JsonLd';
 
 export const revalidate = 60;
@@ -87,8 +87,7 @@ export default async function AIToolsComparePage() {
       {/* Schema Markup */}
       <JsonLd data={comparisonJsonLd} />
 
-      {/* إعلان أعلى الصفحة */}
-      <AdBanner placement="ai_tools_compare_top" className="mb-8" />
+
 
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumbs */}
@@ -123,8 +122,7 @@ export default async function AIToolsComparePage() {
           </div>
         )}
 
-        {/* إعلان وسط المحتوى */}
-        <AdBanner placement="ai_tools_compare_middle" className="mb-12" />
+
 
         {/* نصائح للاختيار */}
         <div className="bg-dark-card rounded-xl p-8 border border-gray-800 mb-12">
@@ -182,8 +180,7 @@ export default async function AIToolsComparePage() {
         </div>
       </div>
 
-      {/* إعلان أسفل الصفحة */}
-      <AdBanner placement="ai_tools_compare_bottom" className="mt-8" />
+
     </div>
   );
 }

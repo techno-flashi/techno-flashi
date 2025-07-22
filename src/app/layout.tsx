@@ -10,13 +10,12 @@ import "../styles/admin-override.css";
 import "../styles/interactive-effects.css";
 import { ProfessionalHeader } from "@/components/ProfessionalHeader";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { TechnoFlashHeaderBanner, TechnoFlashFooterBanner } from "@/components/ads/TechnoFlashBanner";
+
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import ScrollTracker from "@/components/ScrollTracker";
 import JsonLd, { websiteJsonLd, organizationJsonLd } from "@/components/JsonLd";
 import { Toaster } from 'react-hot-toast';
-import DynamicCodeInjection from "@/components/ads/DynamicCodeInjection";
-import AdScriptLoader, { AdScriptDebugger } from "@/components/ads/AdScriptLoader";
+
 
 
 // إعداد خط Cairo باستخدام Next.js Font Optimization
@@ -25,6 +24,7 @@ const cairo = Cairo({
   weight: ['400', '700'],
   display: 'swap',
   variable: '--font-cairo',
+  fallback: ['Segoe UI', 'Tahoma', 'Arial', 'sans-serif'],
 });
 
 
@@ -99,8 +99,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        {/* Dynamic Code Injection - HEAD START */}
-        <DynamicCodeInjection position="head_start" />
+
 
 
 
@@ -139,13 +138,11 @@ export default function RootLayout({
 
         {/* تم إزالة جميع سكريبتات الطرف الثالث الثقيلة لتحسين الأداء والـ SEO */}
 
-        {/* Dynamic Code Injection - HEAD END */}
-        <DynamicCodeInjection position="head_end" />
+
       </head>
 
       <body className={`${cairo.variable} bg-white text-text-primary font-sans`} suppressHydrationWarning={true}>
-        {/* Dynamic Code Injection - BODY START */}
-        <DynamicCodeInjection position="body_start" />
+
 
 
 
@@ -156,12 +153,10 @@ export default function RootLayout({
         <Toaster position="top-center" />
 
         <AuthProvider>
-          <TechnoFlashHeaderBanner />
           <ProfessionalHeader />
           <main className="min-h-screen">
             {children}
           </main>
-          <TechnoFlashFooterBanner />
          <footer className="bg-neutral-100 border-t border-neutral-200">
   <div className="container mx-auto px-4 py-8">
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -269,15 +264,7 @@ export default function RootLayout({
 
 
 
-        {/* Dynamic Code Injection - FOOTER */}
-        <DynamicCodeInjection position="footer" />
 
-        {/* Enhanced Ad Script Loader - Ensures proper script execution */}
-        <AdScriptLoader position="footer" />
-        <AdScriptLoader position="head_end" />
-
-        {/* Ad Verification and Debug Components */}
-        <AdScriptDebugger />
       </body>
     </html>
   );

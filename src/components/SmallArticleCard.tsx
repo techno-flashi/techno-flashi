@@ -4,6 +4,7 @@
 import { Article } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import SafeDateDisplay from "./SafeDateDisplay";
 
 interface SmallArticleCardProps {
   article: Article;
@@ -39,10 +40,12 @@ export function SmallArticleCard({ article }: SmallArticleCardProps) {
             </h3>
             <div className="flex items-center justify-between">
               <div className="text-xs text-text-description">
-                {new Date(article.published_at).toLocaleDateString('ar-EG', {
-                  month: 'short', 
-                  day: 'numeric'
-                })}
+                <SafeDateDisplay
+                  date={article.published_at}
+                  locale="ar-EG"
+                  options={{ month: 'short', day: 'numeric' }}
+                  fallback="غير محدد"
+                />
               </div>
               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

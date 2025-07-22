@@ -70,7 +70,7 @@ export function ProfessionalHeader() {
               <span>ت</span>
             </div>
             <div className="logo-text">
-              <h1 className="logo-title">تكنو فلاش</h1>
+              <div className="logo-title">تكنو فلاش</div>
               <p className="logo-subtitle">أحدث أخبار التكنولوجيا</p>
             </div>
           </Link>

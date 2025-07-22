@@ -4,15 +4,10 @@ import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { getLatestArticlesOptimized } from "@/lib/database";
 import { FeaturedArticlesSection } from "@/components/FeaturedArticlesSection";
 
-import AdBanner from "@/components/ads/AdBanner";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
-import SponsorsSection from "@/components/SponsorsSection";
-import AdBannerTop from "@/components/AdBannerTop";
-import { InContentAnimatedAd } from "@/components/ads/AnimatedAdRenderer";
+
 
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
-import { TechnoFlashContentBanner } from "@/components/ads/TechnoFlashBanner";
-import UniversalAdDisplay from "@/components/ads/UniversalAdDisplay";
 
 import LatestAIToolsSection from "@/components/LatestAIToolsSection";
 
@@ -64,16 +59,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* إعلان الهيدر */}
-      <UniversalAdDisplay
-        position="header"
-        className="mb-4"
-        fallbackAd={{
-          title: "🎉 عرض خاص من Flash!",
-          description: "وفر 50% على فواتير الإنترنت والموبايل والكهرباء",
-          click_url: "https://lets.useflash.app/6gaijh"
-        }}
-      />
+
 
 
       {/* Hero Section - مبسط */}
@@ -143,16 +129,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* إعلان وسط المحتوى */}
-      <UniversalAdDisplay
-        position="in-content"
-        className="my-12"
-        fallbackAd={{
-          title: "💳 Flash - ادفع فواتيرك بذكاء",
-          description: "خصم 50% على فواتير الإنترنت، الموبايل، الكهرباء، والمياه • 🎯 سهل • سريع • آمن",
-          click_url: "https://lets.useflash.app/6gaijh"
-        }}
-      />
+
 
       {/* قسم المميزات المحدث بتصميم 2025 */}
       <section className="py-24 px-4 bg-white relative overflow-hidden">
@@ -262,16 +239,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* إعلان تكنوفلاش المتحرك */}
-      <TechnoFlashContentBanner className="my-8" />
+
 
       {/* Performance optimized sections with lazy loading */}
       <PerformanceOptimizer
         latestArticles={latestArticles}
       />
 
-      {/* إعلان بين الأقسام */}
-      <InContentAnimatedAd currentPage="/" className="my-12" />
+
 
       {/* قسم أحدث أدوات الذكاء الاصطناعي */}
       <LatestAIToolsSection />
@@ -309,8 +284,7 @@ export default async function HomePage() {
 
 
 
-      {/* قسم الرعاة */}
-      <SponsorsSection />
+
 
 
 
@@ -345,16 +319,7 @@ export default async function HomePage() {
         showName={false}
       />
 
-      {/* إعلان نهاية الصفحة */}
-      <UniversalAdDisplay
-        position="footer"
-        className="my-8"
-        fallbackAd={{
-          title: "🚀 جرب Flash الآن",
-          description: "وفر 50% على جميع فواتيرك مع Flash",
-          click_url: "https://lets.useflash.app/6gaijh"
-        }}
-      />
+
 
     </div>
   );

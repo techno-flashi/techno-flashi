@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Service } from '@/types';
-import AdBanner from '@/components/ads/AdBanner';
+
 import { generateServiceSocialMeta, getSharingUrl, getSharingHashtags } from '@/lib/social-meta';
 import SocialShare from '@/components/SocialShare';
 import SocialShareCompact from '@/components/SocialShareCompact';
@@ -281,8 +281,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      {/* إعلان */}
-      <AdBanner placement="service-details" />
+
 
       {/* خدمات ذات صلة */}
       {relatedServices.length > 0 && (
