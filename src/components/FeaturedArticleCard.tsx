@@ -5,6 +5,7 @@ import { Article } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import SafeDateDisplay from "./SafeDateDisplay";
+import { getArticleThumbnail } from "@/lib/imageUtils";
 
 interface FeaturedArticleCardProps {
   article: Article;
@@ -16,7 +17,7 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
       <div className="bg-dark-card rounded-xl overflow-hidden border border-gray-800 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transform hover:-translate-y-1 h-full">
         <div className="relative w-full h-64 md:h-80 overflow-hidden">
           <Image
-            src={article.featured_image_url || "https://placehold.co/800x600/0D1117/38BDF8?text=TechnoFlash"}
+            src={getArticleThumbnail(article)}
             alt={article.title}
             title={article.title}
             width={800}
@@ -24,8 +25,8 @@ export function FeaturedArticleCard({ article }: FeaturedArticleCardProps) {
             style={{ objectFit: "cover", width: "100%", height: "100%" }}
             className="transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
-              console.log('Image failed to load:', article.featured_image_url);
-              e.currentTarget.src = "https://placehold.co/800x600/0D1117/38BDF8?text=TechnoFlash";
+              console.log('Image failed to load:', getArticleThumbnail(article));
+              e.currentTarget.src = "/assets/default-article-thumb.jpg";
             }}
             unoptimized
           />

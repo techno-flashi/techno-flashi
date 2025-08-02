@@ -11,6 +11,8 @@ import SafeDateDisplay from "@/components/SafeDateDisplay";
 import { ArticleContent } from "@/components/ArticleContent";
 import { EditorJSRenderer } from "@/components/EditorJSRenderer";
 import MarkdownPreview from "@/components/MarkdownPreview";
+import PromoAd from "@/components/PromoAd";
+import { getArticleThumbnail, getArticleOGImage } from "@/lib/imageUtils";
 
 // دالة لتنظيف المحتوى من العناوين والصور المكررة
 function cleanArticleContent(content: string): string {
@@ -406,9 +408,14 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           )}
 
+          {/* إعلان في البداية */}
+          <div className="mb-8">
+            <PromoAd type="hostinger" />
+          </div>
+
           <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden mb-6 md:mb-8">
             <Image
-              src={article.featured_image_url || "https://placehold.co/1200x600/0D1117/38BDF8?text=TechnoFlash"}
+              src={getArticleThumbnail(article)}
               alt={article.title}
               width={1200}
               height={600}
@@ -428,6 +435,11 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* محتوى المقال */}
           {renderArticleContent(article.content, articleImages)}
+
+          {/* إعلان في الوسط */}
+          <div className="my-12">
+            <PromoAd type="easysite" />
+          </div>
 
           {/* مشاركة المقال */}
           <div className="mt-12 pt-8 border-t border-gray-300">
@@ -722,7 +734,19 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       </section>
 
+      {/* إعلان إضافي في الأسفل */}
+      <section className="py-8 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <PromoAd type="hostinger" />
+        </div>
+      </section>
 
+      {/* إعلان EasySite في نهاية المقال */}
+      <section className="py-8 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <PromoAd type="easysite" variant="banner" />
+        </div>
+      </section>
 
       {/* مكونات التشخيص (في وضع التطوير فقط) */}
       <SpacingDebugger />

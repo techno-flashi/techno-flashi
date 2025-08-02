@@ -1,0 +1,14 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad2)"/>
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">TechnoFlash</text>
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle">بوابتك للمستقبل التقني</text>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)" text-anchor="middle">مقالات تقنية متخصصة وأدوات الذكاء الاصطناعي</text>
+  <circle cx="600" cy="200" r="40" fill="rgba(255,255,255,0.2)"/>
+  <path d="M580 185 L620 185 L620 215 L580 215 Z M590 175 L610 175 L610 185 L590 185 Z" fill="white"/>
+</svg>

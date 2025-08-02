@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import PromoAd from './PromoAd';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -93,6 +94,13 @@ export function Header() {
           </div>
         )}
       </nav>
+
+      {/* إعلان Hostinger في الهيدر */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-4">
+          <PromoAd type="hostinger" variant="banner" />
+        </div>
+      </div>
     </header>
   );
 }

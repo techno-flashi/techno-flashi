@@ -10,6 +10,7 @@ import { NewsletterSubscription } from "@/components/NewsletterSubscription";
 import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 
 import LatestAIToolsSection from "@/components/LatestAIToolsSection";
+import PromoAd from "@/components/PromoAd";
 
 
 
@@ -251,9 +252,12 @@ export default async function HomePage() {
       {/* قسم أحدث أدوات الذكاء الاصطناعي */}
       <LatestAIToolsSection />
 
-
-
-
+      {/* إعلان Hostinger بعد أدوات الذكاء الاصطناعي */}
+      <section className="py-8 px-4 bg-gray-50">
+        <div className="container mx-auto">
+          <PromoAd type="hostinger" variant="default" />
+        </div>
+      </section>
 
       {/* قسم روابط سريعة للصفحات المهمة */}
       <section className="py-16 px-4 bg-background-secondary">
@@ -309,6 +313,13 @@ export default async function HomePage() {
               className="justify-center"
             />
           </div>
+        </div>
+      </section>
+
+      {/* إعلان EasySite قبل النشرة البريدية */}
+      <section className="py-8 px-4 bg-white">
+        <div className="container mx-auto">
+          <PromoAd type="easysite" variant="default" />
         </div>
       </section>
 

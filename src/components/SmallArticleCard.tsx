@@ -5,6 +5,7 @@ import { Article } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import SafeDateDisplay from "./SafeDateDisplay";
+import { getArticleThumbnail } from "@/lib/imageUtils";
 
 interface SmallArticleCardProps {
   article: Article;
@@ -18,7 +19,7 @@ export function SmallArticleCard({ article }: SmallArticleCardProps) {
           {/* الصورة الصغيرة */}
           <div className="relative w-24 h-20 flex-shrink-0 overflow-hidden">
             <Image
-              src={article.featured_image_url || "https://placehold.co/200x150/0D1117/38BDF8?text=T"}
+              src={getArticleThumbnail(article)}
               alt={article.title}
               title={article.title}
               width={200}

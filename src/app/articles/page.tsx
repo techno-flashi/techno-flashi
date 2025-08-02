@@ -3,6 +3,7 @@ import { supabase, fixObjectEncoding } from "@/lib/supabase";
 import { getAllArticlesForSSG, getStatsForSSG } from "@/lib/ssg";
 import { ArticleCard } from "@/components/ArticleCard";
 import { NewsletterSubscription } from "@/components/NewsletterSubscription";
+import PromoAd from "@/components/PromoAd";
 
 import { Article } from "@/types";
 
@@ -239,6 +240,13 @@ export default async function ArticlesPage() {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* إعلان Hostinger في صفحة المقالات */}
+        {articles.length > 0 && (
+          <div className="mt-12">
+            <PromoAd type="hostinger" variant="default" />
           </div>
         )}
 

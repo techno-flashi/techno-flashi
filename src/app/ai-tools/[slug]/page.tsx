@@ -16,6 +16,7 @@ import { AIToolLink } from '@/components/AIToolLink';
 import { generateAIToolSocialMeta } from '@/lib/social-meta';
 import { generateUniqueMetaDescription, generateUniquePageTitle } from '@/lib/unique-meta-generator';
 import { generatePageCanonicalUrl, generateSingleCanonicalMeta } from '@/lib/canonical-url-manager';
+import PromoAd from '@/components/PromoAd';
 
 // Import critical CSS for faster LCP
 import "@/styles/critical-ai-tool.css";
@@ -268,6 +269,11 @@ export default async function AIToolPage({ params }: Props) {
                 </div>
               </div>
 
+              {/* إعلان في البداية */}
+              <div className="mb-8">
+                <PromoAd type="hostinger" />
+              </div>
+
               {tool.detailed_description && (
                 <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm mb-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">نظرة عامة شاملة</h2>
@@ -354,6 +360,11 @@ export default async function AIToolPage({ params }: Props) {
                 </div>
               )}
 
+              {/* إعلان في الوسط */}
+              <div className="my-12">
+                <PromoAd type="easysite" />
+              </div>
+
               <AIToolComparisonContainer currentTool={tool} availableTools={availableTools} className="mb-8" />
 
             </article>
@@ -401,6 +412,11 @@ export default async function AIToolPage({ params }: Props) {
               </div>
             </aside>
           </div>
+        </div>
+
+        {/* إعلان في النهاية */}
+        <div className="my-12">
+          <PromoAd type="hostinger" />
         </div>
 
 

@@ -11,6 +11,7 @@ import JsonLd from '@/components/JsonLd';
 import { AIToolsClient } from '@/components/AIToolsClient';
 import LazyAIToolsGrid from '@/components/ai-tools/LazyAIToolsGrid';
 import AIToolsSearch from '@/components/ai-tools/AIToolsSearch';
+import PromoAd from '@/components/PromoAd';
 
 // Optimized ISR settings for faster updates
 export const revalidate = 300; // 5 minutes for AI tools listing
