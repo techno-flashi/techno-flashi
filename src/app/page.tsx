@@ -41,7 +41,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      <PerformanceOptimizer />
+      <PerformanceOptimizer latestArticles={latestArticles} />
 
       {/* Hero Section - مبسط */}
       <section className="hero-interactive gradient-bg-interactive relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-purple-50 to-pink-50 gpu-accelerated">
