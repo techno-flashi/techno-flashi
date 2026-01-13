@@ -1,0 +1,244 @@
+/* Ultra-Critical CSS for AI Tool Pages - Minimal above-the-fold only */
+/* Optimized for 99 Lighthouse score - Only essential styles */
+
+/* Core layout - minimal */
+.ai-tool-container{max-width:1200px;margin:0 auto;padding:0 1rem}
+.ai-tool-header{margin-bottom:2rem;padding:2rem 0}
+
+/* Typography - compressed */
+.ai-tool-title{font-size:2.5rem;font-weight:700;line-height:1.2;color:#1a1a1a;margin-bottom:1rem}
+.ai-tool-description{font-size:1.125rem;line-height:1.6;color:#4b5563;margin-bottom:1.5rem}
+
+/* Meta and logo - ultra compressed */
+.ai-tool-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;color:#666;font-size:0.9rem}
+.ai-tool-logo-container{width:96px;height:96px;min-height:96px;display:flex;align-items:center;justify-content:center;background:#f8f9fa;border-radius:12px;margin-bottom:1.5rem}
+
+/* Critical breadcrumbs styling */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.breadcrumb-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+/* Essential rating and pricing display */
+.ai-tool-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.rating-stars {
+  color: #fbbf24;
+  font-size: 1.25rem;
+}
+
+.ai-tool-pricing {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Critical action buttons */
+.ai-tool-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+/* Essential content styling */
+.ai-tool-content {
+  line-height: 1.7;
+  color: #333;
+}
+
+.ai-tool-content h1,
+.ai-tool-content h2,
+.ai-tool-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.ai-tool-content h1 {
+  font-size: 2rem;
+}
+
+.ai-tool-content h2 {
+  font-size: 1.75rem;
+}
+
+.ai-tool-content h3 {
+  font-size: 1.5rem;
+}
+
+.ai-tool-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* Critical features list */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: #374151;
+}
+
+.features-list li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Critical mobile responsiveness */
+@media (max-width: 768px) {
+  .ai-tool-title {
+    font-size: 2rem;
+  }
+  
+  .ai-tool-container {
+    padding: 0 0.75rem;
+  }
+  
+  .ai-tool-actions {
+    flex-direction: column;
+  }
+  
+  .ai-tool-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .ai-tool-logo-container {
+    width: 80px;
+    height: 80px;
+    min-height: 80px;
+  }
+}
+
+/* Prevent layout shift for related tools */
+.related-tools-container {
+  min-height: 200px;
+  margin-top: 3rem;
+}
+
+.related-tool-card {
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Essential loading states to prevent CLS */
+.loading-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Essential ad container to prevent CLS */
+.ad-container {
+  min-height: 250px;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* Critical dark mode support */
+@media (prefers-color-scheme: dark) {
+  .ai-tool-title {
+    color: #ffffff;
+  }
+  
+  .ai-tool-content {
+    color: #e5e5e5;
+  }
+  
+  .ai-tool-meta {
+    color: #a0a0a0;
+  }
+  
+  .breadcrumbs {
+    color: #a0a0a0;
+  }
+  
+  .ad-container {
+    background: #1f2937;
+  }
+  
+  .ai-tool-logo-container {
+    background: #374151;
+  }
+  
+  .related-tool-card {
+    border-color: #374151;
+    background: #1f2937;
+  }
+}

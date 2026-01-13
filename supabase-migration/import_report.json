@@ -1,0 +1,72 @@
+{
+  "import_date": "2025-07-14T21:22:44.649Z",
+  "target_url": "https://biikzzcbrzxzfeaavmlc.supabase.co",
+  "database_import": {
+    "total_tables": 8,
+    "successful_tables": 1,
+    "total_records_imported": 0,
+    "table_results": [
+      {
+        "table": "users",
+        "success": false,
+        "imported": 0,
+        "errors": 0,
+        "total": 0
+      },
+      {
+        "table": "user_profiles",
+        "success": false,
+        "imported": 0,
+        "errors": 0,
+        "total": 0
+      },
+      {
+        "table": "categories",
+        "success": false,
+        "imported": 0,
+        "errors": 0,
+        "total": 0
+      },
+      {
+        "table": "tags",
+        "success": false,
+        "imported": 0,
+        "errors": 0,
+        "total": 0
+      },
+      {
+        "table": "articles",
+        "success": false,
+        "imported": 0,
+        "errors": 26,
+        "total": 26
+      },
+      {
+        "table": "ai_tools",
+        "success": false,
+        "imported": 0,
+        "errors": 231,
+        "total": 231
+      },
+      {
+        "table": "services",
+        "success": true,
+        "imported": 0,
+        "errors": 0,
+        "total": 0
+      },
+      {
+        "table": "site_pages",
+        "success": false,
+        "imported": 0,
+        "errors": 7,
+        "total": 7
+      }
+    ]
+  },
+  "storage_import": {
+    "success": false,
+    "total_files": 0,
+    "uploaded_files": 0
+  }
+}

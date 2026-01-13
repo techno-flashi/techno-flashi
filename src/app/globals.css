@@ -1,0 +1,683 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Local fonts are loaded via layout.tsx for better performance */
+/* Removed Google Fonts import to prevent duplicate loading */
+
+/* Font configuration using Next.js Font Optimization */
+@layer base {
+  :root {
+    --font-cairo: 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-cairo);
+    font-display: swap;
+  }
+
+  /* Fallback for when Google Fonts fails to load */
+  @font-face {
+    font-family: 'Cairo-Fallback';
+    src: local('Segoe UI'), local('Tahoma'), local('Arial');
+    font-display: swap;
+  }
+}
+
+/* Article Content Styling */
+@layer components {
+  .article-content {
+    @apply text-gray-800 leading-relaxed;
+  }
+
+  .article-content h1 {
+    @apply text-3xl font-bold text-gray-900 mb-6 mt-8 leading-tight;
+  }
+
+  .article-content h2 {
+    @apply text-2xl font-semibold text-gray-900 mb-4 mt-6 leading-tight;
+  }
+
+  .article-content h3 {
+    @apply text-xl font-semibold text-gray-900 mb-3 mt-5 leading-tight;
+  }
+
+  .article-content p {
+    @apply mb-4 text-gray-700 leading-relaxed;
+  }
+
+  .article-content ul {
+    @apply list-disc list-inside mb-4 space-y-2;
+  }
+
+  .article-content ol {
+    @apply list-decimal list-inside mb-4 space-y-2;
+  }
+
+  .article-content li {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .article-content blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4;
+  }
+
+  .article-content a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+
+  .article-content strong {
+    @apply font-semibold text-gray-900;
+  }
+
+  .article-content em {
+    @apply italic;
+  }
+
+  .article-content code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
+  }
+
+  .article-content pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .article-content pre code {
+    @apply bg-transparent p-0 text-gray-100;
+  }
+
+  .article-content hr {
+    @apply border-gray-300 my-8;
+  }
+}
+
+
+
+/* استيراد تحسينات التصميم المتجاوب */
+@import '../styles/responsive-enhancements.css';
+
+/* استيراد التحسينات الحديثة لعام 2025 */
+@import '../styles/modern-enhancements.css';
+
+/* استيراد نظام الألوان الحديث لعام 2025 */
+@import '../styles/modern-2025-colors.css';
+
+/* استيراد الخطوط المحلية - تم التعطيل مؤقتاً لحل مشكلة 404 */
+/* @import '../styles/local-fonts.css'; */
+
+/* استيراد نظام التصميم الاحترافي */
+@import '../styles/professional-design-system.css';
+@import '../styles/professional-components.css';
+
+/* RTL Support for Arabic Content */
+@layer base {
+  html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+
+  html[dir="rtl"] .text-left {
+    text-align: right;
+  }
+
+  html[dir="rtl"] .text-right {
+    text-align: left;
+  }
+
+  html[dir="rtl"] .ml-auto {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  html[dir="rtl"] .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+
+/* Font Family Configuration - Using Local Fonts Only */
+@layer base {
+  body {
+    font-family: 'Cairo', 'Amiri', sans-serif;
+  }
+}
+
+/* تحسينات إضافية للواجهة */
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  /* أنيميشن جديدة لتصميم 2025 */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  /* تأثيرات الخلفية المتحركة */
+  .bg-animated-gradient {
+    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+}
+
+/* أنيميشن fadeInUp */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* أنيميشن fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* أنيميشن جديدة لتصميم 2025 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* تخصيص أنماط Swiper */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #38BDF8 !important;
+}
+
+.swiper-pagination {
+  bottom: 16px !important;
+}
+
+/* تحسين الاستجابة للموبايل */
+@media (max-width: 768px) {
+  .swiper-button-next-custom,
+  .swiper-button-prev-custom {
+    display: none !important;
+  }
+
+  /* تحسينات للنصوص على الموبايل */
+  h1 {
+    @apply text-2xl md:text-4xl lg:text-5xl;
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+    line-height: 1.3;
+  }
+
+  h3 {
+    @apply text-lg md:text-xl lg:text-2xl;
+    line-height: 1.4;
+  }
+
+  /* تحسينات للحاويات على الموبايل */
+  .container {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  /* تحسينات للأزرار على الموبايل */
+  .btn-mobile {
+    @apply min-h-[48px] px-4 py-3 text-base;
+    touch-action: manipulation; /* Improve touch responsiveness */
+  }
+
+  /* تحسينات للبطاقات على الموبايل */
+  .card-mobile {
+    @apply mx-2 mb-4;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Improve scrolling performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce animations on mobile for better performance */
+  .reduce-motion {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة جداً */
+@media (max-width: 375px) {
+  .container {
+    @apply px-3;
+  }
+
+  .btn-mobile {
+    @apply min-h-[44px] px-3 py-2 text-sm;
+  }
+
+  h1 {
+    @apply text-xl;
+  }
+
+  h2 {
+    @apply text-lg;
+  }
+}
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1440px) {
+  .container {
+    @apply max-w-7xl;
+  }
+}
+
+/* نظام الألوان والخطوط الموحد للموقع بالكامل */
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", "Inter", "Roboto", "Open Sans", system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6; /* ثابت للنصوص */
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: #FFFFFF; /* خلفية الموقع العامة */
+    color: #1C1C1C; /* النص الرئيسي */
+  }
+
+  /* نظام العناوين الموحد */
+  h1 {
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    font-weight: 700;
+    font-size: 32px; /* العنوان الرئيسي */
+    line-height: 1.3; /* ثابت للعناوين */
+    color: #1C1C1C;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    font-weight: 600;
+    font-size: 24px; /* العنوان الفرعي */
+    line-height: 1.3;
+    color: #1C1C1C;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 {
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    font-weight: 500;
+    font-size: 20px; /* H3-H4 */
+    line-height: 1.3;
+    color: #1C1C1C;
+    margin-bottom: 0.5rem;
+  }
+
+  h4 {
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+    font-weight: 500;
+    font-size: 18px; /* H3-H4 */
+    line-height: 1.3;
+    color: #1C1C1C;
+    margin-bottom: 0.5rem;
+  }
+
+  /* النص العادي */
+  p {
+    font-size: 18px; /* النص العادي */
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1C1C1C; /* النص الرئيسي */
+    margin-bottom: 1rem;
+  }
+
+  /* العناوين الثانوية والوصف */
+  .text-secondary {
+    color: #4A4A4A; /* العناوين الثانوية */
+    font-weight: 500;
+  }
+
+  .text-description, .text-caption, .text-meta {
+    color: #64748b; /* الوصف/الحواشي/Metadata للثيم الفاتح */
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /* نظام الروابط الموحد */
+  a {
+    color: #3333FF; /* الحالة العادية */
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #3399FF; /* عند التمرير */
+    text-decoration: underline;
+  }
+
+  /* الاستجابة للموبايل */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px; /* النص العادي للموبايل */
+    }
+
+    h1 {
+      font-size: 28px; /* العنوان الرئيسي للموبايل */
+    }
+
+    h2 {
+      font-size: 22px; /* العنوان الفرعي للموبايل */
+    }
+
+    h3 {
+      font-size: 18px; /* H3 للموبايل */
+    }
+
+    h4 {
+      font-size: 16px; /* H4 للموبايل */
+    }
+
+    p {
+      font-size: 16px; /* النص العادي للموبايل */
+    }
+
+    .text-description, .text-caption, .text-meta {
+      font-size: 14px; /* الوصف للموبايل */
+    }
+  }
+}
+
+  /* Optimize rendering performance */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Improve paint performance */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Shimmer animation for image loading */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+/* مكونات الموقع بالنظام الموحد */
+@layer components {
+  /* الأزرار بالألوان الموحدة */
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-600 hover:bg-secondary-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* البطاقات بالخلفيات الموحدة */
+  .tech-card {
+    @apply rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200;
+    background-color: #F9F9F9; /* خلفيات الصناديق */
+    border: 1px solid #E1E5E9;
+  }
+
+  .tech-card-hover {
+    @apply tech-card hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  /* الأقسام */
+  .tech-section {
+    @apply py-16 px-4;
+    background-color: #FFFFFF; /* خلفية الموقع العامة */
+  }
+
+  .tech-container {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* فئات النصوص الموحدة - Light Theme */
+  .text-primary-custom {
+    color: #1e293b; /* النص الرئيسي للثيم الفاتح */
+    font-weight: 400;
+  }
+
+  .text-secondary {
+    color: #475569; /* العناوين الثانوية للثيم الفاتح */
+    font-weight: 500;
+  }
+
+  .text-description {
+    color: #64748b; /* الوصف/الحواشي للثيم الفاتح */
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /* العناوين بالأحجام الثابتة */
+  .heading-1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1C1C1C;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+  }
+
+  .heading-2 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1C1C1C;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+  }
+
+  .heading-3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #1C1C1C;
+    font-family: "Cairo", "Tajawal", "Noto Kufi Arabic", sans-serif;
+  }
+
+  .body-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1C1C1C;
+  }
+
+  /* التركيز */
+  .tech-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white;
+  }
+
+  /* التأثيرات */
+  .tech-hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  /* تحسينات إضافية للألوان */
+  .text-enhanced {
+    color: #1C1C1C !important; /* نص واضح */
+    font-weight: 500;
+  }
+
+  .text-enhanced-secondary {
+    color: #4A4A4A !important; /* نص ثانوي واضح */
+    font-weight: 400;
+  }
+
+  .text-enhanced-description {
+    color: #666666 !important; /* وصف واضح */
+    font-weight: 400;
+  }
+
+  /* تحسينات للعناوين */
+  .heading-enhanced {
+    color: #1C1C1C !important;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* الاستجابة للموبايل */
+  @media (max-width: 768px) {
+    .heading-1 {
+      font-size: 28px;
+    }
+
+    .heading-2 {
+      font-size: 22px;
+    }
+
+    .heading-3 {
+      font-size: 18px;
+    }
+
+    .body-text {
+      font-size: 16px;
+    }
+  }
+}

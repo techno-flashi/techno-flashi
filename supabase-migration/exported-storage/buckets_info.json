@@ -1,0 +1,32 @@
+[
+  {
+    "name": "images",
+    "exists": true,
+    "error": null,
+    "accessible": true
+  },
+  {
+    "name": "documents",
+    "exists": true,
+    "error": null,
+    "accessible": true
+  },
+  {
+    "name": "uploads",
+    "exists": true,
+    "error": null,
+    "accessible": true
+  },
+  {
+    "name": "avatars",
+    "exists": true,
+    "error": null,
+    "accessible": true
+  },
+  {
+    "name": "assets",
+    "exists": true,
+    "error": null,
+    "accessible": true
+  }
+]

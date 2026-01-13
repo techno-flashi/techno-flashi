@@ -1,0 +1,235 @@
+/* Admin Dashboard Text Visibility & Hydration Fix - Complete Override */
+
+/* ===== CRITICAL HYDRATION FIX ===== */
+.admin-container {
+  /* Prevent hydration mismatches by ensuring consistent initial state */
+  color: #000000 !important;
+  background-color: #1a1a1a !important;
+}
+
+.admin-container * {
+  /* Force all text to be black for maximum visibility */
+  color: #000000 !important;
+}
+
+/* ===== HEADINGS & TITLES ===== */
+.admin-container h1,
+.admin-container h2,
+.admin-container h3,
+.admin-container h4,
+.admin-container h5,
+.admin-container h6 {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* ===== BODY TEXT & PARAGRAPHS ===== */
+.admin-container p,
+.admin-container span,
+.admin-container div,
+.admin-container td,
+.admin-container th,
+.admin-container li {
+  color: #000000 !important;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.admin-container input,
+.admin-container textarea,
+.admin-container select,
+.admin-container option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cccccc !important;
+}
+
+.admin-container input::placeholder,
+.admin-container textarea::placeholder {
+  color: #666666 !important;
+}
+
+/* ===== FORM LABELS ===== */
+.admin-container label {
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+/* ===== BUTTONS ===== */
+.admin-container button {
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+/* Primary buttons */
+.admin-container .btn-primary,
+.admin-container .bg-primary,
+.admin-container .bg-blue-600,
+.admin-container .bg-blue-500 {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+/* Secondary buttons */
+.admin-container .btn-secondary,
+.admin-container .bg-gray-600,
+.admin-container .bg-gray-500 {
+  background-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+/* Danger buttons */
+.admin-container .btn-danger,
+.admin-container .bg-red-600,
+.admin-container .bg-red-500 {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* Success buttons */
+.admin-container .bg-green-600,
+.admin-container .bg-green-500 {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+/* ===== NAVIGATION & LINKS ===== */
+.admin-container a {
+  color: #000000 !important;
+  text-decoration: underline !important;
+}
+
+.admin-container a:hover {
+  color: #333333 !important;
+}
+
+/* ===== TABLES ===== */
+.admin-container table {
+  background-color: #ffffff !important;
+}
+
+.admin-container th {
+  background-color: #f3f4f6 !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.admin-container td {
+  color: #000000 !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* ===== STATUS INDICATORS & BADGES ===== */
+.admin-container .badge,
+.admin-container .status-badge {
+  color: #000000 !important;
+  background-color: #f3f4f6 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+/* ===== CARDS & CONTAINERS ===== */
+.admin-container .card,
+.admin-container .bg-dark-card,
+.admin-container .bg-white {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+/* ===== MODALS & DIALOGS ===== */
+.admin-container .modal,
+.admin-container .dialog {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* ===== DROPDOWNS ===== */
+.admin-container .dropdown-menu {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.admin-container .dropdown-item {
+  color: #000000 !important;
+}
+
+.admin-container .dropdown-item:hover {
+  background-color: #f3f4f6 !important;
+  color: #000000 !important;
+}
+
+/* ===== ERROR MESSAGES ===== */
+.admin-container .error,
+.admin-container .text-red-500,
+.admin-container .text-red-600 {
+  color: #dc2626 !important;
+  background-color: #fef2f2 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.25rem !important;
+}
+
+/* ===== SUCCESS MESSAGES ===== */
+.admin-container .success,
+.admin-container .text-green-500,
+.admin-container .text-green-600 {
+  color: #16a34a !important;
+  background-color: #f0fdf4 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.25rem !important;
+}
+
+/* ===== SIDEBAR NAVIGATION ===== */
+.admin-container .sidebar {
+  background-color: #1f2937 !important;
+}
+
+.admin-container .sidebar a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.admin-container .sidebar a:hover {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+/* ===== RICH TEXT EDITOR ===== */
+.admin-container .editor,
+.admin-container .ql-editor,
+.admin-container .tiptap {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* ===== LOADING STATES ===== */
+.admin-container .loading {
+  color: #000000 !important;
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+  .admin-container {
+    font-size: 14px !important;
+  }
+  
+  .admin-container h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  .admin-container h2 {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+.admin-container:focus-within {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .admin-container * {
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+}

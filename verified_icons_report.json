@@ -1,0 +1,2559 @@
+{
+  "update_date": "2025-07-14T23:04:05.706Z",
+  "project_url": "https://zgktrwpladrkhhemhnni.supabase.co",
+  "source": "jsDelivr + Simple Icons Only",
+  "verification": "Each icon tested before application",
+  "total_tools": 231,
+  "updated_count": 231,
+  "verified_count": 231,
+  "error_count": 0,
+  "success_rate": 100,
+  "source_stats": {
+    "category_match": 187,
+    "brand_match": 35,
+    "safe_default": 9
+  },
+  "results": [
+    {
+      "tool": "Abridge",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Ada Health",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Adalo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Adobe Firefly",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "brand_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Ahrefs",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Airtable",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Airtable AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Alteryx",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Amazon CodeWhisperer",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Anki",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Apify",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Apollo.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Appsmith",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Artbreeder",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Article Forge",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Artlist",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "AskYourPDF",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg",
+        "source": "category_match",
+        "matchedKey": "discord",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg"
+    },
+    {
+      "tool": "Audacity",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "AudioPen",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Autodraw",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Avoma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Axiom.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Babylon Health",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Backendless",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Bardeen",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg",
+        "source": "brand_match",
+        "matchedKey": "google",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg"
+    },
+    {
+      "tool": "Beautiful.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Blockade Labs (Skybox AI)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Booth.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Botpress",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Browse AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Bubble",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Canva AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg",
+        "source": "brand_match",
+        "matchedKey": "canva",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg"
+    },
+    {
+      "tool": "Canva Magic Media",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg",
+        "source": "brand_match",
+        "matchedKey": "canva",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/canva.svg"
+    },
+    {
+      "tool": "CapCut",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Casetext",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Character.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Chatbase",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Chatfuel",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "ChatGPT",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "ChatGPT-4o",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Circle.so",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Civitai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Claude",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg",
+        "source": "category_match",
+        "matchedKey": "discord",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg"
+    },
+    {
+      "tool": "Claude 3.5 Sonnet",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Clipdrop",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Clockwise",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Code-Interpreter by PhotoRoom",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Codeium",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Colossyan",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Consensus",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "ContentBot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Copy.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Coursebox",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Cursor",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "D-ID",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "DALL-E 3",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Dante AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "DaVinci Resolve",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Decktopus",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Deepdub",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "DeepL Translator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg",
+        "source": "brand_match",
+        "matchedKey": "deepl",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg"
+    },
+    {
+      "tool": "DeepL Write",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg",
+        "source": "brand_match",
+        "matchedKey": "deepl",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/deepl.svg"
+    },
+    {
+      "tool": "DeepSource",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Descript",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "DreamStudio",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Drift",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Dubber",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Dubverse.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Durable",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Dynamic Yield",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "ElevenLabs",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Elicit",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Feathery",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Fig",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "FigJam AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "brand_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Figma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "brand_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Fillout",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "brand_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Fireflies.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Fitbod",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Fivetran",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Fliki",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Folk.app",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Fotor AI Image Generator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Frase.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Gamma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Genmo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg",
+        "source": "category_match",
+        "matchedKey": "discord",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg"
+    },
+    {
+      "tool": "GitHub Copilot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "brand_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Glean",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/slack.svg",
+        "source": "brand_match",
+        "matchedKey": "slack",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/slack.svg"
+    },
+    {
+      "tool": "Glide",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg",
+        "source": "brand_match",
+        "matchedKey": "google",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg"
+    },
+    {
+      "tool": "Gong.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Google Colab",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg",
+        "source": "brand_match",
+        "matchedKey": "google",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg"
+    },
+    {
+      "tool": "Gorgias",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Gradescope",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Grammarly",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/grammarly.svg",
+        "source": "brand_match",
+        "matchedKey": "grammarly",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/grammarly.svg"
+    },
+    {
+      "tool": "Happy Scribe",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Harvey AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Heptabase",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "HeyGen",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "HireVue",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Hocoos",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Hotjar",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Ideogram AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Imgflip AI Meme Generator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Interior AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "InVideo AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "InvokeAI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Inworld AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "iZotope Ozone",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Jasper AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Kaiber",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Kandinsky",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Khroma",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Klaviyo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Knewton",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Krisp.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Krita",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "LALAL.AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Lavender",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Lensa AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Leonardo Ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "LibreTranslate",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "LimeWire AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "LiveChat",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Looka",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Loom",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/loom.svg",
+        "source": "brand_match",
+        "matchedKey": "loom",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/loom.svg"
+    },
+    {
+      "tool": "Luma AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Luminar Neo",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Make (Integromat)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "ManyChat",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Mem",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Microsoft Designer",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Midjourney",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Mintlify",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Moises.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Monarch Money",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Motion",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Murf AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "NeuronWriter",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "NightCafe Creator",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Notion AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "brand_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Observe.AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg",
+        "source": "category_match",
+        "matchedKey": "discord",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg"
+    },
+    {
+      "tool": "Opus Clip",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Originality.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "brand_match",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Otter.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Outreach.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Paperpal",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Paraphraser.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Perplexity AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Phind",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Photomath",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "PhotoRoom",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Photoshop (Generative Fill)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "brand_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Pictory",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Pika",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Pitch",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Play.ht",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Playground AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Podcastle",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Potion",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "brand_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Power BI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Prequel",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "QuantConnect",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "QuillBot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Readwise",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Recraft",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "REimagineHome",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Replit (Ghostwriter)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/replit.svg",
+        "source": "brand_match",
+        "matchedKey": "replit",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/replit.svg"
+    },
+    {
+      "tool": "Reply.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Retool",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Rows",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Runway",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Runway ML",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Rytr",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "SaneBox",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Scenario.gg",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "ScrapingBee",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Scribble Diffusion",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "SeaArt.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Semrush",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "category_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Sentry",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Shortwave",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "SlidesAI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg",
+        "source": "brand_match",
+        "matchedKey": "google",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg"
+    },
+    {
+      "tool": "Snyk",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Softr",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg",
+        "source": "brand_match",
+        "matchedKey": "google",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg"
+    },
+    {
+      "tool": "SonarCloud",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Sourcegraph Cody",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Spline",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Stable Diffusion (Automatic1111)",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Stacker",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg",
+        "source": "brand_match",
+        "matchedKey": "google",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg"
+    },
+    {
+      "tool": "Stitch Fix",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Sudowrite",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Suno AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Super.so",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "brand_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Surfer SEO",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Synthesia",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Tableau AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "brand_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Tabnine",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Tars",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Testim",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Tidio",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Tome",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Topaz Photo AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Tutor AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Twelve Labs",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Typeform",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Udio",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "UiPath",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Uizard",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Unicorn Platform",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Upscale.media",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "v0.dev by Vercel",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg",
+        "source": "category_match",
+        "matchedKey": "github",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg"
+    },
+    {
+      "tool": "Vectorizer.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Veed.io",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Vidyo.ai",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Visily",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "Voiceflow",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg",
+        "source": "category_match",
+        "matchedKey": "discord",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/discord.svg"
+    },
+    {
+      "tool": "Voicemod",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Webflow",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/webflow.svg",
+        "source": "brand_match",
+        "matchedKey": "webflow",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/webflow.svg"
+    },
+    {
+      "tool": "Wistia",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg",
+        "source": "category_match",
+        "matchedKey": "youtube",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/youtube.svg"
+    },
+    {
+      "tool": "Wix ADI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg",
+        "source": "category_match",
+        "matchedKey": "figma",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/figma.svg"
+    },
+    {
+      "tool": "WolframAlpha",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "Wordtune",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Wordtune Read",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Writesonic",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Wysa",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    },
+    {
+      "tool": "XMind",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg",
+        "source": "category_match",
+        "matchedKey": "notion",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/notion.svg"
+    },
+    {
+      "tool": "Yandex Translate",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Yepic AI",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg",
+        "source": "category_match",
+        "matchedKey": "adobe",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/adobe.svg"
+    },
+    {
+      "tool": "Zapier",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg",
+        "source": "brand_match",
+        "matchedKey": "zapier",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/zapier.svg"
+    },
+    {
+      "tool": "Zendesk Answer Bot",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg",
+        "source": "safe_default",
+        "matchedKey": "openai",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/openai.svg"
+    },
+    {
+      "tool": "Zillow AI Features",
+      "success": true,
+      "iconInfo": {
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg",
+        "source": "category_match",
+        "matchedKey": "tableau",
+        "verified": true
+      },
+      "newUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tableau.svg"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ) next build",
+  "headers": [
+    {
+      "source": "/api/version",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Cache-Status",
+          "value": "MISS"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/ads.txt",
+      "destination": "https://srv.adstxtmanager.com/19390/tflash.site",
+      "permanent": true
+    },
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "permanent": true
+    }
+  ]
+}
