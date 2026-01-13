@@ -35,7 +35,7 @@ export default function YouTubePage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link
-                href="https://www.youtube.com/@Techno_flash"
+                href="https://www.youtube.com/@TechnoFlashAITech"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white text-red-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 flex items-center gap-3"
