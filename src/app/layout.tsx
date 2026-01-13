@@ -205,63 +205,102 @@ export default function RootLayout({
         </ul>
       </div>
 
-      {/* وسائل التواصل الاجتماعي */}
+   {/* وسائل التواصل الاجتماعي */}
       <div>
-        <h4 className="text-neutral-900 font-semibold mb-3">تابعنا</h4>
-        <ul className="space-y-2">
+        <h4 className="text-neutral-900 font-semibold mb-3 text-lg">تابعنا على المنصات</h4>
+        <ul className="space-y-3">
+          {/* يوتيوب */}
           <li>
             <a
-              href="http://www.youtube.com/@Techno_flash" // 👈 ضع رابط قناتك الصحيح هنا
+              href="http://www.youtube.com/@TechnoFlashAITech"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-600 hover:text-red-600 transition-colors duration-300 flex items-center gap-2"
+              className="text-neutral-600 hover:text-red-600 transition-colors duration-300 flex items-center gap-3 group"
             >
-              <span className="text-red-500">▶️</span>
-              قناة اليوتيوب (19K+)
+              <span className="text-red-500 text-xl group-hover:scale-110 transition-transform">▶️</span>
+              <span className="font-medium">قناة اليوتيوب (27K+)</span>
             </a>
           </li>
+
+          {/* فيسبوك */}
           <li>
             <a
-              href="/youtube"
-              className="text-neutral-600 hover:text-primary-600 transition-colors duration-300 flex items-center gap-2"
+              href="https://www.facebook.com/people/%D8%AA%D9%83%D9%86%D9%88%D9%81%D9%84%D8%A7%D8%B4-%D8%B0%D9%83%D8%A7%D8%A1-%D8%B5%D9%86%D8%A7%D8%B9%D9%8A-%D9%88%D8%AA%D9%82%D9%86%D9%8A%D8%A9-%D9%8A%D9%88%D9%85%D9%8A%D8%A9/61578726568961/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-600 hover:text-blue-700 transition-colors duration-300 flex items-center gap-3 group"
             >
-              <span className="text-blue-500">📺</span>
-              صفحة القناة
+              <span className="text-blue-600 text-xl group-hover:scale-110 transition-transform">📘</span>
+              <span className="font-medium">فيسبوك</span>
             </a>
           </li>
+
+          {/* تيك توك */}
           <li>
             <a
-              href="mailto:i2s2mail22@gmail.com"
-              className="text-neutral-600 hover:text-primary-600 transition-colors duration-300 flex items-center gap-2"
+              href="https://www.tiktok.com/@technoflashaitech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-600 hover:text-black transition-colors duration-300 flex items-center gap-3 group"
             >
-              <span className="text-green-500">📧</span>
-              البريد الإلكتروني
+              <span className="text-black text-xl group-hover:scale-110 transition-transform">🎵</span>
+              <span className="font-medium">تيك توك</span>
+            </a>
+          </li>
+
+          {/* تيليجرام */}
+          <li>
+            <a
+              href="https://t.me/tecnflash"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-600 hover:text-blue-500 transition-colors duration-300 flex items-center gap-3 group"
+            >
+              <span className="text-blue-400 text-xl group-hover:scale-110 transition-transform">✈️</span>
+              <span className="font-medium">تيليجرام</span>
+            </a>
+          </li>
+
+          {/* إنستجرام */}
+          <li>
+            <a
+              href="https://www.instagram.com/ali23wed/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-600 hover:text-pink-600 transition-colors duration-300 flex items-center gap-3 group"
+            >
+              <span className="text-pink-500 text-xl group-hover:scale-110 transition-transform">📷</span>
+              <span className="font-medium">إنستجرام</span>
+            </a>
+          </li>
+
+          {/* منصة X (تويتر سابقاً) */}
+          <li>
+            <a
+              href="https://x.com/TflashDev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-600 hover:text-black transition-colors duration-300 flex items-center gap-3 group"
+            >
+              <span className="text-black text-xl group-hover:scale-110 transition-transform">✖️</span>
+              <span className="font-medium">منصة X</span>
+            </a>
+          </li>
+
+          {/* البريد الإلكتروني */}
+          <li>
+            <a
+              href="mailto:contact@tfai.pro"
+              className="text-neutral-600 hover:text-green-600 transition-colors duration-300 flex items-center gap-3 group"
+            >
+              <span className="text-green-500 text-xl group-hover:scale-110 transition-transform">📧</span>
+              <span className="font-medium">البريد الإلكتروني</span>
             </a>
           </li>
         </ul>
       </div>
-    </div>
-
-    <div className="border-t border-neutral-300 mt-6 pt-6 text-center">
-      {/* روابط الصفحات الأساسية */}
-      <div className="mb-4">
-        <div className="flex flex-wrap justify-center gap-4 text-sm">
-          <a href="/page/about-us" className="text-neutral-600 hover:text-primary-600 transition-colors duration-300">من نحن</a>
-          <span className="text-neutral-400">|</span>
-          <a href="/page/contact" className="text-neutral-600 hover:text-primary-600 transition-colors duration-300">اتصل بنا</a>
-          <span className="text-neutral-400">|</span>
-          <a href="/page/privacy-policy" className="text-neutral-600 hover:text-primary-600 transition-colors duration-300">سياسة الخصوصية</a>
-          <span className="text-neutral-400">|</span>
-          <a href="/page/terms-of-use" className="text-neutral-600 hover:text-primary-600 transition-colors duration-300">شروط الاستخدام</a>
-          <span className="text-neutral-400">|</span>
-          <a href="/page/services" className="text-neutral-600 hover:text-primary-600 transition-colors duration-300">الخدمات</a>
-          <span className="text-neutral-400">|</span>
-          <a href="/youtube" className="text-neutral-600 hover:text-red-600 transition-colors duration-300">قناة اليوتيوب</a>
-        </div>
-      </div>
-
       <p className="text-neutral-500">
-        © 2025 TechnoFlash. جميع الحقوق محفوظة.
+        © 2026 TechnoFlash. جميع الحقوق محفوظة.
       </p>
     </div>
   </div>
