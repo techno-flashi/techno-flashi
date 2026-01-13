@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'اتصل بنا - TechnoFlash',
     description: 'تواصل مع فريق TechnoFlash للاستفسارات، الاقتراحات، أو طلب الخدمات التقنية المتخصصة.',
-    url: 'https://www.tflash.site/contact',
+    url: 'https://www.tfai.pro/page/contact',
     siteName: 'TechnoFlash',
     images: [
       {
@@ -106,7 +106,7 @@ export default function ContactPage() {
                 </Link>
 
                 <Link
-                  href="/contact"
+                  href="/page/contact"
                   className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-900 rounded-2xl font-semibold text-lg border-2 border-gray-200 hover:border-indigo-300 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                 >
                   تواصل معنا
